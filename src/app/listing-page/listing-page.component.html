@@ -1,0 +1,23 @@
+<div id="main-wrapper">
+  <div *ngFor="let listing of listings" class="listing-box">
+    <div class="listing-image">
+      <img src="{{listing.imageUrl}}" />
+    </div>
+    <div class="listing-text">
+      <div class="listing-name">
+        {{listing.name}}
+      </div>
+      <div class="listing-seller">
+        <a href="#">{{listing.user.firstName}} {{listing.user.lastName}}</a>
+        - {{(listing.user.positiveRatings / listing.user.totalRatings * 100).toFixed(0)}}%
+        positive ratings
+      </div>
+      <div class="listing-description">
+        {{listing.description}}
+      </div>
+    </div>
+    <div class="listing-price">
+      ${{listing.price.toFixed(2)}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+#main-wrapper {
+  width: 800px;
+  padding: 8px;
+  margin: auto;
+}
+
+.listing-box {
+  display: flex;
+  width: auto;
+  height: 160px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #dddddd;
+  box-shadow: 3px 3px 5px #cccccc;
+  font-family: sans-serif;
+}
+
+.listing-box:hover {
+  background-color: #eeeeee;
+  cursor: pointer;
+}
+
+.listing-image {
+  display: inline-block;
+  vertical-align: middle;
+  width: 35%;
+  height: 100%;
+}
+
+.listing-image img {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.listing-text {
+  display: block;
+  width: 55%;
+  padding: 0 20px 0 20px;
+}
+
+.listing-name {
+  margin-bottom: 10px;
+  font-size: 18pt;
+  font-weight: bold;
+}
+
+.listing-seller {
+  font-size: 12pt;
+  margin-bottom: 20px;
+}
+
+.listing-description {
+  font-size: 12pt;
+}
+
+.listing-price {
+  width: 10%;
+  margin: auto 0 auto 0;
+  padding: 10px;
+  font-size: 18pt;
+  font-weight: bold;
+}

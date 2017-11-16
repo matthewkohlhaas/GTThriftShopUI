@@ -31,7 +31,7 @@ span {
 
 #search-box {
   display: inline-block;
-  max-width: 330px;
+  max-width: 470px;
 }
 
 .glyphicon-menu-hamburger {
@@ -46,5 +46,5 @@ span {
 
 .form-control {
   display: inline-block !important;
-  max-width: 200px;
+  max-width: 160px;
 }

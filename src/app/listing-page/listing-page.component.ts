@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {Listing} from '../model/listing';
-import {MOCK_LISTINGS} from '../mock/mock-listings';
+import {Listing} from '../../model/listing';
+import {MOCK_LISTINGS} from '../../mock/mock-listings';
 
 @Component({
   selector: 'app-listing-page',

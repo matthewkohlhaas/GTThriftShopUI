@@ -6,25 +6,28 @@ span {
   position: fixed;
   width: 100%;
   background-color: #c59353;
-  padding: 8px 0 8px 0;
+  padding: 8px 0 10px 0;
   color: white;
-  font-family: sans-serif;
   font-size: 24px;
-  box-shadow: 0 3px 5px #cccccc;
   text-align: center;
   white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12),
+              0 1px 2px rgba(0,0,0,0.24);
 }
 
 #title-bar-spacer {
   display: block;
   width: 100%;
-  height: 50px;
+  height: 52px;
   margin-bottom: 10px;
 }
 
 #title {
   display: inline-block;
+  position: relative;
+  top: 2px;
   vertical-align: middle;
+  font-family: Lato, sans-serif;
   font-weight: bold;
   cursor: default;
 }

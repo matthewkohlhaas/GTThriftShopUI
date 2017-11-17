@@ -9,23 +9,26 @@
 .listing-box {
   display: flex;
   width: auto;
-  height: 160px;
+  height: 200px;
   padding: 20px;
   margin-bottom: 20px;
-  background-color: #dddddd;
-  box-shadow: 3px 3px 5px #cccccc;
-  font-family: sans-serif;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12),
+              0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.4s;
 }
 
 .listing-box:hover {
-  background-color: #eeeeee;
   cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12),
+              0 2px 4px rgba(0,0,0,0.24);
 }
 
 .listing-image {
   display: inline-block;
   vertical-align: middle;
-  width: 35%;
+  width: 30%;
   height: 100%;
 }
 
@@ -34,6 +37,7 @@
   margin: auto;
   max-width: 100%;
   max-height: 100%;
+  border-radius: 4px;
 }
 
 .listing-text {
@@ -44,6 +48,7 @@
 
 .listing-name {
   margin-bottom: 10px;
+  font-family: Roboto, sans-serif;
   font-size: 18pt;
   font-weight: bold;
 }
@@ -58,9 +63,11 @@
 }
 
 .listing-price {
-  width: 10%;
+  width: 15%;
   margin: auto 0 auto 0;
   padding: 10px;
+  font-family: Roboto, sans-serif;
   font-size: 18pt;
   font-weight: bold;
+  text-align: center;
 }

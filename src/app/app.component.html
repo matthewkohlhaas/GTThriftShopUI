@@ -1,2 +1,4 @@
-<app-title-bar></app-title-bar>
-<app-listing-page></app-listing-page>
+<app-login-bar></app-login-bar>
+<app-create-account-page></app-create-account-page>
+<app-title-bar *ngIf="this.accountService.isLoggedIn()"></app-title-bar>
+<app-listing-page *ngIf="this.accountService.isLoggedIn()"></app-listing-page>

@@ -1,0 +1,23 @@
+<div id="page-content">
+  <div id="register-box">
+    <h2>Create a New Account</h2>
+    <p>All you need is a Georgia Tech email address!</p>
+    <div class="register-field">
+      <label>First Name:</label>
+      <input type="text" class="form-control" id="register-field-first-name" title="first-name" [(ngModel)]="firstName">
+    </div>
+    <div class="register-field">
+      <label>Last Name:</label>
+      <input type="text" class="form-control" id="register-field-last-name" title="last-name" [(ngModel)]="lastName">
+    </div>
+    <div class="register-field">
+      <label>Email:</label>
+      <input type="email" class="form-control" id="register-field-email" title="email" [(ngModel)]="email">
+    </div>
+    <div class="register-field">
+      <label>Password:</label>
+      <input type="password" class="form-control" id="register-field-password" title="password" [(ngModel)]="password">
+    </div>
+    <button class="btn btn-primary" id="button-create-account" (click)="createAccount()">Create Account</button>
+  </div>
+</div>

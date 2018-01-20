@@ -16,7 +16,12 @@ export class CreateAccountPageComponent {
   constructor(private accountService: AccountService) {}
 
   createAccount(): void {
-    this.accountService.createAccount(this.email, this.password, this.firstName, this.lastName);
-    // TODO deal with failure
+    this.accountService.createAccount(this.email, this.password, this.firstName, this.lastName)
+      .subscribe(successful => {
+        if (!successful) {
+          console.log(successful);
+          alert('Failed to create a new account');
+        }
+      });
   }
 }

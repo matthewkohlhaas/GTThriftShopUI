@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {AccountService} from '../../services/account.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ModalContentComponent} from '../modal-content/modal-content.component';
 
 @Component({
   selector: 'app-login-bar',
@@ -17,7 +18,9 @@ export class LoginBarComponent {
   private login(): void {
     this.accountService.login(this.email, this.password, msg => {
       if (!msg.successful) {
-        this.modalService.open(msg.text);
+        const content = this.modalService.open(ModalContentComponent);
+        content.componentInstance.title = 'Failed to Log In';
+        content.componentInstance.message = msg.text;
       }
     });
   }

@@ -13,6 +13,7 @@ import {LoginBarComponent} from './login-bar/login-bar.component';
 import {CreateAccountPageComponent} from './create-account-page/create-account-page.component';
 import {JwtModule} from '@auth0/angular-jwt';
 import {OcticonDirective} from '../directives/octicon.directive';
+import {ModalContentComponent} from './modal-content/modal-content.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +22,10 @@ import {OcticonDirective} from '../directives/octicon.directive';
     LoginBarComponent,
     CreateAccountPageComponent,
     ListingPageComponent,
+    ModalContentComponent,
     OcticonDirective
   ],
+  entryComponents: [ModalContentComponent],
   imports: [
     BrowserModule,
     FormsModule,

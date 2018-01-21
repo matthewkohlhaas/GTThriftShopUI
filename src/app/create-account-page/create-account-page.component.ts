@@ -17,11 +17,8 @@ export class CreateAccountPageComponent {
 
   createAccount(): void {
     this.accountService.createAccount(this.email, this.password, this.firstName, this.lastName)
-      .subscribe(successful => {
-        if (!successful) {
-          console.log(successful);
-          alert('Failed to create a new account');
-        }
+      .subscribe(message => {
+        // TODO deal with success or failure
       });
   }
 }

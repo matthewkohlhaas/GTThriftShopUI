@@ -4,6 +4,8 @@ import {environment} from '../environments/environment';
 import {Observable} from 'rxjs/Observable';
 import {TokenMessage} from '../model/token-message';
 import {Message} from '../model/message';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class AccountService {
@@ -20,25 +22,28 @@ export class AccountService {
     this.isLoggedIn = false;
   }
 
-  login(email: string, password: string): string {
-    const message: Observable<TokenMessage> = this.http.post<TokenMessage>(environment.serverUrl + '/login',
-      {email: email, password: password});
+  login(email: string, password: string, next?: (msg: Message) => void): void {
 
-    let msg = 'Failed to log in';
+    this.http.post<TokenMessage>(environment.serverUrl + '/login', {email: email, password: password})
+      .catch(res => {
+        // TODO deal with 500's
 
-    message.subscribe(res => {
-      if (res !== null || res !== undefined) {
-        if (res.successful) {
-          window.sessionStorage.token = res.token;
-          this.isLoggedIn = true;
+        window.sessionStorage.token = null;
+        this.isLoggedIn = false;
+        next(new Message(res.error.successful, res.error.text));
+        return Observable.throw('unauthorized');
+
+    }).subscribe(res => {
+        if (res) {
+          if (res.successful) {
+            window.sessionStorage.token = res.token;
+            this.isLoggedIn = true;
+          }
+          next(new Message(res.successful, res.text));
         }
-        if (res.text !== null) {
-          msg = res.text;
-        }
-      }
-    });
-    return msg;
+      });
   }
+
 
   createAccount(email: string, password: string, firstName: string, lastName: string): Observable<Message> {
     return this.http.post<Message>(environment.serverUrl + '/create-account',
@@ -46,7 +51,7 @@ export class AccountService {
   }
 
   verify(): void {
-    if (window.sessionStorage.token) {
+    if (window && window.sessionStorage && window.sessionStorage.token) {
       const headers: HttpHeaders = new HttpHeaders().set('Authorization', window.sessionStorage.token);
       this.http.get<boolean>(environment.serverUrl + '/verify', {headers: headers})
         .subscribe(res => this.isLoggedIn = res);

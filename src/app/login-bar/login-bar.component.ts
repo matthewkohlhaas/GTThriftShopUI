@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {AccountService} from '../../services/account.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login-bar',
@@ -10,11 +11,14 @@ export class LoginBarComponent {
 
   private email: string;
   private password: string;
-  private statusMsg: string; // TODO use in popup modal for failure
 
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService, private modalService: NgbModal) {}
 
-  logIn(): void {
-    this.statusMsg = this.accountService.login(this.email, this.password);
+  login(): void {
+    this.accountService.login(this.email, this.password, msg => {
+      if (!msg.successful) {
+        this.modalService.open(msg.text);
+      }
+    });
   }
 }

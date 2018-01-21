@@ -7,6 +7,8 @@ import {Message} from '../model/message';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
+const TOKEN_NAME = 'ACCESS_TOKEN';
+
 @Injectable()
 export class AccountService {
 
@@ -18,7 +20,7 @@ export class AccountService {
 
   logout(): void {
     // TODO find some way to invalidate token?
-    window.sessionStorage.token = null;
+    localStorage.removeItem(TOKEN_NAME);
     this.isLoggedIn = false;
   }
 
@@ -28,7 +30,7 @@ export class AccountService {
       .catch(res => {
         // TODO deal with 500's
 
-        window.sessionStorage.token = null;
+        localStorage.removeItem(TOKEN_NAME);
         this.isLoggedIn = false;
         next(new Message(res.error.successful, res.error.text));
         return Observable.throw('unauthorized');
@@ -36,7 +38,7 @@ export class AccountService {
     }).subscribe(res => {
         if (res) {
           if (res.successful) {
-            window.sessionStorage.token = res.token;
+            localStorage.setItem(TOKEN_NAME, res.token);
             this.isLoggedIn = true;
           }
           next(new Message(res.successful, res.text));
@@ -51,10 +53,6 @@ export class AccountService {
   }
 
   verify(): void {
-    if (window && window.sessionStorage && window.sessionStorage.token) {
-      const headers: HttpHeaders = new HttpHeaders().set('Authorization', window.sessionStorage.token);
-      this.http.get<boolean>(environment.serverUrl + '/verify', {headers: headers})
-        .subscribe(res => this.isLoggedIn = res);
-    }
+    this.http.get<boolean>(environment.serverUrl + '/verify').subscribe(res => this.isLoggedIn = res);
   }
 }

@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {AccountService} from '../../services/account.service';
 
 @Component({
   selector: 'app-title-bar',
@@ -6,5 +7,10 @@ import {Component} from '@angular/core';
   styleUrls: ['./title-bar.component.css']
 })
 export class TitleBarComponent {
-  constructor() {}
+
+  constructor(private accountService: AccountService) {}
+
+  private logout(): void {
+    this.accountService.logout();
+  }
 }

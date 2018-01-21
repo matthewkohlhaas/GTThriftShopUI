@@ -10,10 +10,6 @@ export class ListingService {
   constructor(private http: HttpClient) {}
 
   getListings(): Observable<Listing[]> {
-    if (window.sessionStorage.token) {
-      const headers: HttpHeaders = new HttpHeaders().set('Authorization', window.sessionStorage.token);
-      return this.http.get<Listing[]>(environment.serverUrl + '/listings', {headers: headers});
-    }
-    return null;
+    return this.http.get<Listing[]>(environment.serverUrl + '/listings');
   }
 }

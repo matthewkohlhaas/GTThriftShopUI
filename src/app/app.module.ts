@@ -11,6 +11,7 @@ import {AccountService} from '../services/account.service';
 import {ListingService} from '../services/listing.service';
 import {LoginBarComponent} from './login-bar/login-bar.component';
 import {CreateAccountPageComponent} from './create-account-page/create-account-page.component';
+import {OcticonDirective} from '../directives/octicon.directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {CreateAccountPageComponent} from './create-account-page/create-account-p
     TitleBarComponent,
     LoginBarComponent,
     CreateAccountPageComponent,
-    ListingPageComponent
+    ListingPageComponent,
+    OcticonDirective
   ],
   imports: [
     BrowserModule,

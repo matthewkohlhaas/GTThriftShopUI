@@ -15,7 +15,7 @@ export class CreateAccountPageComponent {
 
   constructor(private accountService: AccountService) {}
 
-  createAccount(): void {
+  private createAccount(): void {
     this.accountService.createAccount(this.email, this.password, this.firstName, this.lastName)
       .subscribe(message => {
         // TODO deal with success or failure

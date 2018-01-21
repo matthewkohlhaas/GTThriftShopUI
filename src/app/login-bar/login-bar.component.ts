@@ -14,7 +14,7 @@ export class LoginBarComponent {
 
   constructor(private accountService: AccountService, private modalService: NgbModal) {}
 
-  login(): void {
+  private login(): void {
     this.accountService.login(this.email, this.password, msg => {
       if (!msg.successful) {
         this.modalService.open(msg.text);

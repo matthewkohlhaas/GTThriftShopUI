@@ -37,13 +37,10 @@ span {
   max-width: 470px;
 }
 
-.glyphicon-menu-hamburger {
+#menu-icon {
   display: inline-block;
   vertical-align: middle;
   font-size: 30px;
-}
-
-.glyphicon-menu-hamburger:hover {
   cursor: pointer;
 }
 

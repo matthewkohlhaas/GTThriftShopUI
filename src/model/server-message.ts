@@ -1,4 +1,4 @@
-export class Message {
+export class ServerMessage {
   successful: boolean;
   text: string;
 

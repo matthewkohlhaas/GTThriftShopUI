@@ -2,24 +2,43 @@
   <div id="register-box">
     <h2>Create a New Account</h2>
     <p>All you need is a Georgia Tech email address!</p>
-    <div class="register-field">
-      <label>First Name:</label>
-      <input type="text" class="form-control" id="register-field-first-name" title="first-name" [(ngModel)]="firstName">
+    <div class="form-group" [ngClass]="showErrorFirstName ? 'has-danger' : ''">
+      <label class="form-control-label" for="register-field-first-name">First Name:</label>
+      <input id="register-field-first-name" class="form-control" type="text" title="first-name" [(ngModel)]="firstName"
+             (blur)="validateFirstName()" (keyup.enter)="onSubmit()">
+      <div class="form-control-feedback"
+           [ngStyle]="showErrorFirstName ? {'visibility': 'visible'} : {'visibility': 'hidden'}">
+        Please enter a first name.
+      </div>
     </div>
-    <div class="register-field">
-      <label>Last Name:</label>
-      <input type="text" class="form-control" id="register-field-last-name" title="last-name" [(ngModel)]="lastName">
+    <div class="form-group" [ngClass]="showErrorLastName ? 'has-danger' : ''">
+      <label class="form-control-label" for="register-field-last-name">Last Name:</label>
+      <input id="register-field-last-name" class="form-control" type="text" title="last-name" [(ngModel)]="lastName"
+             (blur)="validateLastName()" (keyup.enter)="onSubmit()">
+      <div class="form-control-feedback"
+           [ngStyle]="showErrorLastName ? {'visibility': 'visible'} : {'visibility': 'hidden'}">
+        Please enter a last name.
+      </div>
     </div>
-    <div class="register-field">
-      <label>Email:</label>
-      <input type="email" class="form-control" id="register-field-email" title="email" name="username"
-             [(ngModel)]="email">
+    <div class="form-group" [ngClass]="showErrorEmail ? 'has-danger' : ''">
+      <label class="form-control-label" for="register-field-email">Email:</label>
+      <input id="register-field-email" class="form-control" type="email" title="email" name="username"
+             [(ngModel)]="email" (blur)="validateEmail()" (keyup.enter)="onSubmit()">
+      <div class="form-control-feedback"
+           [ngStyle]="showErrorEmail ? {'visibility': 'visible'} : {'visibility': 'hidden'}">
+        Please enter a valid Georgia Tech email address.
+      </div>
     </div>
-    <div class="register-field">
-      <label>Password:</label>
-      <input type="password" class="form-control" id="register-field-password" title="password" [(ngModel)]="password">
+    <div class="form-group" [ngClass]="showErrorPassword ? 'has-danger' : ''">
+      <label class="form-control-label" for="register-field-password">Password:</label>
+      <input id="register-field-password" class="form-control" type="password" title="password" [(ngModel)]="password"
+             (blur)="validatePassword()" (keyup.enter)="onSubmit()">
+      <div class="form-control-feedback"
+           [ngStyle]="showErrorPassword ? {'visibility': 'visible'} : {'visibility': 'hidden'}">
+        Please enter a password that has 6 or more characters.
+      </div>
     </div>
-    <button id="button-create-account" class="btn btn-primary" type="button" (click)="createAccount()">
+    <button id="button-create-account" class="btn btn-primary" type="button" (click)="onSubmit()">
       Create Account
     </button>
   </div>

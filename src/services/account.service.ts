@@ -4,13 +4,24 @@ import {environment} from '../environments/environment';
 import {ServerTokenMessage} from '../model/server-token-message';
 import {ServerMessage} from '../model/server-message';
 
+const EMAIL_REGEX: RegExp = /^.+@gatech.edu$/i;
+const MIN_PASSWORD_LENGTH = 6;
 const TOKEN_NAME = 'ACCESS_TOKEN';
 const COULD_NOT_CONNECT = 'Could not connect to server.';
+
 
 @Injectable()
 export class AccountService {
 
   isLoggedIn: boolean;
+
+  static getEmailRegex(): RegExp {
+    return EMAIL_REGEX;
+  }
+
+  static getMinPasswordLength(): number {
+    return MIN_PASSWORD_LENGTH;
+  }
 
   constructor(private http: HttpClient) {
     this.isLoggedIn = false;

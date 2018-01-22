@@ -35,7 +35,7 @@
              (blur)="validatePassword()" (keyup.enter)="onSubmit()">
       <div class="form-control-feedback"
            [ngStyle]="showErrorPassword ? {'visibility': 'visible'} : {'visibility': 'hidden'}">
-        Please enter a password that has 6 or more characters.
+        Please enter a password that has {{getMinPasswordLength()}} or more characters.
       </div>
     </div>
     <button id="button-create-account" class="btn btn-primary" type="button" (click)="onSubmit()">

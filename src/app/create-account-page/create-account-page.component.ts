@@ -3,9 +3,6 @@ import {AccountService} from '../../services/account.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ModalContentComponent} from '../modal-content/modal-content.component';
 
-const EMAIL_REGEX = /^.+@gatech.edu$/i;
-const MIN_PASSWORD_LENGTH = 6;
-
 @Component({
   selector: 'app-create-account-page',
   templateUrl: './create-account-page.component.html',
@@ -37,6 +34,11 @@ export class CreateAccountPageComponent implements OnInit{
     this.showErrorPassword = false;
   }
 
+  // Do not make this method static -- the template uses it
+  private getMinPasswordLength(): number {
+    return AccountService.getMinPasswordLength();
+  }
+
   private onSubmit(): void {
     this.validateAllFields();
     if (!this.showErrorFirstName && !this.showErrorLastName && !this.showErrorEmail && !this.showErrorPassword) {
@@ -53,12 +55,14 @@ export class CreateAccountPageComponent implements OnInit{
   }
 
   private validateEmail(): void {
-    this.showErrorEmail = CreateAccountPageComponent.validateEntry(this.email, str => !EMAIL_REGEX.test(str));
+    this.showErrorEmail = CreateAccountPageComponent.validateEntry(this.email, str => {
+      return !AccountService.getEmailRegex().test(str);
+    });
   }
 
   private validatePassword(): void {
     this.showErrorPassword = CreateAccountPageComponent.validateEntry(this.password, str => {
-      return str.length < MIN_PASSWORD_LENGTH;
+      return str.length < AccountService.getMinPasswordLength();
     });
   }
 

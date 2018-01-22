@@ -1,16 +1,18 @@
 <div id="title-bar">
   <div id="title-bar-content">
     <span id="title">GT ThriftShop</span>
-    <button id="button-log-in" class="btn btn-primary" type="button" (click)="login()">Log In</button>
-    <span class="text-box">
-      <label>Password:</label>
-      <input type="password" class="form-control text-box" id="password-field" title="password" [(ngModel)]="password"
-             (keyup.enter)="login()">
-    </span>
-    <span class="text-box">
-      <label>Email:</label>
-      <input type="email" class="form-control text-box" id="email-field" title="email" name="username"
-             [(ngModel)]="email" (keyup.enter)="login()">
+    <span id="login-form">
+      <span class="text-box">
+        <label for="email-field">Email:</label>
+        <input id="email-field" type="email" class="form-control text-box" title="email" name="username"
+               [(ngModel)]="email" (keyup.enter)="login()">
+      </span>
+      <span class="text-box">
+        <label for="password-field">Password:</label>
+        <input id="password-field" type="password" class="form-control text-box" title="password" [(ngModel)]="password"
+               (keyup.enter)="login()">
+      </span>
+      <button id="button-log-in" class="btn btn-primary" type="button" (click)="login()">Log In</button>
     </span>
   </div>
 </div>

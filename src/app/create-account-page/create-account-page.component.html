@@ -38,7 +38,8 @@
         Please enter a password that has {{getMinPasswordLength()}} or more characters.
       </div>
     </div>
-    <button id="button-create-account" class="btn btn-primary" type="button" (click)="onSubmit()">
+    <button id="button-create-account" class="btn btn-primary" type="button" (click)="onSubmit()"
+            [disabled]="submitDisabled">
       Create Account
     </button>
   </div>

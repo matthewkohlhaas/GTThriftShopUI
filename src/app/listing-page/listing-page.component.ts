@@ -14,7 +14,7 @@ export class ListingPageComponent implements OnInit {
 
   constructor(private listingService: ListingService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.listings = [];
 
     const response: Observable<Listing[]> = this.listingService.getListings();

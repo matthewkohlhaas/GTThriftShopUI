@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AccountService} from '../../services/account.service';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ModalContentComponent} from '../modal-content/modal-content.component';
 
 @Component({
@@ -9,6 +9,8 @@ import {ModalContentComponent} from '../modal-content/modal-content.component';
   styleUrls: ['./create-account-page.component.css']
 })
 export class CreateAccountPageComponent implements OnInit{
+
+  private submitDisabled: boolean;
 
   private firstName: string;
   private lastName: string;
@@ -23,11 +25,12 @@ export class CreateAccountPageComponent implements OnInit{
   constructor(private accountService: AccountService, private modalService: NgbModal) {}
 
   private static validateEntry(entry: string, validator: (str: string) => boolean): boolean {
-    const trimmedEntry = (entry) ? entry.trim() : '';
+    const trimmedEntry: string = (entry) ? entry.trim() : '';
     return validator(trimmedEntry);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.submitDisabled = false;
     this.showErrorFirstName = false;
     this.showErrorLastName = false;
     this.showErrorEmail = false;
@@ -40,9 +43,11 @@ export class CreateAccountPageComponent implements OnInit{
   }
 
   private onSubmit(): void {
-    this.validateAllFields();
-    if (!this.showErrorFirstName && !this.showErrorLastName && !this.showErrorEmail && !this.showErrorPassword) {
-      this.createAccount();
+    if (!this.submitDisabled) {
+      this.validateAllFields();
+      if (!this.showErrorFirstName && !this.showErrorLastName && !this.showErrorEmail && !this.showErrorPassword) {
+        this.createAccount();
+      }
     }
   }
 
@@ -74,8 +79,10 @@ export class CreateAccountPageComponent implements OnInit{
   }
 
   private createAccount(): void {
+    this.submitDisabled = true;
+
     this.accountService.createAccount(this.email, this.password, this.firstName, this.lastName, msg => {
-        const content = this.modalService.open(ModalContentComponent);
+        const content: NgbModalRef = this.modalService.open(ModalContentComponent);
 
         if (msg.successful) {
           content.componentInstance.title = 'Successfully Created Account';
@@ -83,6 +90,12 @@ export class CreateAccountPageComponent implements OnInit{
           content.componentInstance.title = 'Failed to Create Account';
         }
         content.componentInstance.message = msg.text;
+
+        content.result.then(value => {
+          this.submitDisabled = false;
+        }, reason => {
+          this.submitDisabled = false;
+          });
       });
   }
 }

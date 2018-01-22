@@ -12,7 +12,9 @@
         <input id="password-field" class="form-control" type="password" title="password" [(ngModel)]="password"
                (keyup.enter)="login()">
       </span>
-      <button id="button-log-in" class="btn btn-primary" type="button" (click)="login()">Log In</button>
+      <button id="button-log-in" class="btn btn-primary" type="button" (click)="login()" [disabled]="submitDisabled">
+        Log In
+      </button>
     </span>
   </div>
 </div>

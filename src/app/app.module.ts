@@ -14,6 +14,7 @@ import {CreateAccountPageComponent} from './create-account-page/create-account-p
 import {JwtModule} from '@auth0/angular-jwt';
 import {OcticonDirective} from '../directives/octicon.directive';
 import {ModalContentComponent} from './modal-content/modal-content.component';
+import {environment} from "../environments/environment";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import {ModalContentComponent} from './modal-content/modal-content.component';
           return localStorage.getItem('ACCESS_TOKEN');
         },
         authScheme: '',
-        whitelistedDomains: ['localhost:1337']
+        whitelistedDomains: [environment.serverDomain]
       }
     }),
     NgbModule.forRoot()

@@ -3,7 +3,12 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
+const PROTOCOL = 'http://';
+const DOMAIN = 'localhost:1337';
+
 export const environment = {
   production: false,
-  serverUrl: 'http://localhost:1337',
+  serverProtocol: PROTOCOL,
+  serverDomain: DOMAIN,
+  serverUrl: PROTOCOL + DOMAIN,
 };

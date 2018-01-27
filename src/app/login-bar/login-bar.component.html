@@ -1,0 +1,21 @@
+<div id="title-bar">
+  <div id="title-bar-content">
+    <span id="title">GT ThriftShop</span>
+    <span id="login-form">
+      <span class="text-box">
+        <label for="email-field">Email:</label>
+        <input id="email-field" class="form-control" type="email" title="email" name="username"
+               [(ngModel)]="email" (keyup.enter)="login()">
+      </span>
+      <span class="text-box">
+        <label for="password-field">Password:</label>
+        <input id="password-field" class="form-control" type="password" title="password" [(ngModel)]="password"
+               (keyup.enter)="login()">
+      </span>
+      <button id="button-log-in" class="btn btn-primary" type="button" (click)="login()" [disabled]="submitDisabled">
+        Log In
+      </button>
+    </span>
+  </div>
+</div>
+<div id="title-bar-spacer"></div>

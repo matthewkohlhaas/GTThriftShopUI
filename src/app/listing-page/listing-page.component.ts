@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Listing} from '../../model/listing';
-import {MOCK_LISTINGS} from '../../mock/mock-listings';
 import {ListingService} from '../../services/listing.service';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-listing-page',
@@ -14,7 +14,13 @@ export class ListingPageComponent implements OnInit {
 
   constructor(private listingService: ListingService) {}
 
-  ngOnInit() {
-    this.listingService.getListings().subscribe(listings => this.listings = listings);
+  ngOnInit(): void {
+    this.listings = [];
+
+    const response: Observable<Listing[]> = this.listingService.getListings();
+
+    if (response) {
+      response.subscribe(listings => this.listings = listings);
+    }
   }
 }

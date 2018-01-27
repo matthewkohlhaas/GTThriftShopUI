@@ -29,6 +29,10 @@ export class CreateAccountPageComponent implements OnInit{
     return validator(trimmedEntry);
   }
 
+  private static validateNotEmpty(entry: string): boolean {
+    return this.validateEntry(entry, str => str === '');
+  }
+
   ngOnInit(): void {
     this.submitDisabled = false;
     this.showErrorFirstName = false;
@@ -51,31 +55,31 @@ export class CreateAccountPageComponent implements OnInit{
     }
   }
 
-  private validateFirstName(): void {
-    this.showErrorFirstName = CreateAccountPageComponent.validateEntry(this.firstName, str => str === '');
+  private onBlurEmail(): void {
+    this.showErrorEmail = this.validateEmail(this.email) && this.email && this.email !== '';
   }
 
-  private validateLastName(): void {
-    this.showErrorLastName = CreateAccountPageComponent.validateEntry(this.lastName, str => str === '');
+  private onBlurPassword(): void {
+    this.showErrorPassword = this.validatePassword(this.password) && this.password && this.password !== '';
   }
 
-  private validateEmail(): void {
-    this.showErrorEmail = CreateAccountPageComponent.validateEntry(this.email, str => {
+  private validateEmail(entry: string): boolean {
+    return CreateAccountPageComponent.validateEntry(entry, str => {
       return !AccountService.getEmailRegex().test(str);
     });
   }
 
-  private validatePassword(): void {
-    this.showErrorPassword = CreateAccountPageComponent.validateEntry(this.password, str => {
+  private validatePassword(entry: string): boolean {
+    return CreateAccountPageComponent.validateEntry(entry, str => {
       return str.length < AccountService.getMinPasswordLength();
     });
   }
 
   private validateAllFields(): void {
-    this.validateFirstName();
-    this.validateLastName();
-    this.validateEmail();
-    this.validatePassword();
+    this.showErrorFirstName = CreateAccountPageComponent.validateNotEmpty(this.firstName);
+    this.showErrorLastName = CreateAccountPageComponent.validateNotEmpty(this.lastName);
+    this.showErrorEmail = this.validateEmail(this.email);
+    this.showErrorPassword = this.validatePassword(this.password);
   }
 
   private createAccount(): void {

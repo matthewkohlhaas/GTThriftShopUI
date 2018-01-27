@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {AccountService} from '../../services/account.service';
+import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {ModalContentComponent} from '../modal-content/modal-content.component';
 
 @Component({
   selector: 'app-nav-menu',
@@ -8,9 +11,19 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class NavMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private accountService: AccountService, private modalService: NgbModal) { }
 
   ngOnInit() {
+  }
+
+  private logout(): void {
+    this.accountService.logout();
+  }
+
+  private settings(): void {
+    const content: NgbModalRef = this.modalService.open(ModalContentComponent);
+    content.componentInstance.title = 'Not Implemented';
+    content.componentInstance.message = 'This feature has not been implemented';
   }
 
 }

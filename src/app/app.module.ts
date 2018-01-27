@@ -14,6 +14,7 @@ import {CreateAccountPageComponent} from './create-account-page/create-account-p
 import {JwtModule} from '@auth0/angular-jwt';
 import {OcticonDirective} from '../directives/octicon.directive';
 import {ModalContentComponent} from './modal-content/modal-content.component';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {ModalContentComponent} from './modal-content/modal-content.component';
     CreateAccountPageComponent,
     ListingPageComponent,
     ModalContentComponent,
-    OcticonDirective
+    OcticonDirective,
+    NavMenuComponent
   ],
   entryComponents: [ModalContentComponent],
   imports: [

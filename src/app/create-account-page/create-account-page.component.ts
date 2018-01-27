@@ -2,13 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {AccountService} from '../../services/account.service';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ModalContentComponent} from '../modal-content/modal-content.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-account-page',
   templateUrl: './create-account-page.component.html',
   styleUrls: ['./create-account-page.component.css']
 })
-export class CreateAccountPageComponent implements OnInit{
+export class CreateAccountPageComponent implements OnInit {
 
   private submitDisabled: boolean;
 
@@ -22,7 +23,7 @@ export class CreateAccountPageComponent implements OnInit{
   private showErrorEmail: boolean;
   private showErrorPassword: boolean;
 
-  constructor(private accountService: AccountService, private modalService: NgbModal) {}
+  constructor(private router: Router, private accountService: AccountService, private modalService: NgbModal) {}
 
   private static validateEntry(entry: string, validator: (str: string) => boolean): boolean {
     const trimmedEntry: string = (entry) ? entry.trim() : '';
@@ -34,6 +35,11 @@ export class CreateAccountPageComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.accountService.verify().subscribe(res => {
+      if (res) {
+        this.router.navigate(['listings']);
+      }
+    });
     this.submitDisabled = false;
     this.showErrorFirstName = false;
     this.showErrorLastName = false;

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Listing} from '../../model/listing';
 import {ListingService} from '../../services/listing.service';
-import {Observable} from 'rxjs/Observable';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-listing-page',
@@ -12,15 +12,15 @@ export class ListingPageComponent implements OnInit {
 
   listings: Listing[];
 
-  constructor(private listingService: ListingService) {}
+  constructor(private router: Router, private listingService: ListingService) {}
 
   ngOnInit(): void {
-    this.listings = [];
-
-    const response: Observable<Listing[]> = this.listingService.getListings();
-
-    if (response) {
-      response.subscribe(listings => this.listings = listings);
-    }
+    this.listingService.getListings().subscribe(res => {
+      this.listings = res;
+    }, err => {
+      if (err.status === 401) {
+        this.router.navigate(['']);
+      }
+    });
   }
 }

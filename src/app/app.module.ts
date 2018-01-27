@@ -14,11 +14,21 @@ import {CreateAccountPageComponent} from './create-account-page/create-account-p
 import {JwtModule} from '@auth0/angular-jwt';
 import {OcticonDirective} from '../directives/octicon.directive';
 import {ModalContentComponent} from './modal-content/modal-content.component';
-import {environment} from "../environments/environment";
+import {environment} from '../environments/environment';
+import {RouterModule, Routes} from '@angular/router';
+import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
+
+const appRoutes: Routes = [
+  {path: '', component: CreateAccountPageComponent},
+  {path: 'listings', component: ListingPageComponent},
+  {path: '**', component: NotFoundPageComponent}
+];
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    NotFoundPageComponent,
     TitleBarComponent,
     LoginBarComponent,
     CreateAccountPageComponent,
@@ -31,6 +41,7 @@ import {environment} from "../environments/environment";
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    RouterModule.forRoot(appRoutes),
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {

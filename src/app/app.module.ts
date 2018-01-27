@@ -2,6 +2,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {MatMenuModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
 import {TitleBarComponent} from './title-bar/title-bar.component';
@@ -14,7 +16,7 @@ import {CreateAccountPageComponent} from './create-account-page/create-account-p
 import {JwtModule} from '@auth0/angular-jwt';
 import {OcticonDirective} from '../directives/octicon.directive';
 import {ModalContentComponent} from './modal-content/modal-content.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import {NavMenuComponent} from './nav-menu/nav-menu.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
   entryComponents: [ModalContentComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     JwtModule.forRoot({
@@ -41,6 +44,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
         whitelistedDomains: ['localhost:1337']
       }
     }),
+    MatMenuModule,
     NgbModule.forRoot()
   ],
   providers: [

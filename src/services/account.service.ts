@@ -68,7 +68,7 @@ export class AccountService {
 
   authenticate(next: (isAuthenticated: boolean) => void): void {
     if (localStorage.getItem(TOKEN_NAME)) {
-      this.http.get<boolean>(environment.serverUrl + '/verify')
+      this.http.get<boolean>(environment.serverUrl + '/authenticate')
         .subscribe(res => {
           next(res);
         }, err => {

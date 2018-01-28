@@ -66,7 +66,14 @@ export class AccountService {
       );
   }
 
-  verify(): Observable<boolean> {
-    return this.http.get<boolean>(environment.serverUrl + '/verify');
+  authenticate(next: (isAuthenticated: boolean) => void): void {
+    if (localStorage.getItem(TOKEN_NAME)) {
+      this.http.get<boolean>(environment.serverUrl + '/verify')
+        .subscribe(res => {
+          next(res);
+        }, err => {
+          next(err);
+        });
+    }
   }
 }

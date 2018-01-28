@@ -35,8 +35,8 @@ export class CreateAccountPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.accountService.verify().subscribe(res => {
-      if (res) {
+    this.accountService.authenticate(isAuthenticated => {
+      if (isAuthenticated) {
         this.router.navigate(['listings']);
       }
     });

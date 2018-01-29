@@ -61,7 +61,11 @@ export class AccountService {
         res => {
           next(res);
         }, err => {
-          next(new ServerMessage(false, COULD_NOT_CONNECT));
+          if (err.status === 503) {
+            next(err);
+          } else {
+            next(new ServerMessage(false, COULD_NOT_CONNECT));
+          }
         }
       );
   }

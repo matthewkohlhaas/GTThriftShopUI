@@ -1,0 +1,21 @@
+<app-title-bar></app-title-bar>
+
+<div id="form-container">
+
+  <h1>Contact us</h1>
+
+  <div class="form-group" [ngClass]="showErrorPassword ? 'has-danger' : ''">
+    <label class="form-control-label">Subject:</label>
+    <input id="ticket-subject" class="form-control" class="form-control" type="text" title="ticket-subject"
+           [(ngModel)]="ticketSubject"
+           (keyup.enter)="onSubmit()">
+    <label class="form-control-label">Message:</label>
+    <textarea id="ticket-input" class="form-control" type="text" title="ticket-Message"
+           [(ngModel)]="ticketMessage"
+              (keyup.enter)="onSubmit()"></textarea>
+  </div>
+
+  <button id="button-submit-ticket" class="btn btn-primary" type="button"
+          (click)="onSubmit()" [disabled]="submitDisabled">Submit Ticket</button>
+  <br>
+</div>

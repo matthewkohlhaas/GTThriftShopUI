@@ -2,6 +2,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import {AccountService} from '../../services/account.service';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ModalContentComponent} from '../modal-content/modal-content.component';
+import {Router} from '@angular/router';
+
+
 
 @Component({
   selector: 'app-nav-menu',
@@ -11,10 +14,14 @@ import {ModalContentComponent} from '../modal-content/modal-content.component';
 })
 export class NavMenuComponent {
 
-  constructor(private accountService: AccountService, private modalService: NgbModal) { }
+  constructor(private accountService: AccountService, private modalService: NgbModal, private router: Router) { }
 
   private logout(): void {
     this.accountService.logout();
+  }
+
+  private goToSupport() {
+    this.router.navigate(['/support']);
   }
 
   private settings(): void {

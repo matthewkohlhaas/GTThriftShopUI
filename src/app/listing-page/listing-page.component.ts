@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Listing} from '../../model/listing';
 import {ListingService} from '../../services/listing.service';
-import {Observable} from 'rxjs/Observable';
+import {Router} from '@angular/router';
+import {AccountService} from '../../services/account.service';
 
 @Component({
   selector: 'app-listing-page',
@@ -12,15 +13,18 @@ export class ListingPageComponent implements OnInit {
 
   listings: Listing[];
 
-  constructor(private listingService: ListingService) {}
+  constructor(private router: Router, private accountService: AccountService, private listingService: ListingService) {}
 
   ngOnInit(): void {
-    this.listings = [];
+    this.accountService.authenticate(isAuthenticated => {
+      if (isAuthenticated) {
+        this.listingService.getListings().subscribe(res => {
+          this.listings = res;
+        });
 
-    const response: Observable<Listing[]> = this.listingService.getListings();
-
-    if (response) {
-      response.subscribe(listings => this.listings = listings);
-    }
+      } else {
+        this.router.navigate(['']);
+      }
+    });
   }
 }

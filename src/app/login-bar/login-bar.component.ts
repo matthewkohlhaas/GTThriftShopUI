@@ -23,7 +23,7 @@ export class LoginBarComponent implements OnInit {
 
   private login(): void {
     this.submitDisabled = true;
-    this.accountService.login(this.email, this.password, msg => {
+    this.accountService.login(this.email, this.password, 'listings', msg => {
       if (!msg.successful) {
         const content: NgbModalRef = this.modalService.open(ModalContentComponent);
         content.componentInstance.title = 'Failed to Log In';

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import {AccountService} from '../../services/account.service';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ModalContentComponent} from '../modal-content/modal-content.component';
@@ -9,12 +9,9 @@ import {ModalContentComponent} from '../modal-content/modal-content.component';
   styleUrls: ['./nav-menu.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class NavMenuComponent implements OnInit {
+export class NavMenuComponent {
 
   constructor(private accountService: AccountService, private modalService: NgbModal) { }
-
-  ngOnInit() {
-  }
 
   private logout(): void {
     this.accountService.logout();

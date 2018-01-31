@@ -32,3 +32,6 @@ label {
   background-color: #004aa0;
   border: none;
 }
+
+/* Angular Material requires a theme to work. This is a temporary import just to make it run. */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';

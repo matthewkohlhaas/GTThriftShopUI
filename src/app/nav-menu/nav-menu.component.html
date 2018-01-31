@@ -1,0 +1,5 @@
+<span id="hamburger-icon" appOcticon octicon="three-bars" width="30" [matMenuTriggerFor]="menu"></span>
+<mat-menu #menu="matMenu" [overlapTrigger]="false">
+  <button mat-menu-item (click)="settings()">Settings</button>
+  <button mat-menu-item (click)="logout()">Logout</button>
+</mat-menu>

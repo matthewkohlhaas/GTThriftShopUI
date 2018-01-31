@@ -5,7 +5,7 @@ import {ServerTokenMessage} from '../model/server-token-message';
 import {ServerMessage} from '../model/server-message';
 
 const EMAIL_REGEX: RegExp = /^.+@gatech.edu$/i;
-const MIN_PASSWORD_LENGTH = 6;
+const MIN_PASSWORD_LENGTH = 8;
 const TOKEN_NAME = 'ACCESS_TOKEN';
 const COULD_NOT_CONNECT = 'Could not connect to server.';
 

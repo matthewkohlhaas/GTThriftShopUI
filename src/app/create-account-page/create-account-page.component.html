@@ -5,7 +5,7 @@
     <div class="form-group" [ngClass]="showErrorFirstName ? 'has-danger' : ''">
       <label class="form-control-label" for="register-field-first-name">First Name:</label>
       <input id="register-field-first-name" class="form-control" type="text" title="first-name" [(ngModel)]="firstName"
-             (blur)="validateFirstName()" (keyup.enter)="onSubmit()">
+             (keyup.enter)="onSubmit()">
       <div class="form-control-feedback"
            [ngStyle]="showErrorFirstName ? {'visibility': 'visible'} : {'visibility': 'hidden'}">
         Please enter a first name.
@@ -14,7 +14,7 @@
     <div class="form-group" [ngClass]="showErrorLastName ? 'has-danger' : ''">
       <label class="form-control-label" for="register-field-last-name">Last Name:</label>
       <input id="register-field-last-name" class="form-control" type="text" title="last-name" [(ngModel)]="lastName"
-             (blur)="validateLastName()" (keyup.enter)="onSubmit()">
+             (keyup.enter)="onSubmit()">
       <div class="form-control-feedback"
            [ngStyle]="showErrorLastName ? {'visibility': 'visible'} : {'visibility': 'hidden'}">
         Please enter a last name.
@@ -23,7 +23,7 @@
     <div class="form-group" [ngClass]="showErrorEmail ? 'has-danger' : ''">
       <label class="form-control-label" for="register-field-email">Email:</label>
       <input id="register-field-email" class="form-control" type="email" title="email" name="username"
-             [(ngModel)]="email" (blur)="validateEmail()" (keyup.enter)="onSubmit()">
+             [(ngModel)]="email" (blur)="onBlurEmail()" (keyup.enter)="onSubmit()">
       <div class="form-control-feedback"
            [ngStyle]="showErrorEmail ? {'visibility': 'visible'} : {'visibility': 'hidden'}">
         Please enter a valid Georgia Tech email address.
@@ -32,7 +32,7 @@
     <div class="form-group" [ngClass]="showErrorPassword ? 'has-danger' : ''">
       <label class="form-control-label" for="register-field-password">Password:</label>
       <input id="register-field-password" class="form-control" type="password" title="password" [(ngModel)]="password"
-             (blur)="validatePassword()" (keyup.enter)="onSubmit()">
+             (blur)="onBlurPassword()" (keyup.enter)="onSubmit()">
       <div class="form-control-feedback"
            [ngStyle]="showErrorPassword ? {'visibility': 'visible'} : {'visibility': 'hidden'}">
         Please enter a password that has {{getMinPasswordLength()}} or more characters.

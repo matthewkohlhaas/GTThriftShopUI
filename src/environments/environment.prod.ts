@@ -1,4 +1,9 @@
+const PROTOCOL = 'https://';
+const DOMAIN = ''; // TODO fill this in for production
+
 export const environment = {
-  production: false,
-  serverUrl: '', // TODO fill this in when production url known
+  production: true,
+  serverProtocol: PROTOCOL,
+  serverDomain: DOMAIN,
+  serverUrl: PROTOCOL + DOMAIN,
 };

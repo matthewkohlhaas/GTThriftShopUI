@@ -25,7 +25,7 @@ span {
 #title {
   display: inline-block;
   position: relative;
-  top: 2px;
+  top: 4px;
   vertical-align: middle;
   font-family: Lato, sans-serif;
   font-weight: bold;
@@ -37,10 +37,10 @@ span {
   max-width: 470px;
 }
 
-#menu-icon {
+#nav-menu {
   display: inline-block;
   vertical-align: middle;
-  font-size: 30px;
+  top: 2px;
   cursor: pointer;
 }
 

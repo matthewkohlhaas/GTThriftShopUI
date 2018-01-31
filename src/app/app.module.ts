@@ -2,6 +2,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {MatMenuModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
 import {TitleBarComponent} from './title-bar/title-bar.component';
@@ -14,6 +16,7 @@ import {CreateAccountPageComponent} from './create-account-page/create-account-p
 import {JwtModule} from '@auth0/angular-jwt';
 import {OcticonDirective} from '../directives/octicon.directive';
 import {ModalContentComponent} from './modal-content/modal-content.component';
+import {NavMenuComponent} from './nav-menu/nav-menu.component';
 import {environment} from '../environments/environment';
 import {RouterModule, Routes} from '@angular/router';
 import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
@@ -24,7 +27,6 @@ const appRoutes: Routes = [
   {path: '**', component: NotFoundPageComponent}
 ];
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,11 +36,13 @@ const appRoutes: Routes = [
     CreateAccountPageComponent,
     ListingPageComponent,
     ModalContentComponent,
-    OcticonDirective
+    OcticonDirective,
+    NavMenuComponent
   ],
   entryComponents: [ModalContentComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
@@ -51,6 +55,7 @@ const appRoutes: Routes = [
         whitelistedDomains: [environment.serverDomain]
       }
     }),
+    MatMenuModule,
     NgbModule.forRoot()
   ],
   providers: [

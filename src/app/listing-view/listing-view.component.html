@@ -1,0 +1,29 @@
+<app-title-bar></app-title-bar>
+<div id="main-wrapper">
+  <div class="listing-box">
+    <div class="listing-image">
+      <img src="{{listing1.imageUrl}}" />
+    </div>
+    <div class="listing-text">
+      <div class="listing-name">
+        <a href="http://localhost:4200/listing">{{listing1.name}}</a>
+      </div>
+      <div class="listing-seller">
+        <a href="#">{{listing1.user.firstName}} {{listing1.user.lastName}}</a>
+        - {{(listing1.user.positiveRatings / listing1.user.totalRatings * 100).toFixed(0)}}%
+        positive ratings
+      </div>
+      <div class="listing-description">
+        <p>Size: M</p>
+        <p>Perfect condition Georgia Tech T-Shirt, never worn, no stains, rips, tears, or imperfections</p>
+        <p>Pickup: Able to meet on campus at any time during business hours M-F over next two weeks. Contact me for details. Sorry, no deliveries!</p>
+        <div class="contact">
+          <a href='#'>Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="listing-price">
+      ${{listing1.price.toFixed(2)}}
+    </div>
+  </div>
+</div>

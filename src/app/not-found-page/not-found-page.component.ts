@@ -12,6 +12,6 @@ export class NotFoundPageComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.url = window.location.host + window.location.pathname;
+    this.url = window.location.href;
   }
 }

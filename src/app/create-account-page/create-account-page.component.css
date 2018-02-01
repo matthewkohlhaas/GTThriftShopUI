@@ -4,7 +4,7 @@
   margin: 0 auto 0 auto;
 }
 
-#register-box {
+.box {
   display: block;
   width: auto;
   height: auto;
@@ -17,12 +17,12 @@
   text-align: left;
 }
 
-#register-box h2 {
+.box h1, .box h2, .box h3 {
   margin-top: 0;
   font-family: Lato, sans-serif;
 }
 
-#register-box p {
+.box p {
   margin-bottom: 20px;
 }
 

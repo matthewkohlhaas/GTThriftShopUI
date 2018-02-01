@@ -21,6 +21,7 @@ import {environment} from '../environments/environment';
 import {RouterModule, Routes} from '@angular/router';
 import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
 import { ContactPageComponent } from './contact-page/contact-page.component';
+import {TicketService} from "../services/ticket.service";
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -64,7 +65,8 @@ const appRoutes: Routes = [
   providers: [
     HttpClient,
     AccountService,
-    ListingService
+    ListingService,
+    TicketService
   ],
   bootstrap: [AppComponent]
 })

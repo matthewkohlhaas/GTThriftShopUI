@@ -6,12 +6,12 @@
 
   <div class="form-group" [ngClass]="showErrorPassword ? 'has-danger' : ''">
     <label class="form-control-label">Subject:</label>
-    <input id="ticket-subject" class="form-control" class="form-control" type="text" title="ticket-subject"
-           [(ngModel)]="ticketSubject"
+    <input id="ticket-subject" class="form-control" class="form-control" type="text" title="subject"
+           [(ngModel)]="subject"
            (keyup.enter)="onSubmit()">
     <label class="form-control-label">Message:</label>
-    <textarea id="ticket-input" class="form-control" type="text" title="ticket-Message"
-           [(ngModel)]="ticketMessage"
+    <textarea id="ticket-input" class="form-control" type="text" title="message"
+           [(ngModel)]="message"
               (keyup.enter)="onSubmit()"></textarea>
   </div>
 

@@ -4,7 +4,6 @@ import {environment} from '../environments/environment';
 import {ServerTokenMessage} from '../model/server-token-message';
 import {ServerMessage} from '../model/server-message';
 import {Router} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
 
 const EMAIL_REGEX: RegExp = /^.+@gatech.edu$/i;
 const MIN_PASSWORD_LENGTH = 8;

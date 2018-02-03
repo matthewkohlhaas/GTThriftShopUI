@@ -27,7 +27,12 @@
   font-family: Lato, sans-serif;
   font-weight: bold;
   font-size: 35px;
-  cursor: default;
+  color: white;
+  cursor: pointer;
+}
+
+#title:hover {
+  text-decoration: none;
 }
 
 #login-form {

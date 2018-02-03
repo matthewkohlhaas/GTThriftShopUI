@@ -24,7 +24,7 @@ import {AccountRecoveryPageComponent} from './account-recovery-page/account-reco
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
-  {path: 'recover-account', component: AccountRecoveryPageComponent},
+  {path: 'account-recovery', component: AccountRecoveryPageComponent},
   {path: 'listings', component: ListingPageComponent},
   {path: '**', component: NotFoundPageComponent}
 ];

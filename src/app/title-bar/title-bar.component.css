@@ -32,9 +32,13 @@ span {
   cursor: default;
 }
 
-#search-box {
+#search-box input {
   display: inline-block;
-  max-width: 470px;
+  max-width: 490px;
+}
+
+#categories-box {
+  margin: 0;
 }
 
 #nav-menu {

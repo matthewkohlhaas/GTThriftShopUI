@@ -1,37 +1,5 @@
-#page-content {
-  display: block;
-  width: 900px;
-  margin: 0 auto 0 auto;
-}
-
-.box {
-  display: block;
-  width: auto;
-  height: auto;
-  padding: 20px 20px 20px 20px;
-  margin-bottom: 20px;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.12),
-  0 1px 2px rgba(0,0,0,0.24);
-  text-align: left;
-}
-
-.box h1, .box h2, .box h3 {
-  margin-top: 0;
-  font-family: Lato, sans-serif;
-}
-
-.box p {
-  margin-bottom: 20px;
-}
-
 .form-group {
   display: inline-block;
   width: calc(50% - 30px);
   margin: 0 20px 10px 0;
-}
-
-.form-control-feedback {
-  font-size: 12px;
 }

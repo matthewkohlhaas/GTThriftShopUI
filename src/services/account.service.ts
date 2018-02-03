@@ -4,6 +4,7 @@ import {environment} from '../environments/environment';
 import {ServerTokenMessage} from '../model/server-token-message';
 import {ServerMessage} from '../model/server-message';
 import {Router} from '@angular/router';
+import {CreateAccountPageComponent} from '../app/create-account-page/create-account-page.component';
 
 const EMAIL_REGEX: RegExp = new RegExp('^(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"'
   + '(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@gatech.edu$');
@@ -14,23 +15,44 @@ const COULD_NOT_CONNECT = 'Could not connect to server.';
 @Injectable()
 export class AccountService {
 
-  static getEmailRegex(): RegExp {
+  public static getEmailRegex(): RegExp {
     return EMAIL_REGEX;
   }
 
-  static getMinPasswordLength(): number {
+  public static getMinPasswordLength(): number {
     return MIN_PASSWORD_LENGTH;
+  }
+
+  public static validateEntry(entry: string, validator: (str: string) => boolean): boolean {
+    const trimmedEntry: string = (entry) ? entry.trim() : '';
+    return validator(trimmedEntry);
+  }
+
+  public static validateNotEmpty(entry: string): boolean {
+    return this.validateEntry(entry, str => str !== '');
+  }
+
+  public static validateEmail(entry: string): boolean {
+    return AccountService.validateEntry(entry, str => {
+      return AccountService.getEmailRegex().test(str);
+    });
+  }
+
+  public static validatePassword(entry: string): boolean {
+    return AccountService.validateEntry(entry, str => {
+      return str.length >= AccountService.getMinPasswordLength();
+    });
   }
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  logout(): void {
+  public logout(): void {
     // TODO find some way to invalidate token?
     localStorage.removeItem(TOKEN_NAME);
     this.router.navigate(['']);
   }
 
-  login(email: string, password: string, route: string, next?: (msg: ServerMessage) => void): void {
+  public login(email: string, password: string, route: string, next?: (msg: ServerMessage) => void): void {
     this.http.post<ServerTokenMessage>(environment.serverUrl + '/login', {email: email, password: password})
       .subscribe(res => {
         if (res) {
@@ -52,7 +74,7 @@ export class AccountService {
   }
 
 
-  createAccount(email: string, password: string, firstName: string, lastName: string,
+  public createAccount(email: string, password: string, firstName: string, lastName: string,
                 next?: (msg: ServerMessage) => void): void {
 
     this.http.post<ServerMessage>(environment.serverUrl + '/create-account',
@@ -61,22 +83,39 @@ export class AccountService {
         res => {
           next(res);
         }, err => {
-          if (err.status === 503) {
-            next(err);
-          } else {
+          if (err.status === 500) {
             next(new ServerMessage(false, COULD_NOT_CONNECT));
+          } else {
+            console.log(err);
+            next(err.error);
           }
         }
       );
   }
 
-  authenticate(next: (isAuthenticated: boolean) => void): void {
+  public resendVerificationEmail(email: string, next?: (msg: ServerMessage) => void): void {
+
+    this.http.post<ServerMessage>(environment.serverUrl + '/resend-verification', {email: email})
+      .subscribe(
+        res => {
+          next(res);
+        }, err => {
+          if (err.status === 500) {
+            next(new ServerMessage(false, COULD_NOT_CONNECT));
+          } else {
+            next(err.error);
+          }
+        }
+      );
+  }
+
+  public authenticate(next: (isAuthenticated: boolean) => void): void {
     if (localStorage.getItem(TOKEN_NAME)) {
       this.http.get<boolean>(environment.serverUrl + '/authenticate')
         .subscribe(res => {
           next(res);
         }, err => {
-          next(err);
+          next(err.error);
         });
     }
   }

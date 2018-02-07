@@ -31,7 +31,7 @@
   cursor: pointer;
 }
 
-#title:hover {
+#title:hover, #title:active, #title:focus {
   text-decoration: none;
 }
 

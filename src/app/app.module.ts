@@ -22,11 +22,13 @@ import {RouterModule, Routes} from '@angular/router';
 import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
 import {AccountRecoveryPageComponent} from './account-recovery-page/account-recovery-page.component';
 import {VerificationPageComponent} from './verification-page/verification-page.component';
+import {PasswordResetPageComponent} from './password-reset-page/password-reset-page.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
   {path: 'account-recovery', component: AccountRecoveryPageComponent},
   {path: 'verify/:token', component: VerificationPageComponent},
+  {path: 'reset-password/:token', component: PasswordResetPageComponent},
   {path: 'listings', component: ListingPageComponent},
   {path: '**', component: NotFoundPageComponent}
 ];
@@ -43,7 +45,8 @@ const appRoutes: Routes = [
     OcticonDirective,
     NavMenuComponent,
     AccountRecoveryPageComponent,
-    VerificationPageComponent
+    VerificationPageComponent,
+    PasswordResetPageComponent
   ],
   entryComponents: [ModalContentComponent],
   imports: [

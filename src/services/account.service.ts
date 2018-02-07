@@ -65,10 +65,10 @@ export class AccountService {
       }, err => {
         localStorage.removeItem(TOKEN_NAME);
 
-        if (err.status === 401) {
-          next(new ServerMessage(err.error.successful, err.error.text));
-        } else {
+        if (err.status === 0) {
           next(new ServerMessage(false, COULD_NOT_CONNECT));
+        } else {
+          next(new ServerMessage(err.error.successful, err.error.text));
         }
       });
   }
@@ -83,7 +83,8 @@ export class AccountService {
         res => {
           next(res);
         }, err => {
-          if (err.status === 500) {
+          console.log(err);
+          if (err.status === 0) {
             next(new ServerMessage(false, COULD_NOT_CONNECT));
           } else {
             console.log(err);
@@ -94,13 +95,12 @@ export class AccountService {
   }
 
   public resendVerificationEmail(email: string, next?: (msg: ServerMessage) => void): void {
-
     this.http.post<ServerMessage>(environment.serverUrl + '/resend-verification', {email: email})
       .subscribe(
         res => {
           next(res);
         }, err => {
-          if (err.status === 500) {
+          if (err.status === 0) {
             next(new ServerMessage(false, COULD_NOT_CONNECT));
           } else {
             next(err.error);
@@ -115,7 +115,36 @@ export class AccountService {
         res => {
           next(res);
         }, err => {
-          if (err.status === 500) {
+          if (err.status === 0) {
+            next(new ServerMessage(false, COULD_NOT_CONNECT));
+          } else {
+            next(err.error);
+          }
+        }
+      );
+  }
+
+  public sendPasswordResetEmail(email: string, next?: (msg: ServerMessage) => void): void {
+    this.http.post<ServerMessage>(environment.serverUrl + '/send-password-reset', {email: email})
+      .subscribe(
+        res => {
+          next(res);
+        }, err => {
+          if (err.status === 0) {
+            next(new ServerMessage(false, COULD_NOT_CONNECT));
+          } else {
+            next(err.error);
+          }
+        }
+      );
+  }
+
+  public resetPassword(token: string, password: string, next?: (msg: ServerMessage) => void): void {
+    this.http.post<ServerMessage>(environment.serverUrl + '/reset-password',
+      {token: token, password: password}).subscribe(res => {
+          next(res);
+        }, err => {
+          if (err.status === 0) {
             next(new ServerMessage(false, COULD_NOT_CONNECT));
           } else {
             next(err.error);

@@ -125,7 +125,9 @@ export class AccountService {
   }
 
   public authenticate(next: (isAuthenticated: boolean) => void): void {
-    if (localStorage.getItem(TOKEN_NAME)) {
+    if (!localStorage.getItem(TOKEN_NAME)) {
+      next(false);
+    } else {
       this.http.get<boolean>(environment.serverUrl + '/authenticate')
         .subscribe(res => {
           next(res);

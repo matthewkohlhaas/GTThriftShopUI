@@ -3,7 +3,6 @@ import {AccountService} from '../../services/account.service';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ModalContentComponent} from '../modal-content/modal-content.component';
 import {ActivatedRoute, Params} from '@angular/router';
-import {ServerMessage} from '../../model/server-message';
 
 @Component({
   selector: 'app-account-recovery-page',
@@ -12,16 +11,20 @@ import {ServerMessage} from '../../model/server-message';
 })
 export class VerificationPageComponent implements OnInit {
 
+  private isLoggedIn: boolean;
   private header: string;
   private message: string;
 
   constructor(private accountService: AccountService, private activatedRoute: ActivatedRoute) {}
 
   public ngOnInit() {
+    this.isLoggedIn =  false;
+    this.accountService.authenticate(isAuthenticated => this.isLoggedIn = isAuthenticated);
+
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.accountService.verify(params['token'], (message: ServerMessage) => {
-        this.message = message.text;
-        if (message.successful) {
+      this.accountService.verify(params['token'], msg => {
+        this.message = msg.text;
+        if (msg.successful) {
           this.header = 'Verification Succeeded!';
         } else {
           this.header = 'Verification Failed';

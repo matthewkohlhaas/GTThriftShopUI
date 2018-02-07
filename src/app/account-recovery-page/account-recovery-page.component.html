@@ -1,4 +1,5 @@
-<app-login-bar></app-login-bar>
+<app-login-bar *ngIf="!isLoggedIn"></app-login-bar>
+<app-title-bar *ngIf="isLoggedIn"></app-title-bar>
 <div class="page-content">
   <div class="box">
     <h2>Account Recovery</h2>

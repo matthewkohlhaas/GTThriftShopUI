@@ -6,8 +6,8 @@ import {ServerMessage} from '../model/server-message';
 import {Router} from '@angular/router';
 import {CreateAccountPageComponent} from '../app/create-account-page/create-account-page.component';
 
-const EMAIL_REGEX: RegExp = new RegExp('^(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"'
-  + '(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@gatech.edu$');
+const EMAIL_REGEX: RegExp = new RegExp('^(?:[a-zA-Z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)'
+  + '*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@gatech.edu$');
 const MIN_PASSWORD_LENGTH = 8;
 const TOKEN_NAME = 'ACCESS_TOKEN';
 const COULD_NOT_CONNECT = 'Could not connect to server.';
@@ -109,8 +109,25 @@ export class AccountService {
       );
   }
 
+  public verify(token: string, next?: (msg: ServerMessage) => void): void {
+    this.http.get<ServerMessage>(environment.serverUrl + '/verify/' + token)
+      .subscribe(
+        res => {
+          next(res);
+        }, err => {
+          if (err.status === 500) {
+            next(new ServerMessage(false, COULD_NOT_CONNECT));
+          } else {
+            next(err.error);
+          }
+        }
+      );
+  }
+
   public authenticate(next: (isAuthenticated: boolean) => void): void {
-    if (localStorage.getItem(TOKEN_NAME)) {
+    if (!localStorage.getItem(TOKEN_NAME)) {
+      next(false);
+    } else {
       this.http.get<boolean>(environment.serverUrl + '/authenticate')
         .subscribe(res => {
           next(res);

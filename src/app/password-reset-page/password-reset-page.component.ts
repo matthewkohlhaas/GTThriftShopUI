@@ -16,9 +16,9 @@ export class PasswordResetPageComponent implements OnInit {
   private submitDisabled: boolean;
 
   private password: string;
-  private confirmPassword: string;
+  private confirmedPassword: string;
   private showErrorPassword: boolean;
-  private showErrorConfirmPassword: boolean;
+  private showErrorConfirmedPassword: boolean;
 
   constructor(
     private accountService: AccountService,
@@ -32,7 +32,7 @@ export class PasswordResetPageComponent implements OnInit {
     this.isLoggedIn = false;
     this.submitDisabled = false;
     this.showErrorPassword = false;
-    this.showErrorConfirmPassword = false;
+    this.showErrorConfirmedPassword = false;
     this.accountService.authenticate(isAuthenticated => this.isLoggedIn = isAuthenticated);
   }
 
@@ -40,13 +40,38 @@ export class PasswordResetPageComponent implements OnInit {
     this.showErrorPassword = !AccountService.validatePassword(this.password) && this.password && this.password !== '';
   }
 
+  private onBlurConfirmedPassword(): void {
+    this.showErrorConfirmedPassword = !AccountService.validatePassword(this.confirmedPassword) && this.confirmedPassword
+      && this.confirmedPassword !== '';
+  }
+
   private onSubmit(): void {
     if (!this.submitDisabled) {
       this.showErrorPassword = !AccountService.validatePassword(this.password);
-      if (!this.showErrorPassword) {
-        this.resetPassword();
+      this.showErrorConfirmedPassword = !AccountService.validatePassword(this.confirmedPassword);
+
+      if (!this.showErrorPassword && !this.showErrorConfirmedPassword) {
+        if (this.password !== this.confirmedPassword) {
+          this.showPasswordsDoNotMatchModal();
+        } else {
+          this.resetPassword();
+        }
       }
     }
+  }
+
+  private showPasswordsDoNotMatchModal(): void {
+    this.submitDisabled = true;
+    const content: NgbModalRef = this.modalService.open(ModalContentComponent);
+
+    content.componentInstance.title = 'Cannot Reset Password';
+    content.componentInstance.message = 'Please enter matching passwords in the two fields.';
+
+    content.result.then(value => {
+      this.submitDisabled = false;
+    }, reason => {
+      this.submitDisabled = false;
+    });
   }
 
   private resetPassword(): void {

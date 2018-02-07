@@ -109,6 +109,21 @@ export class AccountService {
       );
   }
 
+  public verify(token: string, next?: (msg: ServerMessage) => void): void {
+    this.http.get<ServerMessage>(environment.serverUrl + '/verify/' + token)
+      .subscribe(
+        res => {
+          next(res);
+        }, err => {
+          if (err.status === 500) {
+            next(new ServerMessage(false, COULD_NOT_CONNECT));
+          } else {
+            next(err.error);
+          }
+        }
+      );
+  }
+
   public authenticate(next: (isAuthenticated: boolean) => void): void {
     if (localStorage.getItem(TOKEN_NAME)) {
       this.http.get<boolean>(environment.serverUrl + '/authenticate')

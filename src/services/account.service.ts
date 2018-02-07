@@ -83,7 +83,6 @@ export class AccountService {
         res => {
           next(res);
         }, err => {
-          console.log(err);
           if (err.status === 0) {
             next(new ServerMessage(false, COULD_NOT_CONNECT));
           } else {

@@ -56,6 +56,6 @@ export class AccountRecoveryPageComponent implements OnInit {
   }
 
   private onBlurEmail(): void {
-    this.showErrorEmail = !AccountService.validateEmail(this.email) || !this.email || this.email === '';
+    this.showErrorEmail = !AccountService.validateEmail(this.email) && this.email && this.email !== '';
   }
 }

@@ -20,9 +20,13 @@ import {NavMenuComponent} from './nav-menu/nav-menu.component';
 import {environment} from '../environments/environment';
 import {RouterModule, Routes} from '@angular/router';
 import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
+import {AccountRecoveryPageComponent} from './account-recovery-page/account-recovery-page.component';
+import {VerificationPageComponent} from './verification-page/verification-page.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
+  {path: 'account-recovery', component: AccountRecoveryPageComponent},
+  {path: 'verify/:token', component: VerificationPageComponent},
   {path: 'listings', component: ListingPageComponent},
   {path: '**', component: NotFoundPageComponent}
 ];
@@ -37,7 +41,9 @@ const appRoutes: Routes = [
     ListingPageComponent,
     ModalContentComponent,
     OcticonDirective,
-    NavMenuComponent
+    NavMenuComponent,
+    AccountRecoveryPageComponent,
+    VerificationPageComponent
   ],
   entryComponents: [ModalContentComponent],
   imports: [

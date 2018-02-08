@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 })
 export class CreateAccountPageComponent implements OnInit {
 
+  private minPasswordLength: number;
   private submitDisabled: boolean;
 
   private firstName: string;
@@ -25,31 +26,18 @@ export class CreateAccountPageComponent implements OnInit {
 
   constructor(private router: Router, private accountService: AccountService, private modalService: NgbModal) {}
 
-  private static validateEntry(entry: string, validator: (str: string) => boolean): boolean {
-    const trimmedEntry: string = (entry) ? entry.trim() : '';
-    return validator(trimmedEntry);
-  }
-
-  private static validateNotEmpty(entry: string): boolean {
-    return this.validateEntry(entry, str => str === '');
-  }
-
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.accountService.authenticate(isAuthenticated => {
       if (isAuthenticated) {
         this.router.navigate(['listings']);
       }
     });
+    this.minPasswordLength = AccountService.getMinPasswordLength();
     this.submitDisabled = false;
     this.showErrorFirstName = false;
     this.showErrorLastName = false;
     this.showErrorEmail = false;
     this.showErrorPassword = false;
-  }
-
-  // Do not make this method static -- the template uses it
-  private getMinPasswordLength(): number {
-    return AccountService.getMinPasswordLength();
   }
 
   private onSubmit(): void {
@@ -62,30 +50,18 @@ export class CreateAccountPageComponent implements OnInit {
   }
 
   private onBlurEmail(): void {
-    this.showErrorEmail = this.validateEmail(this.email) && this.email && this.email !== '';
+    this.showErrorEmail = !AccountService.validateEmail(this.email) && this.email && this.email !== '';
   }
 
   private onBlurPassword(): void {
-    this.showErrorPassword = this.validatePassword(this.password) && this.password && this.password !== '';
-  }
-
-  private validateEmail(entry: string): boolean {
-    return CreateAccountPageComponent.validateEntry(entry, str => {
-      return !AccountService.getEmailRegex().test(str);
-    });
-  }
-
-  private validatePassword(entry: string): boolean {
-    return CreateAccountPageComponent.validateEntry(entry, str => {
-      return str.length < AccountService.getMinPasswordLength();
-    });
+    this.showErrorPassword = !AccountService.validatePassword(this.password) && this.password && this.password !== '';
   }
 
   private validateAllFields(): void {
-    this.showErrorFirstName = CreateAccountPageComponent.validateNotEmpty(this.firstName);
-    this.showErrorLastName = CreateAccountPageComponent.validateNotEmpty(this.lastName);
-    this.showErrorEmail = this.validateEmail(this.email);
-    this.showErrorPassword = this.validatePassword(this.password);
+    this.showErrorFirstName = !AccountService.validateNotEmpty(this.firstName);
+    this.showErrorLastName = !AccountService.validateNotEmpty(this.lastName);
+    this.showErrorEmail = !AccountService.validateEmail(this.email);
+    this.showErrorPassword = !AccountService.validatePassword(this.password);
   }
 
   private createAccount(): void {

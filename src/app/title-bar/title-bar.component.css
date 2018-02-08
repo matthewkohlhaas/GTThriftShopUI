@@ -26,15 +26,25 @@ span {
   display: inline-block;
   position: relative;
   top: 4px;
+  margin: 0 10px 0 10px;
   vertical-align: middle;
   font-family: Lato, sans-serif;
   font-weight: bold;
-  cursor: default;
+  color: white;
+  cursor: pointer;
 }
 
-#search-box {
+#title:hover, #title:active, #title:focus {
+  text-decoration: none;
+}
+
+#search-box input {
   display: inline-block;
-  max-width: 470px;
+  max-width: 490px;
+}
+
+#categories-box {
+  margin: 0;
 }
 
 #nav-menu {

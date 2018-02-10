@@ -25,6 +25,7 @@ import {ContactPageComponent} from './contact-page/contact-page.component';
 import {TicketService} from '../services/ticket.service';
 import {AccountRecoveryPageComponent} from './account-recovery-page/account-recovery-page.component';
 import {VerificationPageComponent} from './verification-page/verification-page.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -48,7 +49,8 @@ const appRoutes: Routes = [
     NavMenuComponent,
     ContactPageComponent,
     AccountRecoveryPageComponent,
-    VerificationPageComponent
+    VerificationPageComponent,
+    AdminPageComponent
   ],
   entryComponents: [ModalContentComponent],
   imports: [

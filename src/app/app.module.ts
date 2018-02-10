@@ -33,7 +33,8 @@ const appRoutes: Routes = [
   {path: 'verify/:token', component: VerificationPageComponent},
   {path: 'listings', component: ListingPageComponent},
   {path: 'support', component: ContactPageComponent},
-  {path: '**', component: NotFoundPageComponent},
+  {path: 'admin', component: AdminPageComponent},
+  {path: '**', component: NotFoundPageComponent}
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {AccountService} from '../../services/account.service';
+import {AdminService} from '../../services/admin.service';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ModalContentComponent} from '../modal-content/modal-content.component';
 
@@ -13,10 +14,13 @@ export class NavMenuComponent implements OnInit {
 
   private isAdmin = false;
 
-  constructor(private accountService: AccountService, private modalService: NgbModal) { }
+  constructor(private accountService: AccountService, private modalService: NgbModal,
+              private adminService: AdminService) { }
 
   ngOnInit(): void {
-    // ask server if user is an admin
+    this.adminService.isAdmin().subscribe(res => {
+      this.isAdmin = res;
+    });
   }
 
   private logout(): void {
@@ -25,8 +29,8 @@ export class NavMenuComponent implements OnInit {
 
   private admin(): void {
     const content: NgbModalRef = this.modalService.open(ModalContentComponent);
-    content.componentInstance.title = 'You\'re and Admin!';
-    content.componentInstance.message = 'Look at you, being a admin.';
+    content.componentInstance.title = 'You\'re an Admin!';
+    content.componentInstance.message = 'Look at you, being an admin.';
   }
 
   private settings(): void {

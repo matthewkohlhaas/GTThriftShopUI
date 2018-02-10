@@ -23,6 +23,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
 import {AccountRecoveryPageComponent} from './account-recovery-page/account-recovery-page.component';
 import {VerificationPageComponent} from './verification-page/verification-page.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -44,7 +45,8 @@ const appRoutes: Routes = [
     OcticonDirective,
     NavMenuComponent,
     AccountRecoveryPageComponent,
-    VerificationPageComponent
+    VerificationPageComponent,
+    AdminPageComponent
   ],
   entryComponents: [ModalContentComponent],
   imports: [

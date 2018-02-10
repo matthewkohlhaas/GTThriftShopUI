@@ -30,6 +30,7 @@ const appRoutes: Routes = [
   {path: 'account-recovery', component: AccountRecoveryPageComponent},
   {path: 'verify/:token', component: VerificationPageComponent},
   {path: 'listings', component: ListingPageComponent},
+  {path: 'admin', component: AdminPageComponent},
   {path: '**', component: NotFoundPageComponent}
 ];
 

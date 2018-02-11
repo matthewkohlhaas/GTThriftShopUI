@@ -11,6 +11,7 @@ import {ListingPageComponent} from './listing-page/listing-page.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AccountService} from '../services/account.service';
 import {ListingService} from '../services/listing.service';
+import {AdminService} from '../services/admin.service';
 import {LoginBarComponent} from './login-bar/login-bar.component';
 import {CreateAccountPageComponent} from './create-account-page/create-account-page.component';
 import {JwtModule} from '@auth0/angular-jwt';
@@ -67,7 +68,8 @@ const appRoutes: Routes = [
   providers: [
     HttpClient,
     AccountService,
-    ListingService
+    ListingService,
+    AdminService
   ],
   bootstrap: [AppComponent]
 })

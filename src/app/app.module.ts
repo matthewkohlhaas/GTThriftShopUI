@@ -23,14 +23,15 @@ import {RouterModule, Routes} from '@angular/router';
 import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
 import {AccountRecoveryPageComponent} from './account-recovery-page/account-recovery-page.component';
 import {VerificationPageComponent} from './verification-page/verification-page.component';
-import { AdminPageComponent } from './admin-page/admin-page.component';
+import {AdminPageComponent} from './admin-page/admin-page.component';
+import {AuthenticateGuard} from '../guards/authenticate.guard';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
   {path: 'account-recovery', component: AccountRecoveryPageComponent},
   {path: 'verify/:token', component: VerificationPageComponent},
-  {path: 'listings', component: ListingPageComponent},
-  {path: 'admin', component: AdminPageComponent},
+  {path: 'listings', component: ListingPageComponent, canActivate: [AuthenticateGuard]},
+  {path: 'admin', component: AdminPageComponent, canActivate: [AuthenticateGuard]},
   {path: '**', component: NotFoundPageComponent}
 ];
 
@@ -72,7 +73,8 @@ const appRoutes: Routes = [
     HttpClient,
     AccountService,
     ListingService,
-    AdminService
+    AdminService,
+    AuthenticateGuard
   ],
   bootstrap: [AppComponent]
 })

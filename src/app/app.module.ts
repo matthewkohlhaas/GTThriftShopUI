@@ -25,15 +25,16 @@ import {ContactPageComponent} from './contact-page/contact-page.component';
 import {TicketService} from '../services/ticket.service';
 import {AccountRecoveryPageComponent} from './account-recovery-page/account-recovery-page.component';
 import {VerificationPageComponent} from './verification-page/verification-page.component';
-import { AdminPageComponent } from './admin-page/admin-page.component';
+import {AdminPageComponent} from './admin-page/admin-page.component';
+import {AuthenticateGuard} from '../guards/authenticate.guard';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
   {path: 'account-recovery', component: AccountRecoveryPageComponent},
   {path: 'verify/:token', component: VerificationPageComponent},
-  {path: 'listings', component: ListingPageComponent},
   {path: 'support', component: ContactPageComponent},
-  {path: 'admin', component: AdminPageComponent},
+  {path: 'listings', component: ListingPageComponent, canActivate: [AuthenticateGuard]},
+  {path: 'admin', component: AdminPageComponent, canActivate: [AuthenticateGuard]},
   {path: '**', component: NotFoundPageComponent}
 ];
 
@@ -77,7 +78,8 @@ const appRoutes: Routes = [
     AccountService,
     ListingService,
     TicketService,
-    AdminService
+    AdminService,
+    AuthenticateGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -20,10 +20,12 @@ import {NavMenuComponent} from './nav-menu/nav-menu.component';
 import {environment} from '../environments/environment';
 import {RouterModule, Routes} from '@angular/router';
 import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
+import { CreateListingComponent } from './create-listing/create-listing.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
   {path: 'listings', component: ListingPageComponent},
+  {path: 'create-listing', component: CreateListingComponent},
   {path: '**', component: NotFoundPageComponent}
 ];
 
@@ -37,7 +39,8 @@ const appRoutes: Routes = [
     ListingPageComponent,
     ModalContentComponent,
     OcticonDirective,
-    NavMenuComponent
+    NavMenuComponent,
+    CreateListingComponent
   ],
   entryComponents: [ModalContentComponent],
   imports: [

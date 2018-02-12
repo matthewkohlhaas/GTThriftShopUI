@@ -1,3 +1,33 @@
-<p>
-  admin-page works!
-</p>
+<app-title-bar></app-title-bar>
+<div class="page-content">
+  <div id="admin-box" class="box">
+    <h2 id="admin-actions-label">Admin Actions</h2>
+    <div class="form-group">
+      <label class="form-control-label" for="register-admin">Add an Admin:</label>
+      <input id="register-admin" class="form-control" type="text" title="register-admin" [(ngModel)]="adminEmail"
+             (keyup.enter)="registerAdmin()">
+    </div>
+    <button id="button-register-admin" class="btn btn-primary" type="button" (click)="registerAdmin()"
+            [disabled]="registerAdminDisabled">
+      Add Admin
+    </button>
+    <div class="form-group">
+      <label class="form-control-label" for="ban-user">Ban a User:</label>
+      <input id="ban-user" class="form-control" type="text" title="register-admin" [(ngModel)]="userToBan"
+             (keyup.enter)="banUser()">
+    </div>
+    <button id="button-ban-user" class="btn btn-primary" type="button" (click)="banUser()"
+            [disabled]="banUserDisabled">
+      Ban User
+    </button>
+    <div class="form-group">
+      <label class="form-control-label" for="unban-user">Unban a User:</label>
+      <input id="unban-user" class="form-control" type="text" title="unban-user" [(ngModel)]="userToUnban"
+             (keyup.enter)="unbanUser()">
+    </div>
+    <button id="button-unbanUser" class="btn btn-primary" type="button" (click)="banUser()"
+            [disabled]="unbanUserDisabled">
+      Unban User
+    </button>
+  </div>
+</div>

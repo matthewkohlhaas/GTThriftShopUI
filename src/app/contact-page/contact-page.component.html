@@ -9,6 +9,13 @@
     <input id="ticket-subject" class="form-control" class="form-control" type="text" title="subject"
            [(ngModel)]="subject"
            (keyup.enter)="onSubmit()">
+
+    <label class="form-control-label">Email Address:</label>
+
+    <input id="ticket-email" class="form-control" class="form-control" type="text" title="email"
+           [(ngModel)]="email"
+           (keyup.enter)="onSubmit()">
+
     <label class="form-control-label">Message:</label>
     <textarea id="ticket-input" class="form-control" type="text" title="message"
            [(ngModel)]="message"

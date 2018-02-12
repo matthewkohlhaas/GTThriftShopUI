@@ -15,6 +15,7 @@ export class ContactPageComponent implements OnInit {
   private submitDisabled: boolean;
   private subject: string;
   private message: string;
+  private email: string;
 
   constructor(private router: Router, private ticketService: TicketService, private modalService: NgbModal) { }
 
@@ -39,12 +40,13 @@ export class ContactPageComponent implements OnInit {
   private resetTicket() {
       this.message = '';
       this.subject = '';
+      this.email = '';
   }
 
   private createTicket(): void {
     this.submitDisabled = true;
 
-    this.ticketService.createTicket(this.subject, this.message, msg => {
+    this.ticketService.createTicket(this.subject, this.message, this.email, msg => {
       const content: NgbModalRef = this.modalService.open(ModalContentComponent);
 
       if (msg.successful) {
@@ -58,10 +60,12 @@ export class ContactPageComponent implements OnInit {
         this.submitDisabled = false;
         this.message = '';
         this.subject = '';
+        this.email = '';
       }, reason => {
         this.submitDisabled = false;
         this.message = '';
         this.subject = '';
+        this.email = '';
       });
     });
   }

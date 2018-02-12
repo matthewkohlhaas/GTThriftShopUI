@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {AdminService} from '../../services/admin.service';
 import {AccountService} from '../../services/account.service';
 import {ModalService} from '../../services/modal.service';
@@ -9,7 +9,7 @@ import {ModalService} from '../../services/modal.service';
   styleUrls: ['./admin-page.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AdminPageComponent implements OnInit {
+export class AdminPageComponent {
 
   private adminEmail: string;
   private userToBanEmail: string;
@@ -21,8 +21,6 @@ export class AdminPageComponent implements OnInit {
 
   constructor(private adminService: AdminService, private modalService: ModalService) { }
 
-  ngOnInit() {
-  }
   private registerAdmin(): void {
     if (!this.validateEntry(this.adminEmail)) {
       return;

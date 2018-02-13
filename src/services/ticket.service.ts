@@ -13,11 +13,11 @@ export class TicketService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  createTicket(subject: string, message: string, email: string,
+  createTicket(subject: string, message: string,
                 next?: (msg: ServerMessage) => void): void {
 
     this.http.post<ServerMessage>(environment.serverUrl + '/create-ticket',
-      {subject: subject, message: message, email: email})
+      {subject: subject, message: message})
       .subscribe(
         res => {
           next(res);

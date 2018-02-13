@@ -48,9 +48,9 @@ export class ContactPageComponent implements OnInit {
         const content: NgbModalRef = this.modalService.open(ModalContentComponent);
 
         if (msg.successful) {
-          content.componentInstance.title = 'Successfully Created Ticket';
+          content.componentInstance.title = 'Sent Support Message';
         } else {
-          content.componentInstance.title = 'Failed to Create Ticket';
+          content.componentInstance.title = 'Failed to Send Support Message';
         }
         content.componentInstance.message = msg.text;
 

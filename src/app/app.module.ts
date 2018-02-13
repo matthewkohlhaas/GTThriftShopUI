@@ -32,7 +32,6 @@ const appRoutes: Routes = [
   {path: 'verify/:token', component: VerificationPageComponent},
   {path: 'listings', component: ListingPageComponent},
   {path: 'support', component: ContactPageComponent},
-  {path: '404', component: NotFoundPageComponent},
   {path: '**', component: NotFoundPageComponent},
 ];
 
@@ -47,7 +46,7 @@ const appRoutes: Routes = [
     ModalContentComponent,
     OcticonDirective,
     NavMenuComponent,
-    ContactPageComponent
+    ContactPageComponent,
     AccountRecoveryPageComponent,
     VerificationPageComponent
   ],

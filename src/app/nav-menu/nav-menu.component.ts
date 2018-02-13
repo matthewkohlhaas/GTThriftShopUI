@@ -5,8 +5,6 @@ import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ModalContentComponent} from '../modal-content/modal-content.component';
 import {Router} from '@angular/router';
 
-
-
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',

@@ -14,8 +14,11 @@ export class NavMenuComponent implements OnInit {
 
   private isAdmin = false;
 
-  constructor(private accountService: AccountService, private modalService: NgbModal,
-              private adminService: AdminService) { }
+  constructor(
+    private accountService: AccountService,
+    private modalService: NgbModal,
+    private adminService: AdminService
+  ) { }
 
   ngOnInit(): void {
     this.adminService.isAdmin().subscribe(res => {

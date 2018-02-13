@@ -21,6 +21,8 @@ import {NavMenuComponent} from './nav-menu/nav-menu.component';
 import {environment} from '../environments/environment';
 import {RouterModule, Routes} from '@angular/router';
 import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
+import {ContactPageComponent} from './contact-page/contact-page.component';
+import {TicketService} from '../services/ticket.service';
 import {AccountRecoveryPageComponent} from './account-recovery-page/account-recovery-page.component';
 import {VerificationPageComponent} from './verification-page/verification-page.component';
 
@@ -29,7 +31,8 @@ const appRoutes: Routes = [
   {path: 'account-recovery', component: AccountRecoveryPageComponent},
   {path: 'verify/:token', component: VerificationPageComponent},
   {path: 'listings', component: ListingPageComponent},
-  {path: '**', component: NotFoundPageComponent}
+  {path: 'support', component: ContactPageComponent},
+  {path: '**', component: NotFoundPageComponent},
 ];
 
 @NgModule({
@@ -43,6 +46,7 @@ const appRoutes: Routes = [
     ModalContentComponent,
     OcticonDirective,
     NavMenuComponent,
+    ContactPageComponent,
     AccountRecoveryPageComponent,
     VerificationPageComponent
   ],
@@ -69,6 +73,7 @@ const appRoutes: Routes = [
     HttpClient,
     AccountService,
     ListingService,
+    TicketService,
     AdminService
   ],
   bootstrap: [AppComponent]

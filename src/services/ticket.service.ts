@@ -1,0 +1,25 @@
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../environments/environment';
+import {ServerMessage} from '../model/server-message';
+
+const COULD_NOT_CONNECT = 'Could not connect to server.';
+
+@Injectable()
+export class TicketService {
+
+  constructor(private http: HttpClient) {}
+
+  createTicket(subject: string, message: string, next?: (msg: ServerMessage) => void): void {
+
+    this.http.post<ServerMessage>(environment.serverUrl + '/create-ticket',
+      {subject: subject, message: message})
+      .subscribe(
+        res => {
+          next(res);
+        }, err => {
+          next(new ServerMessage(false, COULD_NOT_CONNECT));
+        }
+      );
+  }
+}

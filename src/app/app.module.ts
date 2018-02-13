@@ -21,8 +21,8 @@ import {NavMenuComponent} from './nav-menu/nav-menu.component';
 import {environment} from '../environments/environment';
 import {RouterModule, Routes} from '@angular/router';
 import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
-import { ContactPageComponent } from './contact-page/contact-page.component';
-import {TicketService} from "../services/ticket.service";
+import {ContactPageComponent} from './contact-page/contact-page.component';
+import {TicketService} from '../services/ticket.service';
 import {AccountRecoveryPageComponent} from './account-recovery-page/account-recovery-page.component';
 import {VerificationPageComponent} from './verification-page/verification-page.component';
 

@@ -30,24 +30,19 @@ export class ContactPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.accountService.authenticate(isAuthenticated => {
-      if (isAuthenticated) {
-        this.router.navigate(['support']);
-      } else {
+      if (!isAuthenticated) {
         this.router.navigate(['']);
       }
     });
   }
 
+  private resetForm() {
+    this.submitDisabled = false;
+    this.message = '';
+    this.subject = '';
+  }
+
   private onSubmit(): void {
-      this.createTicket();
-  }
-
-  private resetTicket() {
-      this.message = '';
-      this.subject = '';
-  }
-
-  private createTicket(): void {
     this.submitDisabled = true;
       this.ticketService.createTicket(this.subject, this.message, msg => {
         const content: NgbModalRef = this.modalService.open(ModalContentComponent);
@@ -60,13 +55,9 @@ export class ContactPageComponent implements OnInit {
         content.componentInstance.message = msg.text;
 
         content.result.then(value => {
-          this.submitDisabled = false;
-          this.message = '';
-          this.subject = '';
+          this.resetForm();
         }, reason => {
-          this.submitDisabled = false;
-          this.message = '';
-          this.subject = '';
+          this.resetForm();
         });
       });
   }

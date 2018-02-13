@@ -1,6 +1,6 @@
 <app-login-bar></app-login-bar>
-<div id="page-content">
-  <div id="register-box">
+<div class="page-content">
+  <div id="register-box" class="box">
     <h2>Create a New Account</h2>
     <p>All you need is a Georgia Tech email address!</p>
     <div class="form-group" [ngClass]="showErrorFirstName ? 'has-danger' : ''">
@@ -36,7 +36,7 @@
              (blur)="onBlurPassword()" (keyup.enter)="onSubmit()">
       <div class="form-control-feedback"
            [ngStyle]="showErrorPassword ? {'visibility': 'visible'} : {'visibility': 'hidden'}">
-        Please enter a password that has {{getMinPasswordLength()}} or more characters.
+        Please enter a password that has {{minPasswordLength}} or more characters.
       </div>
     </div>
     <button id="button-create-account" class="btn btn-primary" type="button" (click)="onSubmit()"

@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {AccountService} from '../../services/account.service';
 
 @Component({
   selector: 'app-not-found-page',
@@ -7,11 +8,14 @@ import {Component, OnInit} from '@angular/core';
 })
 export class NotFoundPageComponent implements OnInit {
 
+  private isLoggedIn: boolean;
   private url: string;
 
-  constructor() {}
+  constructor(private accountService: AccountService) {}
 
   ngOnInit() {
-    this.url = window.location.host + window.location.pathname;
+    this.isLoggedIn = false;
+    this.url = window.location.href;
+    this.accountService.authenticate((isAuthenticated => this.isLoggedIn = isAuthenticated));
   }
 }

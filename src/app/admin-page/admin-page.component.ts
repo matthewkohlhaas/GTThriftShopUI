@@ -1,7 +1,8 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {AdminService} from '../../services/admin.service';
 import {AccountService} from '../../services/account.service';
 import {ModalService} from '../../services/modal.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin-page',
@@ -9,7 +10,7 @@ import {ModalService} from '../../services/modal.service';
   styleUrls: ['./admin-page.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AdminPageComponent {
+export class AdminPageComponent implements OnInit {
 
   private adminEmail: string;
   private userToBanEmail: string;
@@ -19,7 +20,20 @@ export class AdminPageComponent {
   private banUserDisabled = false;
   private unbanUserDisabled = false;
 
-  constructor(private adminService: AdminService, private modalService: ModalService) { }
+  constructor(private adminService: AdminService,
+              private accountService: AccountService,
+              private router: Router,
+              private modalService: ModalService) { }
+
+  ngOnInit() {
+    this.accountService.authenticate(isAuthenticated => {
+      if (isAuthenticated) {
+        return;
+      } else {
+        this.router.navigate(['']);
+      }
+    });
+  }
 
   private registerAdmin(): void {
     if (!this.validateEntry(this.adminEmail)) {

@@ -12,6 +12,8 @@ import {Router} from '@angular/router';
 })
 export class AdminPageComponent implements OnInit {
 
+  private isAdmin = false;
+
   private adminEmail: string;
   private userToBanEmail: string;
   private userToUnbanEmail: string;
@@ -26,13 +28,8 @@ export class AdminPageComponent implements OnInit {
               private modalService: ModalService) { }
 
   ngOnInit() {
-    this.accountService.authenticate(isAuthenticated => {
-      if (isAuthenticated) {
-        return;
-      } else {
-        this.router.navigate(['']);
-      }
-    });
+    this.authenticate();
+    this.check_if_admin();
   }
 
   private registerAdmin(): void {
@@ -102,4 +99,27 @@ export class AdminPageComponent implements OnInit {
     this.modalService.displayModal('Unsuccessful', 'Please enter an email address.');
     return false;
   }
+
+  private authenticate(): void {
+    this.accountService.authenticate(isAuthenticated => {
+      if (isAuthenticated) {
+        return;
+      } else {
+        this.router.navigate(['']);
+      }
+    });
+  }
+
+  private check_if_admin(): void {
+    this.adminService.isAdmin().subscribe(res => {
+      if (res === true) {
+        return;
+      } else {
+        this.router.navigate(['']);
+      }
+    }, err => {
+      this.router.navigate(['']);
+    });
+  }
+
 }

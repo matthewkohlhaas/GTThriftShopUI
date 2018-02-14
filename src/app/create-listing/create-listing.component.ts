@@ -33,23 +33,31 @@ export class CreateListingComponent implements OnInit {
   }
 
 
-  private createListing(): void {
+  private onSubmit(): void {
+    this.submitDisabled = true;
     this.listingService.createListing(this.name, this.price, this.description, this.imageUrl, msg => {
       const content: NgbModalRef = this.modalService.open(ModalContentComponent);
 
       if (msg.successful) {
-        content.componentInstance.title = 'Created listing:' + this.name;
+        content.componentInstance.title = 'Created Listing!';
       } else {
-        content.componentInstance.title = 'Failed to create listing' + this.name;
+        content.componentInstance.title = 'Failed to Create Listing';
       }
       content.componentInstance.message = msg.text;
 
       content.result.then(value => {
-        this.submitDisabled = false;
+        this.resetForm();
       }, reason => {
-        this.submitDisabled = false;
+        this.resetForm();
       });
     });
+  }
+  private resetForm() {
+    this.submitDisabled = false;
+    this.name = '';
+    this.price = 0;
+    this.description = '';
+    this.imageUrl = '';
   }
 
 }

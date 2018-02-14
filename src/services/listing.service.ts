@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import {ServerMessage} from '../model/server-message';
 
-const COULD_NOT_CONNECT = 'Could not connect to server.';
+const COULD_NOT_CONNECT = 'Could not connect to LED.';
 
 @Injectable()
 export class ListingService {
@@ -18,7 +18,7 @@ export class ListingService {
 
   createListing(name: string, price: number, description: string, imageUrl: string,
                 next?: (msg: ServerMessage) => void): void {
-    this.http.post <ServerMessage>(environment.serverUrl + 'create-listing',
+    this.http.post <ServerMessage>(environment.serverUrl + '/create-listing',
       {name: name, description: description, price: price, imageUrl: imageUrl})
       .subscribe(
         res => {

@@ -1,0 +1,74 @@
+.page-content {
+  width: auto;
+  max-width: 900px;
+  min-width: 700px;
+  padding: 8px;
+  margin: auto;
+}
+
+.profile-box {
+  display: flex;
+  width: auto;
+  height: 320px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12),
+  0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.4s;
+}
+
+.imgContainer {
+  display: block;
+  margin: auto;
+  border-radius: 4px;
+}
+
+.imgContainer img {
+  display: inline-block;
+  vertical-align: middle;
+  width: 80%;
+  height: 80%;
+}
+
+.profile-text {
+  display: inline-block;
+  width: 100%;
+  padding: 40px 40px 0 40px;
+}
+
+.profile-name {
+  font-size: 22pt;
+  margin-bottom: 20px;
+  line-height: 10px;
+}
+
+.user-email {
+  font-size: 14pt;
+}
+
+.user-purchases {
+  font-size: 14pt;
+}
+
+.upload-picture {
+  line-height: 11px;
+  font-size: 11pt;
+}
+
+.update-picture {
+  font-size: 11pt;
+  line-height: 11px;
+  margin-bottom: 5px;
+
+}
+.choose-file {
+  font-size: 11pt;
+}
+
+
+
+
+
+

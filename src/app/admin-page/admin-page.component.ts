@@ -92,7 +92,7 @@ export class AdminPageComponent implements OnInit {
       );
   }
 
-  private validateEntry(entry): boolean {
+  private validateEntry(entry: string): boolean {
     if (AccountService.validateNotEmpty(entry)) {
       return true;
     }

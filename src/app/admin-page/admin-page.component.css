@@ -2,12 +2,12 @@
   margin: 0 0 25px 0;
 }
 
-.form-group {
+.form-group-admin-page {
   display: inline-block;
   width: calc(50% - 30px);
   margin: 0 20px 20px 0;
 }
 
-.btn {
+.btn-admin-page {
   width: 130px;
 }

@@ -12,7 +12,7 @@ export class ListingService {
 
   constructor(private http: HttpClient) {}
 
-  getListings(): Observable<Listing[]> {
+  public getListings(): Observable<Listing[]> {
     return this.http.get<Listing[]>(environment.serverUrl + '/listings');
   }
 

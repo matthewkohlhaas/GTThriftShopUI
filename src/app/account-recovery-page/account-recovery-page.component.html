@@ -1,0 +1,21 @@
+<app-login-bar *ngIf="!isLoggedIn"></app-login-bar>
+<app-title-bar *ngIf="isLoggedIn"></app-title-bar>
+<div class="page-content">
+  <div class="box">
+    <h2>Account Recovery</h2>
+    <div class="form-group" [ngClass]="showErrorEmail ? 'has-danger' : ''">
+      <label class="form-control-label" for="recovery-field-email">Email:</label>
+      <input id="recovery-field-email" class="form-control" type="email" title="email" name="username"
+             [(ngModel)]="email" (blur)="onBlurEmail()" (keyup.enter)="onSubmit()">
+      <div class="form-control-feedback"
+           [ngStyle]="showErrorEmail ? {'visibility': 'visible'} : {'visibility': 'hidden'}">
+        Please enter a valid Georgia Tech email address.
+      </div>
+    </div>
+    <button id="button-resend-verification" class="btn btn-primary" type="button" (click)="onSubmit()"
+            [disabled]="submitDisabled">
+      Resend Verification Email
+    </button>
+    <a class="btn btn-secondary" href="/">Cancel</a>
+  </div>
+</div>

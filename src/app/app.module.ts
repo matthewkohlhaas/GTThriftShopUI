@@ -11,6 +11,7 @@ import {ListingPageComponent} from './listing-page/listing-page.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AccountService} from '../services/account.service';
 import {ListingService} from '../services/listing.service';
+import {AdminService} from '../services/admin.service';
 import {LoginBarComponent} from './login-bar/login-bar.component';
 import {CreateAccountPageComponent} from './create-account-page/create-account-page.component';
 import {JwtModule} from '@auth0/angular-jwt';
@@ -21,12 +22,21 @@ import {environment} from '../environments/environment';
 import {RouterModule, Routes} from '@angular/router';
 import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
 import { CreateListingComponent } from './create-listing/create-listing.component';
+import {ContactPageComponent} from './contact-page/contact-page.component';
+import {TicketService} from '../services/ticket.service';
+import {AccountRecoveryPageComponent} from './account-recovery-page/account-recovery-page.component';
+import {VerificationPageComponent} from './verification-page/verification-page.component';
+import { ListingViewComponent } from './listing-view/listing-view.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
+  {path: 'account-recovery', component: AccountRecoveryPageComponent},
+  {path: 'verify/:token', component: VerificationPageComponent},
   {path: 'listings', component: ListingPageComponent},
   {path: 'create-listing', component: CreateListingComponent},
-  {path: '**', component: NotFoundPageComponent}
+  {path: '**', component: NotFoundPageComponent},
+  {path: 'support', component: ContactPageComponent},
+  {path: '**', component: NotFoundPageComponent},
 ];
 
 @NgModule({
@@ -40,7 +50,11 @@ const appRoutes: Routes = [
     ModalContentComponent,
     OcticonDirective,
     NavMenuComponent,
-    CreateListingComponent
+    CreateListingComponent,
+    ContactPageComponent,
+    AccountRecoveryPageComponent,
+    VerificationPageComponent,
+    ListingViewComponent
   ],
   entryComponents: [ModalContentComponent],
   imports: [
@@ -64,7 +78,9 @@ const appRoutes: Routes = [
   providers: [
     HttpClient,
     AccountService,
-    ListingService
+    ListingService,
+    TicketService,
+    AdminService
   ],
   bootstrap: [AppComponent]
 })

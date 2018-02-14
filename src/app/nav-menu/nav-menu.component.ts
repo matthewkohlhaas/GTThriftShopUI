@@ -16,9 +16,7 @@ export class NavMenuComponent implements OnInit {
   private isAdmin = false;
 
   constructor(private accountService: AccountService,
-              private modalService: NgbModal,
-              private adminService: AdminService,
-              private router: Router) { }
+              private adminService: AdminService) { }
 
   ngOnInit(): void {
     this.adminService.isAdmin().subscribe(res => {
@@ -28,16 +26,6 @@ export class NavMenuComponent implements OnInit {
 
   private logout(): void {
     this.accountService.logout();
-  }
-
-  private admin(): void {
-    this.router.navigate(['admin']);
-  }
-
-  private settings(): void {
-    const content: NgbModalRef = this.modalService.open(ModalContentComponent);
-    content.componentInstance.title = 'Not Implemented';
-    content.componentInstance.message = 'This feature has not been implemented';
   }
 
 }

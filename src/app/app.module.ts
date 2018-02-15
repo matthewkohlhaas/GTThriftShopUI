@@ -12,6 +12,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AccountService} from '../services/account.service';
 import {ListingService} from '../services/listing.service';
 import {AdminService} from '../services/admin.service';
+import {ModalService} from '../services/modal.service'
 import {LoginBarComponent} from './login-bar/login-bar.component';
 import {CreateAccountPageComponent} from './create-account-page/create-account-page.component';
 import {JwtModule} from '@auth0/angular-jwt';
@@ -27,6 +28,8 @@ import {TicketService} from '../services/ticket.service';
 import {AccountRecoveryPageComponent} from './account-recovery-page/account-recovery-page.component';
 import {VerificationPageComponent} from './verification-page/verification-page.component';
 import { ListingViewComponent } from './listing-view/listing-view.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import {AdminPageComponent} from './admin-page/admin-page.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -36,7 +39,9 @@ const appRoutes: Routes = [
   {path: 'listing', component: ListingViewComponent},
   {path: 'create-listing', component: CreateListingComponent},
   {path: 'support', component: ContactPageComponent},
-  {path: '**', component: NotFoundPageComponent},
+  {path: 'profile', component: UserProfileComponent},
+  {path: 'admin', component: AdminPageComponent},
+  {path: '**', component: NotFoundPageComponent}
 ];
 
 @NgModule({
@@ -55,6 +60,8 @@ const appRoutes: Routes = [
     AccountRecoveryPageComponent,
     VerificationPageComponent,
     ListingViewComponent
+    UserProfileComponent
+    AdminPageComponent
   ],
   entryComponents: [ModalContentComponent],
   imports: [
@@ -80,7 +87,8 @@ const appRoutes: Routes = [
     AccountService,
     ListingService,
     TicketService,
-    AdminService
+    AdminService,
+    ModalService
   ],
   bootstrap: [AppComponent]
 })

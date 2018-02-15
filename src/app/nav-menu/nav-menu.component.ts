@@ -13,12 +13,8 @@ import {ModalContentComponent} from '../modal-content/modal-content.component';
 export class NavMenuComponent implements OnInit {
 
   private isAdmin = false;
-
-  constructor(
-    private accountService: AccountService,
-    private modalService: NgbModal,
-    private adminService: AdminService
-  ) { }
+  
+  constructor(private accountService: AccountService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.adminService.isAdmin().subscribe(res => {
@@ -29,17 +25,4 @@ export class NavMenuComponent implements OnInit {
   private logout(): void {
     this.accountService.logout();
   }
-
-  private admin(): void {
-    const content: NgbModalRef = this.modalService.open(ModalContentComponent);
-    content.componentInstance.title = 'You\'re an Admin!';
-    content.componentInstance.message = 'Look at you, being an admin.';
-  }
-
-  private settings(): void {
-    const content: NgbModalRef = this.modalService.open(ModalContentComponent);
-    content.componentInstance.title = 'Not Implemented';
-    content.componentInstance.message = 'This feature has not been implemented';
-  }
-
 }

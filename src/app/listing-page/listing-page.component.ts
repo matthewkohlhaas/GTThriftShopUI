@@ -21,7 +21,6 @@ export class ListingPageComponent implements OnInit {
         this.listingService.getListings().subscribe(res => {
           this.listings = res;
         });
-
       } else {
         this.router.navigate(['']);
       }

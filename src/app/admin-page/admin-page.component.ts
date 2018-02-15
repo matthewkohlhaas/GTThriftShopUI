@@ -29,7 +29,7 @@ export class AdminPageComponent implements OnInit {
 
   ngOnInit() {
     this.authenticate();
-    this.check_if_admin();
+    this.checkIfAdmin();
   }
 
   private registerAdmin(): void {
@@ -110,7 +110,7 @@ export class AdminPageComponent implements OnInit {
     });
   }
 
-  private check_if_admin(): void {
+  private checkIfAdmin(): void {
     this.adminService.isAdmin().subscribe(res => {
       if (res === true) {
         return;

@@ -5,6 +5,8 @@ import {ServerTokenMessage} from '../model/server-token-message';
 import {ServerMessage} from '../model/server-message';
 import {Router} from '@angular/router';
 import {CreateAccountPageComponent} from '../app/create-account-page/create-account-page.component';
+import {Observable} from 'rxjs/Observable';
+import {User} from '../model/user';
 
 const EMAIL_REGEX: RegExp = new RegExp('^(?:[a-zA-Z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)'
   + '*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@gatech.edu$');
@@ -135,5 +137,9 @@ export class AccountService {
           next(err.error);
         });
     }
+  }
+
+  public getCurrentUser(): Observable<User> {
+    return this.http.get<User>(environment.serverUrl + '/profile');
   }
 }

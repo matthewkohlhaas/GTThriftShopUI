@@ -26,6 +26,7 @@ import {ContactPageComponent} from './contact-page/contact-page.component';
 import {TicketService} from '../services/ticket.service';
 import {AccountRecoveryPageComponent} from './account-recovery-page/account-recovery-page.component';
 import {VerificationPageComponent} from './verification-page/verification-page.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 import {AdminPageComponent} from './admin-page/admin-page.component';
 
 const appRoutes: Routes = [
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
   {path: 'verify/:token', component: VerificationPageComponent},
   {path: 'support', component: ContactPageComponent},
   {path: 'listings', component: ListingPageComponent},
+  {path: 'profile', component: UserProfileComponent},
   {path: 'admin', component: AdminPageComponent},
   {path: '**', component: NotFoundPageComponent}
 ];
@@ -52,6 +54,7 @@ const appRoutes: Routes = [
     ContactPageComponent,
     AccountRecoveryPageComponent,
     VerificationPageComponent,
+    UserProfileComponent
     AdminPageComponent
   ],
   entryComponents: [ModalContentComponent],

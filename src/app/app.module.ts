@@ -33,8 +33,8 @@ const appRoutes: Routes = [
   {path: 'account-recovery', component: AccountRecoveryPageComponent},
   {path: 'verify/:token', component: VerificationPageComponent},
   {path: 'listings', component: ListingPageComponent},
+  {path: 'listing', component: ListingViewComponent},
   {path: 'create-listing', component: CreateListingComponent},
-  {path: '**', component: NotFoundPageComponent},
   {path: 'support', component: ContactPageComponent},
   {path: '**', component: NotFoundPageComponent},
 ];

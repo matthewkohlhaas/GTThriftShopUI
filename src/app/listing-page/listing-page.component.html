@@ -6,7 +6,7 @@
     </div>
     <div class="listing-text">
       <div class="listing-name">
-        <a href="localhost:4200/listing?listing={{listing}}">{{listing.name}}</a>
+        <a href="/listing">{{listing.name}}</a>
       </div>
       <div class="listing-seller">
         <a href="#">{{listing.user.firstName}} {{listing.user.lastName}}</a>
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="listing-price">
-      ${{listing.price}}
+      {{(listing.price) ? '$'+(listing.price) : ''}}
     </div>
   </div>
 </div>

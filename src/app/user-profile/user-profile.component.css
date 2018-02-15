@@ -28,44 +28,29 @@
 .imgContainer img {
   display: inline-block;
   vertical-align: middle;
-  width: 80%;
-  height: 80%;
+  width: auto;
+  height: auto;
+
 }
 
 .profile-text {
   display: inline-block;
   width: 100%;
-  padding: 40px 40px 0 40px;
+  padding: 20px 20px 20px 40px;
 }
 
-.profile-name {
+.user-name {
   font-size: 22pt;
-  margin-bottom: 20px;
-  line-height: 10px;
 }
 
 .user-email {
   font-size: 14pt;
 }
 
-.user-purchases {
-  font-size: 14pt;
+.user-bio {
+  font-size: 12pt;
 }
 
-.upload-picture {
-  line-height: 11px;
-  font-size: 11pt;
-}
-
-.update-picture {
-  font-size: 11pt;
-  line-height: 11px;
-  margin-bottom: 5px;
-
-}
-.choose-file {
-  font-size: 11pt;
-}
 
 
 

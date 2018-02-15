@@ -22,10 +22,12 @@ import {NavMenuComponent} from './nav-menu/nav-menu.component';
 import {environment} from '../environments/environment';
 import {RouterModule, Routes} from '@angular/router';
 import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
+import { CreateListingComponent } from './create-listing/create-listing.component';
 import {ContactPageComponent} from './contact-page/contact-page.component';
 import {TicketService} from '../services/ticket.service';
 import {AccountRecoveryPageComponent} from './account-recovery-page/account-recovery-page.component';
 import {VerificationPageComponent} from './verification-page/verification-page.component';
+import { ListingViewComponent } from './listing-view/listing-view.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {AdminPageComponent} from './admin-page/admin-page.component';
 
@@ -33,8 +35,10 @@ const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
   {path: 'account-recovery', component: AccountRecoveryPageComponent},
   {path: 'verify/:token', component: VerificationPageComponent},
-  {path: 'support', component: ContactPageComponent},
   {path: 'listings', component: ListingPageComponent},
+  {path: 'listing', component: ListingViewComponent},
+  {path: 'create-listing', component: CreateListingComponent},
+  {path: 'support', component: ContactPageComponent},
   {path: 'profile', component: UserProfileComponent},
   {path: 'admin', component: AdminPageComponent},
   {path: '**', component: NotFoundPageComponent}
@@ -51,9 +55,11 @@ const appRoutes: Routes = [
     ModalContentComponent,
     OcticonDirective,
     NavMenuComponent,
+    CreateListingComponent,
     ContactPageComponent,
     AccountRecoveryPageComponent,
     VerificationPageComponent,
+    ListingViewComponent
     UserProfileComponent
     AdminPageComponent
   ],

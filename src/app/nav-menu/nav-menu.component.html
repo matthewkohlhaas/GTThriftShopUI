@@ -2,6 +2,7 @@
 <mat-menu #menu="matMenu" [overlapTrigger]="false">
   <button mat-menu-item routerLink="/">Home</button>
   <button mat-menu-item routerLink="/profile">View Profile</button>
+  <button mat-menu-item routerLink="/create-listing">Create Listing</button>
   <button mat-menu-item (click)="settings()">Settings</button>
   <button mat-menu-item routerLink="/admin" *ngIf="isAdmin">Admin</button>
   <button mat-menu-item routerLink="/support">Support</button>

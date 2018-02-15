@@ -11,6 +11,8 @@ import {ListingPageComponent} from './listing-page/listing-page.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AccountService} from '../services/account.service';
 import {ListingService} from '../services/listing.service';
+import {AdminService} from '../services/admin.service';
+import {ModalService} from '../services/modal.service'
 import {LoginBarComponent} from './login-bar/login-bar.component';
 import {CreateAccountPageComponent} from './create-account-page/create-account-page.component';
 import {JwtModule} from '@auth0/angular-jwt';
@@ -20,16 +22,21 @@ import {NavMenuComponent} from './nav-menu/nav-menu.component';
 import {environment} from '../environments/environment';
 import {RouterModule, Routes} from '@angular/router';
 import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
+import {ContactPageComponent} from './contact-page/contact-page.component';
+import {TicketService} from '../services/ticket.service';
 import {AccountRecoveryPageComponent} from './account-recovery-page/account-recovery-page.component';
 import {VerificationPageComponent} from './verification-page/verification-page.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import {AdminPageComponent} from './admin-page/admin-page.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
   {path: 'account-recovery', component: AccountRecoveryPageComponent},
   {path: 'verify/:token', component: VerificationPageComponent},
+  {path: 'support', component: ContactPageComponent},
   {path: 'listings', component: ListingPageComponent},
   {path: 'profile', component: UserProfileComponent},
+  {path: 'admin', component: AdminPageComponent},
   {path: '**', component: NotFoundPageComponent}
 ];
 
@@ -44,9 +51,11 @@ const appRoutes: Routes = [
     ModalContentComponent,
     OcticonDirective,
     NavMenuComponent,
+    ContactPageComponent,
     AccountRecoveryPageComponent,
     VerificationPageComponent,
     UserProfileComponent
+    AdminPageComponent
   ],
   entryComponents: [ModalContentComponent],
   imports: [
@@ -70,7 +79,10 @@ const appRoutes: Routes = [
   providers: [
     HttpClient,
     AccountService,
-    ListingService
+    ListingService,
+    TicketService,
+    AdminService,
+    ModalService
   ],
   bootstrap: [AppComponent]
 })

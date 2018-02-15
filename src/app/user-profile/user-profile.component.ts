@@ -16,12 +16,10 @@ export class UserProfileComponent implements OnInit {
   constructor(private accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {
-    this.accountService.authenticate(isAuthenticated => {
-      if (isAuthenticated) {
-        this.accountService.getCurrentUser().subscribe(res => {
-          this.user = res;
-        });
-      } else {
+    this.accountService.getCurrentUser().subscribe(res => {
+      this.user = res;
+    }, err => {
+      if (err.status === 401) {
         this.router.navigate(['']);
       }
     });

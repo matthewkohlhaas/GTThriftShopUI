@@ -47,13 +47,11 @@ const appRoutes: Routes = [
 
 export function jwtOptionsFactory(localStorageService) {
   return {
-    // config: {
-      tokenGetter: () => {
-        return localStorageService.getAccessToken();
-      },
-      authScheme: '',
-      whitelistedDomains: [environment.serverDomain]
-    // }
+    tokenGetter: () => {
+      return localStorageService.getAccessToken();
+    },
+    authScheme: '',
+    whitelistedDomains: [environment.serverDomain]
   };
 }
 

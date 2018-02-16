@@ -53,7 +53,6 @@ export class AccountService {
 
   public logout(): void {
     // TODO find some way to invalidate token?
-    // localStorage.removeItem(TOKEN_NAME);
     this.storageService.removeAccessToken();
     this.router.navigate(['']);
   }
@@ -70,7 +69,6 @@ export class AccountService {
           next(new ServerMessage(res.successful, res.text));
         }
       }, err => {
-        // localStorage.removeItem(TOKEN_NAME);
         this.storageService.removeAccessToken();
 
         if (err.status === 0) {
@@ -133,7 +131,6 @@ export class AccountService {
   }
 
   public authenticate(next: (isAuthenticated: boolean) => void): void {
-    // if (!localStorage.getItem(TOKEN_NAME)) {
     if (!this.storageService.getAccessToken()) {
       next(false);
     } else {

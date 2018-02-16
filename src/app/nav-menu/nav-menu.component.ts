@@ -13,8 +13,10 @@ import {ModalContentComponent} from '../modal-content/modal-content.component';
 export class NavMenuComponent implements OnInit {
 
   private isAdmin = false;
-  
-  constructor(private accountService: AccountService, private modalService: NgbModal) { }
+
+  constructor(private accountService: AccountService,
+              private modalService: NgbModal,
+              private adminService: AdminService) { }
 
   ngOnInit(): void {
     this.adminService.isAdmin().subscribe(res => {

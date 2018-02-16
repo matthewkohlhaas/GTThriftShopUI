@@ -15,7 +15,7 @@ import {AdminService} from '../services/admin.service';
 import {ModalService} from '../services/modal.service'
 import {LoginBarComponent} from './login-bar/login-bar.component';
 import {CreateAccountPageComponent} from './create-account-page/create-account-page.component';
-import {JwtModule} from '@auth0/angular-jwt';
+import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
 import {OcticonDirective} from '../directives/octicon.directive';
 import {ModalContentComponent} from './modal-content/modal-content.component';
 import {NavMenuComponent} from './nav-menu/nav-menu.component';
@@ -30,6 +30,7 @@ import {VerificationPageComponent} from './verification-page/verification-page.c
 import { ListingViewComponent } from './listing-view/listing-view.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {AdminPageComponent} from './admin-page/admin-page.component';
+import {LocalStorageService} from '../services/local_storage.service';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -43,6 +44,18 @@ const appRoutes: Routes = [
   {path: 'admin', component: AdminPageComponent},
   {path: '**', component: NotFoundPageComponent}
 ];
+
+export function jwtOptionsFactory(localStorageService) {
+  return {
+    // config: {
+      tokenGetter: () => {
+        return localStorageService.getAccessToken();
+      },
+      authScheme: '',
+      whitelistedDomains: [environment.serverDomain]
+    // }
+  };
+}
 
 @NgModule({
   declarations: [
@@ -59,8 +72,8 @@ const appRoutes: Routes = [
     ContactPageComponent,
     AccountRecoveryPageComponent,
     VerificationPageComponent,
-    ListingViewComponent
-    UserProfileComponent
+    ListingViewComponent,
+    UserProfileComponent,
     AdminPageComponent
   ],
   entryComponents: [ModalContentComponent],
@@ -71,12 +84,10 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     JwtModule.forRoot({
-      config: {
-        tokenGetter: () => {
-          return localStorage.getItem('ACCESS_TOKEN');
-        },
-        authScheme: '',
-        whitelistedDomains: [environment.serverDomain]
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+        deps: [LocalStorageService]
       }
     }),
     MatMenuModule,
@@ -88,6 +99,7 @@ const appRoutes: Routes = [
     ListingService,
     TicketService,
     AdminService,
+    LocalStorageService,
     ModalService
   ],
   bootstrap: [AppComponent]

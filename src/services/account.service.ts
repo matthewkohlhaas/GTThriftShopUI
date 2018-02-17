@@ -50,6 +50,7 @@ export class AccountService {
 
   public logout(): void {
     LocalStorageService.removeAccessToken();
+    LocalStorageService.removeIsAdmin();
     this.router.navigate(['']);
   }
 

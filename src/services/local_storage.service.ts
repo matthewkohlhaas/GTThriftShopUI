@@ -30,8 +30,15 @@ export class LocalStorageService {
     localStorage.removeItem(IS_ADMIN);
   }
 
-  public static getIsAdmin(): string {
-    return LocalStorageService.getItem(IS_ADMIN);
+  public static getIsAdmin(): boolean {
+    const result = LocalStorageService.getItem(IS_ADMIN);
+    if (!result) {
+      return null;
+    } else if (result === 'true') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   private static addItem(item, label): void {

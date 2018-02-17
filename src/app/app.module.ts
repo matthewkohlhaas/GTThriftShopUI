@@ -32,6 +32,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import {AdminPageComponent} from './admin-page/admin-page.component';
 import {LocalStorageService} from '../services/local_storage.service';
 import {AuthenticateGuard} from '../guards/authenticate.guard';
+import {AdminGuard} from '../guards/admin.guard';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -42,7 +43,7 @@ const appRoutes: Routes = [
   {path: 'create-listing', component: CreateListingComponent, canActivate: [AuthenticateGuard]},
   {path: 'support', component: ContactPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'profile', component: UserProfileComponent, canActivate: [AuthenticateGuard]},
-  {path: 'admin', component: AdminPageComponent, canActivate: [AuthenticateGuard]},
+  {path: 'admin', component: AdminPageComponent, canActivate: [AuthenticateGuard, AdminGuard]},
   {path: '**', component: NotFoundPageComponent, canActivate: [AuthenticateGuard]}
 ];
 
@@ -100,7 +101,8 @@ export function jwtOptionsFactory(localStorageService) {
     AdminService,
     LocalStorageService,
     ModalService,
-    AuthenticateGuard
+    AuthenticateGuard,
+    AdminGuard
   ],
   bootstrap: [AppComponent]
 })

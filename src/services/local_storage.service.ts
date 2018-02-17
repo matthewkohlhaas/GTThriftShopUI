@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../environments/environment';
 
-const EXPIRATION_TIME = 30 * 60 * 1000; // 30 minutes * 60 seconds/minute * 1,000 ms/second
+const EXPIRATION_TIME = 7 * 24 * 60 * 60 * 1000; // 7 days * 24 hours/day * 60 min/hour * 60 s/min * 1,000 ms/s
 const ACCESS_TOKEN = 'access_token';
 const IS_ADMIN = 'is_admin';
 
@@ -11,7 +11,7 @@ export class LocalStorageService {
   constructor() {}
 
   public static addAccessToken(token): void {
-    this.addItem(token, ACCESS_TOKEN);
+    LocalStorageService.addItem(token, ACCESS_TOKEN);
   }
 
   public static removeAccessToken(): void {
@@ -19,11 +19,11 @@ export class LocalStorageService {
   }
 
   public static getAccessToken(): string {
-    return this.getItem(ACCESS_TOKEN);
+    return LocalStorageService.getItem(ACCESS_TOKEN);
   }
 
   public static addIsAdmin(isAdmin): void {
-    this.addItem(isAdmin, IS_ADMIN);
+    LocalStorageService.addItem(isAdmin, IS_ADMIN);
   }
 
   public static removeIsAdmin(): void {
@@ -31,12 +31,14 @@ export class LocalStorageService {
   }
 
   public static getIsAdmin(): string {
-    return this.getItem(IS_ADMIN);
+    return LocalStorageService.getItem(IS_ADMIN);
   }
 
   private static addItem(item, label): void {
+    const mapping = {};
     const expiration = new Date().getTime() + EXPIRATION_TIME;
-    const mapping = { label: item, 'expiration': expiration };
+    mapping[label] = item;
+    mapping['expiration'] = expiration;
     localStorage.setItem(label, JSON.stringify(mapping));
     return;
   }

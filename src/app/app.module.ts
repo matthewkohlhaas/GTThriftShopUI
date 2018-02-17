@@ -31,13 +31,14 @@ import { ListingViewComponent } from './listing-view/listing-view.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {AdminPageComponent} from './admin-page/admin-page.component';
 import {LocalStorageService} from '../services/local_storage.service';
+import {AuthenticateGuard} from '../guards/authenticate.guard';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
   {path: 'account-recovery', component: AccountRecoveryPageComponent},
   {path: 'verify/:token', component: VerificationPageComponent},
   {path: 'listings', component: ListingPageComponent},
-  {path: 'listing', component: ListingViewComponent},
+  {path: 'listing', component: ListingViewComponent, canActivate: [AuthenticateGuard]},
   {path: 'create-listing', component: CreateListingComponent},
   {path: 'support', component: ContactPageComponent},
   {path: 'profile', component: UserProfileComponent},
@@ -48,7 +49,7 @@ const appRoutes: Routes = [
 export function jwtOptionsFactory(localStorageService) {
   return {
     tokenGetter: () => {
-      return localStorageService.getAccessToken();
+      return LocalStorageService.getAccessToken();
     },
     authScheme: '',
     whitelistedDomains: [environment.serverDomain]

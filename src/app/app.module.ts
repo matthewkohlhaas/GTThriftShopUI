@@ -37,13 +37,13 @@ const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
   {path: 'account-recovery', component: AccountRecoveryPageComponent},
   {path: 'verify/:token', component: VerificationPageComponent},
-  {path: 'listings', component: ListingPageComponent},
+  {path: 'listings', component: ListingPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'listing', component: ListingViewComponent, canActivate: [AuthenticateGuard]},
-  {path: 'create-listing', component: CreateListingComponent},
-  {path: 'support', component: ContactPageComponent},
-  {path: 'profile', component: UserProfileComponent},
-  {path: 'admin', component: AdminPageComponent},
-  {path: '**', component: NotFoundPageComponent}
+  {path: 'create-listing', component: CreateListingComponent, canActivate: [AuthenticateGuard]},
+  {path: 'support', component: ContactPageComponent, canActivate: [AuthenticateGuard]},
+  {path: 'profile', component: UserProfileComponent, canActivate: [AuthenticateGuard]},
+  {path: 'admin', component: AdminPageComponent, canActivate: [AuthenticateGuard]},
+  {path: '**', component: NotFoundPageComponent, canActivate: [AuthenticateGuard]}
 ];
 
 export function jwtOptionsFactory(localStorageService) {
@@ -99,7 +99,8 @@ export function jwtOptionsFactory(localStorageService) {
     TicketService,
     AdminService,
     LocalStorageService,
-    ModalService
+    ModalService,
+    AuthenticateGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -1,10 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ListingService} from '../../services/listing.service';
-import {Router} from '@angular/router';
-import {AccountService} from '../../services/account.service';
 import {ModalContentComponent} from '../modal-content/modal-content.component';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-
 
 
 @Component({
@@ -13,7 +10,7 @@ import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./create-listing.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class CreateListingComponent implements OnInit {
+export class CreateListingComponent {
   private name: string;
   private price: number;
   private description: string;
@@ -21,17 +18,8 @@ export class CreateListingComponent implements OnInit {
 
   private submitDisabled: boolean;
 
-  constructor(private router: Router, private accountService: AccountService,
-              private listingService: ListingService, private modalService: NgbModal) {}
-
-  ngOnInit() {
-    this.accountService.authenticate(isAuthenticated => {
-      if (!isAuthenticated) {
-        this.router.navigate(['']);
-      }
-    });
-  }
-
+  constructor(private listingService: ListingService,
+              private modalService: NgbModal) {}
 
   private onSubmit(): void {
     this.submitDisabled = true;
@@ -52,6 +40,7 @@ export class CreateListingComponent implements OnInit {
       });
     });
   }
+
   private resetForm() {
     this.submitDisabled = false;
     this.name = '';

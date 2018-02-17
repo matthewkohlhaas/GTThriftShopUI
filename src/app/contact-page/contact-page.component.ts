@@ -1,7 +1,5 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {Router} from '@angular/router';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {TicketService} from '../../services/ticket.service';
-import {AccountService} from '../../services/account.service';
 import {ModalContentComponent} from '../modal-content/modal-content.component';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 
@@ -11,14 +9,12 @@ import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./contact-page.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class ContactPageComponent implements OnInit {
+export class ContactPageComponent {
   private submitDisabled: boolean;
   private subject: string;
   private message: string;
 
   constructor(
-    private router: Router,
-    private accountService: AccountService,
     private ticketService: TicketService,
     private modalService: NgbModal
   ) { }
@@ -26,14 +22,6 @@ export class ContactPageComponent implements OnInit {
   private static validateEntry(entry: string, validator: (str: string) => boolean): boolean {
     const trimmedEntry: string = (entry) ? entry.trim() : '';
     return validator(trimmedEntry);
-  }
-
-  ngOnInit(): void {
-    this.accountService.authenticate(isAuthenticated => {
-      if (!isAuthenticated) {
-        this.router.navigate(['']);
-      }
-    });
   }
 
   private resetForm() {

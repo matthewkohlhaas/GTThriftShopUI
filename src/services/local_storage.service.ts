@@ -23,7 +23,11 @@ export class LocalStorageService {
   }
 
   public static addIsAdmin(isAdmin): void {
-    LocalStorageService.addItem(isAdmin, IS_ADMIN);
+    let string = 'false';
+    if (isAdmin === true) {
+      string = 'true';
+    }
+    LocalStorageService.addItem(string, IS_ADMIN);
   }
 
   public static removeIsAdmin(): void {

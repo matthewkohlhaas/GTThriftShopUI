@@ -17,9 +17,9 @@ export class NavMenuComponent implements OnInit {
               private adminService: AdminService) { }
 
   ngOnInit(): void {
-    const result = LocalStorageService.getIsAdmin();
-    if (result != null) {
-      this.isAdmin = res;
+    const local_value = LocalStorageService.getIsAdmin();
+    if (local_value != null) {
+      this.isAdmin = local_value;
       return;
     }
     this.adminService.isAdmin().subscribe(res => {

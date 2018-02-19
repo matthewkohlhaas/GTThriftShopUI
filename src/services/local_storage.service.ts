@@ -10,8 +10,11 @@ export class LocalStorageService {
 
   constructor() {}
 
-  public static addAccessToken(token): void {
-    LocalStorageService.addItem(token, ACCESS_TOKEN);
+  public static addAccessToken(token, time_to_live?): void {
+    if (!time_to_live) {
+      time_to_live = EXPIRATION_TIME;
+    }
+    LocalStorageService.addItem(token, ACCESS_TOKEN, time_to_live);
   }
 
   public static removeAccessToken(): void {
@@ -22,12 +25,15 @@ export class LocalStorageService {
     return LocalStorageService.getItem(ACCESS_TOKEN);
   }
 
-  public static addIsAdmin(isAdmin): void {
+  public static addIsAdmin(isAdmin, time_to_live?): void {
     let string = 'false';
     if (isAdmin === true) {
       string = 'true';
     }
-    LocalStorageService.addItem(string, IS_ADMIN);
+    if (!time_to_live) {
+      time_to_live = EXPIRATION_TIME;
+    }
+    LocalStorageService.addItem(string, IS_ADMIN, time_to_live);
   }
 
   public static removeIsAdmin(): void {
@@ -38,16 +44,14 @@ export class LocalStorageService {
     const result = LocalStorageService.getItem(IS_ADMIN);
     if (!result) {
       return null;
-    } else if (result === 'true') {
-      return true;
     } else {
-      return false;
+      return result === 'true';
     }
   }
 
-  private static addItem(item, label): void {
+  private static addItem(item, label, time_to_live): void {
     const mapping = {};
-    const expiration = new Date().getTime() + EXPIRATION_TIME;
+    const expiration = new Date().getTime() + time_to_live;
     mapping[label] = item;
     mapping['expiration'] = expiration;
     localStorage.setItem(label, JSON.stringify(mapping));

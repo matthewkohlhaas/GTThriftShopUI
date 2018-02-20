@@ -47,7 +47,7 @@ const appRoutes: Routes = [
   {path: '**', component: NotFoundPageComponent, canActivate: [AuthenticateGuard]}
 ];
 
-export function jwtOptionsFactory(localStorageService) {
+export function jwtOptionsFactory() {
   return {
     tokenGetter: () => {
       return LocalStorageService.getAccessToken();

@@ -7,6 +7,8 @@ import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../model/user';
 import {LocalStorageService} from './local_storage.service';
+import {JwtHelperService} from '@auth0/angular-jwt';
+import {AdminService} from './admin.service';
 
 const EMAIL_REGEX: RegExp = new RegExp('^(?:[a-zA-Z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)'
   + '*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@gatech.edu$');
@@ -46,7 +48,9 @@ export class AccountService {
   }
 
   constructor(private http: HttpClient,
-              private router: Router) {}
+              private router: Router,
+              private jwtHelper: JwtHelperService,
+              private adminService: AdminService) {}
 
   public logout(): void {
     LocalStorageService.removeAccessToken();
@@ -60,6 +64,7 @@ export class AccountService {
         if (res) {
           if (res.successful) {
             LocalStorageService.addAccessToken(res.token);
+            this.adminService.setIsAdminStatus();
             this.router.navigate([route]);
           }
           next(new ServerMessage(res.successful, res.text));
@@ -126,7 +131,7 @@ export class AccountService {
   }
 
   public authenticate(next: (isAuthenticated: boolean) => void): void {
-    if (!LocalStorageService.getAccessToken()) {
+    if (!this.isAccessTokenAlive()) {
       next(false);
     } else {
       this.http.get<boolean>(environment.serverUrl + '/authenticate')
@@ -136,6 +141,16 @@ export class AccountService {
           next(err.error);
         });
     }
+  }
+
+  public isAccessTokenAlive(): boolean {
+    const token = LocalStorageService.getAccessToken();
+    if (token) {
+      if (!this.jwtHelper.isTokenExpired(token)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   public getCurrentUser(): Observable<User> {

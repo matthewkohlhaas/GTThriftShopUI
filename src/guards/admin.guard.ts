@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router, CanActivate } from '@angular/router';
+import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate } from '@angular/router';
 import { LocalStorageService } from '../services/local_storage.service';
 import { AdminService } from '../services/admin.service';
 
@@ -9,7 +9,7 @@ export class AdminGuard implements CanActivate {
   constructor(private router: Router,
               private adminService: AdminService) {}
 
-  canActivate() {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const isAdmin = LocalStorageService.getIsAdmin();
     if (isAdmin != null) {
       if (isAdmin === true) {
@@ -19,19 +19,15 @@ export class AdminGuard implements CanActivate {
         return false;
       }
     }
-    this.getAdminStatusFromServer();
+    this.setAdminStatusAndReroute(state.url);
     return false;
   }
 
-  private getAdminStatusFromServer(): void {
+  private setAdminStatusAndReroute(route: string): void {
     this.adminService.isAdmin().subscribe(res => {
-      if (res != null) {
-        LocalStorageService.addIsAdmin(res);
-        if (res === true) {
-          this.router.navigate([this.router.url]);
-        } else {
-          this.router.navigate(['']);
-        }
+      LocalStorageService.addIsAdmin(res);
+      if (res === true) {
+        this.router.navigate([route]);
       } else {
         this.router.navigate(['']);
       }

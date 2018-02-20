@@ -14,16 +14,16 @@ export class AdminService {
     return this.http.get<boolean>(environment.serverUrl + '/is-admin');
   }
 
-  public registerAdmin(email_address): Observable<ServerMessage> {
+  public registerAdmin(email_address: string): Observable<ServerMessage> {
     return this.http.post<ServerMessage>(environment.serverUrl + '/admin/register',
       {email: email_address});
   }
 
-  public banUser(email_address): Observable<ServerMessage> {
+  public banUser(email_address: string): Observable<ServerMessage> {
     return this.http.post<ServerMessage>(environment.serverUrl + '/user/ban', {email: email_address});
   }
 
-  public unbanUser(email_address): Observable<ServerMessage> {
+  public unbanUser(email_address: string): Observable<ServerMessage> {
     return this.http.post<ServerMessage>(environment.serverUrl + '/user/unban', {email: email_address});
   }
 

@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
-// import {environment} from '../environments/environment';
 
-const EXPIRATION_TIME = 7 * 24 * 60 * 60 * 1000; // 7 days * 24 hours/day * 60 min/hour * 60 s/min * 1,000 ms/s
+const DEFAULT_TIME = 7 * 24 * 60 * 60 * 1000; // 7 days * 24 hours/day * 60 min/hour * 60 s/min * 1,000 ms/s
 const ACCESS_TOKEN = 'access_token';
 const IS_ADMIN = 'is_admin';
 
@@ -10,9 +9,9 @@ export class LocalStorageService {
 
   constructor() {}
 
-  public static addAccessToken(token, time_to_live?): void {
+  public static addAccessToken(token: string, time_to_live?: number): void {
     if (!time_to_live) {
-      time_to_live = EXPIRATION_TIME;
+      time_to_live = DEFAULT_TIME;
     }
     LocalStorageService.addItem(token, ACCESS_TOKEN, time_to_live);
   }
@@ -25,13 +24,13 @@ export class LocalStorageService {
     return LocalStorageService.getItem(ACCESS_TOKEN);
   }
 
-  public static addIsAdmin(isAdmin, time_to_live?): void {
+  public static addIsAdmin(isAdmin: boolean, time_to_live?: number): void {
     let string = 'false';
     if (isAdmin === true) {
       string = 'true';
     }
     if (!time_to_live) {
-      time_to_live = EXPIRATION_TIME;
+      time_to_live = DEFAULT_TIME;
     }
     LocalStorageService.addItem(string, IS_ADMIN, time_to_live);
   }
@@ -49,7 +48,7 @@ export class LocalStorageService {
     }
   }
 
-  private static addItem(item, label, time_to_live): void {
+  private static addItem(item: string, label: string, time_to_live: number): void {
     const mapping = {};
     const expiration = new Date().getTime() + time_to_live;
     mapping[label] = item;
@@ -58,7 +57,7 @@ export class LocalStorageService {
     return;
   }
 
-  private static getItem(label): string {
+  private static getItem(label: string): string {
     const json_mapping = localStorage.getItem(label);
     if (json_mapping) {
       const mapping = JSON.parse(json_mapping);

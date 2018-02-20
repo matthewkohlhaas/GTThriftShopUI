@@ -136,6 +136,7 @@ export class AccountService {
     } else {
       this.http.get<boolean>(environment.serverUrl + '/authenticate')
         .subscribe(res => {
+          this.adminService.setIsAdminStatus();
           next(res);
         }, err => {
           next(err.error);

@@ -30,7 +30,7 @@ import {VerificationPageComponent} from './verification-page/verification-page.c
 import { ListingViewComponent } from './listing-view/listing-view.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {AdminPageComponent} from './admin-page/admin-page.component';
-import {LocalStorageService} from '../services/local_storage.service';
+import {LocalStorageService} from '../services/local-storage.service';
 import {AuthenticateGuard} from '../guards/authenticate.guard';
 import {AdminGuard} from '../guards/admin.guard';
 

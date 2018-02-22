@@ -6,7 +6,7 @@ import {ServerMessage} from '../model/server-message';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../model/user';
-import {LocalStorageService} from './local_storage.service';
+import {LocalStorageService} from './local-storage.service';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {AdminService} from './admin.service';
 

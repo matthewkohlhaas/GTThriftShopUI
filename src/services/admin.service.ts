@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {environment} from '../environments/environment';
 import {ServerMessage} from '../model/server-message';
-import {LocalStorageService} from './local_storage.service';
+import {LocalStorageService} from './local-storage.service';
 
 @Injectable()
 export class AdminService {

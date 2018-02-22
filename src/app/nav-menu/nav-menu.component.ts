@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {AccountService} from '../../services/account.service';
 import {AdminService} from '../../services/admin.service';
-import {LocalStorageService} from '../../services/local_storage.service';
+import {LocalStorageService} from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-nav-menu',

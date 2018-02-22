@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate } from '@angular/router';
-import { LocalStorageService } from '../services/local_storage.service';
+import { LocalStorageService } from '../services/local-storage.service';
 import { AdminService } from '../services/admin.service';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class AdminGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const isAdmin = LocalStorageService.getIsAdmin();
-    if (isAdmin != null) {
+    if (isAdmin !== null) {
       if (isAdmin === true) {
         return true;
       } else {

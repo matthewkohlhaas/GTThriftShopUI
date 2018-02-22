@@ -19,9 +19,8 @@ export class UserProfileComponent implements OnInit {
     this.accountService.getCurrentUser().subscribe(res => {
       this.user = res;
     }, err => {
-      if (err.status === 401) {
-        this.router.navigate(['']);
-      }
+      this.router.navigate(['']);
     });
   }
+
 }

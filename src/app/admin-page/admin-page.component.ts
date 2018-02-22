@@ -1,8 +1,7 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {AdminService} from '../../services/admin.service';
 import {AccountService} from '../../services/account.service';
 import {ModalService} from '../../services/modal.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin-page',
@@ -10,7 +9,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./admin-page.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AdminPageComponent implements OnInit {
+export class AdminPageComponent {
 
   private isAdmin = false;
 
@@ -23,14 +22,7 @@ export class AdminPageComponent implements OnInit {
   private unbanUserDisabled = false;
 
   constructor(private adminService: AdminService,
-              private accountService: AccountService,
-              private router: Router,
               private modalService: ModalService) { }
-
-  ngOnInit() {
-    this.authenticate();
-    this.checkIfAdmin();
-  }
 
   private registerAdmin(): void {
     if (!this.validateEntry(this.adminEmail)) {
@@ -98,28 +90,6 @@ export class AdminPageComponent implements OnInit {
     }
     this.modalService.displayModal('Unsuccessful', 'Please enter an email address.');
     return false;
-  }
-
-  private authenticate(): void {
-    this.accountService.authenticate(isAuthenticated => {
-      if (isAuthenticated) {
-        return;
-      } else {
-        this.router.navigate(['']);
-      }
-    });
-  }
-
-  private checkIfAdmin(): void {
-    this.adminService.isAdmin().subscribe(res => {
-      if (res === true) {
-        return;
-      } else {
-        this.router.navigate(['']);
-      }
-    }, err => {
-      this.router.navigate(['']);
-    });
   }
 
 }

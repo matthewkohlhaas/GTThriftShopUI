@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {AccountService} from '../../services/account.service';
 import {AdminService} from '../../services/admin.service';
-import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {ModalContentComponent} from '../modal-content/modal-content.component';
+import {LocalStorageService} from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -13,16 +12,30 @@ import {ModalContentComponent} from '../modal-content/modal-content.component';
 export class NavMenuComponent implements OnInit {
 
   private isAdmin = false;
-  
-  constructor(private accountService: AccountService, private modalService: NgbModal) { }
+
+  constructor(private accountService: AccountService,
+              private adminService: AdminService) { }
 
   ngOnInit(): void {
+    const localIsAdmin = LocalStorageService.getIsAdmin();
+    if (localIsAdmin != null) {
+      this.isAdmin = localIsAdmin;
+      return;
+    }
+    this.setAdminStatus();
+  }
+
+  private setAdminStatus(): void {
     this.adminService.isAdmin().subscribe(res => {
+      LocalStorageService.addIsAdmin(res);
       this.isAdmin = res;
+    }, err => {
+      this.isAdmin = false;
     });
   }
 
   private logout(): void {
     this.accountService.logout();
   }
+
 }

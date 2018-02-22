@@ -10,7 +10,7 @@ export class AdminGuard implements CanActivate {
               private adminService: AdminService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const isAdmin = LocalStorageService.getIsAdmin();
+    const isAdmin: boolean = LocalStorageService.getIsAdmin();
     if (isAdmin !== null) {
       if (isAdmin === true) {
         return true;

@@ -145,7 +145,7 @@ export class AccountService {
   }
 
   public isAccessTokenAlive(): boolean {
-    const token = LocalStorageService.getAccessToken();
+    const token: string = LocalStorageService.getAccessToken();
     if (token) {
       if (!this.jwtHelper.isTokenExpired(token)) {
         return true;

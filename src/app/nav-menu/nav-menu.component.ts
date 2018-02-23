@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {AccountService} from '../../services/account.service';
 import {AdminService} from '../../services/admin.service';
-import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {ModalContentComponent} from '../modal-content/modal-content.component';
+import {LocalStorageService} from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -14,32 +13,29 @@ export class NavMenuComponent implements OnInit {
 
   private isAdmin = false;
 
-  constructor(
-    private accountService: AccountService,
-    private modalService: NgbModal,
-    private adminService: AdminService
-  ) { }
+  constructor(private accountService: AccountService,
+              private adminService: AdminService) { }
 
   ngOnInit(): void {
+    const localIsAdmin = LocalStorageService.getIsAdmin();
+    if (localIsAdmin != null) {
+      this.isAdmin = localIsAdmin;
+      return;
+    }
+    this.setAdminStatus();
+  }
+
+  private setAdminStatus(): void {
     this.adminService.isAdmin().subscribe(res => {
+      LocalStorageService.addIsAdmin(res);
       this.isAdmin = res;
+    }, err => {
+      this.isAdmin = false;
     });
   }
 
   private logout(): void {
     this.accountService.logout();
-  }
-
-  private admin(): void {
-    const content: NgbModalRef = this.modalService.open(ModalContentComponent);
-    content.componentInstance.title = 'You\'re an Admin!';
-    content.componentInstance.message = 'Look at you, being an admin.';
-  }
-
-  private settings(): void {
-    const content: NgbModalRef = this.modalService.open(ModalContentComponent);
-    content.componentInstance.title = 'Not Implemented';
-    content.componentInstance.message = 'This feature has not been implemented';
   }
 
 }

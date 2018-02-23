@@ -4,12 +4,15 @@ import {environment} from '../environments/environment';
 import {ServerTokenMessage} from '../model/server-token-message';
 import {ServerMessage} from '../model/server-message';
 import {Router} from '@angular/router';
-import {CreateAccountPageComponent} from '../app/create-account-page/create-account-page.component';
+import {Observable} from 'rxjs/Observable';
+import {User} from '../model/user';
+import {LocalStorageService} from './local-storage.service';
+import {JwtHelperService} from '@auth0/angular-jwt';
+import {AdminService} from './admin.service';
 
 const EMAIL_REGEX: RegExp = new RegExp('^(?:[a-zA-Z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)'
   + '*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@gatech.edu$');
 const MIN_PASSWORD_LENGTH = 8;
-const TOKEN_NAME = 'ACCESS_TOKEN';
 const COULD_NOT_CONNECT = 'Could not connect to server.';
 
 @Injectable()
@@ -44,11 +47,14 @@ export class AccountService {
     });
   }
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient,
+              private router: Router,
+              private jwtHelper: JwtHelperService,
+              private adminService: AdminService) {}
 
   public logout(): void {
-    // TODO find some way to invalidate token?
-    localStorage.removeItem(TOKEN_NAME);
+    LocalStorageService.removeAccessToken();
+    LocalStorageService.removeIsAdmin();
     this.router.navigate(['']);
   }
 
@@ -57,14 +63,14 @@ export class AccountService {
       .subscribe(res => {
         if (res) {
           if (res.successful) {
-            localStorage.setItem(TOKEN_NAME, res.token);
+            LocalStorageService.addAccessToken(res.token);
+            this.adminService.setIsAdminStatus();
             this.router.navigate([route]);
           }
           next(new ServerMessage(res.successful, res.text));
         }
       }, err => {
-        localStorage.removeItem(TOKEN_NAME);
-
+        LocalStorageService.removeAccessToken();
         if (err.status === 0) {
           next(new ServerMessage(false, COULD_NOT_CONNECT));
         } else {
@@ -153,15 +159,30 @@ export class AccountService {
   }
 
   public authenticate(next: (isAuthenticated: boolean) => void): void {
-    if (!localStorage.getItem(TOKEN_NAME)) {
+    if (!this.isAccessTokenAlive()) {
       next(false);
     } else {
       this.http.get<boolean>(environment.serverUrl + '/authenticate')
         .subscribe(res => {
+          this.adminService.setIsAdminStatus();
           next(res);
         }, err => {
           next(err.error);
         });
     }
+  }
+
+  public isAccessTokenAlive(): boolean {
+    const token: string = LocalStorageService.getAccessToken();
+    if (token) {
+      if (!this.jwtHelper.isTokenExpired(token)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public getCurrentUser(): Observable<User> {
+    return this.http.get<User>(environment.serverUrl + '/profile');
   }
 }

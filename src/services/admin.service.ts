@@ -11,20 +11,20 @@ export class AdminService {
   constructor(private http: HttpClient) {}
 
   public isAdmin(): Observable<boolean> {
-    return this.http.get<boolean>(environment.serverUrl + '/is-admin');
+    return this.http.get<boolean>(environment.serverUrl + '/admins/is-admin');
   }
 
   public registerAdmin(email_address: string): Observable<ServerMessage> {
-    return this.http.post<ServerMessage>(environment.serverUrl + '/admin/register',
+    return this.http.post<ServerMessage>(environment.serverUrl + '/admins',
       {email: email_address});
   }
 
   public banUser(email_address: string): Observable<ServerMessage> {
-    return this.http.post<ServerMessage>(environment.serverUrl + '/user/ban', {email: email_address});
+    return this.http.post<ServerMessage>(environment.serverUrl + '/users/ban', {email: email_address});
   }
 
   public unbanUser(email_address: string): Observable<ServerMessage> {
-    return this.http.post<ServerMessage>(environment.serverUrl + '/user/unban', {email: email_address});
+    return this.http.post<ServerMessage>(environment.serverUrl + '/users/unban', {email: email_address});
   }
 
   public setIsAdminStatus(): void {

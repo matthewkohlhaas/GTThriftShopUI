@@ -18,7 +18,7 @@ export class ListingService {
 
   createListing(name: string, price: number, description: string, imageUrl: string,
                 next?: (msg: ServerMessage) => void): void {
-    this.http.post <ServerMessage>(environment.serverUrl + '/create-listing',
+    this.http.post <ServerMessage>(environment.serverUrl + '/listings',
       {name: name, description: description, price: price, imageUrl: imageUrl})
       .subscribe(
         res => {

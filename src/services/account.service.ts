@@ -59,7 +59,7 @@ export class AccountService {
   }
 
   public login(email: string, password: string, route: string, next?: (msg: ServerMessage) => void): void {
-    this.http.post<ServerTokenMessage>(environment.serverUrl + '/login', {email: email, password: password})
+    this.http.post<ServerTokenMessage>(environment.serverUrl + '/users/login', {email: email, password: password})
       .subscribe(res => {
         if (res) {
           if (res.successful) {
@@ -79,11 +79,10 @@ export class AccountService {
       });
   }
 
-
   public createAccount(email: string, password: string, firstName: string, lastName: string,
-                next?: (msg: ServerMessage) => void): void {
+                       next?: (msg: ServerMessage) => void): void {
 
-    this.http.post<ServerMessage>(environment.serverUrl + '/create-account',
+    this.http.post<ServerMessage>(environment.serverUrl + '/users',
       {email: email, password: password, firstName: firstName, lastName: lastName})
       .subscribe(
         res => {
@@ -100,7 +99,7 @@ export class AccountService {
   }
 
   public resendVerificationEmail(email: string, next?: (msg: ServerMessage) => void): void {
-    this.http.post<ServerMessage>(environment.serverUrl + '/resend-verification', {email: email})
+    this.http.post<ServerMessage>(environment.serverUrl + '/users/send-verification', {email: email})
       .subscribe(
         res => {
           next(res);
@@ -115,7 +114,7 @@ export class AccountService {
   }
 
   public verify(token: string, next?: (msg: ServerMessage) => void): void {
-    this.http.get<ServerMessage>(environment.serverUrl + '/verify/' + token)
+    this.http.get<ServerMessage>(environment.serverUrl + '/users/verify/' + token)
       .subscribe(
         res => {
           next(res);
@@ -130,7 +129,7 @@ export class AccountService {
   }
 
   public sendPasswordResetEmail(email: string, next?: (msg: ServerMessage) => void): void {
-    this.http.post<ServerMessage>(environment.serverUrl + '/send-password-reset', {email: email})
+    this.http.post<ServerMessage>(environment.serverUrl + '/users/send-password-reset', {email: email})
       .subscribe(
         res => {
           next(res);
@@ -145,7 +144,7 @@ export class AccountService {
   }
 
   public resetPassword(token: string, password: string, next?: (msg: ServerMessage) => void): void {
-    this.http.post<ServerMessage>(environment.serverUrl + '/reset-password',
+    this.http.post<ServerMessage>(environment.serverUrl + '/users/reset-password',
       {token: token, password: password}).subscribe(res => {
           next(res);
         }, err => {
@@ -162,7 +161,7 @@ export class AccountService {
     if (!this.isAccessTokenAlive()) {
       next(false);
     } else {
-      this.http.get<boolean>(environment.serverUrl + '/authenticate')
+      this.http.get<boolean>(environment.serverUrl + '/users/authenticate')
         .subscribe(res => {
           this.adminService.setIsAdminStatus();
           next(res);
@@ -183,6 +182,6 @@ export class AccountService {
   }
 
   public getCurrentUser(): Observable<User> {
-    return this.http.get<User>(environment.serverUrl + '/profile');
+    return this.http.get<User>(environment.serverUrl + '/users/from-token');
   }
 }

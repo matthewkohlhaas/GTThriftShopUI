@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AccountService} from '../../services/account.service';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ModalContentComponent} from '../modal-content/modal-content.component';
+import {ValidationUtils} from '../../utils/validation.utils';
+import {ErrorStateMatcher} from '@angular/material';
 
 @Component({
   selector: 'app-account-recovery-page',
@@ -13,34 +15,24 @@ export class AccountRecoveryPageComponent implements OnInit {
   private submitDisabled: boolean;
 
   private email: string;
-  private showErrorEmail: boolean;
+  private emailErrorStateMatcher: ErrorStateMatcher;
 
   constructor(private accountService: AccountService, private modalService: NgbModal) {}
 
   public ngOnInit() {
+    this.emailErrorStateMatcher = ValidationUtils.getEmailErrorStateMatcher();
     this.submitDisabled = false;
-    this.showErrorEmail = false;
-  }
-
-  private onBlurEmail(): void {
-    this.showErrorEmail = !AccountService.validateEmail(this.email) && this.email && this.email !== '';
   }
 
   private onClickSendPasswordReset(): void {
-    if (!this.submitDisabled) {
-      this.showErrorEmail = !AccountService.validateEmail(this.email);
-      if (!this.showErrorEmail) {
-        this.sendPasswordResetEmail();
-      }
+    if (!this.submitDisabled && !ValidationUtils.validateEmail(this.email)) {
+      this.sendPasswordResetEmail();
     }
   }
 
   private onClickResendVerification(): void {
-    if (!this.submitDisabled) {
-      this.showErrorEmail = !AccountService.validateEmail(this.email);
-      if (!this.showErrorEmail) {
-        this.resendVerificationEmail();
-      }
+    if (!this.submitDisabled && !ValidationUtils.validateEmail(this.email)) {
+      this.resendVerificationEmail();
     }
   }
 

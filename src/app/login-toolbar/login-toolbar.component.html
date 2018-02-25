@@ -1,18 +1,18 @@
-<div id="login-toolbar-container">
+<div id="login-toolbar-container" class="toolbar-container">
   <mat-toolbar id="login-toolbar" class="toolbar" color="accent">
     <mat-toolbar-row>
-      <a id="login-toolbar-title" routerLink="">GT ThriftShop</a>
-      <span class="spacer"></span>
-      <mat-form-field color="primary">
+      <a id="login-toolbar-title" class="toolbar-title" routerLink="">GT ThriftShop</a>
+      <span class="toolbar-spacer"></span>
+      <mat-form-field color="primary" [floatLabel]="'never'">
         <input matInput [(ngModel)]="email" placeholder="Email" type="email" title="email" name="username"
                (keyup.enter)="login()">
       </mat-form-field>
-      <mat-form-field color="primary">
+      <mat-form-field color="primary" [floatLabel]="'never'">
         <input matInput [(ngModel)]="password" placeholder="Password" type="password" title="password" name="password"
                (keyup.enter)="login()">
       </mat-form-field>
       <button mat-raised-button id="login-button" color="primary" (click)="login()">Log In</button>
-      <button mat-button id="account-recovery-button" color="primary" routerLink="/account-recovery">Can't Log In?</button>
+      <button mat-button id="account-recovery-button" routerLink="/account-recovery">Can't Log In?</button>
     </mat-toolbar-row>
   </mat-toolbar>
   <div class="main-content">

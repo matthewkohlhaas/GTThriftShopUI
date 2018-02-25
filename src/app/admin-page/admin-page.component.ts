@@ -1,7 +1,9 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {AdminService} from '../../services/admin.service';
 import {AccountService} from '../../services/account.service';
 import {ModalService} from '../../services/modal.service';
+import {ValidationUtils} from '../../utils/validation.utils';
+import {ErrorStateMatcher} from '@angular/material';
 
 @Component({
   selector: 'app-admin-page',
@@ -9,7 +11,7 @@ import {ModalService} from '../../services/modal.service';
   styleUrls: ['./admin-page.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AdminPageComponent {
+export class AdminPageComponent implements OnInit {
 
   private isAdmin = false;
 
@@ -17,15 +19,23 @@ export class AdminPageComponent {
   private userToBanEmail: string;
   private userToUnbanEmail: string;
 
-  private registerAdminDisabled = false;
-  private banUserDisabled = false;
-  private unbanUserDisabled = false;
+  private emailErrorStateMatcher: ErrorStateMatcher;
 
-  constructor(private adminService: AdminService,
-              private modalService: ModalService) { }
+  private registerAdminDisabled: boolean;
+  private banUserDisabled: boolean;
+  private unbanUserDisabled: boolean;
+
+  constructor(private adminService: AdminService, private modalService: ModalService) { }
+
+  ngOnInit() {
+    this.emailErrorStateMatcher = ValidationUtils.getEmailErrorStateMatcher();
+    this.registerAdminDisabled = false;
+    this.banUserDisabled = false;
+    this.unbanUserDisabled = false;
+  }
 
   private registerAdmin(): void {
-    if (!this.validateEntry(this.adminEmail)) {
+    if (!ValidationUtils.validateEmail(this.adminEmail)) {
       return;
     }
     this.registerAdminDisabled = true;
@@ -45,7 +55,7 @@ export class AdminPageComponent {
   }
 
   private banUser(): void {
-    if (!this.validateEntry(this.userToBanEmail)) {
+    if (!ValidationUtils.validateEmail(this.userToBanEmail)) {
       return;
     }
     this.banUserDisabled = true;
@@ -65,7 +75,7 @@ export class AdminPageComponent {
   }
 
   private unbanUser(): void {
-    if (!this.validateEntry(this.userToUnbanEmail)) {
+    if (!ValidationUtils.validateEmail(this.userToUnbanEmail)) {
       return;
     }
     this.unbanUserDisabled = true;
@@ -83,13 +93,4 @@ export class AdminPageComponent {
         }
       );
   }
-
-  private validateEntry(entry: string): boolean {
-    if (AccountService.validateNotEmpty(entry)) {
-      return true;
-    }
-    this.modalService.displayModal('Unsuccessful', 'Please enter an email address.');
-    return false;
-  }
-
 }

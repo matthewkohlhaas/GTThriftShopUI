@@ -1,13 +1,9 @@
-#admin-actions-label {
-  margin: 0 0 25px 0;
-}
-
-.form-group-admin-page {
+.mat-form-field {
   display: inline-block;
   width: calc(50% - 30px);
   margin: 0 20px 20px 0;
 }
 
-.btn-admin-page {
+button {
   width: 130px;
 }

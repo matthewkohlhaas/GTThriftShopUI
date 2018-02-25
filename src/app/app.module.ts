@@ -68,7 +68,6 @@ export function jwtOptionsFactory() {
     MainSidenavComponent,
     LoginToolbarComponent,
     NotFoundPageComponent,
-    LoginBarComponent,
     CreateAccountPageComponent,
     ListingPageComponent,
     ModalContentComponent,

@@ -20,7 +20,6 @@
       "prefix": "app",
       "styles": [
         "../node_modules/bootstrap/dist/css/bootstrap.css",
-        "../node_modules/octicons/build/build.css",
         "../node_modules/lato-webfont/lato.css",
         "../node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
         "styles.css",

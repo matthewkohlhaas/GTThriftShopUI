@@ -1,0 +1,55 @@
+#login-toolbar-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#login-toolbar {
+  z-index: 2;
+}
+
+#login-toolbar-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+#login-toolbar-title:hover, #login-toolbar-title:active, #login-toolbar-title:focus {
+  text-decoration: none;
+}
+
+#login-button {
+  margin-right: 20px;
+  font-size: 16px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.main-content {
+  flex: 1;
+}
+
+mat-toolbar-row {
+  margin: auto;
+  max-width: 920px;
+}
+
+mat-form-field {
+  margin: 10px 20px 0 0;
+  font-size: 16px;
+  min-width: 200px;
+}
+
+/deep/ .mat-input-placeholder {
+  color: #0d47a1;
+}
+
+/deep/ .mat-input-underline {
+  background-color: #0d47a1;    /* replace this color with your accent color hex code */
+}

@@ -35,6 +35,7 @@ import {AuthenticateGuard} from '../guards/authenticate.guard';
 import {AdminGuard} from '../guards/admin.guard';
 import {MainToolbarComponent} from './main-toolbar/main-toolbar.component';
 import {MainSidenavComponent} from './main-sidenav/main-sidenav.component';
+import {LoginToolbarComponent} from './login-toolbar/login-toolbar.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -65,6 +66,7 @@ export function jwtOptionsFactory() {
     AppComponent,
     MainToolbarComponent,
     MainSidenavComponent,
+    LoginToolbarComponent,
     NotFoundPageComponent,
     TitleBarComponent,
     LoginBarComponent,

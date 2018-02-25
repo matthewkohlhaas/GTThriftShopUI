@@ -5,6 +5,22 @@ body {
   font-family: Roboto, sans-serif;
 }
 
+.toolbar {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12),
+  0 1px 2px rgba(0,0,0,0.24);
+}
+
+.main-content {
+  background-color: #e9e9e9;
+}
+
+.main-content-container {
+  width: auto;
+  max-width: 900px;
+  min-width: 700px;
+  margin: 10px auto 0 auto;
+}
+
 h2 {
   margin-bottom: 10px;
 }

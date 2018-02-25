@@ -1,0 +1,55 @@
+#main-toolbar-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#main-toolbar {
+  z-index: 2;
+}
+
+#main-toolbar-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+#main-toolbar-title:hover, #main-toolbar-title:active, #main-toolbar-title:focus {
+  text-decoration: none;
+}
+
+#main-toolbar-menu-button {
+  margin-right: 20px;
+}
+
+#main-toolbar-menu-button:active, #main-toolbar-menu-button:focus {
+  outline: none;
+}
+
+#main-toolbar-menu-button mat-icon {
+  height: auto;
+  width: auto;
+  font-size: 30px;
+}
+
+#main-toolbar-logout-button {
+  font-size: 16px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar-row {
+  margin: auto;
+  max-width: 920px;
+}
+
+app-main-sidenav {
+  display: flex;
+  flex: 1;
+}

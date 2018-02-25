@@ -1,0 +1,13 @@
+<div id="main-toolbar-container">
+  <mat-toolbar id="main-toolbar" class="toolbar" color="accent">
+    <mat-toolbar-row>
+      <button mat-icon-button id="main-toolbar-menu-button" (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <a id="main-toolbar-title" routerLink="/listings" (click)="sidenav.close()">GT ThriftShop</a>
+      <span class="spacer"></span>
+      <button mat-button id="main-toolbar-logout-button" (click)="logout()">Log Out</button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <app-main-sidenav #sidenav></app-main-sidenav>
+</div>

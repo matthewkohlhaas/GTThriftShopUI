@@ -72,7 +72,6 @@ export function jwtOptionsFactory() {
     CreateAccountPageComponent,
     ListingPageComponent,
     ModalContentComponent,
-    NavMenuComponent,
     CreateListingComponent,
     ContactPageComponent,
     AccountRecoveryPageComponent,

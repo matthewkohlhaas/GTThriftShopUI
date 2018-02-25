@@ -3,6 +3,7 @@ import {AccountService} from '../../services/account.service';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ModalContentComponent} from '../modal-content/modal-content.component';
 import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ValidationUtils} from '../../utils/validation.utils';
 
 @Component({
   selector: 'app-account-recovery-page',
@@ -27,25 +28,27 @@ export class PasswordResetPageComponent implements OnInit {
   ) {}
 
   public ngOnInit() {
-    this.minPasswordLength = AccountService.getMinPasswordLength();
+    this.minPasswordLength = ValidationUtils.getMinPasswordLength();
     this.submitDisabled = false;
     this.showErrorPassword = false;
     this.showErrorConfirmedPassword = false;
   }
 
   private onBlurPassword(): void {
-    this.showErrorPassword = !AccountService.validatePassword(this.password) && this.password && this.password !== '';
+    this.showErrorPassword = !ValidationUtils.validatePassword(this.password) && this.password
+      && this.password !== '';
   }
 
   private onBlurConfirmedPassword(): void {
-    this.showErrorConfirmedPassword = !AccountService.validatePassword(this.confirmedPassword) && this.confirmedPassword
+    this.showErrorConfirmedPassword = !ValidationUtils.validatePassword(this.confirmedPassword)
+      && this.confirmedPassword
       && this.confirmedPassword !== '';
   }
 
   private onSubmit(): void {
     if (!this.submitDisabled) {
-      this.showErrorPassword = !AccountService.validatePassword(this.password);
-      this.showErrorConfirmedPassword = !AccountService.validatePassword(this.confirmedPassword);
+      this.showErrorPassword = !ValidationUtils.validatePassword(this.password);
+      this.showErrorConfirmedPassword = !ValidationUtils.validatePassword(this.confirmedPassword);
 
       if (!this.showErrorPassword && !this.showErrorConfirmedPassword) {
         if (this.password !== this.confirmedPassword) {

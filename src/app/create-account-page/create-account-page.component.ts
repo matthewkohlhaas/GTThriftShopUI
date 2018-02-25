@@ -3,6 +3,9 @@ import {AccountService} from '../../services/account.service';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ModalContentComponent} from '../modal-content/modal-content.component';
 import {Router} from '@angular/router';
+import {ErrorStateMatcher} from '@angular/material';
+import {FormControl, FormGroupDirective, NgForm} from '@angular/forms';
+import {ValidationUtils} from '../../utils/validation.utils';
 
 @Component({
   selector: 'app-create-account-page',
@@ -19,10 +22,8 @@ export class CreateAccountPageComponent implements OnInit {
   private email: string;
   private password: string;
 
-  private showErrorFirstName: boolean;
-  private showErrorLastName: boolean;
-  private showErrorEmail: boolean;
-  private showErrorPassword: boolean;
+  private emailErrorStateMatcher: ErrorStateMatcher;
+  private passwordErrorStateMatcher: ErrorStateMatcher;
 
   constructor(private router: Router, private accountService: AccountService, private modalService: NgbModal) {}
 
@@ -32,36 +33,21 @@ export class CreateAccountPageComponent implements OnInit {
         this.router.navigate(['listings']);
       }
     });
-    this.minPasswordLength = AccountService.getMinPasswordLength();
+    this.emailErrorStateMatcher = ValidationUtils.getEmailErrorStateMatcher();
+    this.passwordErrorStateMatcher = ValidationUtils.getPasswordErrorStateMatcher();
+    this.minPasswordLength = ValidationUtils.getMinPasswordLength();
     this.submitDisabled = false;
-    this.showErrorFirstName = false;
-    this.showErrorLastName = false;
-    this.showErrorEmail = false;
-    this.showErrorPassword = false;
   }
 
   private onSubmit(): void {
-    if (!this.submitDisabled) {
-      this.validateAllFields();
-      if (!this.showErrorFirstName && !this.showErrorLastName && !this.showErrorEmail && !this.showErrorPassword) {
-        this.createAccount();
-      }
+    if (!this.submitDisabled
+      && ValidationUtils.validateNotEmpty(this.firstName)
+      && ValidationUtils.validateNotEmpty(this.lastName)
+      && ValidationUtils.validateEmail(this.email)
+      && ValidationUtils.validatePassword(this.password)) {
+
+      this.createAccount();
     }
-  }
-
-  private onBlurEmail(): void {
-    this.showErrorEmail = !AccountService.validateEmail(this.email) && this.email && this.email !== '';
-  }
-
-  private onBlurPassword(): void {
-    this.showErrorPassword = !AccountService.validatePassword(this.password) && this.password && this.password !== '';
-  }
-
-  private validateAllFields(): void {
-    this.showErrorFirstName = !AccountService.validateNotEmpty(this.firstName);
-    this.showErrorLastName = !AccountService.validateNotEmpty(this.lastName);
-    this.showErrorEmail = !AccountService.validateEmail(this.email);
-    this.showErrorPassword = !AccountService.validatePassword(this.password);
   }
 
   private createAccount(): void {

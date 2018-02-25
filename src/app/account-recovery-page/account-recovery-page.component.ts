@@ -10,7 +10,6 @@ import {ModalContentComponent} from '../modal-content/modal-content.component';
 })
 export class AccountRecoveryPageComponent implements OnInit {
 
-  private isLoggedIn: boolean;
   private submitDisabled: boolean;
 
   private email: string;
@@ -19,10 +18,8 @@ export class AccountRecoveryPageComponent implements OnInit {
   constructor(private accountService: AccountService, private modalService: NgbModal) {}
 
   public ngOnInit() {
-    this.isLoggedIn = false;
     this.submitDisabled = false;
     this.showErrorEmail = false;
-    this.accountService.authenticate(isAuthenticated => this.isLoggedIn = isAuthenticated);
   }
 
   private onBlurEmail(): void {

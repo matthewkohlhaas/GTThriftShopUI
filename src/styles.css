@@ -39,13 +39,6 @@ label {
   margin: 0 !important;
 }
 
-.page-content {
-  width: auto;
-  max-width: 900px;
-  min-width: 700px;
-  margin: auto;
-}
-
 .box {
   display: block;
   width: auto;

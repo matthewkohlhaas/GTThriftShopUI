@@ -12,7 +12,6 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 export class PasswordResetPageComponent implements OnInit {
 
   private minPasswordLength: number;
-  private isLoggedIn: boolean;
   private submitDisabled: boolean;
 
   private password: string;
@@ -29,11 +28,9 @@ export class PasswordResetPageComponent implements OnInit {
 
   public ngOnInit() {
     this.minPasswordLength = AccountService.getMinPasswordLength();
-    this.isLoggedIn = false;
     this.submitDisabled = false;
     this.showErrorPassword = false;
     this.showErrorConfirmedPassword = false;
-    this.accountService.authenticate(isAuthenticated => this.isLoggedIn = isAuthenticated);
   }
 
   private onBlurPassword(): void {

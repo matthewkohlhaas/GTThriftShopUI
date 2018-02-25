@@ -1,22 +1,18 @@
-<app-title-bar></app-title-bar>
-
-<div class="page-content">
-  <div class="box">
-    <h2>Contact Us</h2>
-    <div class="form-group">
-      <label class="form-control-label">Subject:</label>
-      <input id="ticket-subject" class="form-control" class="form-control" type="text" title="subject"
-             [(ngModel)]="subject"
-             (keyup.enter)="onSubmit()">
-    </div>
-    <div class="form-group">
-      <label class="form-control-label">Message:</label>
-      <textarea id="ticket-input" class="form-control" type="text" title="message"
-                [(ngModel)]="message"
-                (keyup.enter)="onSubmit()"></textarea>
-    </div>
-
-    <button id="button-submit-ticket" class="btn btn-primary" type="button"
-            (click)="onSubmit()" [disabled]="submitDisabled">Submit</button>
+<div class="box">
+  <h2>Contact Us</h2>
+  <div class="form-group">
+    <label class="form-control-label">Subject:</label>
+    <input id="ticket-subject" class="form-control" class="form-control" type="text" title="subject"
+           [(ngModel)]="subject"
+           (keyup.enter)="onSubmit()">
   </div>
+  <div class="form-group">
+    <label class="form-control-label">Message:</label>
+    <textarea id="ticket-input" class="form-control" type="text" title="message"
+              [(ngModel)]="message"
+              (keyup.enter)="onSubmit()"></textarea>
+  </div>
+
+  <button id="button-submit-ticket" class="btn btn-primary" type="button"
+          (click)="onSubmit()" [disabled]="submitDisabled">Submit</button>
 </div>

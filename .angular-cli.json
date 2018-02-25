@@ -23,7 +23,8 @@
         "../node_modules/octicons/build/build.css",
         "../node_modules/lato-webfont/lato.css",
         "../node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
-        "styles.css"
+        "styles.css",
+        "theme.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

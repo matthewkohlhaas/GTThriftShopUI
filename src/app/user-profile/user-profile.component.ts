@@ -11,7 +11,8 @@ import {User} from '../../model/user';
   encapsulation: ViewEncapsulation.None
 })
 export class UserProfileComponent implements OnInit {
-  user: User;
+
+  private user: User;
 
   constructor(private accountService: AccountService, private router: Router) { }
 
@@ -22,5 +23,4 @@ export class UserProfileComponent implements OnInit {
       this.router.navigate(['']);
     });
   }
-
 }

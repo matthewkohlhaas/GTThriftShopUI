@@ -3,7 +3,8 @@ import {FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {
-  MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatSidenavModule,
+  MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule,
+  MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -14,7 +15,6 @@ import {AccountService} from '../services/account.service';
 import {ListingService} from '../services/listing.service';
 import {AdminService} from '../services/admin.service';
 import {ModalService} from '../services/modal.service';
-import {LoginBarComponent} from './login-bar/login-bar.component';
 import {CreateAccountPageComponent} from './create-account-page/create-account-page.component';
 import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
 import {ModalContentComponent} from './modal-content/modal-content.component';
@@ -36,6 +36,7 @@ import {AdminGuard} from '../guards/admin.guard';
 import {MainToolbarComponent} from './main-toolbar/main-toolbar.component';
 import {MainSidenavComponent} from './main-sidenav/main-sidenav.component';
 import {LoginToolbarComponent} from './login-toolbar/login-toolbar.component';
+import {ValidationUtils} from '../utils/validation.utils';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -103,10 +104,12 @@ export function jwtOptionsFactory() {
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCardModule,
     NgbModule.forRoot()
   ],
   providers: [
     HttpClient,
+    ValidationUtils,
     AccountService,
     ListingService,
     TicketService,

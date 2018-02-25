@@ -1,0 +1,15 @@
+#main-sidenav-container {
+  flex: 1;
+}
+
+mat-nav-list {
+  padding: 0;
+}
+
+mat-nav-list a {
+  font-weight: normal;
+}
+
+mat-nav-list a:hover {
+  background-color: #e9e9e9;
+}

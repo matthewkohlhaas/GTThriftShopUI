@@ -33,6 +33,8 @@ import {AdminPageComponent} from './admin-page/admin-page.component';
 import {LocalStorageService} from '../services/local-storage.service';
 import {AuthenticateGuard} from '../guards/authenticate.guard';
 import {AdminGuard} from '../guards/admin.guard';
+import {MainToolbarComponent} from './main-toolbar/main-toolbar.component';
+import {MainSidenavComponent} from './main-sidenav/main-sidenav.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -61,6 +63,8 @@ export function jwtOptionsFactory() {
 @NgModule({
   declarations: [
     AppComponent,
+    MainToolbarComponent,
+    MainSidenavComponent,
     NotFoundPageComponent,
     TitleBarComponent,
     LoginBarComponent,

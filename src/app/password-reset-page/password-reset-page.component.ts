@@ -4,6 +4,7 @@ import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ModalContentComponent} from '../modal-content/modal-content.component';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ValidationUtils} from '../../utils/validation.utils';
+import {ErrorStateMatcher} from '@angular/material';
 
 @Component({
   selector: 'app-account-recovery-page',
@@ -17,8 +18,8 @@ export class PasswordResetPageComponent implements OnInit {
 
   private password: string;
   private confirmedPassword: string;
-  private showErrorPassword: boolean;
-  private showErrorConfirmedPassword: boolean;
+
+  private passwordErrorStateMatcher: ErrorStateMatcher;
 
   constructor(
     private accountService: AccountService,
@@ -28,34 +29,20 @@ export class PasswordResetPageComponent implements OnInit {
   ) {}
 
   public ngOnInit() {
-    this.minPasswordLength = ValidationUtils.getMinPasswordLength();
     this.submitDisabled = false;
-    this.showErrorPassword = false;
-    this.showErrorConfirmedPassword = false;
-  }
-
-  private onBlurPassword(): void {
-    this.showErrorPassword = !ValidationUtils.validatePassword(this.password) && this.password
-      && this.password !== '';
-  }
-
-  private onBlurConfirmedPassword(): void {
-    this.showErrorConfirmedPassword = !ValidationUtils.validatePassword(this.confirmedPassword)
-      && this.confirmedPassword
-      && this.confirmedPassword !== '';
+    this.minPasswordLength = ValidationUtils.getMinPasswordLength();
+    this.passwordErrorStateMatcher = ValidationUtils.getPasswordErrorStateMatcher();
   }
 
   private onSubmit(): void {
-    if (!this.submitDisabled) {
-      this.showErrorPassword = !ValidationUtils.validatePassword(this.password);
-      this.showErrorConfirmedPassword = !ValidationUtils.validatePassword(this.confirmedPassword);
+    if (!this.submitDisabled
+        && ValidationUtils.validatePassword(this.password)
+        && ValidationUtils.validatePassword(this.confirmedPassword)) {
 
-      if (!this.showErrorPassword && !this.showErrorConfirmedPassword) {
-        if (this.password !== this.confirmedPassword) {
-          this.showPasswordsDoNotMatchModal();
-        } else {
-          this.resetPassword();
-        }
+      if (this.password !== this.confirmedPassword) {
+        this.showPasswordsDoNotMatchModal();
+      } else {
+        this.resetPassword();
       }
     }
   }

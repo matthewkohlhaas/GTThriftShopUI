@@ -1,9 +1,9 @@
-.mat-form-field {
+#admin-card .mat-form-field {
   display: inline-block;
   width: calc(50% - 30px);
   margin: 0 20px 20px 0;
 }
 
-button {
+#admin-card button {
   width: 130px;
 }

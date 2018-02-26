@@ -66,6 +66,17 @@ body {
   font-size: 12pt !important;
 }
 
+.classic-form .mat-form-field {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+}
+
+.classic-form button {
+  display: block !important;
+  margin-top: 10px !important;
+}
+
 a {
   color: #0d47a1;
   text-decoration: none;

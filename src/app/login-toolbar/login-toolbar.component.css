@@ -2,19 +2,27 @@
   margin-right: 20px;
 }
 
-.main-content {
+#login-toolbar .main-content {
   flex: 1;
 }
 
-mat-toolbar-row {
+#login-toolbar .mat-toolbar-row {
   margin: auto;
   max-width: 920px;
 }
 
-mat-form-field {
+#login-toolbar .mat-form-field {
   margin: 10px 20px 0 0;
   font-size: 16px;
   min-width: 200px;
+}
+
+#account-recovery-button,
+#account-recovery-button:hover,
+#account-recovery-button:active,
+#account-recovery-button:focus {
+  color: white;
+  text-decoration: none;
 }
 
 /deep/ #login-toolbar .mat-focused .mat-input-placeholder {

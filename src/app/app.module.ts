@@ -49,7 +49,7 @@ const appRoutes: Routes = [
   {path: 'support', component: ContactPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'profile', component: UserProfileComponent, canActivate: [AuthenticateGuard]},
   {path: 'admin', component: AdminPageComponent, canActivate: [AuthenticateGuard, AdminGuard]},
-  {path: '**', component: NotFoundPageComponent, canActivate: [AuthenticateGuard]}
+  {path: '**', component: NotFoundPageComponent}
 ];
 
 export function jwtOptionsFactory() {

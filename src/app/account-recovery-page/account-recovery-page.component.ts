@@ -25,13 +25,13 @@ export class AccountRecoveryPageComponent implements OnInit {
   }
 
   private onClickSendPasswordReset(): void {
-    if (!this.submitDisabled && !ValidationUtils.validateEmail(this.email)) {
+    if (!this.submitDisabled && ValidationUtils.validateEmail(this.email)) {
       this.sendPasswordResetEmail();
     }
   }
 
   private onClickResendVerification(): void {
-    if (!this.submitDisabled && !ValidationUtils.validateEmail(this.email)) {
+    if (!this.submitDisabled && ValidationUtils.validateEmail(this.email)) {
       this.resendVerificationEmail();
     }
   }

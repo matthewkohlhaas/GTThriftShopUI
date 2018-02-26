@@ -1,6 +1,7 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {TicketService} from '../../services/ticket.service';
 import {ModalService} from '../../services/modal.service';
+import {ValidationUtils} from '../../utils/validation.utils';
 
 @Component({
   selector: 'app-contact-page',
@@ -30,6 +31,9 @@ export class ContactPageComponent {
   }
 
   private onSubmit(): void {
+    if (!ValidationUtils.validateNotEmpty(this.subject) || !ValidationUtils.validateNotEmpty(this.message)) {
+      return;
+    }
     this.submitDisabled = true;
       this.ticketService.createTicket(this.subject, this.message, msg => {
         let title = 'Failed to Send Support Message';

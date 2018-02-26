@@ -2,6 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ListingService} from '../../services/listing.service';
 import {ModalContentComponent} from '../modal-content/modal-content.component';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {ValidationUtils} from '../../utils/validation.utils';
 
 
 @Component({
@@ -22,6 +23,9 @@ export class CreateListingComponent {
               private modalService: NgbModal) {}
 
   private onSubmit(): void {
+    if (!ValidationUtils.validateNotEmpty(name)) {
+      return;
+    }
     this.submitDisabled = true;
     this.listingService.createListing(this.name, this.price, this.description, this.imageUrl, msg => {
       const content: NgbModalRef = this.modalService.open(ModalContentComponent);

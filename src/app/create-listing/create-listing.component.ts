@@ -1,9 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ListingService} from '../../services/listing.service';
-import {ModalContentComponent} from '../modal-content/modal-content.component';
-import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ValidationUtils} from '../../utils/validation.utils';
-
+import {ModalService} from '../../services/modal.service';
 
 @Component({
   selector: 'app-create-listing',
@@ -20,28 +18,20 @@ export class CreateListingComponent {
   private submitDisabled: boolean;
 
   constructor(private listingService: ListingService,
-              private modalService: NgbModal) {}
+              private modalService: ModalService) {}
 
   private onSubmit(): void {
-    if (!ValidationUtils.validateNotEmpty(name)) {
+    if (!ValidationUtils.validateNotEmpty(this.name)) {
       return;
     }
     this.submitDisabled = true;
     this.listingService.createListing(this.name, this.price, this.description, this.imageUrl, msg => {
-      const content: NgbModalRef = this.modalService.open(ModalContentComponent);
+      let title = 'Failed to Create Listing';
 
       if (msg.successful) {
-        content.componentInstance.title = 'Created Listing!';
-      } else {
-        content.componentInstance.title = 'Failed to Create Listing';
+        title = 'Created Listing!';
       }
-      content.componentInstance.message = msg.text;
-
-      content.result.then(value => {
-        this.resetForm();
-      }, reason => {
-        this.resetForm();
-      });
+      this.modalService.openAlertModal(title, msg.text, () => this.resetForm());
     });
   }
 

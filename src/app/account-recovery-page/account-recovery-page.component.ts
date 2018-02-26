@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AccountService} from '../../services/account.service';
-import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {ModalContentComponent} from '../modal-content/modal-content.component';
 import {ValidationUtils} from '../../utils/validation.utils';
 import {ErrorStateMatcher} from '@angular/material';
+import {ModalService} from '../../services/modal.service';
 
 @Component({
   selector: 'app-account-recovery-page',
@@ -17,7 +16,7 @@ export class AccountRecoveryPageComponent implements OnInit {
   private email: string;
   private emailErrorStateMatcher: ErrorStateMatcher;
 
-  constructor(private accountService: AccountService, private modalService: NgbModal) {}
+  constructor(private accountService: AccountService, private modalService: ModalService) {}
 
   public ngOnInit() {
     this.emailErrorStateMatcher = ValidationUtils.getEmailErrorStateMatcher();
@@ -40,20 +39,12 @@ export class AccountRecoveryPageComponent implements OnInit {
     this.submitDisabled = true;
 
     this.accountService.sendPasswordResetEmail(this.email, msg => {
-      const content: NgbModalRef = this.modalService.open(ModalContentComponent);
+      let title = 'Failed to Send Password Reset Email';
 
       if (msg.successful) {
-        content.componentInstance.title = 'Sent Password Reset Email';
-      } else {
-        content.componentInstance.title = 'Failed to Send Password Reset Email';
+        title = 'Sent Password Reset Email';
       }
-      content.componentInstance.message = msg.text;
-
-      content.result.then(value => {
-        this.submitDisabled = false;
-      }, reason => {
-        this.submitDisabled = false;
-      });
+      this.modalService.openAlertModal(title, msg.text, () => this.submitDisabled = false);
     });
   }
 
@@ -61,20 +52,12 @@ export class AccountRecoveryPageComponent implements OnInit {
     this.submitDisabled = true;
 
     this.accountService.resendVerificationEmail(this.email, msg => {
-      const content: NgbModalRef = this.modalService.open(ModalContentComponent);
+      let title = 'Failed to Resend Verification Email';
 
       if (msg.successful) {
-        content.componentInstance.title = 'Resent Verification Email';
-      } else {
-        content.componentInstance.title = 'Failed to Resend Verification Email';
+        title = 'Resent Verification Email';
       }
-      content.componentInstance.message = msg.text;
-
-      content.result.then(value => {
-        this.submitDisabled = false;
-      }, reason => {
-        this.submitDisabled = false;
-      });
+      this.modalService.openAlertModal(title, msg.text, () => this.submitDisabled = false);
     });
   }
 }

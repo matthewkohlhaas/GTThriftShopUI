@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AccountService} from '../../services/account.service';
-import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {ModalContentComponent} from '../modal-content/modal-content.component';
+import {ModalService} from '../../services/modal.service';
 
 @Component({
   selector: 'app-login-toolbar',
@@ -15,7 +14,7 @@ export class LoginToolbarComponent implements OnInit {
   private email: string;
   private password: string;
 
-  constructor(private accountService: AccountService, private modalService: NgbModal) {}
+  constructor(private accountService: AccountService, private modalService: ModalService) {}
 
   ngOnInit(): void {
     this.submitDisabled = false;
@@ -25,15 +24,7 @@ export class LoginToolbarComponent implements OnInit {
     this.submitDisabled = true;
     this.accountService.login(this.email, this.password, 'listings', msg => {
       if (!msg.successful) {
-        const content: NgbModalRef = this.modalService.open(ModalContentComponent);
-        content.componentInstance.title = 'Failed to Log In';
-        content.componentInstance.message = msg.text;
-
-        content.result.then(value => {
-          this.submitDisabled = false;
-        }, reason => {
-          this.submitDisabled = false;
-        });
+        this.modalService.openAlertModal('Failed to Log In', msg.text, () => this.submitDisabled = false);
       }
     });
   }

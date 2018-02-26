@@ -41,13 +41,13 @@ export class AdminPageComponent implements OnInit {
     this.registerAdminDisabled = true;
     this.adminService.registerAdmin(this.adminEmail)
       .subscribe(res => {
-        this.modalService.displayModal('Successful', res.text);
+        this.modalService.openAlertModal('Successful', res.text);
         this.registerAdminDisabled = false;
       }, err => {
         if (err.status === 0) {
-          this.modalService.displayModal('Unsuccessful', 'Failed to connect to server.');
+          this.modalService.openAlertModal('Unsuccessful', 'Failed to connect to server.');
         } else {
-          this.modalService.displayModal('Unsuccessful', err.error);
+          this.modalService.openAlertModal('Unsuccessful', err.error);
         }
         this.registerAdminDisabled = false;
       }
@@ -61,13 +61,13 @@ export class AdminPageComponent implements OnInit {
     this.banUserDisabled = true;
     this.adminService.banUser(this.userToBanEmail)
       .subscribe(res => {
-          this.modalService.displayModal('Successful', res.text);
+          this.modalService.openAlertModal('Successful', res.text);
           this.banUserDisabled = false;
         }, err => {
           if (err.status === 0) {
-            this.modalService.displayModal('Unsuccessful', 'Failed to connect to server.');
+            this.modalService.openAlertModal('Unsuccessful', 'Failed to connect to server.');
           } else {
-            this.modalService.displayModal('Unsuccessful', err.error);
+            this.modalService.openAlertModal('Unsuccessful', err.error);
           }
           this.banUserDisabled = false;
         }
@@ -81,13 +81,13 @@ export class AdminPageComponent implements OnInit {
     this.unbanUserDisabled = true;
     this.adminService.unbanUser(this.userToUnbanEmail)
       .subscribe(res => {
-          this.modalService.displayModal('Successful', res.text);
+          this.modalService.openAlertModal('Successful', res.text);
           this.unbanUserDisabled = false;
         }, err => {
           if (err.status === 0) {
-            this.modalService.displayModal('Unsuccessful', 'Failed to connect to server.');
+            this.modalService.openAlertModal('Unsuccessful', 'Failed to connect to server.');
           } else {
-            this.modalService.displayModal('Unsuccessful', err.error);
+            this.modalService.openAlertModal('Unsuccessful', err.error);
           }
           this.unbanUserDisabled = false;
         }

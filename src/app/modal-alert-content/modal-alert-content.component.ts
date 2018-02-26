@@ -6,10 +6,10 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
   templateUrl: './modal-alert-content.component.html',
   styleUrls: ['./modal-alert-content.component.css']
 })
-export class ModalContentComponent {
+export class ModalAlertContentComponent {
 
   constructor(
-    public dialogRef: MatDialogRef<ModalContentComponent>,
+    public dialogRef: MatDialogRef<ModalAlertContentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onOkClicked(): void {

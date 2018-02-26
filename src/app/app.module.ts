@@ -3,7 +3,15 @@ import {FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {
-  MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule,
+  MatButtonModule,
+  MatCardModule,
+  MatDialog,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
   MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
@@ -17,7 +25,6 @@ import {AdminService} from '../services/admin.service';
 import {ModalService} from '../services/modal.service';
 import {CreateAccountPageComponent} from './create-account-page/create-account-page.component';
 import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
-import {ModalContentComponent} from './modal-content/modal-content.component';
 import {environment} from '../environments/environment';
 import {RouterModule, Routes} from '@angular/router';
 import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
@@ -37,6 +44,7 @@ import {MainToolbarComponent} from './main-toolbar/main-toolbar.component';
 import {MainSidenavComponent} from './main-sidenav/main-sidenav.component';
 import {LoginToolbarComponent} from './login-toolbar/login-toolbar.component';
 import {ValidationUtils} from '../utils/validation.utils';
+import {ModalAlertContentComponent} from './modal-alert-content/modal-alert-content.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -71,7 +79,7 @@ export function jwtOptionsFactory() {
     NotFoundPageComponent,
     CreateAccountPageComponent,
     ListingPageComponent,
-    ModalContentComponent,
+    ModalAlertContentComponent,
     CreateListingComponent,
     ContactPageComponent,
     AccountRecoveryPageComponent,
@@ -81,7 +89,7 @@ export function jwtOptionsFactory() {
     UserProfileComponent,
     AdminPageComponent
   ],
-  entryComponents: [ModalContentComponent],
+  entryComponents: [ModalAlertContentComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -101,7 +109,7 @@ export function jwtOptionsFactory() {
     MatMenuModule,
     MatSidenavModule,
     MatListModule,
-    MatButtonModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,

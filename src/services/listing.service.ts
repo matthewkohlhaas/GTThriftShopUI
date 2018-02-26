@@ -24,7 +24,11 @@ export class ListingService {
         res => {
           next(res);
         }, err => {
-          next(new ServerMessage(false, COULD_NOT_CONNECT));
+          if (err.status === 0) {
+            next(new ServerMessage(false, COULD_NOT_CONNECT));
+          } else {
+            next(new ServerMessage(err.error.successful, err.error.text));
+          }
         }
       );
   }

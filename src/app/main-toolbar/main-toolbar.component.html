@@ -1,9 +1,7 @@
 <div id="main-toolbar-container" class="toolbar-container">
   <mat-toolbar id="main-toolbar" class="toolbar" color="accent">
     <mat-toolbar-row>
-      <button mat-icon-button id="main-toolbar-menu-button" (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
+      <mat-icon id="main-toolbar-menu-button" (click)="sidenav.toggle()">menu</mat-icon>
       <a id="main-toolbar-title" class="toolbar-title" routerLink="/listings" (click)="sidenav.close()">
         GT ThriftShop
       </a>

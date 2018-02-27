@@ -1,25 +1,23 @@
-#main-toolbar-menu-button {
-  margin-right: 20px;
-}
-
 #main-toolbar-menu-button:active,
 #main-toolbar-menu-button:focus {
   outline: none;
 }
 
-#main-toolbar-menu-button mat-icon {
+#main-toolbar-menu-button {
   height: auto;
   width: auto;
-  font-size: 30px;
-}
-
-#main-toolbar-logout-button {
-  font-size: 16px;
+  margin-right: 20px;
+  font-size: 24pt;
+  cursor: pointer;
 }
 
 #main-toolbar .mat-toolbar-row {
   margin: auto;
   max-width: 920px;
+}
+
+#main-toolbar-logout-button {
+  font-size: 12pt;
 }
 
 app-main-sidenav {

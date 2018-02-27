@@ -100,7 +100,6 @@ export class AccountService {
   }
 
   public resendVerificationEmail(email: string, next?: (msg: ServerMessage) => void): void {
-
     this.http.post<ServerMessage>(environment.serverUrl + '/resend-verification', {email: email})
       .subscribe(
         res => {
@@ -119,6 +118,35 @@ export class AccountService {
     this.http.get<ServerMessage>(environment.serverUrl + '/verify/' + token)
       .subscribe(
         res => {
+          next(res);
+        }, err => {
+          if (err.status === 0) {
+            next(new ServerMessage(false, COULD_NOT_CONNECT));
+          } else {
+            next(err.error);
+          }
+        }
+      );
+  }
+
+  public sendPasswordResetEmail(email: string, next?: (msg: ServerMessage) => void): void {
+    this.http.post<ServerMessage>(environment.serverUrl + '/send-password-reset', {email: email})
+      .subscribe(
+        res => {
+          next(res);
+        }, err => {
+          if (err.status === 0) {
+            next(new ServerMessage(false, COULD_NOT_CONNECT));
+          } else {
+            next(err.error);
+          }
+        }
+      );
+  }
+
+  public resetPassword(token: string, password: string, next?: (msg: ServerMessage) => void): void {
+    this.http.post<ServerMessage>(environment.serverUrl + '/reset-password',
+      {token: token, password: password}).subscribe(res => {
           next(res);
         }, err => {
           if (err.status === 0) {

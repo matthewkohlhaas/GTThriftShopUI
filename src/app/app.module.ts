@@ -22,13 +22,14 @@ import {NavMenuComponent} from './nav-menu/nav-menu.component';
 import {environment} from '../environments/environment';
 import {RouterModule, Routes} from '@angular/router';
 import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
-import { CreateListingComponent } from './create-listing/create-listing.component';
+import {CreateListingComponent} from './create-listing/create-listing.component';
 import {ContactPageComponent} from './contact-page/contact-page.component';
 import {TicketService} from '../services/ticket.service';
 import {AccountRecoveryPageComponent} from './account-recovery-page/account-recovery-page.component';
 import {VerificationPageComponent} from './verification-page/verification-page.component';
-import { ListingViewComponent } from './listing-view/listing-view.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import {PasswordResetPageComponent} from './password-reset-page/password-reset-page.component';
+import {ListingViewComponent} from './listing-view/listing-view.component';
+import {UserProfileComponent} from './user-profile/user-profile.component';
 import {AdminPageComponent} from './admin-page/admin-page.component';
 import {LocalStorageService} from '../services/local-storage.service';
 import {AuthenticateGuard} from '../guards/authenticate.guard';
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
   {path: 'account-recovery', component: AccountRecoveryPageComponent},
   {path: 'verify/:token', component: VerificationPageComponent},
+  {path: 'reset-password/:token', component: PasswordResetPageComponent},
   {path: 'listings', component: ListingPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'listing', component: ListingViewComponent, canActivate: [AuthenticateGuard]},
   {path: 'create-listing', component: CreateListingComponent, canActivate: [AuthenticateGuard]},
@@ -72,6 +74,7 @@ export function jwtOptionsFactory() {
     ContactPageComponent,
     AccountRecoveryPageComponent,
     VerificationPageComponent,
+    PasswordResetPageComponent,
     ListingViewComponent,
     UserProfileComponent,
     AdminPageComponent

@@ -25,13 +25,47 @@ export class AccountRecoveryPageComponent implements OnInit {
     this.accountService.authenticate(isAuthenticated => this.isLoggedIn = isAuthenticated);
   }
 
-  private onSubmit(): void {
+  private onBlurEmail(): void {
+    this.showErrorEmail = !AccountService.validateEmail(this.email) && this.email && this.email !== '';
+  }
+
+  private onClickSendPasswordReset(): void {
+    if (!this.submitDisabled) {
+      this.showErrorEmail = !AccountService.validateEmail(this.email);
+      if (!this.showErrorEmail) {
+        this.sendPasswordResetEmail();
+      }
+    }
+  }
+
+  private onClickResendVerification(): void {
     if (!this.submitDisabled) {
       this.showErrorEmail = !AccountService.validateEmail(this.email);
       if (!this.showErrorEmail) {
         this.resendVerificationEmail();
       }
     }
+  }
+
+  private sendPasswordResetEmail(): void {
+    this.submitDisabled = true;
+
+    this.accountService.sendPasswordResetEmail(this.email, msg => {
+      const content: NgbModalRef = this.modalService.open(ModalContentComponent);
+
+      if (msg.successful) {
+        content.componentInstance.title = 'Sent Password Reset Email';
+      } else {
+        content.componentInstance.title = 'Failed to Send Password Reset Email';
+      }
+      content.componentInstance.message = msg.text;
+
+      content.result.then(value => {
+        this.submitDisabled = false;
+      }, reason => {
+        this.submitDisabled = false;
+      });
+    });
   }
 
   private resendVerificationEmail(): void {
@@ -53,9 +87,5 @@ export class AccountRecoveryPageComponent implements OnInit {
         this.submitDisabled = false;
       });
     });
-  }
-
-  private onBlurEmail(): void {
-    this.showErrorEmail = !AccountService.validateEmail(this.email) && this.email && this.email !== '';
   }
 }

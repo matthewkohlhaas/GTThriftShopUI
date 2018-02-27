@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AdminService} from '../../services/admin.service';
 import {LocalStorageService} from '../../services/local-storage.service';
+import {MatSidenav} from '@angular/material';
 
 @Component({
   selector: 'app-main-sidenav',
@@ -9,13 +10,13 @@ import {LocalStorageService} from '../../services/local-storage.service';
 })
 export class MainSidenavComponent implements OnInit {
 
-  private opened: boolean;
+  @ViewChild(MatSidenav) sidenav: MatSidenav;
+
   private isAdmin: boolean;
 
   constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
-    this.opened = false;
     const localIsAdmin = LocalStorageService.getIsAdmin();
     if (localIsAdmin != null) {
       this.isAdmin = localIsAdmin;
@@ -33,15 +34,15 @@ export class MainSidenavComponent implements OnInit {
     });
   }
 
-  public open(): void {
-    this.opened = true;
+  public open(): Promise<void> {
+    return this.sidenav.open();
   }
 
-  public close(): void {
-    this.opened = false;
+  public close(): Promise<void> {
+    return this.sidenav.close();
   }
 
-  public toggle(): void {
-    this.opened = !this.opened;
+  public toggle(): Promise<void> {
+    return this.sidenav.toggle();
   }
 }

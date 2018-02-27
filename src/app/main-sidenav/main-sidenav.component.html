@@ -1,11 +1,11 @@
 <mat-sidenav-container id="main-sidenav-container">
-  <mat-sidenav id="main-sidenav" mode="over" [(opened)]="opened">
-    <mat-nav-list>
-      <a mat-list-item routerLink="/listings" (click)="toggle()">Home</a>
-      <a mat-list-item routerLink="/profile" (click)="toggle()">View Profile</a>
-      <a mat-list-item routerLink="/create-listing" (click)="toggle()">Create Listing</a>
-      <a mat-list-item routerLink="/admin" (click)="toggle()" *ngIf="isAdmin">Admin</a>
-      <a mat-list-item routerLink="/support" (click)="toggle()">Support</a>
+  <mat-sidenav id="main-sidenav" mode="over">
+    <mat-nav-list (click)="close()">
+      <a mat-list-item routerLink="/listings"><mat-icon>home</mat-icon>Home</a>
+      <a mat-list-item routerLink="/profile"><mat-icon>person</mat-icon>View Profile</a>
+      <a mat-list-item routerLink="/create-listing"><mat-icon>create</mat-icon>Create Listing</a>
+      <a mat-list-item routerLink="/admin" *ngIf="isAdmin"><mat-icon>supervisor_account</mat-icon>Admin</a>
+      <a mat-list-item routerLink="/support"><mat-icon>help</mat-icon>Support</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="main-content">

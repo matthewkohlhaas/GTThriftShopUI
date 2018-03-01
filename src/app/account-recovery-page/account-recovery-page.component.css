@@ -1,3 +1,12 @@
-.btn-primary {
+#account-recovery-card .mat-raised-button {
+  display: inline-block !important;
   margin-right: 10px;
+}
+
+#button-cancel-account-recovery,
+#button-cancel-account-recovery:hover,
+#button-cancel-account-recovery:active,
+#button-cancel-account-recovery:focus {
+  color: rgba(0, 0, 0, 0.87);
+  text-decoration: none;
 }

@@ -1,12 +1,10 @@
-<app-title-bar></app-title-bar>
-<div class="page-content">
-  <div *ngFor="let listing of listings" class="listing-box">
+<mat-card class="listing-card" *ngFor="let listing of listings">
     <div class="listing-image">
       <img src="{{listing.imageUrl}}" />
     </div>
     <div class="listing-text">
       <div class="listing-name">
-        <a href="/listing">{{listing.name}}</a>
+        <a routerLink="/listing">{{listing.name}}</a>
       </div>
       <div class="listing-seller">
         <a href="#">{{listing.user.firstName}} {{listing.user.lastName}}</a>
@@ -19,5 +17,4 @@
     <div class="listing-price">
       {{(listing.price) ? '$'+(listing.price) : ''}}
     </div>
-  </div>
-</div>
+</mat-card>

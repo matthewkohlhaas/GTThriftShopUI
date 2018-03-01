@@ -1,0 +1,42 @@
+#login-button {
+  margin-right: 20px;
+}
+
+#login-toolbar .main-content {
+  flex: 1;
+}
+
+#login-toolbar .mat-toolbar-row {
+  margin: auto;
+  max-width: 920px;
+}
+
+#login-toolbar .mat-form-field {
+  margin: 10px 20px 0 0;
+  font-size: 16px;
+  min-width: 200px;
+}
+
+#account-recovery-button,
+#account-recovery-button:hover,
+#account-recovery-button:active,
+#account-recovery-button:focus {
+  color: white;
+  text-decoration: none;
+}
+
+/deep/ #login-toolbar .mat-focused .mat-input-placeholder {
+  color: white;
+}
+
+/deep/ #login-toolbar .mat-input-placeholder {
+  color: #0d47a1;
+}
+
+/deep/ #login-toolbar .mat-input-underline {
+  background-color: #0d47a1;    /* replace this color with your accent color hex code */
+}
+
+/deep/ #login-toolbar .mat-input-element {
+  caret-color: #0d47a1;
+}

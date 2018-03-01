@@ -10,42 +10,10 @@ import {LocalStorageService} from './local-storage.service';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {AdminService} from './admin.service';
 
-const EMAIL_REGEX: RegExp = new RegExp('^(?:[a-zA-Z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)'
-  + '*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@gatech.edu$');
-const MIN_PASSWORD_LENGTH = 8;
 const COULD_NOT_CONNECT = 'Could not connect to server.';
 
 @Injectable()
 export class AccountService {
-
-  public static getEmailRegex(): RegExp {
-    return EMAIL_REGEX;
-  }
-
-  public static getMinPasswordLength(): number {
-    return MIN_PASSWORD_LENGTH;
-  }
-
-  public static validateEntry(entry: string, validator: (str: string) => boolean): boolean {
-    const trimmedEntry: string = (entry) ? entry.trim() : '';
-    return validator(trimmedEntry);
-  }
-
-  public static validateNotEmpty(entry: string): boolean {
-    return this.validateEntry(entry, str => str !== '');
-  }
-
-  public static validateEmail(entry: string): boolean {
-    return AccountService.validateEntry(entry, str => {
-      return AccountService.getEmailRegex().test(str);
-    });
-  }
-
-  public static validatePassword(entry: string): boolean {
-    return AccountService.validateEntry(entry, str => {
-      return str.length >= AccountService.getMinPasswordLength();
-    });
-  }
 
   constructor(private http: HttpClient,
               private router: Router,

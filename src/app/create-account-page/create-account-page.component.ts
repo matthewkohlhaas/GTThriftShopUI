@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AccountService} from '../../services/account.service';
-import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {ModalContentComponent} from '../modal-content/modal-content.component';
 import {Router} from '@angular/router';
+import {ErrorStateMatcher} from '@angular/material';
+import {ValidationUtils} from '../../utils/validation.utils';
+import {ModalService} from '../../services/modal.service';
 
 @Component({
   selector: 'app-create-account-page',
@@ -19,69 +20,42 @@ export class CreateAccountPageComponent implements OnInit {
   private email: string;
   private password: string;
 
-  private showErrorFirstName: boolean;
-  private showErrorLastName: boolean;
-  private showErrorEmail: boolean;
-  private showErrorPassword: boolean;
+  private emailErrorStateMatcher: ErrorStateMatcher;
+  private passwordErrorStateMatcher: ErrorStateMatcher;
 
-  constructor(private router: Router, private accountService: AccountService, private modalService: NgbModal) {}
+  constructor(private router: Router, private accountService: AccountService, private modalService: ModalService) {}
 
   public ngOnInit(): void {
-    this.accountService.authenticate(isAuthenticated => {
-      if (isAuthenticated) {
-        this.router.navigate(['listings']);
-      }
-    });
-    this.minPasswordLength = AccountService.getMinPasswordLength();
+    if (this.accountService.isAccessTokenAlive()) {
+      this.router.navigate(['/listings']);
+    }
+    this.emailErrorStateMatcher = ValidationUtils.getEmailErrorStateMatcher();
+    this.passwordErrorStateMatcher = ValidationUtils.getPasswordErrorStateMatcher();
+    this.minPasswordLength = ValidationUtils.getMinPasswordLength();
     this.submitDisabled = false;
-    this.showErrorFirstName = false;
-    this.showErrorLastName = false;
-    this.showErrorEmail = false;
-    this.showErrorPassword = false;
   }
 
   private onSubmit(): void {
-    if (!this.submitDisabled) {
-      this.validateAllFields();
-      if (!this.showErrorFirstName && !this.showErrorLastName && !this.showErrorEmail && !this.showErrorPassword) {
-        this.createAccount();
-      }
+    if (!this.submitDisabled
+      && ValidationUtils.validateNotEmpty(this.firstName)
+      && ValidationUtils.validateNotEmpty(this.lastName)
+      && ValidationUtils.validateEmail(this.email)
+      && ValidationUtils.validatePassword(this.password)) {
+
+      this.createAccount();
     }
-  }
-
-  private onBlurEmail(): void {
-    this.showErrorEmail = !AccountService.validateEmail(this.email) && this.email && this.email !== '';
-  }
-
-  private onBlurPassword(): void {
-    this.showErrorPassword = !AccountService.validatePassword(this.password) && this.password && this.password !== '';
-  }
-
-  private validateAllFields(): void {
-    this.showErrorFirstName = !AccountService.validateNotEmpty(this.firstName);
-    this.showErrorLastName = !AccountService.validateNotEmpty(this.lastName);
-    this.showErrorEmail = !AccountService.validateEmail(this.email);
-    this.showErrorPassword = !AccountService.validatePassword(this.password);
   }
 
   private createAccount(): void {
     this.submitDisabled = true;
 
     this.accountService.createAccount(this.email, this.password, this.firstName, this.lastName, msg => {
-        const content: NgbModalRef = this.modalService.open(ModalContentComponent);
+      let title = 'Failed to Create Account';
 
-        if (msg.successful) {
-          content.componentInstance.title = 'Successfully Created Account';
-        } else {
-          content.componentInstance.title = 'Failed to Create Account';
-        }
-        content.componentInstance.message = msg.text;
-
-        content.result.then(value => {
-          this.submitDisabled = false;
-        }, reason => {
-          this.submitDisabled = false;
-          });
-      });
+      if (msg.successful) {
+        title = 'Successfully Created Account';
+      }
+      this.modalService.openAlertModal(title, msg.text, () => this.submitDisabled = false);
+    });
   }
 }

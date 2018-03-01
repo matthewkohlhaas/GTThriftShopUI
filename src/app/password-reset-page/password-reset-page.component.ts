@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AccountService} from '../../services/account.service';
-import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {ModalContentComponent} from '../modal-content/modal-content.component';
 import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ValidationUtils} from '../../utils/validation.utils';
+import {ErrorStateMatcher} from '@angular/material';
+import {ModalService} from '../../services/modal.service';
 
 @Component({
   selector: 'app-account-recovery-page',
@@ -12,66 +13,47 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 export class PasswordResetPageComponent implements OnInit {
 
   private minPasswordLength: number;
-  private isLoggedIn: boolean;
   private submitDisabled: boolean;
 
   private password: string;
   private confirmedPassword: string;
-  private showErrorPassword: boolean;
-  private showErrorConfirmedPassword: boolean;
+
+  private passwordErrorStateMatcher: ErrorStateMatcher;
 
   constructor(
     private accountService: AccountService,
+    private modalService: ModalService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private modalService: NgbModal
+    private activatedRoute: ActivatedRoute
   ) {}
 
   public ngOnInit() {
-    this.minPasswordLength = AccountService.getMinPasswordLength();
-    this.isLoggedIn = false;
     this.submitDisabled = false;
-    this.showErrorPassword = false;
-    this.showErrorConfirmedPassword = false;
-    this.accountService.authenticate(isAuthenticated => this.isLoggedIn = isAuthenticated);
-  }
-
-  private onBlurPassword(): void {
-    this.showErrorPassword = !AccountService.validatePassword(this.password) && this.password && this.password !== '';
-  }
-
-  private onBlurConfirmedPassword(): void {
-    this.showErrorConfirmedPassword = !AccountService.validatePassword(this.confirmedPassword) && this.confirmedPassword
-      && this.confirmedPassword !== '';
+    this.minPasswordLength = ValidationUtils.getMinPasswordLength();
+    this.passwordErrorStateMatcher = ValidationUtils.getPasswordErrorStateMatcher();
   }
 
   private onSubmit(): void {
-    if (!this.submitDisabled) {
-      this.showErrorPassword = !AccountService.validatePassword(this.password);
-      this.showErrorConfirmedPassword = !AccountService.validatePassword(this.confirmedPassword);
+    if (!this.submitDisabled
+        && ValidationUtils.validatePassword(this.password)
+        && ValidationUtils.validatePassword(this.confirmedPassword)) {
 
-      if (!this.showErrorPassword && !this.showErrorConfirmedPassword) {
-        if (this.password !== this.confirmedPassword) {
-          this.showPasswordsDoNotMatchModal();
-        } else {
-          this.resetPassword();
-        }
+      if (this.password !== this.confirmedPassword) {
+        this.showPasswordsDoNotMatchModal();
+      } else {
+        this.resetPassword();
       }
     }
   }
 
   private showPasswordsDoNotMatchModal(): void {
     this.submitDisabled = true;
-    const content: NgbModalRef = this.modalService.open(ModalContentComponent);
 
-    content.componentInstance.title = 'Cannot Reset Password';
-    content.componentInstance.message = 'Please enter matching passwords in the two fields.';
-
-    content.result.then(value => {
-      this.submitDisabled = false;
-    }, reason => {
-      this.submitDisabled = false;
-    });
+    this.modalService.openAlertModal(
+      'Cannot Reset Password',
+      'Please enter matching passwords in the two fields.',
+      () => this.submitDisabled = false
+    );
   }
 
   private resetPassword(): void {
@@ -79,20 +61,12 @@ export class PasswordResetPageComponent implements OnInit {
 
     this.activatedRoute.params.subscribe((params: Params) => {
       this.accountService.resetPassword(params['token'], this.password, msg => {
-        const content: NgbModalRef = this.modalService.open(ModalContentComponent);
+        let title = 'Failed to Reset Password';
 
         if (msg.successful) {
-          content.componentInstance.title = 'Successfully Reset Password';
-        } else {
-          content.componentInstance.title = 'Failed to Reset Password';
+          title = 'Successfully Reset Password';
         }
-        content.componentInstance.message = msg.text;
-
-        content.result.then(value => {
-          this.onModalClose(msg.successful);
-        }, reason => {
-          this.onModalClose(msg.successful);
-        });
+        this.modalService.openAlertModal(title, msg.text, () => this.onModalClose(msg.successful));
       });
     });
   }

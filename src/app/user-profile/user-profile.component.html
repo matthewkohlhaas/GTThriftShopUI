@@ -1,26 +1,25 @@
-<app-title-bar></app-title-bar>
-<div class="page-content">
-  <div class="profile-box">
-    <div class="imgContainer">
-      <img src="https://pbs.twimg.com/profile_images/646735779578912769/a10ZjNee_400x400.jpg"/>
+<mat-card class="profile-card">
+  <div class="img-container">
+    <img src="https://pbs.twimg.com/profile_images/646735779578912769/a10ZjNee_400x400.jpg" />
+  </div>
+  <div class="profile-text">
+    <div class="user-name">
+      <p>{{user?.firstName}} {{user?.lastName}}</p>
     </div>
-    <div class="profile-text">
-      <div class="user-name">
-        <p>{{user?.firstName}} {{user?.lastName}}</p>
-      </div>
-      <div class="user-email">
-        email: {{user?.email}}
-      </div>
-      <br>
-      <div class="user-bio">
-        About me:
-      </div>
-      <div class="user-bio-text">
-        <p>Hi! I usually sell a wide variety of items ranging from textbooks to
-          clothing. I don't have any thing for sale at the moment, so check back
-          in a few days!</p>
-      </div>
+    <div class="user-email">
+      email: {{user?.email}}
+    </div>
+    <br>
+    <div class="user-bio">
+      About me:
+    </div>
+    <div class="user-bio-text">
+      <p>
+        Hi! I usually sell a wide variety of items ranging from textbooks to
+        clothing. I don't have any thing for sale at the moment, so check back
+        in a few days!
+      </p>
     </div>
   </div>
-</div>
+</mat-card>
 

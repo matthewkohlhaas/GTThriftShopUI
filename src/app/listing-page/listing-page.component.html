@@ -19,5 +19,8 @@
     <div class="listing-price">
       {{(listing.price) ? '$'+(listing.price) : ''}}
     </div>
+    <div class="listing-icons">
+      <a (click)="flagOnClick(listing)">flag</a>
+    </div>
   </div>
 </div>

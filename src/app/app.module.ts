@@ -12,6 +12,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AccountService} from '../services/account.service';
 import {ListingService} from '../services/listing.service';
 import {AdminService} from '../services/admin.service';
+import {FlagService} from '../services/flag.service';
 import {ModalService} from '../services/modal.service'
 import {LoginBarComponent} from './login-bar/login-bar.component';
 import {CreateAccountPageComponent} from './create-account-page/create-account-page.component';
@@ -34,6 +35,7 @@ import {AdminPageComponent} from './admin-page/admin-page.component';
 import {LocalStorageService} from '../services/local-storage.service';
 import {AuthenticateGuard} from '../guards/authenticate.guard';
 import {AdminGuard} from '../guards/admin.guard';
+import { FlagComponent } from './flag/flag.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -43,6 +45,7 @@ const appRoutes: Routes = [
   {path: 'listings', component: ListingPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'listing', component: ListingViewComponent, canActivate: [AuthenticateGuard]},
   {path: 'create-listing', component: CreateListingComponent, canActivate: [AuthenticateGuard]},
+  {path: 'flag-listing', component: FlagComponent, canActivate: [AuthenticateGuard]},
   {path: 'support', component: ContactPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'profile', component: UserProfileComponent, canActivate: [AuthenticateGuard]},
   {path: 'admin', component: AdminPageComponent, canActivate: [AuthenticateGuard, AdminGuard]},
@@ -70,6 +73,7 @@ export function jwtOptionsFactory() {
     ModalContentComponent,
     OcticonDirective,
     NavMenuComponent,
+    FlagComponent,
     CreateListingComponent,
     ContactPageComponent,
     AccountRecoveryPageComponent,
@@ -77,7 +81,8 @@ export function jwtOptionsFactory() {
     PasswordResetPageComponent,
     ListingViewComponent,
     UserProfileComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    FlagComponent
   ],
   entryComponents: [ModalContentComponent],
   imports: [
@@ -102,6 +107,7 @@ export function jwtOptionsFactory() {
     ListingService,
     TicketService,
     AdminService,
+    FlagService,
     LocalStorageService,
     ModalService,
     AuthenticateGuard,

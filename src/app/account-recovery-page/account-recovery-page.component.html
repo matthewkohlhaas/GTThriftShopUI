@@ -1,25 +1,26 @@
-<app-login-bar *ngIf="!isLoggedIn"></app-login-bar>
-<app-title-bar *ngIf="isLoggedIn"></app-title-bar>
-<div class="page-content">
-  <div class="box">
-    <h2>Account Recovery</h2>
-    <div class="form-group" [ngClass]="showErrorEmail ? 'has-danger' : ''">
-      <label class="form-control-label" for="recovery-field-email">Email:</label>
-      <input id="recovery-field-email" class="form-control" type="email" title="email" name="username"
-             [(ngModel)]="email" (blur)="onBlurEmail()">
-      <div class="form-control-feedback"
-           [ngStyle]="showErrorEmail ? {'visibility': 'visible'} : {'visibility': 'hidden'}">
-        Please enter a valid Georgia Tech email address.
-      </div>
-    </div>
-    <button id="button-send-password-reset" class="btn btn-primary" type="button" (click)="onClickSendPasswordReset()"
-            [disabled]="submitDisabled">
-      Send Password Reset Email
-    </button>
-    <button id="button-resend-verification" class="btn btn-primary" type="button" (click)="onClickResendVerification()"
-            [disabled]="submitDisabled">
-      Resend Verification Email
-    </button>
-    <a class="btn btn-secondary" href="/">Cancel</a>
-  </div>
-</div>
+<mat-card id="account-recovery-card">
+  <mat-card-header>
+    <mat-card-title>Account Recovery</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="classic-form">
+      <mat-form-field>
+        <input matInput required placeholder="Email" type="email" title="email" name="username" [(ngModel)]="email"
+               [errorStateMatcher]="emailErrorStateMatcher">
+        <mat-error>Please enter a valid Georgia Tech email address.</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button id="button-send-password-reset" color="primary" (click)="onClickSendPasswordReset()"
+              [disabled]="submitDisabled">
+        Send Password Reset Email
+      </button>
+
+      <button mat-raised-button id="button-resend-verification" color="primary" (click)="onClickResendVerification()"
+              [disabled]="submitDisabled">
+        Resend Verification Email
+      </button>
+
+      <a mat-raised-button id="button-cancel-account-recovery" routerLink="/">Cancel</a>
+    </form>
+  </mat-card-content>
+</mat-card>

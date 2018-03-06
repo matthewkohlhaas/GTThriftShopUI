@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {AccountService} from '../../services/account.service';
-import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {ModalContentComponent} from '../modal-content/modal-content.component';
 import {ActivatedRoute, Params} from '@angular/router';
 
 @Component({
@@ -11,16 +9,12 @@ import {ActivatedRoute, Params} from '@angular/router';
 })
 export class VerificationPageComponent implements OnInit {
 
-  private isLoggedIn: boolean;
   private header: string;
   private message: string;
 
   constructor(private accountService: AccountService, private activatedRoute: ActivatedRoute) {}
 
   public ngOnInit() {
-    this.isLoggedIn =  false;
-    this.accountService.authenticate(isAuthenticated => this.isLoggedIn = isAuthenticated);
-
     this.activatedRoute.params.subscribe((params: Params) => {
       this.accountService.verify(params['token'], msg => {
         this.message = msg.text;

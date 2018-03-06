@@ -1,5 +1,4 @@
-.form-group {
-  display: inline-block;
+#register-card .mat-form-field {
   width: calc(50% - 30px);
   margin: 0 20px 10px 0;
 }

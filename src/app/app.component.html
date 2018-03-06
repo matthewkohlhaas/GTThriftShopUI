@@ -1,1 +1,2 @@
-<router-outlet></router-outlet>
+<app-login-toolbar *ngIf="!accountService.isAccessTokenAlive()"></app-login-toolbar>
+<app-main-toolbar *ngIf="accountService.isAccessTokenAlive()"></app-main-toolbar>

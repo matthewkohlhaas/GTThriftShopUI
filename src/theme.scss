@@ -1,0 +1,42 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$gatech-gold: (
+  50: #fff5c5,
+  100: #f0e6ba,
+  200: #e4dab0,
+  300: #ffd7a4,
+  400: #ebb55b,
+  500: #e1ab59,
+  600: #d7a456,
+  700: #c59353,
+  800: #9b6c4e,
+  900: #87623b,
+  A100: #ffff8d,
+  A200: #ffff00,
+  A400: #ffea00,
+  A700: #ffd600,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $dark-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text,
+  )
+);
+
+$my-app-primary: mat-palette($mat-blue, 900);
+$my-app-accent:  mat-palette($gatech-gold, 700);
+
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
+
+@include angular-material-theme($my-app-theme);

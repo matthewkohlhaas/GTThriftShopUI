@@ -1,12 +1,21 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {MatMenuModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatDialog,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatSidenavModule,
+  MatToolbarModule
+} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 import {AppComponent} from './app.component';
-import {TitleBarComponent} from './title-bar/title-bar.component';
 import {ListingPageComponent} from './listing-page/listing-page.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AccountService} from '../services/account.service';
@@ -17,9 +26,6 @@ import {ModalService} from '../services/modal.service'
 import {LoginBarComponent} from './login-bar/login-bar.component';
 import {CreateAccountPageComponent} from './create-account-page/create-account-page.component';
 import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
-import {OcticonDirective} from '../directives/octicon.directive';
-import {ModalContentComponent} from './modal-content/modal-content.component';
-import {NavMenuComponent} from './nav-menu/nav-menu.component';
 import {environment} from '../environments/environment';
 import {RouterModule, Routes} from '@angular/router';
 import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
@@ -36,6 +42,11 @@ import {LocalStorageService} from '../services/local-storage.service';
 import {AuthenticateGuard} from '../guards/authenticate.guard';
 import {AdminGuard} from '../guards/admin.guard';
 import { FlagComponent } from './flag/flag.component';
+import {MainToolbarComponent} from './main-toolbar/main-toolbar.component';
+import {MainSidenavComponent} from './main-sidenav/main-sidenav.component';
+import {LoginToolbarComponent} from './login-toolbar/login-toolbar.component';
+import {ValidationUtils} from '../utils/validation.utils';
+import {ModalAlertContentComponent} from './modal-alert-content/modal-alert-content.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -49,7 +60,7 @@ const appRoutes: Routes = [
   {path: 'support', component: ContactPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'profile', component: UserProfileComponent, canActivate: [AuthenticateGuard]},
   {path: 'admin', component: AdminPageComponent, canActivate: [AuthenticateGuard, AdminGuard]},
-  {path: '**', component: NotFoundPageComponent, canActivate: [AuthenticateGuard]}
+  {path: '**', component: NotFoundPageComponent}
 ];
 
 export function jwtOptionsFactory() {
@@ -65,15 +76,17 @@ export function jwtOptionsFactory() {
 @NgModule({
   declarations: [
     AppComponent,
+    MainToolbarComponent,
+    MainSidenavComponent,
+    LoginToolbarComponent,
     NotFoundPageComponent,
-    TitleBarComponent,
-    LoginBarComponent,
     CreateAccountPageComponent,
     ListingPageComponent,
     ModalContentComponent,
     OcticonDirective,
     NavMenuComponent,
     FlagComponent,
+
     CreateListingComponent,
     ContactPageComponent,
     AccountRecoveryPageComponent,
@@ -84,7 +97,7 @@ export function jwtOptionsFactory() {
     AdminPageComponent,
     FlagComponent
   ],
-  entryComponents: [ModalContentComponent],
+  entryComponents: [ModalAlertContentComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -98,11 +111,20 @@ export function jwtOptionsFactory() {
         deps: [LocalStorageService]
       }
     }),
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
     MatMenuModule,
-    NgbModule.forRoot()
+    MatSidenavModule,
+    MatListModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule
   ],
   providers: [
     HttpClient,
+    ValidationUtils,
     AccountService,
     ListingService,
     TicketService,

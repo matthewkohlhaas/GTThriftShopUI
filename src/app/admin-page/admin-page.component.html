@@ -1,33 +1,46 @@
-<app-title-bar></app-title-bar>
-<div class="page-content">
-  <div id="admin-box" class="box">
-    <h2 id="admin-actions-label">Admin Actions</h2>
-    <div class="form-group form-group-admin-page">
-      <label class="form-control-label" for="register-admin">Add an Admin:</label>
-      <input id="register-admin" class="form-control" type="text" title="register-admin" [(ngModel)]="adminEmail"
-             (keyup.enter)="registerAdmin()" placeholder="Enter an Email Address">
-    </div>
-    <button id="button-register-admin" class="btn btn-primary btn-admin-page" type="button" (click)="registerAdmin()"
-            [disabled]="registerAdminDisabled">
-      Add Admin
-    </button>
-    <div class="form-group form-group-admin-page">
-      <label class="form-control-label" for="ban-user">Ban a User:</label>
-      <input id="ban-user" class="form-control" type="text" title="register-admin" [(ngModel)]="userToBanEmail"
-             (keyup.enter)="banUser()" placeholder="Enter an Email Address">
-    </div>
-    <button id="button-ban-user" class="btn btn-primary btn-admin-page" type="button" (click)="banUser()"
-            [disabled]="banUserDisabled">
-      Ban User
-    </button>
-    <div class="form-group form-group-admin-page">
-      <label class="form-control-label" for="unban-user">Unban a User:</label>
-      <input id="unban-user" class="form-control" type="text" title="unban-user" [(ngModel)]="userToUnbanEmail"
-             (keyup.enter)="unbanUser()" placeholder="Enter an Email Address">
-    </div>
-    <button id="button-unbanUser" class="btn btn-primary btn-admin-page" type="button" (click)="unbanUser()"
-            [disabled]="unbanUserDisabled">
-      Unban User
-    </button>
-  </div>
-</div>
+<mat-card id="admin-card">
+  <mat-card-header>
+    <mat-card-title>Admin Actions</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form>
+      <mat-form-field>
+        <mat-label>Add an Admin</mat-label>
+        <input matInput placeholder="Enter an Email Address" type="text" title="register-admin" name="register-admin"
+               [(ngModel)]="adminEmail" (keyup.enter)="registerAdmin()" [errorStateMatcher]="emailErrorStateMatcher">
+        <mat-error>Please enter a valid Georgia Tech email address.</mat-error>
+      </mat-form-field>
+      <button mat-raised-button id="button-register-admin" color="primary" (click)="registerAdmin()"
+              [disabled]="registerAdminDisabled">
+        Add Admin
+      </button>
+    </form>
+
+    <form>
+      <mat-form-field>
+        <mat-label>Ban a User</mat-label>
+        <input matInput placeholder="Enter an Email Address" type="text" title="ban-user" name="ban-user"
+               [(ngModel)]="userToBanEmail" (keyup.enter)="registerAdmin()"
+               [errorStateMatcher]="emailErrorStateMatcher">
+        <mat-error>Please enter a valid Georgia Tech email address.</mat-error>
+      </mat-form-field>
+      <button mat-raised-button id="button-ban-user" color="primary" (click)="banUser()"
+              [disabled]="banUserDisabled">
+        Ban User
+      </button>
+    </form>
+
+    <form>
+      <mat-form-field>
+        <mat-label>Unban a User</mat-label>
+        <input matInput placeholder="Enter an Email Address" type="text" title="unban-user" name="unban-user"
+               [(ngModel)]="userToUnbanEmail" (keyup.enter)="banUser()" [errorStateMatcher]="emailErrorStateMatcher">
+        <mat-error>Please enter a valid Georgia Tech email address.</mat-error>
+      </mat-form-field>
+      <button mat-raised-button id="button-unban-user" color="primary" (click)="unbanUser()"
+              [disabled]="unbanUserDisabled">
+        Unban User
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,26 @@
+#main-toolbar-menu-button:active,
+#main-toolbar-menu-button:focus {
+  outline: none;
+}
+
+#main-toolbar-menu-button {
+  height: auto;
+  width: auto;
+  margin-right: 20px;
+  font-size: 24pt;
+  cursor: pointer;
+}
+
+#main-toolbar .mat-toolbar-row {
+  margin: auto;
+  max-width: 920px;
+}
+
+#main-toolbar-logout-button {
+  font-size: 12pt;
+}
+
+app-main-sidenav {
+  display: flex;
+  flex: 1;
+}

@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {TicketService} from '../../services/ticket.service';
-import {ModalContentComponent} from '../modal-content/modal-content.component';
-import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {ModalService} from '../../services/modal.service';
+import {ValidationUtils} from '../../utils/validation.utils';
 
 @Component({
   selector: 'app-contact-page',
@@ -16,7 +16,7 @@ export class ContactPageComponent {
 
   constructor(
     private ticketService: TicketService,
-    private modalService: NgbModal
+    private modalService: ModalService
   ) { }
 
   private static validateEntry(entry: string, validator: (str: string) => boolean): boolean {
@@ -24,29 +24,24 @@ export class ContactPageComponent {
     return validator(trimmedEntry);
   }
 
-  private resetForm() {
+  private resetForm(): void {
     this.submitDisabled = false;
     this.message = '';
     this.subject = '';
   }
 
   private onSubmit(): void {
+    if (!ValidationUtils.validateNotEmpty(this.subject) || !ValidationUtils.validateNotEmpty(this.message)) {
+      return;
+    }
     this.submitDisabled = true;
       this.ticketService.createTicket(this.subject, this.message, msg => {
-        const content: NgbModalRef = this.modalService.open(ModalContentComponent);
+        let title = 'Failed to Send Support Message';
 
         if (msg.successful) {
-          content.componentInstance.title = 'Sent Support Message';
-        } else {
-          content.componentInstance.title = 'Failed to Send Support Message';
+          title = 'Sent Support Message';
         }
-        content.componentInstance.message = msg.text;
-
-        content.result.then(value => {
-          this.resetForm();
-        }, reason => {
-          this.resetForm();
-        });
+        this.modalService.openAlertModal(title, msg.text, () => this.resetForm());
       });
   }
 }

@@ -11,6 +11,12 @@ import {ModalService} from '../../services/modal.service';
   styleUrls: ['./listing-page.component.css']
 })
 export class ListingPageComponent implements OnInit {
+
+  private categories: string[] = ['all'];
+  private selectedCategory: string;
+  private sorts: string[] = ['price', 'date', 'rating'];
+  private selectedSort: string;
+
   listings: Listing[];
 
   constructor(
@@ -20,6 +26,7 @@ export class ListingPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.selectedCategory = this.categories[0];
     this.listingService.getListings().subscribe(res => {
       this.listings = res;
     });

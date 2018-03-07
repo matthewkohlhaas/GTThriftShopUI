@@ -11,6 +11,7 @@ import {
   MatInputModule,
   MatListModule,
   MatMenuModule, MatRadioModule,
+  MatSelectModule,
   MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
@@ -121,7 +122,8 @@ export function jwtOptionsFactory() {
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
-    MatCardModule
+    MatCardModule,
+    MatSelectModule
   ],
   providers: [
     HttpClient,

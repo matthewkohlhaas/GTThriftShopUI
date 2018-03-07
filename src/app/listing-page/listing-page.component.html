@@ -1,25 +1,23 @@
 <div id="listing-page-container">
-  <mat-toolbar id="listing-page-toolbar" class="toolbar">
-    <mat-toolbar-row>
-      <mat-form-field>
-        <mat-select id="category-select" placeholder="Category" [(value)]="selectedCategory">
-          <mat-option *ngFor="let category of categories" [value]="category">
-            {{ category }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput id="search-input" type="search" placeholder="Search">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-select id="sort-select" placeholder="Sort by" [(value)]="selectedSort">
-          <mat-option *ngFor="let sort of sorts" [value]="sort.params" (click)="list()">
-            {{ sort.text }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </mat-toolbar-row>
-  </mat-toolbar>
+  <mat-card id="listing-page-toolbar" class="toolbar">
+    <mat-form-field>
+      <mat-select id="category-select" placeholder="Category" [(value)]="selectedCategory">
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{ category }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput id="search-input" type="search" placeholder="Search">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select id="sort-select" placeholder="Sort by" [(value)]="selectedSort">
+        <mat-option *ngFor="let sort of sorts" [value]="sort.params" (click)="list()">
+          {{ sort.text }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-card>
   <mat-card class="listing-card" *ngFor="let listing of listings">
       <div class="listing-image">
         <img src="{{listing.imageUrl}}" />

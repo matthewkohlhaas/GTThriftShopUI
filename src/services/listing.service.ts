@@ -12,8 +12,22 @@ export class ListingService {
 
   constructor(private http: HttpClient) {}
 
-  public getListings(): Observable<Listing[]> {
-    return this.http.get<Listing[]>(environment.serverUrl + '/listings');
+  public getListings(params?: Object): Observable<Listing[]> {
+    let url = '/listings';
+    if (params) {
+      url = this.buildQueryString(url, params);
+    }
+    return this.http.get<Listing[]>(environment.serverUrl + url);
+  }
+
+  private buildQueryString(url: string, params: Object): string {
+    url += '?';
+    for (const key in params) {
+      if (params.hasOwnProperty(key)) {
+        url += key + '=' + params[key] + '&';
+      }
+    }
+    return url.slice(0, -1);
   }
 
   createListing(name: string, price: number, description: string, imageUrl: string,

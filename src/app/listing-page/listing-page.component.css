@@ -59,3 +59,20 @@
 .listing-flag-button:hover {
   color: red;
 }
+
+#listing-page-toolbar {
+  margin-bottom: 10px;
+  color: #ffea00;
+}
+
+#category-select {
+
+}
+
+#search-input {
+
+}
+
+#sort-select {
+
+}

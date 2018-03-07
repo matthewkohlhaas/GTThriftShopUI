@@ -2,17 +2,17 @@
   <mat-toolbar id="listing-page-toolbar" class="toolbar">
     <mat-toolbar-row>
       <mat-form-field>
-        <mat-select placeholder="Category" [(value)]="selectedCategory">
+        <mat-select id="category-select" placeholder="Category" [(value)]="selectedCategory">
           <mat-option *ngFor="let category of categories" [value]="category">
             {{ category }}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="search" placeholder="Search">
+        <input matInput id="search-input" type="search" placeholder="Search">
       </mat-form-field>
       <mat-form-field>
-        <mat-select placeholder="Sort by" [(value)]="selectedSort">
+        <mat-select id="sort-select" placeholder="Sort by" [(value)]="selectedSort">
           <mat-option *ngFor="let sort of sorts" [value]="sort.params" (click)="list()">
             {{ sort.text }}
           </mat-option>

@@ -14,9 +14,7 @@ export class ListingService {
 
   public getListings(params?: Object): Observable<Listing[]> {
     let url = '/listings';
-    if (params) {
-      url = this.buildQueryString(url, params);
-    }
+    url = this.buildQueryString(url, params);
     return this.http.get<Listing[]>(environment.serverUrl + url);
   }
 

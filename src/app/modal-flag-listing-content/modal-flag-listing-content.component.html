@@ -1,37 +1,15 @@
-<div class="box">
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-    <span aria-hidden="true">&times;</span>
+<h1 mat-dialog-title class="flag-listing-title">Flag Listing: {{data?.listing?.name}}</h1>
+<p class="flag-listing-user-name">
+  Listing Creator: <b>{{data?.listing?.user?.firstName}} {{data?.listing?.user?.lastName}}</b>
+</p>
+<app-flag-form #form></app-flag-form>
+
+<div class="flag-content-buttons">
+  <button mat-raised-button class="button-cancel-flag" (click)="onCancel()" [disabled]="submitDisabled">
+    Cancel
   </button>
-  <h2>Report a user/activity</h2>
-  <div class="form-group">
-
-    <label class="form-control-label">Reasons:</label><br/>
-    <label>
-      <input type="radio" [(ngModel)]="fixedDescription" value="Inappropriate content. ">
-      Inappropriate content
-    </label><br/>
-    <label>
-      <input type="radio" [(ngModel)]="fixedDescription" value="Spam or misleading. ">
-      Spam or misleading
-    </label><br/>
-    <label>
-      <input type="radio" [(ngModel)]="fixedDescription" value="User/Account is abusive. ">
-      User/Account is abusive
-    </label><br/>
-    <label>
-      <input type="radio" [(ngModel)]="fixedDescription" value="">
-      Other:
-    </label><br/>
-
-    <textarea id="ticket-input" class="form-control"
-              type="text" title="message"
-              placeholder="Please provide description...."
-              [(ngModel)]="description"
-              (keyup.enter)="onSubmit()"></textarea>
-
-  </div>
-  <p>{{description}}</p>
-  <button id="button-submit-ticket" class="btn btn-primary"
-          type="button" (click)="onSubmitFlag()"
-          [disabled]="submitDisabled">Submit</button>
+  <button mat-raised-button class="button-submit-flag" color="primary" (click)="onSubmit(form.getDescription())"
+          [disabled]="submitDisabled">
+    Flag Content
+  </button>
 </div>

@@ -5,7 +5,9 @@
         <label class="form-control-label" for="profile-picture-input">Picture Url:</label>
         <input matInput id = "profile-picture-input" required placeholder={{user?.profilePictureUrl}}
                type="text" title="profile-picture" name="profile-picture"
-               [(ngModel)]="profilePictureUrl" (keyup.enter)="editProfilePictureUrl()">
+               [(ngModel)]="profilePictureUrl" (keyup.enter)="updatePictureUrl()">
+        <br>
+        <br>
         <button mat-raised-button id="save-picture-button" color="primary" (click)="updatePictureUrl()">Save</button>
       </div>
     </div>
@@ -47,9 +49,10 @@
         </div>
         <div *ngIf="editProfileBoolean">
           <label class="form-control-label" for="profile-bio-input">About me:</label>
-          <input matInput id = "profile-bio-input" placeholder={{user?.profileBio}} type="text" title="profile-bio" name="profilee"
-                 [(ngModel)]="profileBio" (keyup.enter)="updateProfileBio()">
-          <button mat-raised-button id="save-profile-bio-button" color="primary" (click)="updateProfileBio()">Save</button>
+          <input matInput id = "profile-bio-input" placeholder={{user?.profileBio}} type="text" title="profile-bio"
+                 name="profile" [(ngModel)]="profileBio" (keyup.enter)="updateProfileBio()">
+          <button mat-raised-button id="save-profile-bio-button" color="primary"
+                  (click)="updateProfileBio()">Save</button>
         </div>
       </div>
       <button mat-raised-button id="edit-profile-button" *ngIf ="!editProfileBoolean"color="primary-color"

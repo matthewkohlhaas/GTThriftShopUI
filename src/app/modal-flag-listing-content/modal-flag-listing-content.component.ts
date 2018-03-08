@@ -1,26 +1,21 @@
-import {NgbActiveModal, NgbModalRef, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import { Component,Input, OnInit, ViewEncapsulation } from '@angular/core';
-import {ModalContentComponent} from '../modal-content/modal-content.component';
-import {FlagService} from "../../services/flag.service";
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {FlagService} from '../../services/flag.service';
+import {ModalService} from '../../services/modal.service';
 
 @Component({
   selector: 'app-flag',
   templateUrl: './flag.component.html',
-  styleUrls: ['./flag.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./flag.component.css']
 })
-export class FlagComponent implements OnInit {
+export class FlagComponent {
 
-  @Input() title;
   @Input() message;
+  @Input() listing;
   private submitDisabled: boolean;
   private description: string;
   private fixedDescription;
 
-  constructor(public activeModal: NgbActiveModal, private flagService: FlagService, private modalService: NgbModal) {}
-
-  ngOnInit() {
-  }
+  constructor(private modalService: ModalService, private flagService: FlagService) {}
 
   private resetForm() {
     this.submitDisabled = false;
@@ -28,8 +23,9 @@ export class FlagComponent implements OnInit {
   }
 
   private onSubmitFlag(): void {
+
     this.submitDisabled = true;
-    let message = "";
+    let message = '';
     if (this.description) {
       message = this.fixedDescription.concat(this.description);
     }

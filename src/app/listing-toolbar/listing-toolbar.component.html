@@ -1,0 +1,24 @@
+<mat-toolbar id="listing-toolbar" class="toolbar">
+  <mat-toolbar-row>
+    <mat-label id="category-label">Category:</mat-label>
+    <mat-form-field id="category-select-form-field">
+      <mat-select [(value)]="selectedCategory">
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{ category }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-icon id="search-icon">search</mat-icon>
+    <mat-form-field id="search-input-form-field">
+      <input matInput type="search">
+    </mat-form-field>
+    <mat-label id="sort-label">Sort by:</mat-label>
+    <mat-form-field id="sort-select-form-field">
+      <mat-select [(value)]="selectedSort">
+        <mat-option *ngFor="let sort of sorts" [value]="sort.params" (click)="list()">
+          {{ sort.text }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-toolbar-row>
+</mat-toolbar>

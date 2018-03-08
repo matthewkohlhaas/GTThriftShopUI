@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Listing} from '../../model/listing';
 import {ListingService} from '../../services/listing.service';
 import {ModalFlagListingContentComponent} from '../modal-flag-listing-content/modal-flag-listing-content.component';
 import {FlagService} from '../../services/flag.service';
 import {ModalService} from '../../services/modal.service';
+import {ListingToolbarComponent} from '../listing-toolbar/listing-toolbar.component';
 
 const SORT_OBJECTS = [
   { text: 'Price: Low to High', params: { sort: 'price', direction: 'ascending' } },
@@ -20,11 +21,7 @@ const SORT_OBJECTS = [
 })
 export class ListingPageComponent implements OnInit {
 
-  private categories: string[] = ['all'];
-  private selectedCategory: string;
-  private sorts: Object[] = SORT_OBJECTS;
-  private selectedSort: Object;
-
+  @ViewChild(ListingToolbarComponent) toolbar;
   listings: Listing[];
 
   constructor(
@@ -34,7 +31,6 @@ export class ListingPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.selectedCategory = this.categories[0];
     const params = { sort: 'createdAt', direction: 'descending' };
     this.listingService.getListings(params).subscribe(res => {
       this.listings = res;
@@ -55,25 +51,9 @@ export class ListingPageComponent implements OnInit {
 
   private buildParams(): Object {
     const params: Object = {};
-    this.addSortParams(params);
-    this.addCategoryParams(params);
+    this.toolbar.addSortParams(params);
+    this.toolbar.addCategoryParams(params);
     return params;
-  }
-
-  private addSortParams(params: Object) {
-    if (this.selectedSort) {
-      for (const key in this.selectedSort) {
-        if (this.selectedSort.hasOwnProperty(key)) {
-          params[key] = this.selectedSort[key];
-        }
-      }
-    }
-  }
-
-  private addCategoryParams(params: Object) {
-    if (this.selectedCategory) {
-      params['category'] = this.selectedCategory;
-    }
   }
 
 }

@@ -48,6 +48,7 @@ import {LoginToolbarComponent} from './login-toolbar/login-toolbar.component';
 import {ValidationUtils} from '../utils/validation.utils';
 import {ModalAlertContentComponent} from './modal-alert-content/modal-alert-content.component';
 import { FlagFormComponent } from './flag-form/flag-form.component';
+import {ListingToolbarComponent} from './listing-toolbar/listing-toolbar.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -93,7 +94,8 @@ export function jwtOptionsFactory() {
     ListingViewComponent,
     UserProfileComponent,
     AdminPageComponent,
-    FlagFormComponent
+    FlagFormComponent,
+    ListingToolbarComponent
   ],
   entryComponents: [
     ModalAlertContentComponent,

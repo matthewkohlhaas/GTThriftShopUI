@@ -3,8 +3,8 @@
     <mat-label id="category-label">Category:</mat-label>
     <mat-form-field id="category-select-form-field">
       <mat-select [(value)]="selectedCategory">
-        <mat-option *ngFor="let category of categories" [value]="category">
-          {{ category }}
+        <mat-option *ngFor="let category of categoryObjects" [value]="category.value">
+          {{ category.text }}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -15,7 +15,7 @@
     <mat-label id="sort-label">Sort by:</mat-label>
     <mat-form-field id="sort-select-form-field">
       <mat-select [(value)]="selectedSort">
-        <mat-option *ngFor="let sort of sorts" [value]="sort.params" (click)="list()">
+        <mat-option *ngFor="let sort of sortObjects" [value]="sort.params" (click)="list()">
           {{ sort.text }}
         </mat-option>
       </mat-select>

@@ -1,23 +1,21 @@
-<div id="listing-page-container">
-  <app-listing-toolbar (listEvent)="list()"></app-listing-toolbar>
-  <mat-card class="listing-card" *ngFor="let listing of listings">
-      <div class="listing-image">
-        <img src="{{listing.imageUrl}}" />
-      </div>
-      <div class="listing-text">
-        <div class="listing-name">
-          <a routerLink="/listing">{{listing.name}}</a>
-        </div>
-        <div class="listing-seller">
-          <a href="#">{{listing.user.firstName}} {{listing.user.lastName}}</a>
-          - {{(listing.user.positiveRatings && listing.user.totalRatings) ? (listing.user.positiveRatings / listing.user.totalRatings * 100).toFixed(0) + "% positive ratings" : "Not Rated"}}
-        </div>
-        <div class="listing-description">
-          {{listing.description}}
-        </div>
-      </div>
-      <div class="listing-price">
-        {{(listing.price) ? '$'+(listing.price) : ''}}
-      </div>
-  </mat-card>
-</div>
+<app-listing-toolbar (listEvent)="list()"></app-listing-toolbar>
+<mat-card class="listing-card" *ngFor="let listing of listings">
+  <div class="listing-image">
+    <img src="{{listing.imageUrl}}" />
+  </div>
+  <div class="listing-text">
+    <div class="listing-name">
+      <a routerLink="/listing">{{listing.name}}</a>
+    </div>
+    <div class="listing-seller">
+      <a href="#">{{listing.user.firstName}} {{listing.user.lastName}}</a>
+      - {{(listing.user.positiveRatings && listing.user.totalRatings) ? (listing.user.positiveRatings / listing.user.totalRatings * 100).toFixed(0) + "% positive ratings" : "Not Rated"}}
+    </div>
+    <div class="listing-description">
+      {{listing.description}}
+    </div>
+  </div>
+  <div class="listing-price">
+    {{(listing.price) ? '$'+(listing.price) : ''}}
+  </div>
+</mat-card>

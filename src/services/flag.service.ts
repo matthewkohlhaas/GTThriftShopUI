@@ -8,19 +8,12 @@ const COULD_NOT_CONNECT = 'Could not connect to server.';
 
 @Injectable()
 export class FlagService {
-  private listing: Listing;
+
   constructor(private http: HttpClient) {}
 
-  public setListing(listing): void {
-    this.listing = listing;
-  }
-
-
-
-  flagListing(description: string, next?: (msg: ServerMessage) => void): void {
-
+  flagListing(listing: Listing, description: string, next?: (msg: ServerMessage) => void): void {
     this.http.post<ServerMessage>(environment.serverUrl + '/flag-listing',
-      {description: description, listing: this.listing})
+      {description: description, listing: listing})
       .subscribe(
       res => {
         next(res);

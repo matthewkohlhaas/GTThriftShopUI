@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Listing} from '../../model/listing';
 import {ListingService} from '../../services/listing.service';
-import {NgbModalRef, NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {FlagComponent} from "../flag/flag.component";
-import {FlagService} from "../../services/flag.service";
+import {ModalFlagListingContentComponent} from '../modal-flag-listing-content/modal-flag-listing-content.component';
+import {FlagService} from '../../services/flag.service';
+import {ModalService} from '../../services/modal.service';
 
 @Component({
   selector: 'app-listing-page',
@@ -13,7 +13,11 @@ import {FlagService} from "../../services/flag.service";
 export class ListingPageComponent implements OnInit {
   listings: Listing[];
 
-  constructor(private listingService: ListingService, private modalService: NgbModal, private flagService: FlagService ) {}
+  constructor(
+    private modalService: ModalService,
+    private listingService: ListingService,
+    private flagService: FlagService
+  ) {}
 
   ngOnInit(): void {
     this.listingService.getListings().subscribe(res => {
@@ -21,10 +25,8 @@ export class ListingPageComponent implements OnInit {
     });
   }
 
-  private flagOnClick(listing): void {
-    this.flagService.setListing(listing);
-    const content: NgbModalRef = this.modalService.open(FlagComponent);
+  private openFlagModal(listing): void {
+    this.modalService.openModal<ModalFlagListingContentComponent>(ModalFlagListingContentComponent,
+      {listing: listing});
   }
-
-
 }

@@ -4,4 +4,6 @@ export class User {
   email: string;
   positiveRatings: number;
   totalRatings: number;
+  profilePictureUrl: string;
+  profileBio: string;
 }

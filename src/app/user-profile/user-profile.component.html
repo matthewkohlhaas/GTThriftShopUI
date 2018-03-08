@@ -1,25 +1,60 @@
 <mat-card class="profile-card">
-  <div class="img-container">
-    <img src="https://pbs.twimg.com/profile_images/646735779578912769/a10ZjNee_400x400.jpg" />
-  </div>
-  <div class="profile-text">
-    <div class="user-name">
-      <p>{{user?.firstName}} {{user?.lastName}}</p>
-    </div>
-    <div class="user-email">
-      email: {{user?.email}}
+    <div class="profile-image">
+      <img src="{{user?.profilePictureUrl}}"/>
+      <div *ngIf="editProfileBoolean">
+        <label class="form-control-label" for="profile-picture-input">Picture Url:</label>
+        <input id = "profile-picture-input" matInput type="text" title="profile-picture" name="profile-picture"
+               [(ngModel)]="profilePictureUrl" (keyup.enter)="editProfilePictureUrl()">
+        <button mat-raised-button id="save-picture-button" color="primary" (click)="updatePictureUrl()">Save</button>
+      </div>
     </div>
     <br>
-    <div class="user-bio">
-      About me:
+    <br>
+    <div class="profile-text">
+      <div class="user-name">
+        <div *ngIf="!editProfileBoolean">
+          {{user?.firstName}}
+          {{user?.lastName}}
+        </div>
+      </div>
+      <div *ngIf="editProfileBoolean">
+        <label class="form-control-label" for="first-name-input">First name:</label>
+        <input matInput id="first-name-input"required placeholder={{user?.firstName}} type="text" title="first-name" name="first-name"
+               [(ngModel)]="firstName" (keyup.enter)="updateFirstName()">
+        <button mat-raised-button id="save-first-name-button" color="primary" (click)="updateFirstName()">Save</button>
+        <br>
+        <br>
+        <label class="form-control-label" for="last-name-input">Last name:</label>
+        <input matInput id="last-name-input"required placeholder={{user?.lastName}} type="text" title="last-name" name="last-name"
+               [(ngModel)]="lastName" (keyup.enter)="updateLastName()">
+        <button mat-raised-button id="save-last-name-button" color="primary" (click)="updateLastName()">Save</button>
+      </div>
+      <br>
+      <div class="user-email">
+        <span > email: {{user?.email}}</span>
+      </div>
+      <br>
+      <br>
+      <div class="user-bio">
+        <div *ngIf="!editProfileBoolean">
+          About me:
+        </div>
+      </div>
+      <div class="user-bio-text">
+        <div *ngIf="!editProfileBoolean">
+          <p>{{user?.profileBio}}</p>
+        </div>
+        <div *ngIf="editProfileBoolean">
+          <label class="form-control-label" for="profile-bio-input">About me:</label>
+          <input matInput id = "profile-bio-input" placeholder={{user?.profileBio}} type="text" title="profile-bio" name="profilee"
+                 [(ngModel)]="profileBio" (keyup.enter)="updateProfileBio()">
+          <button mat-raised-button id="save-profile-bio-button" color="primary" (click)="updateProfileBio()">Save</button>
+        </div>
+      </div>
+      <button mat-raised-button id="edit-profile-button" *ngIf ="!editProfileBoolean"color="primary-color"
+              (click)="editProfile()">Edit Profile</button>
+      <button mat-raised-button id="done-editing-profile-button" *ngIf ="editProfileBoolean" color="primary"
+              (click)="done()">Done</button>
     </div>
-    <div class="user-bio-text">
-      <p>
-        Hi! I usually sell a wide variety of items ranging from textbooks to
-        clothing. I don't have any thing for sale at the moment, so check back
-        in a few days!
-      </p>
-    </div>
-  </div>
 </mat-card>
 

@@ -2,6 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {AccountService} from '../../services/account.service';
 import {Router} from '@angular/router';
 import {User} from '../../model/user';
+import {ModalService} from '../../services/modal.service';
+import {ValidationUtils} from '../../utils/validation.utils';
 
 
 @Component({
@@ -14,13 +16,121 @@ export class UserProfileComponent implements OnInit {
 
   private user: User;
 
-  constructor(private accountService: AccountService, private router: Router) { }
+  private firstName: string;
+  private lastName: string;
+  private profilePictureUrl: string;
+  private profileBio: string;
+
+  private editProfileBoolean = false;
+  private editNameBoolean = false;
+  private editPictureBoolean: boolean;
+  private editBioBoolean: boolean;
+
+
+  constructor(private accountService: AccountService, private router: Router, private modalService: ModalService) {
+  }
 
   ngOnInit(): void {
+
+
     this.accountService.getCurrentUser().subscribe(res => {
       this.user = res;
     }, err => {
       this.router.navigate(['']);
     });
   }
+
+  private editProfile(): void {
+    this.editProfileBoolean = true;
+  }
+
+  private done(): void {
+    this.editProfileBoolean = false;
+  }
+
+  /**
+   * method for clicking button to edit first name
+   */
+  private onEditName(): void {
+    this.editNameBoolean = true;
+  }
+
+  /**
+   * method for updating user's name in the database
+   */
+  private updateFirstName(): void {
+    if (ValidationUtils.validateNotEmpty(this.firstName)) {
+      this.accountService.updateFirstName(this.firstName,  msg => {
+        let title = 'Failed to update first name.';
+
+        if (msg.successful) {
+          title = 'Successfully udpated first name.';
+          this.user.firstName = this.firstName;
+        }
+        this.modalService.openAlertModal(title, msg.text);
+      });
+    }
+  }
+
+
+  private updateLastName(): void {
+    if (ValidationUtils.validateNotEmpty(this.lastName)) {
+      this.accountService.updateLastName(this.lastName,  msg => {
+        let title = 'Failed to update last name.';
+
+        if (msg.successful) {
+          title = 'Successfully updated last name.';
+          this.user.lastName = this.lastName;
+        }
+        this.modalService.openAlertModal(title, msg.text);
+      });
+    }
+  }
+
+  /**
+   * method for clicking button edit picture url
+   */
+  private editProfilePictureUrl() {
+    this.editPictureBoolean = true;
+  }
+
+  /**
+   * method for updating user's name in the database
+   */
+  private updatePictureUrl(): void {
+    if (ValidationUtils.validateNotEmpty(this.profilePictureUrl)) {
+      this.accountService.updateProfilePictureUrl(this.profilePictureUrl,  msg => {
+        let title = 'Failed to update profile picture.';
+
+        if (msg.successful) {
+          title = 'Successfully updated profile picture.';
+          this.user.profilePictureUrl = this.profilePictureUrl;
+        }
+        this.modalService.openAlertModal(title, msg.text);
+      });
+    }
+  }
+
+  /**
+   * method for clicking button to edit profile bio
+   */
+  private editProfileBio(): void {
+    this.editBioBoolean = true;
+  }
+
+
+  private updateProfileBio() {
+    if (ValidationUtils.validateNotEmpty(this.profileBio)) {
+      this.accountService.updateProfileBio(this.profileBio,  msg => {
+        let title = 'Failed to update profile bio.';
+
+        if (msg.successful) {
+          title = 'Successfully updated profile bio.';
+          this.user.profileBio = this.profileBio;
+        }
+        this.modalService.openAlertModal(title, msg.text);
+      });
+    }
+  }
+
 }

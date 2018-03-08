@@ -152,4 +152,72 @@ export class AccountService {
   public getCurrentUser(): Observable<User> {
     return this.http.get<User>(environment.serverUrl + '/users/from-token');
   }
+
+  public updateFirstName(firstName: string, next?: (msg: ServerMessage) => void): void {
+    this.http.post<ServerMessage>(environment.serverUrl + '/user/update-first-name',
+      {firstName: firstName})
+      .subscribe(
+        res => {
+          next(res);
+        }, err => {
+          if (err.status === 0) {
+            next(new ServerMessage(false, COULD_NOT_CONNECT));
+          } else {
+            console.log(err);
+            next(err.error);
+          }
+        }
+      );
+  }
+
+  public updateLastName(lastName: string, next?: (msg: ServerMessage) => void): void {
+    this.http.post<ServerMessage>(environment.serverUrl + '/user/update-last-name',
+      {lastName: lastName})
+      .subscribe(
+        res => {
+          next(res);
+        }, err => {
+          if (err.status === 0) {
+            next(new ServerMessage(false, COULD_NOT_CONNECT));
+          } else {
+            console.log(err);
+            next(err.error);
+          }
+        }
+      );
+  }
+
+  public updateProfilePictureUrl(profilePictureUrl: string, next?: (msg: ServerMessage) => void): void {
+    this.http.post<ServerMessage>(environment.serverUrl + '/user/update-profile-picture-url',
+      {profilePictureUrl: profilePictureUrl})
+      .subscribe(
+        res => {
+          next(res);
+        }, err => {
+          if (err.status === 0) {
+            next(new ServerMessage(false, COULD_NOT_CONNECT));
+          } else {
+            console.log(err);
+            next(err.error);
+          }
+        }
+      );
+  }
+
+  public updateProfileBio(profileBio: string, next?: (msg: ServerMessage) => void): void {
+    this.http.post<ServerMessage>(environment.serverUrl + '/user/update-profile-bio',
+      {profileBio: profileBio})
+      .subscribe(
+        res => {
+          next(res);
+        }, err => {
+          if (err.status === 0) {
+            next(new ServerMessage(false, COULD_NOT_CONNECT));
+          } else {
+            console.log(err);
+            next(err.error);
+          }
+        }
+      );
+  }
 }

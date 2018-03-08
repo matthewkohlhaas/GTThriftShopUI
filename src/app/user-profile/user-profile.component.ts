@@ -31,8 +31,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-
     this.accountService.getCurrentUser().subscribe(res => {
       this.user = res;
     }, err => {
@@ -48,16 +46,7 @@ export class UserProfileComponent implements OnInit {
     this.editProfileBoolean = false;
   }
 
-  /**
-   * method for clicking button to edit first name
-   */
-  private onEditName(): void {
-    this.editNameBoolean = true;
-  }
-
-  /**
-   * method for updating user's name in the database
-   */
+  
   private updateFirstName(): void {
     if (ValidationUtils.validateNotEmpty(this.firstName)) {
       this.accountService.updateFirstName(this.firstName,  msg => {
@@ -87,16 +76,6 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  /**
-   * method for clicking button edit picture url
-   */
-  private editProfilePictureUrl() {
-    this.editPictureBoolean = true;
-  }
-
-  /**
-   * method for updating user's name in the database
-   */
   private updatePictureUrl(): void {
     if (ValidationUtils.validateNotEmpty(this.profilePictureUrl)) {
       this.accountService.updateProfilePictureUrl(this.profilePictureUrl,  msg => {
@@ -110,14 +89,6 @@ export class UserProfileComponent implements OnInit {
       });
     }
   }
-
-  /**
-   * method for clicking button to edit profile bio
-   */
-  private editProfileBio(): void {
-    this.editBioBoolean = true;
-  }
-
 
   private updateProfileBio() {
     if (ValidationUtils.validateNotEmpty(this.profileBio)) {

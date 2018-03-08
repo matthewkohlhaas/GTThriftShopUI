@@ -22,10 +22,6 @@ export class UserProfileComponent implements OnInit {
   private profileBio: string;
 
   private editProfileBoolean = false;
-  private editNameBoolean = false;
-  private editPictureBoolean: boolean;
-  private editBioBoolean: boolean;
-
 
   constructor(private accountService: AccountService, private router: Router, private modalService: ModalService) {
   }
@@ -46,19 +42,20 @@ export class UserProfileComponent implements OnInit {
     this.editProfileBoolean = false;
   }
 
-  
+
   private updateFirstName(): void {
-    if (ValidationUtils.validateNotEmpty(this.firstName)) {
+    if (!ValidationUtils.validateNotEmpty(this.firstName)) {
+      return;
+    }
       this.accountService.updateFirstName(this.firstName,  msg => {
         let title = 'Failed to update first name.';
 
         if (msg.successful) {
-          title = 'Successfully udpated first name.';
+          title = 'Successfully updated first name.';
           this.user.firstName = this.firstName;
         }
         this.modalService.openAlertModal(title, msg.text);
       });
-    }
   }
 
 

@@ -3,7 +3,8 @@
       <img src="{{user?.profilePictureUrl}}"/>
       <div *ngIf="editProfileBoolean">
         <label class="form-control-label" for="profile-picture-input">Picture Url:</label>
-        <input id = "profile-picture-input" matInput type="text" title="profile-picture" name="profile-picture"
+        <input matInput id = "profile-picture-input" required placeholder={{user?.profilePictureUrl}}
+               type="text" title="profile-picture" name="profile-picture"
                [(ngModel)]="profilePictureUrl" (keyup.enter)="editProfilePictureUrl()">
         <button mat-raised-button id="save-picture-button" color="primary" (click)="updatePictureUrl()">Save</button>
       </div>
@@ -19,14 +20,14 @@
       </div>
       <div *ngIf="editProfileBoolean">
         <label class="form-control-label" for="first-name-input">First name:</label>
-        <input matInput id="first-name-input"required placeholder={{user?.firstName}} type="text" title="first-name" name="first-name"
-               [(ngModel)]="firstName" (keyup.enter)="updateFirstName()">
+        <input matInput id="first-name-input"required placeholder={{user?.firstName}} type="text"
+               title="first-name" name="first-name" [(ngModel)]="firstName" (keyup.enter)="updateFirstName()">
         <button mat-raised-button id="save-first-name-button" color="primary" (click)="updateFirstName()">Save</button>
         <br>
         <br>
         <label class="form-control-label" for="last-name-input">Last name:</label>
-        <input matInput id="last-name-input"required placeholder={{user?.lastName}} type="text" title="last-name" name="last-name"
-               [(ngModel)]="lastName" (keyup.enter)="updateLastName()">
+        <input matInput id="last-name-input" required placeholder={{user?.lastName}} type="text"
+               title="last-name" name="last-name" [(ngModel)]="lastName" (keyup.enter)="updateLastName()">
         <button mat-raised-button id="save-last-name-button" color="primary" (click)="updateLastName()">Save</button>
       </div>
       <br>

@@ -6,4 +6,5 @@ export class Listing {
   price: number;
   imageUrl: string;
   user: User;
+  _id: string;
 }

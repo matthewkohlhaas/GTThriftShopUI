@@ -10,7 +10,8 @@ const COULD_NOT_CONNECT = 'Could not connect to server.';
 @Injectable()
 export class ListingService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   public getListings(): Observable<Listing[]> {
     return this.http.get<Listing[]>(environment.serverUrl + '/listings');
@@ -32,4 +33,27 @@ export class ListingService {
         }
       );
   }
+
+
+  updateListing(listing: string, name: string, price: number, description: string, imageUrl: string,
+                next?: (msg: ServerMessage) => void): void {
+    this.http.post <ServerMessage>(environment.serverUrl + '/edit-listing/',
+      {listing: listing, name: name, price: price, description: description, imageUrl: imageUrl})
+      .subscribe(
+        res => {
+          next(res);
+        }, err => {
+          if (err.status === 0) {
+            next(new ServerMessage(false, COULD_NOT_CONNECT));
+          } else {
+            next(new ServerMessage(err.error.successful, err.error.text));
+          }
+        }
+      );
+  }
+
+  public getListingByID(ListingID: string): Observable<Listing> {
+    return this.http.get<Listing>(environment.serverUrl + '/listings/' + ListingID);
+  }
+
 }

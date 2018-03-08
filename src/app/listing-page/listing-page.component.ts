@@ -18,5 +18,4 @@ export class ListingPageComponent implements OnInit {
       this.listings = res;
     });
   }
-
 }

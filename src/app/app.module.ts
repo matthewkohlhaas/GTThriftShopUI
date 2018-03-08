@@ -44,6 +44,7 @@ import {MainSidenavComponent} from './main-sidenav/main-sidenav.component';
 import {LoginToolbarComponent} from './login-toolbar/login-toolbar.component';
 import {ValidationUtils} from '../utils/validation.utils';
 import {ModalAlertContentComponent} from './modal-alert-content/modal-alert-content.component';
+import { EditListingComponent } from './edit-listing/edit-listing.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -56,6 +57,7 @@ const appRoutes: Routes = [
   {path: 'support', component: ContactPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'profile', component: UserProfileComponent, canActivate: [AuthenticateGuard]},
   {path: 'admin', component: AdminPageComponent, canActivate: [AuthenticateGuard, AdminGuard]},
+  {path: 'editListing', component: EditListingComponent},
   {path: '**', component: NotFoundPageComponent}
 ];
 
@@ -86,7 +88,8 @@ export function jwtOptionsFactory() {
     PasswordResetPageComponent,
     ListingViewComponent,
     UserProfileComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    EditListingComponent
   ],
   entryComponents: [ModalAlertContentComponent],
   imports: [

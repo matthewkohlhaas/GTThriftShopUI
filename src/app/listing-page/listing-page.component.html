@@ -9,7 +9,7 @@
       </div>
       <div class="listing-seller">
         <a href="#">{{listing.user.firstName}} {{listing.user.lastName}}</a>
-        - {{(listing.user.positiveRatings && listing.user.totalRatings) ? (listing.user.positiveRatings / listing.user.totalRatings * 100).toFixed(0) + "% positive ratings" : "Not Rated"}}
+        - {{(listing.userRating) ? (listing.userRating).toFixed(0) + "% positive ratings" : "Not Rated"}}
       </div>
       <div class="listing-description">
         {{listing.description}}

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
+import { Component, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
 
 const SORT_OBJECTS = [
   { text: 'Price: Low to High', params: { sort: 'price', direction: 'ascending' } },
@@ -8,25 +8,26 @@ const SORT_OBJECTS = [
   { text: 'Date: Least Recent', params: { sort: 'createdAt', direction: 'ascending' } }
 ];
 
+const CATEGORY_OBJECTS = [
+  { text: 'All', value: 'all' }
+];
+
 @Component({
   selector: 'app-listing-toolbar',
   templateUrl: './listing-toolbar.component.html',
   styleUrls: ['./listing-toolbar.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class ListingToolbarComponent implements OnInit {
+export class ListingToolbarComponent {
 
   @Output() listEvent = new EventEmitter<string>();
 
-  private categories: string[] = ['all'];
+  private categoryObjects: Object[] = CATEGORY_OBJECTS;
   private selectedCategory: string;
-  private sorts: Object[] = SORT_OBJECTS;
+  private sortObjects: Object[] = SORT_OBJECTS;
   private selectedSort: Object;
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
   public addSortParams(params: Object) {
     if (this.selectedSort) {

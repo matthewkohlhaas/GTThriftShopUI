@@ -31,29 +31,29 @@ export class ListingPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const params = { sort: 'createdAt', direction: 'descending' };
+    const params: object = { sort: 'createdAt', direction: 'descending' };
     this.listingService.getListings(params).subscribe(res => {
       this.listings = res;
     });
   }
 
   list(): void {
-    const params = this.buildParams();
+    const params: object = this.buildParams();
     this.listingService.getListings(params).subscribe(res => {
       this.listings = res;
     });
+  }
+  
+  private buildParams(): object {
+    const params: object = {};
+    this.toolbar.addSortParams(params);
+    this.toolbar.addCategoryParams(params);
+    return params;
   }
 
   private openFlagModal(listing): void {
     this.modalService.openModal<ModalFlagListingContentComponent>(ModalFlagListingContentComponent,
       {listing: listing});
-  }
-
-  private buildParams(): Object {
-    const params: Object = {};
-    this.toolbar.addSortParams(params);
-    this.toolbar.addCategoryParams(params);
-    return params;
   }
 
 }

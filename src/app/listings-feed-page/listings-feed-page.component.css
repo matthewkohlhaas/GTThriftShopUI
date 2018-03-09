@@ -55,13 +55,3 @@
   font-weight: bold;
   text-align: center;
 }
-
-.listing-flag-button {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-}
-
-.listing-flag-button:hover {
-  color: red;
-}

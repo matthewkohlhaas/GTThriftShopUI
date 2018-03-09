@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Listing} from '../../model/listing';
 import {ListingService} from '../../services/listing.service';
 import {ModalFlagListingContentComponent} from '../modal-flag-listing-content/modal-flag-listing-content.component';
-import {FlagService} from '../../services/flag.service';
 import {ModalService} from '../../services/modal.service';
 
 @Component({
@@ -15,8 +14,7 @@ export class ListingsFeedPageComponent implements OnInit {
 
   constructor(
     private modalService: ModalService,
-    private listingService: ListingService,
-    private flagService: FlagService
+    private listingService: ListingService
   ) {}
 
   ngOnInit(): void {

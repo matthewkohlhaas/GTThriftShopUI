@@ -6,6 +6,7 @@ import {User} from '../../model/user';
 import {AccountService} from '../../services/account.service';
 import {ModalService} from '../../services/modal.service';
 import {ModalEditListingContentComponent} from '../modal-edit-listing-content/modal-edit-listing-content.component';
+import {ModalFlagListingContentComponent} from '../modal-flag-listing-content/modal-flag-listing-content.component';
 
 @Component({
   selector: 'app-listing-page',
@@ -49,5 +50,10 @@ export class ListingPageComponent implements OnInit {
     this.modalService.openModal(ModalEditListingContentComponent, {listing: listing}, () => {
       this.loadListing();
     });
+  }
+
+  private openFlagModal(listing): void {
+    this.modalService.openModal<ModalFlagListingContentComponent>(ModalFlagListingContentComponent,
+      {listing: listing});
   }
 }

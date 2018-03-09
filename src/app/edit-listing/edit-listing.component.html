@@ -5,24 +5,24 @@
   <mat-card-content>
     <form class="classic-form">
       <mat-form-field>
-        <input matInput placeholder="Name" type="text" title="name" name="name" [(ngModel)]="name"
+        <input matInput placeholder="Name" type="text" title="name" name="name" [(ngModel)]="listing.name"
                (keyup.enter)="onSubmit()">
         <mat-error>Please enter a name.</mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <textarea matInput matTextareaAutosize placeholder="Description" type="text" title="description"
-                  name="description" [(ngModel)]="description" (keyup.enter)="onSubmit()"></textarea>
+                  name="description" [(ngModel)]="listing.description" (keyup.enter)="onSubmit()"></textarea>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Price" type="number" title="price" name="price" [(ngModel)]="price"
+        <input matInput placeholder="Price" type="number" title="price" name="price" [(ngModel)]="listing.price"
                (keyup.enter)="onSubmit()">
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Image URL" type="text" title="image-url" name="image-url" [(ngModel)]="imageUrl"
-               (keyup.enter)="onSubmit()">
+        <input matInput placeholder="Image URL" type="text" title="image-url" name="image-url"
+               [(ngModel)]="listing.imageUrl" (keyup.enter)="onSubmit()">
       </mat-form-field>
 
       <button mat-raised-button id="button-create-listing" color="primary" (click)="onSubmit()"

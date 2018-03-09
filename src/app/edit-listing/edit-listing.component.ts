@@ -25,6 +25,7 @@ export class EditListingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.listing = new Listing();
     this.route.queryParams.subscribe(params => {
       this.listingService.getListingByID(params['listing']).subscribe(value => {
         this.listing = value;

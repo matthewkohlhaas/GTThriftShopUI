@@ -2,13 +2,17 @@
     <div class="profile-image">
       <img src="{{user?.profilePictureUrl}}"/>
       <div *ngIf="editProfileBoolean">
+        <mat-form-field>
         <label class="form-control-label" for="profile-picture-input">Picture Url:</label>
-        <input matInput id = "profile-picture-input" required placeholder={{user?.profilePictureUrl}}
-               type="text" title="profile-picture" name="profile-picture"
-               [(ngModel)]="profilePictureUrl" (keyup.enter)="updatePictureUrl()">
+          <input matInput id="profile-picture-input" placeholder={{user?.profilePictureUrl}}
+                 type="text" title="profile-picture" name="profile-picture"
+                 [(ngModel)]="profilePictureUrl" (keyup.enter)="updatePictureUrl()">
+          <mat-error>Please enter a picture url.</mat-error>
+        </mat-form-field>
         <br>
         <br>
-        <button mat-raised-button id="save-picture-button" color="primary" (click)="updatePictureUrl()">Save</button>
+        <button mat-raised-button id="save-picture-button" color="primary" (click)="updatePictureUrl()">
+          Save Changes</button>
       </div>
     </div>
     <br>
@@ -22,15 +26,23 @@
       </div>
       <div *ngIf="editProfileBoolean">
         <label class="form-control-label" for="first-name-input">First name:</label>
-        <input matInput id="first-name-input"required placeholder={{user?.firstName}} type="text"
+        <mat-form-field>
+          <input matInput id="first-name-input" placeholder={{user?.firstName}} type="text"
                title="first-name" name="first-name" [(ngModel)]="firstName" (keyup.enter)="updateFirstName()">
-        <button mat-raised-button id="save-first-name-button" color="primary" (click)="updateFirstName()">Save</button>
+          <mat-error>Please enter a first name.</mat-error>
+        </mat-form-field>
+        <button mat-raised-button id="save-first-name-button" color="primary" (click)="updateFirstName()">
+          Save Changes</button>
         <br>
         <br>
         <label class="form-control-label" for="last-name-input">Last name:</label>
-        <input matInput id="last-name-input" required placeholder={{user?.lastName}} type="text"
+        <mat-form-field>
+          <input matInput id="last-name-input" placeholder={{user?.lastName}} type="text"
                title="last-name" name="last-name" [(ngModel)]="lastName" (keyup.enter)="updateLastName()">
-        <button mat-raised-button id="save-last-name-button" color="primary" (click)="updateLastName()">Save</button>
+          <mat-error>Please enter a last name.</mat-error>
+        </mat-form-field>
+        <button mat-raised-button id="save-last-name-button" color="primary" (click)="updateLastName()">
+          Save Changes</button>
       </div>
       <br>
       <div class="user-email">
@@ -49,13 +61,16 @@
         </div>
         <div *ngIf="editProfileBoolean">
           <label class="form-control-label" for="profile-bio-input">About me:</label>
-          <input matInput id = "profile-bio-input" placeholder={{user?.profileBio}} type="text" title="profile-bio"
-                 name="profile" [(ngModel)]="profileBio" (keyup.enter)="updateProfileBio()">
+          <mat-form-field>
+            <input matInput id= "profile-bio-input" placeholder="{{user?.profileBio}}" type="text" title="profile-bio"
+                   name="profile" [(ngModel)]="profileBio" (keyup.enter)="updateProfileBio()">
+            <mat-error>Please enter a bio.</mat-error>
+          </mat-form-field>
           <button mat-raised-button id="save-profile-bio-button" color="primary"
-                  (click)="updateProfileBio()">Save</button>
+                  (click)="updateProfileBio()">Save Changes</button>
         </div>
       </div>
-      <button mat-raised-button id="edit-profile-button" *ngIf ="!editProfileBoolean"color="primary-color"
+      <button mat-raised-button id="edit-profile-button" *ngIf ="!editProfileBoolean"color="primary"
               (click)="editProfile()">Edit Profile</button>
       <button mat-raised-button id="done-editing-profile-button" *ngIf ="editProfileBoolean" color="primary"
               (click)="done()">Done</button>

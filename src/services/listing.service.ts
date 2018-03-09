@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Listing} from '../model/listing';
 import {Observable} from 'rxjs/Observable';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import {ServerMessage} from '../model/server-message';
 

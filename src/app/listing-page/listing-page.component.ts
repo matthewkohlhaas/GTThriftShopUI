@@ -6,14 +6,6 @@ import {FlagService} from '../../services/flag.service';
 import {ModalService} from '../../services/modal.service';
 import {ListingToolbarComponent} from '../listing-toolbar/listing-toolbar.component';
 
-const SORT_OBJECTS = [
-  { text: 'Price: Low to High', params: { sort: 'price', direction: 'ascending' } },
-  { text: 'Price: High to Low', params: { sort: 'price', direction: 'descending' } },
-  { text: 'Seller Rating', params: { sort: 'userRating', direction: 'descending' } },
-  { text: 'Date: Most Recent', params: { sort: 'createdAt', direction: 'descending' } },
-  { text: 'Date: Least Recent', params: { sort: 'createdAt', direction: 'ascending' } }
-];
-
 @Component({
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',

@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
 
-const SORT_OBJECTS = [
+const SORT_OBJECTS: object[] = [
   { text: 'Price: Low to High', params: { sort: 'price', direction: 'ascending' } },
   { text: 'Price: High to Low', params: { sort: 'price', direction: 'descending' } },
   { text: 'Seller Rating', params: { sort: 'userRating', direction: 'descending' } },
@@ -8,7 +8,7 @@ const SORT_OBJECTS = [
   { text: 'Date: Least Recent', params: { sort: 'createdAt', direction: 'ascending' } }
 ];
 
-const CATEGORY_OBJECTS = [
+const CATEGORY_OBJECTS: object[] = [
   { text: 'All', value: 'all' }
 ];
 
@@ -22,14 +22,14 @@ export class ListingToolbarComponent {
 
   @Output() listEvent = new EventEmitter<string>();
 
-  private categoryObjects: Object[] = CATEGORY_OBJECTS;
+  private categoryObjects: object[] = CATEGORY_OBJECTS;
   private selectedCategory: string;
-  private sortObjects: Object[] = SORT_OBJECTS;
-  private selectedSort: Object;
+  private sortObjects: object[] = SORT_OBJECTS;
+  private selectedSort: object;
 
   constructor() { }
 
-  public addSortParams(params: Object) {
+  public addSortParams(params: object) {
     if (this.selectedSort) {
       for (const key in this.selectedSort) {
         if (this.selectedSort.hasOwnProperty(key)) {
@@ -39,7 +39,7 @@ export class ListingToolbarComponent {
     }
   }
 
-  public addCategoryParams(params: Object) {
+  public addCategoryParams(params: object) {
     if (this.selectedCategory) {
       params['category'] = this.selectedCategory;
     }

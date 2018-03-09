@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Listing} from '../model/listing';
 import {Observable} from 'rxjs/Observable';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import {ServerMessage} from '../model/server-message';
 
@@ -12,20 +12,8 @@ export class ListingService {
 
   constructor(private http: HttpClient) {}
 
-  public getListings(params?: Object): Observable<Listing[]> {
-    let url = '/listings';
-    url = this.buildQueryString(url, params);
-    return this.http.get<Listing[]>(environment.serverUrl + url);
-  }
-
-  private buildQueryString(url: string, params: Object): string {
-    url += '?';
-    for (const key in params) {
-      if (params.hasOwnProperty(key)) {
-        url += key + '=' + params[key] + '&';
-      }
-    }
-    return url.slice(0, -1);
+  public getListings(params?: any): Observable<Listing[]> {
+    return this.http.get<Listing[]>(environment.serverUrl + '/listings', {params: params});
   }
 
   createListing(name: string, price: number, description: string, imageUrl: string,

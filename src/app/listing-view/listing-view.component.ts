@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Listing} from '../../model/listing';
 import {ListingService} from '../../services/listing.service';
 import {ActivatedRoute} from '@angular/router';
 import {User} from '../../model/user';
 import {AccountService} from '../../services/account.service';
+import {ModalService} from '../../services/modal.service';
+import {ModalEditListingContentComponent} from '../modal-edit-listing-content/modal-edit-listing-content.component';
 
 @Component({
   selector: 'app-listing-view',
@@ -12,24 +14,40 @@ import {AccountService} from '../../services/account.service';
 })
 export class ListingViewComponent implements OnInit {
 
-  listing: Listing;
-  listingID: string;
   private currentUser: User;
+  private listing: Listing;
 
-  constructor(private listingService: ListingService, private route: ActivatedRoute,
-              private accountService: AccountService
+  constructor(
+    private route: ActivatedRoute,
+    private modalService: ModalService,
+    private listingService: ListingService,
+    private accountService: AccountService
   ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.listingID = params['listing'];
-    });
-
-    this.listingService.getListingByID(this.listingID).subscribe(res => {
-      this.listing = res;
-    });
-
-
+    this.loadListing();
+    this.accountService.getCurrentUser().subscribe(value => this.currentUser = value);
   }
 
+  private loadListing(): void {
+    this.route.queryParams.subscribe(params => {
+      this.listingService.getListingByID(params['listing']).subscribe(value => this.listing = value);
+    });
+  }
+
+  private userOwnsListing(): boolean {
+    return this.currentUser
+      && this.currentUser._id
+      && this.listing
+      && this.listing.user
+      && this.listing.user._id
+      && this.currentUser._id === this.listing.user._id;
+  }
+
+  private openEditListingModal(): void {
+    const listing = Object.assign({}, this.listing);
+    this.modalService.openModal(ModalEditListingContentComponent, {listing: listing}, () => {
+      this.loadListing();
+    });
+  }
 }

@@ -46,7 +46,7 @@ import {MainSidenavComponent} from './main-sidenav/main-sidenav.component';
 import {LoginToolbarComponent} from './login-toolbar/login-toolbar.component';
 import {ValidationUtils} from '../utils/validation.utils';
 import {ModalAlertContentComponent} from './modal-alert-content/modal-alert-content.component';
-import { EditListingComponent } from './edit-listing/edit-listing.component';
+import { ModalEditListingContentComponent } from './modal-edit-listing-content/modal-edit-listing-content.component';
 import { FlagFormComponent } from './flag-form/flag-form.component';
 
 const appRoutes: Routes = [
@@ -61,7 +61,7 @@ const appRoutes: Routes = [
   {path: 'support', component: ContactPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'profile', component: UserProfileComponent, canActivate: [AuthenticateGuard]},
   {path: 'admin', component: AdminPageComponent, canActivate: [AuthenticateGuard, AdminGuard]},
-  {path: 'editListing', component: EditListingComponent},
+  {path: 'editListing', component: ModalEditListingContentComponent},
   {path: '**', component: NotFoundPageComponent}
 ];
 
@@ -94,7 +94,7 @@ export function jwtOptionsFactory() {
     ListingViewComponent,
     UserProfileComponent,
     AdminPageComponent,
-    EditListingComponent
+    ModalEditListingContentComponent
     FlagFormComponent
   ],
   entryComponents: [

@@ -55,13 +55,11 @@ const appRoutes: Routes = [
   {path: 'verify/:token', component: VerificationPageComponent},
   {path: 'reset-password/:token', component: PasswordResetPageComponent},
   {path: 'listings', component: ListingPageComponent, canActivate: [AuthenticateGuard]},
-  {path: 'listing', component: ListingViewComponent, canActivate: [AuthenticateGuard]},
+  {path: 'listings/:id', component: ListingViewComponent, canActivate: [AuthenticateGuard]},
   {path: 'create-listing', component: CreateListingComponent, canActivate: [AuthenticateGuard]},
-  {path: 'modal-flag-listing-content-listing', component: ModalFlagListingContentComponent, canActivate: [AuthenticateGuard]},
   {path: 'support', component: ContactPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'profile', component: UserProfileComponent, canActivate: [AuthenticateGuard]},
   {path: 'admin', component: AdminPageComponent, canActivate: [AuthenticateGuard, AdminGuard]},
-  {path: 'editListing', component: ModalEditListingContentComponent},
   {path: '**', component: NotFoundPageComponent}
 ];
 
@@ -94,7 +92,7 @@ export function jwtOptionsFactory() {
     ListingViewComponent,
     UserProfileComponent,
     AdminPageComponent,
-    ModalEditListingContentComponent
+    ModalEditListingContentComponent,
     FlagFormComponent
   ],
   entryComponents: [

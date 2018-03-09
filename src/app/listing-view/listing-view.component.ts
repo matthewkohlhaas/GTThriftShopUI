@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Listing} from '../../model/listing';
 import {ListingService} from '../../services/listing.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
 import {User} from '../../model/user';
 import {AccountService} from '../../services/account.service';
 import {ModalService} from '../../services/modal.service';
@@ -18,7 +18,7 @@ export class ListingViewComponent implements OnInit {
   private listing: Listing;
 
   constructor(
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private modalService: ModalService,
     private listingService: ListingService,
     private accountService: AccountService
@@ -30,8 +30,8 @@ export class ListingViewComponent implements OnInit {
   }
 
   private loadListing(): void {
-    this.route.queryParams.subscribe(params => {
-      this.listingService.getListingByID(params['listing']).subscribe(value => this.listing = value);
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.listingService.getListingByID(params['id']).subscribe(value => this.listing = value);
     });
   }
 

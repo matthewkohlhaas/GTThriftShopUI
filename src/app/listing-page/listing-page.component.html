@@ -1,10 +1,10 @@
-<mat-card class="listing-card" *ngFor="let listing of listings">
+<mat-card class="listing-card" *ngFor="let listing of listings" routerLink="/listings/{{listing._id}}">
   <div class="listing-image">
     <img src="{{listing.imageUrl}}" />
   </div>
     <div class="listing-text">
       <div class="listing-name">
-        <a href="/listing?listing={{listing._id}}">{{listing.name}}</a>
+        <a routerLink="/listings/{{listing._id}}">{{listing.name}}</a>
       </div>
     <div class="listing-seller">
       <a href="#">{{listing.user.firstName}} {{listing.user.lastName}}</a> -

@@ -15,10 +15,12 @@ const COULD_NOT_CONNECT = 'Could not connect to server.';
 @Injectable()
 export class AccountService {
 
-  constructor(private http: HttpClient,
-              private router: Router,
-              private jwtHelper: JwtHelperService,
-              private adminService: AdminService) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private jwtHelperService: JwtHelperService,
+    private adminService: AdminService
+  ) { }
 
   public logout(): void {
     LocalStorageService.removeAccessToken();
@@ -142,7 +144,7 @@ export class AccountService {
   public isAccessTokenAlive(): boolean {
     const token: string = LocalStorageService.getAccessToken();
     if (token) {
-      if (!this.jwtHelper.isTokenExpired(token)) {
+      if (!this.jwtHelperService.isTokenExpired(token)) {
         return true;
       }
     }
@@ -151,6 +153,11 @@ export class AccountService {
 
   public getCurrentUser(): Observable<User> {
     return this.http.get<User>(environment.serverUrl + '/users/from-token');
+  }
+
+  // WARNING: do NOT use this method when up to date user info is needed; use getCurrentUser() instead
+  public getCurrentUserFromToken(): User {
+    return this.jwtHelperService.decodeToken(LocalStorageService.getAccessToken());
   }
 
   public updateFirstName(firstName: string, next?: (msg: ServerMessage) => void): void {

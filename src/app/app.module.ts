@@ -54,7 +54,7 @@ const appRoutes: Routes = [
   {path: 'listing', component: ListingViewComponent, canActivate: [AuthenticateGuard]},
   {path: 'create-listing', component: CreateListingComponent, canActivate: [AuthenticateGuard]},
   {path: 'support', component: ContactPageComponent, canActivate: [AuthenticateGuard]},
-  {path: 'profile', component: UserProfileComponent, canActivate: [AuthenticateGuard]},
+  {path: 'users/:id', component: UserProfileComponent, canActivate: [AuthenticateGuard]},
   {path: 'admin', component: AdminPageComponent, canActivate: [AuthenticateGuard, AdminGuard]},
   {path: '**', component: NotFoundPageComponent}
 ];

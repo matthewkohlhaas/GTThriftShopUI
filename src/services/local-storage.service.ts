@@ -27,10 +27,6 @@ export class LocalStorageService {
     return LocalStorageService.getItem(ACCESS_TOKEN);
   }
 
-  public static getCurrentUser(): Observable<User> {
-    return JwtHelperService.decodeToken(this.getAccessToken());
-  }
-
   public static addIsAdmin(isAdmin: boolean, timeToLive?: number): void {
     if (!timeToLive) {
       timeToLive = DEFAULT_TIME;
@@ -67,5 +63,4 @@ export class LocalStorageService {
     }
     return null;
   }
-
 }

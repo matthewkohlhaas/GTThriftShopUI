@@ -97,6 +97,7 @@ export function jwtOptionsFactory() {
   ],
   entryComponents: [
     ModalAlertContentComponent,
+    ModalEditListingContentComponent,
     ModalFlagListingContentComponent
   ],
   imports: [

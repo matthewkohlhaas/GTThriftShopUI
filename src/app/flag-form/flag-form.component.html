@@ -1,0 +1,14 @@
+<form>
+  <mat-radio-group class="flag-content-radio-group" name="radio-group-flag-content" [required]="true"
+                   [(ngModel)]="reason">
+    <mat-radio-button *ngFor="let reason of REASONS" color="primary" value="{{reason}}">
+      {{reason}}
+    </mat-radio-button>
+  </mat-radio-group>
+
+  <mat-form-field class="flag-content-description-field">
+    <textarea matInput matTextareaAutosize [matAutosizeMinRows]="3" placeholder="Description" type="text"
+              title="description" name="description" [(ngModel)]="description" (keyup.enter)="onSubmit()"></textarea>
+    <mat-error>Please enter a description.</mat-error>
+  </mat-form-field>
+</form>

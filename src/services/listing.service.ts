@@ -35,11 +35,15 @@ export class ListingService {
   }
 
 
-  updateListing(listing: string, name: string, price: number, description: string, imageUrl: string,
-                next?: (msg: ServerMessage) => void): void {
+  updateListing(listing: Listing, next?: (msg: ServerMessage) => void): void {
     this.http.post <ServerMessage>(environment.serverUrl + '/edit-listing/',
-      {listing: listing, name: name, price: price, description: description, imageUrl: imageUrl})
-      .subscribe(
+      {
+        listing: listing._id,
+        name: listing.name,
+        price: listing.price,
+        description: listing.description,
+        imageUrl: listing.imageUrl
+      }).subscribe(
         res => {
           next(res);
         }, err => {

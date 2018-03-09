@@ -38,8 +38,7 @@ export class EditListingComponent implements OnInit {
       return;
     }
     this.submitDisabled = true;
-    this.listingService.updateListing(this.listing._id, this.listing.name, this.listing.price, this.listing.description,
-      this.listing.imageUrl, msg => {
+    this.listingService.updateListing(this.listing, msg => {
       let title = 'Failed to edit listing';
 
       if (msg.successful) {

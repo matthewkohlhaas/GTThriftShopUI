@@ -3,6 +3,10 @@
   flex-wrap: nowrap;
 }
 
+.profile-card .mat-form-field {
+  display: block;
+}
+
 .profile-image {
   display: inline-block;
   vertical-align: middle;
@@ -15,30 +19,33 @@
   margin: auto;
   max-width: 100%;
   max-height: 100%;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 .profile-text {
   display: block;
   width: 100%;
-  padding: 20px 20px 20px 80px;
+  padding-left: 40px;
 }
 
 .user-name {
   font-size: 22pt;
+  margin-bottom: 20px;
 }
 
 .user-email {
   font-size: 14pt;
+  margin-bottom: 20px;
 }
 
 .user-bio-text {
   font-size: 12pt;
 }
 
-.user-bio {
+.user-bio-label {
+  font-weight: bold;
   font-size: 14pt;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .edit-name {
@@ -51,27 +58,12 @@
   margin: 0 20px 20px 0;
 }
 
-.mat-icon {
-  font-size: 15px;
-}
-
-#done-editing-profile-button {
-  margin: 70px 0 20px 400px;
-}
-
-#edit-profile-button {
-  margin: 70px 0 0 380px;
+.profile-buttons {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
 }
 
 #profile-picture-input {
   margin: 10px 0 0 0;
 }
-
-
-
-
-
-
-
-
-

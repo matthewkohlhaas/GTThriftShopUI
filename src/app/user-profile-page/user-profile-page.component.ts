@@ -7,12 +7,12 @@ import {ValidationUtils} from '../../utils/validation.utils';
 import {UserService} from '../../services/user.service';
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css'],
+  selector: 'app-user-profile-page',
+  templateUrl: './user-profile-page.component.html',
+  styleUrls: ['./user-profile-page.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfilePageComponent implements OnInit {
 
   private editProfileEnabled = false;
 

@@ -43,7 +43,7 @@ export class ListingPageComponent implements OnInit {
       this.listings = res;
     });
   }
-  
+
   private buildParams(): object {
     const params: object = {};
     this.toolbar.addSortParams(params);

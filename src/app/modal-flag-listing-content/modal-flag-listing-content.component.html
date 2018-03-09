@@ -1,0 +1,15 @@
+<h1 mat-dialog-title class="flag-listing-title">Flag Listing: {{data?.listing?.name}}</h1>
+<p class="flag-listing-user-name">
+  Listing Creator: <b>{{data?.listing?.user?.firstName}} {{data?.listing?.user?.lastName}}</b>
+</p>
+<app-flag-form #form></app-flag-form>
+
+<div class="modal-buttons">
+  <button mat-raised-button class="button-cancel-flag" (click)="close()" [disabled]="submitDisabled">
+    Cancel
+  </button>
+  <button mat-raised-button class="button-submit-flag" color="primary" (click)="onSubmit(form.getDescription())"
+          [disabled]="submitDisabled">
+    Flag Content
+  </button>
+</div>

@@ -10,17 +10,18 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatMenuModule,
+  MatMenuModule, MatRadioModule,
   MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';
-import {ListingPageComponent} from './listing-page/listing-page.component';
+import {ListingsFeedPageComponent} from './listings-feed-page/listings-feed-page.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AccountService} from '../services/account.service';
 import {ListingService} from '../services/listing.service';
 import {AdminService} from '../services/admin.service';
+import {FlagService} from '../services/flag.service';
 import {ModalService} from '../services/modal.service';
 import {CreateAccountPageComponent} from './create-account-page/create-account-page.component';
 import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
@@ -33,11 +34,12 @@ import {TicketService} from '../services/ticket.service';
 import {AccountRecoveryPageComponent} from './account-recovery-page/account-recovery-page.component';
 import {VerificationPageComponent} from './verification-page/verification-page.component';
 import {PasswordResetPageComponent} from './password-reset-page/password-reset-page.component';
-import {ListingViewComponent} from './listing-view/listing-view.component';
+import {ListingPageComponent} from './listing-page/listing-page.component';
 import {AdminPageComponent} from './admin-page/admin-page.component';
 import {LocalStorageService} from '../services/local-storage.service';
 import {AuthenticateGuard} from '../guards/authenticate.guard';
 import {AdminGuard} from '../guards/admin.guard';
+import {ModalFlagListingContentComponent} from './modal-flag-listing-content/modal-flag-listing-content.component';
 import {MainToolbarComponent} from './main-toolbar/main-toolbar.component';
 import {MainSidenavComponent} from './main-sidenav/main-sidenav.component';
 import {LoginToolbarComponent} from './login-toolbar/login-toolbar.component';
@@ -45,14 +47,16 @@ import {ValidationUtils} from '../utils/validation.utils';
 import {ModalAlertContentComponent} from './modal-alert-content/modal-alert-content.component';
 import {UserService} from '../services/user.service';
 import {UserProfilePageComponent} from './user-profile-page/user-profile-page.component';
+import {ModalEditListingContentComponent} from './modal-edit-listing-content/modal-edit-listing-content.component';
+import {FlagFormComponent} from './flag-form/flag-form.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
   {path: 'account-recovery', component: AccountRecoveryPageComponent},
   {path: 'verify/:token', component: VerificationPageComponent},
   {path: 'reset-password/:token', component: PasswordResetPageComponent},
-  {path: 'listings', component: ListingPageComponent, canActivate: [AuthenticateGuard]},
-  {path: 'listing', component: ListingViewComponent, canActivate: [AuthenticateGuard]},
+  {path: 'listings', component: ListingsFeedPageComponent, canActivate: [AuthenticateGuard]},
+  {path: 'listings/:id', component: ListingPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'create-listing', component: CreateListingComponent, canActivate: [AuthenticateGuard]},
   {path: 'support', component: ContactPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'users/:id', component: UserProfilePageComponent, canActivate: [AuthenticateGuard]},
@@ -77,19 +81,27 @@ export function jwtOptionsFactory() {
     MainSidenavComponent,
     LoginToolbarComponent,
     NotFoundPageComponent,
-    CreateAccountPageComponent,
-    ListingPageComponent,
     ModalAlertContentComponent,
+    ModalFlagListingContentComponent,
+    CreateAccountPageComponent,
+    ListingsFeedPageComponent,
     CreateListingComponent,
     ContactPageComponent,
     AccountRecoveryPageComponent,
     VerificationPageComponent,
     PasswordResetPageComponent,
-    ListingViewComponent,
     UserProfilePageComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    ListingPageComponent,
+    AdminPageComponent,
+    ModalEditListingContentComponent,
+    FlagFormComponent
   ],
-  entryComponents: [ModalAlertContentComponent],
+  entryComponents: [
+    ModalAlertContentComponent,
+    ModalEditListingContentComponent,
+    ModalFlagListingContentComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -112,6 +124,7 @@ export function jwtOptionsFactory() {
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatRadioModule,
     MatCardModule
   ],
   providers: [
@@ -122,6 +135,7 @@ export function jwtOptionsFactory() {
     ListingService,
     TicketService,
     AdminService,
+    FlagService,
     LocalStorageService,
     ModalService,
     AuthenticateGuard,

@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Edit Listing</h1>
+<form class="classic-form">
+  <mat-form-field>
+    <input matInput placeholder="Name" type="text" title="name" name="name" [(ngModel)]="listing.name"
+           (keyup.enter)="onSubmit()">
+    <mat-error>Please enter a name.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput matTextareaAutosize placeholder="Description" type="text" title="description"
+              name="description" [(ngModel)]="listing.description" (keyup.enter)="onSubmit()"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Price" type="number" title="price" name="price" [(ngModel)]="listing.price"
+           (keyup.enter)="onSubmit()">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Image URL" type="text" title="image-url" name="image-url"
+           [(ngModel)]="listing.imageUrl" (keyup.enter)="onSubmit()">
+  </mat-form-field>
+
+  <div class="modal-buttons">
+    <button mat-raised-button class="button-cancel-edit-listing" (click)="close()" [disabled]="submitDisabled">
+      Cancel
+    </button>
+    <button mat-raised-button class="button-update-listing" color="primary" (click)="onSubmit()"
+            [disabled]="submitDisabled">
+      Update
+    </button>
+  </div>
+</form>

@@ -5,7 +5,7 @@
     </div>
     <div class="listing-view-text">
       <div class="listing-view-name">
-        <a href="/listing?listing={{i}}">{{listing?.name}}</a>
+        <a routerLink="/listings/{{listing?._id}}">{{listing?.name}}</a>
       </div>
       <div class="listing-view-seller">
         <a href="#">{{listing?.user?.firstName}} {{listing?.user?.lastName}}</a> -

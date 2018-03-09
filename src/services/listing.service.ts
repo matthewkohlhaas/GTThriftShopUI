@@ -16,6 +16,10 @@ export class ListingService {
     return this.http.get<Listing[]>(environment.serverUrl + '/listings');
   }
 
+  public getListing(id: string): Observable<Listing> {
+    return this.http.get<Listing>(environment.serverUrl + '/listings/' + id);
+  }
+
   createListing(name: string, price: number, description: string, imageUrl: string,
                 next?: (msg: ServerMessage) => void): void {
     this.http.post <ServerMessage>(environment.serverUrl + '/listings',
@@ -52,9 +56,5 @@ export class ListingService {
           }
         }
       );
-  }
-
-  public getListingByID(ListingID: string): Observable<Listing> {
-    return this.http.get<Listing>(environment.serverUrl + '/listings/' + ListingID);
   }
 }

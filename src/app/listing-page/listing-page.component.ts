@@ -31,7 +31,7 @@ export class ListingPageComponent implements OnInit {
 
   private loadListing(): void {
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.listingService.getListingByID(params['id']).subscribe(value => this.listing = value);
+      this.listingService.getListing(params['id']).subscribe(value => this.listing = value);
     });
   }
 

@@ -4,8 +4,8 @@
 </p>
 <app-flag-form #form></app-flag-form>
 
-<div class="flag-content-buttons">
-  <button mat-raised-button class="button-cancel-flag" (click)="onCancel()" [disabled]="submitDisabled">
+<div class="modal-buttons">
+  <button mat-raised-button class="button-cancel-flag" (click)="close()" [disabled]="submitDisabled">
     Cancel
   </button>
   <button mat-raised-button class="button-submit-flag" color="primary" (click)="onSubmit(form.getDescription())"

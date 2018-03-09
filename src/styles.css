@@ -73,8 +73,17 @@ body {
 }
 
 .classic-form button {
-  display: block !important;
+  display: block;
   margin-top: 10px !important;
+}
+
+.modal-buttons {
+  display: block;
+  float: right;
+}
+
+.modal-buttons button {
+  display: inline-block;
 }
 
 a {

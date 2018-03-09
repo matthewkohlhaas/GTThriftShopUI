@@ -21,7 +21,7 @@ export class ModalFlagListingContentComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  private onCancel(): void {
+  private close(): void {
     this.dialogRef.close();
   }
 
@@ -35,7 +35,7 @@ export class ModalFlagListingContentComponent {
       let title = 'Failed to flag listing';
       if (msg.successful) {
         title = 'Successfully flagged listing';
-        this.dialogRef.close();
+        this.close();
       }
       this.modalService.openAlertModal(title, msg.text, () => this.submitDisabled = false);
     });

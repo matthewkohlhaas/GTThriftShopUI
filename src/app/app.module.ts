@@ -10,7 +10,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatMenuModule,
+  MatMenuModule, MatRadioModule,
   MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
@@ -21,6 +21,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AccountService} from '../services/account.service';
 import {ListingService} from '../services/listing.service';
 import {AdminService} from '../services/admin.service';
+import {FlagService} from '../services/flag.service';
 import {ModalService} from '../services/modal.service';
 import {CreateAccountPageComponent} from './create-account-page/create-account-page.component';
 import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
@@ -39,11 +40,13 @@ import {AdminPageComponent} from './admin-page/admin-page.component';
 import {LocalStorageService} from '../services/local-storage.service';
 import {AuthenticateGuard} from '../guards/authenticate.guard';
 import {AdminGuard} from '../guards/admin.guard';
+import {ModalFlagListingContentComponent} from './modal-flag-listing-content/modal-flag-listing-content.component';
 import {MainToolbarComponent} from './main-toolbar/main-toolbar.component';
 import {MainSidenavComponent} from './main-sidenav/main-sidenav.component';
 import {LoginToolbarComponent} from './login-toolbar/login-toolbar.component';
 import {ValidationUtils} from '../utils/validation.utils';
 import {ModalAlertContentComponent} from './modal-alert-content/modal-alert-content.component';
+import { FlagFormComponent } from './flag-form/flag-form.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -53,6 +56,7 @@ const appRoutes: Routes = [
   {path: 'listings', component: ListingPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'listing', component: ListingViewComponent, canActivate: [AuthenticateGuard]},
   {path: 'create-listing', component: CreateListingComponent, canActivate: [AuthenticateGuard]},
+  {path: 'modal-flag-listing-content-listing', component: ModalFlagListingContentComponent, canActivate: [AuthenticateGuard]},
   {path: 'support', component: ContactPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'profile', component: UserProfileComponent, canActivate: [AuthenticateGuard]},
   {path: 'admin', component: AdminPageComponent, canActivate: [AuthenticateGuard, AdminGuard]},
@@ -76,9 +80,10 @@ export function jwtOptionsFactory() {
     MainSidenavComponent,
     LoginToolbarComponent,
     NotFoundPageComponent,
+    ModalAlertContentComponent,
+    ModalFlagListingContentComponent,
     CreateAccountPageComponent,
     ListingPageComponent,
-    ModalAlertContentComponent,
     CreateListingComponent,
     ContactPageComponent,
     AccountRecoveryPageComponent,
@@ -86,9 +91,13 @@ export function jwtOptionsFactory() {
     PasswordResetPageComponent,
     ListingViewComponent,
     UserProfileComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    FlagFormComponent
   ],
-  entryComponents: [ModalAlertContentComponent],
+  entryComponents: [
+    ModalAlertContentComponent,
+    ModalFlagListingContentComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -111,6 +120,7 @@ export function jwtOptionsFactory() {
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatRadioModule,
     MatCardModule
   ],
   providers: [
@@ -120,6 +130,7 @@ export function jwtOptionsFactory() {
     ListingService,
     TicketService,
     AdminService,
+    FlagService,
     LocalStorageService,
     ModalService,
     AuthenticateGuard,

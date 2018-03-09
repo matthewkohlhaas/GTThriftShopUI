@@ -55,3 +55,7 @@
   font-weight: bold;
   text-align: center;
 }
+
+.listing-flag-button:hover {
+  color: red;
+}

@@ -44,6 +44,7 @@ import {MainSidenavComponent} from './main-sidenav/main-sidenav.component';
 import {LoginToolbarComponent} from './login-toolbar/login-toolbar.component';
 import {ValidationUtils} from '../utils/validation.utils';
 import {ModalAlertContentComponent} from './modal-alert-content/modal-alert-content.component';
+import {UserService} from '../services/user.service';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -117,6 +118,7 @@ export function jwtOptionsFactory() {
     HttpClient,
     ValidationUtils,
     AccountService,
+    UserService,
     ListingService,
     TicketService,
     AdminService,

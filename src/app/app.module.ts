@@ -10,7 +10,8 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatMenuModule, MatRadioModule,
+  MatMenuModule,
+  MatRadioModule,
   MatSelectModule,
   MatSidenavModule,
   MatToolbarModule

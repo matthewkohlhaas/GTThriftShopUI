@@ -1,0 +1,5 @@
+.flag-content-radio-group .mat-radio-button,
+.flag-content-description-field {
+  display: block;
+  margin-bottom: 10px;
+}

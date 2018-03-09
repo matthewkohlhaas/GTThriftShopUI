@@ -12,7 +12,7 @@ export class FlagService {
   constructor(private http: HttpClient) {}
 
   flagListing(listing: Listing, description: string, next?: (msg: ServerMessage) => void): void {
-    this.http.post<ServerMessage>(environment.serverUrl + '/flag/listing-flag',
+    this.http.post<ServerMessage>(environment.serverUrl + '/flags/listing-flags',
       {description: description, listing: listing})
       .subscribe(
       res => {

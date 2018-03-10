@@ -12,8 +12,8 @@ export class ListingService {
 
   constructor(private http: HttpClient) { }
 
-  public getListings(): Observable<Listing[]> {
-    return this.http.get<Listing[]>(environment.serverUrl + '/listings');
+  public getListings(params?: any): Observable<Listing[]> {
+    return this.http.get<Listing[]>(environment.serverUrl + '/listings', {params: params});
   }
 
   public getListing(id: string): Observable<Listing> {

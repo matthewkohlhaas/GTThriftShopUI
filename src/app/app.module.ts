@@ -49,8 +49,8 @@ import {LoginToolbarComponent} from './login-toolbar/login-toolbar.component';
 import {ValidationUtils} from '../utils/validation.utils';
 import {ModalAlertContentComponent} from './modal-alert-content/modal-alert-content.component';
 import {FlagFormComponent} from './flag-form/flag-form.component';
-import {ListingToolbarComponent} from './listing-toolbar/listing-toolbar.component';
 import {ModalEditListingContentComponent} from './modal-edit-listing-content/modal-edit-listing-content.component';
+import {ListingsFeedToolbarComponent} from './listings-feed-toolbar/listings-feed-toolbar.component';
 
 
 const appRoutes: Routes = [
@@ -89,7 +89,7 @@ export function jwtOptionsFactory() {
     ModalFlagListingContentComponent,
     CreateAccountPageComponent,
     ListingsFeedPageComponent,
-    ListingToolbarComponent,
+    ListingsFeedToolbarComponent,
     ListingPageComponent,
     CreateListingComponent,
     ContactPageComponent,

@@ -1,4 +1,4 @@
-<app-listing-toolbar (listEvent)="list()"></app-listing-toolbar>
+<app-listings-feed-toolbar (listEvent)="list()"></app-listings-feed-toolbar>
 <mat-card class="listing-card" *ngFor="let listing of listings">
   <div class="listing-image">
     <img src="{{listing.imageUrl}}" routerLink="/listings/{{listing._id}}" />

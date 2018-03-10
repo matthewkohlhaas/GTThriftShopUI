@@ -3,7 +3,7 @@ import {Listing} from '../../model/listing';
 import {ListingService} from '../../services/listing.service';
 import {ModalFlagListingContentComponent} from '../modal-flag-listing-content/modal-flag-listing-content.component';
 import {ModalService} from '../../services/modal.service';
-import {ListingToolbarComponent} from '../listing-toolbar/listing-toolbar.component';
+import {ListingsFeedToolbarComponent} from '../listings-feed-toolbar/listings-feed-toolbar.component';
 
 @Component({
   selector: 'app-listings-feed-page',
@@ -12,7 +12,7 @@ import {ListingToolbarComponent} from '../listing-toolbar/listing-toolbar.compon
 })
 export class ListingsFeedPageComponent implements OnInit {
 
-  @ViewChild(ListingToolbarComponent) toolbar;
+  @ViewChild(ListingsFeedToolbarComponent) toolbar;
   listings: Listing[];
 
   constructor(

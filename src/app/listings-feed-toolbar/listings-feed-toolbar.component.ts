@@ -13,12 +13,12 @@ const CATEGORY_OBJECTS: object[] = [
 ];
 
 @Component({
-  selector: 'app-listing-toolbar',
-  templateUrl: './listing-toolbar.component.html',
-  styleUrls: ['./listing-toolbar.component.css'],
+  selector: 'app-listings-feed-toolbar',
+  templateUrl: './listings-feed-toolbar.component.html',
+  styleUrls: ['./listings-feed-toolbar.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class ListingToolbarComponent {
+export class ListingsFeedToolbarComponent {
 
   @Output() listEvent = new EventEmitter<string>();
 

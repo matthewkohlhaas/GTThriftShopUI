@@ -154,7 +154,7 @@ export class AccountService {
   }
 
   public updateFirstName(firstName: string, next?: (msg: ServerMessage) => void): void {
-    this.http.post<ServerMessage>(environment.serverUrl + '/users/from-token/first-name',
+    this.http.put<ServerMessage>(environment.serverUrl + '/users/from-token/first-name',
       {firstName: firstName})
       .subscribe(
         res => {
@@ -171,7 +171,7 @@ export class AccountService {
   }
 
   public updateLastName(lastName: string, next?: (msg: ServerMessage) => void): void {
-    this.http.post<ServerMessage>(environment.serverUrl + '/users/from-token/last-name',
+    this.http.put<ServerMessage>(environment.serverUrl + '/users/from-token/last-name',
       {lastName: lastName})
       .subscribe(
         res => {
@@ -188,7 +188,7 @@ export class AccountService {
   }
 
   public updateProfilePictureUrl(profilePictureUrl: string, next?: (msg: ServerMessage) => void): void {
-    this.http.post<ServerMessage>(environment.serverUrl + '/users/from-token/profile-picture-url',
+    this.http.put<ServerMessage>(environment.serverUrl + '/users/from-token/profile-picture-url',
       {profilePictureUrl: profilePictureUrl})
       .subscribe(
         res => {
@@ -205,7 +205,7 @@ export class AccountService {
   }
 
   public updateProfileBio(profileBio: string, next?: (msg: ServerMessage) => void): void {
-    this.http.post<ServerMessage>(environment.serverUrl + '/users/from-token/profile-bio',
+    this.http.put<ServerMessage>(environment.serverUrl + '/users/from-token/profile-bio',
       {profileBio: profileBio})
       .subscribe(
         res => {

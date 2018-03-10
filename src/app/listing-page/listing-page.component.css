@@ -1,25 +1,15 @@
-.listing-card {
+.listing-view-content {
   display: flex;
-  height: 200px;
-  margin-bottom: 12px;
-  transition: all 0.4s;
 }
 
-.listing-card:hover {
-  cursor: pointer;
-  box-shadow: 0 6px 2px -4px rgba(0,0,0,.2),
-  0 4px 4px 0 rgba(0,0,0,.14),
-  0 2px 10px 0 rgba(0,0,0,.12)
-}
-
-.listing-image {
+.listing-view-image {
   display: inline-block;
   vertical-align: middle;
   width: 30%;
   height: 100%;
 }
 
-.listing-image img {
+.listing-view-image img {
   display: block;
   margin: auto;
   max-width: 100%;
@@ -27,37 +17,34 @@
   border-radius: 2px;
 }
 
-.listing-text {
+.listing-view-text {
   display: block;
-  width: 55%;
+  width: 70%;
   padding: 0 20px 0 20px;
 }
 
-.listing-name {
-  margin-bottom: 10px;
+.listing-view-name {
+  margin-bottom: 12px;
   font-size: 18pt;
   font-weight: bold;
 }
 
-.listing-seller {
+.listing-view-seller,
+.listing-view-description {
   font-size: 12pt;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
-.listing-description {
-  font-size: 12pt;
-}
-
-.listing-price {
-  width: 15%;
-  margin: auto !important;
+.listing-view-price {
+  margin-bottom: 12px;
   font-size: 18pt;
   font-weight: bold;
-  text-align: center;
 }
 
-.listing-flag-button:hover {
-  color: red;
+.button-edit-listing {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
 }
 
 #listing-page-toolbar {

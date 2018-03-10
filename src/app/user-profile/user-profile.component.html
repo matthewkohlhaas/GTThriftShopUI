@@ -1,25 +1,52 @@
 <mat-card class="profile-card">
-  <div class="img-container">
-    <img src="https://pbs.twimg.com/profile_images/646735779578912769/a10ZjNee_400x400.jpg" />
-  </div>
-  <div class="profile-text">
-    <div class="user-name">
-      <p>{{user?.firstName}} {{user?.lastName}}</p>
+    <div class="profile-image">
+      <img src="{{user?.profilePictureUrl}}"/>
+        <mat-form-field *ngIf="editProfileEnabled">
+          <input matInput id="profile-picture-input" placeholder="Profile Picture URL"
+                 type="text" title="profile-picture" name="profile-picture"
+                 [(ngModel)]="profilePictureUrl" (keyup.enter)="done()">
+        </mat-form-field>
     </div>
-    <div class="user-email">
-      email: {{user?.email}}
+
+    <div class="profile-text">
+      <div class="user-name" *ngIf="!editProfileEnabled">
+        {{user?.firstName}} {{user?.lastName}}
+      </div>
+      <div *ngIf="editProfileEnabled">
+        <mat-form-field>
+          <input matInput id="first-name-input" placeholder="First Name" type="text"
+               title="first-name" name="first-name" [(ngModel)]="firstName" (keyup.enter)="done()">
+          <mat-error>Please enter a first name.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput id="last-name-input" placeholder="Last Name" type="text"
+               title="last-name" name="last-name" [(ngModel)]="lastName" (keyup.enter)="done()">
+          <mat-error>Please enter a last name.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="user-email">
+        <span><b>email:</b> {{user?.email}}</span>
+      </div>
+      <div class="user-bio-label" *ngIf="!editProfileEnabled">
+          About me:
+      </div>
+      <div class="user-bio-text">
+        <div *ngIf="!editProfileEnabled">
+          {{user?.profileBio}}
+        </div>
+        <mat-form-field *ngIf="editProfileEnabled">
+          <input matInput id= "profile-bio-input" placeholder="About Me" type="text" title="profile-bio"
+                 name="profile" [(ngModel)]="profileBio" (keyup.enter)="done()">
+          <mat-error>Please enter a bio.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="profile-buttons">
+        <button mat-raised-button id="edit-profile-button" *ngIf ="!editProfileEnabled"color="primary"
+                (click)="editProfile()">Edit Profile</button>
+        <button mat-raised-button id="done-editing-profile-button" *ngIf ="editProfileEnabled" color="primary"
+                (click)="done()">Done</button>
+      </div>
     </div>
-    <br>
-    <div class="user-bio">
-      About me:
-    </div>
-    <div class="user-bio-text">
-      <p>
-        Hi! I usually sell a wide variety of items ranging from textbooks to
-        clothing. I don't have any thing for sale at the moment, so check back
-        in a few days!
-      </p>
-    </div>
-  </div>
 </mat-card>
 

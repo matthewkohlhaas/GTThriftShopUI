@@ -10,7 +10,9 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatMenuModule, MatRadioModule,
+  MatMenuModule,
+  MatRadioModule,
+  MatSelectModule,
   MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
@@ -47,8 +49,10 @@ import {ValidationUtils} from '../utils/validation.utils';
 import {ModalAlertContentComponent} from './modal-alert-content/modal-alert-content.component';
 import {UserService} from '../services/user.service';
 import {UserProfilePageComponent} from './user-profile-page/user-profile-page.component';
-import {ModalEditListingContentComponent} from './modal-edit-listing-content/modal-edit-listing-content.component';
 import {FlagFormComponent} from './flag-form/flag-form.component';
+import {ModalEditListingContentComponent} from './modal-edit-listing-content/modal-edit-listing-content.component';
+import {ListingsFeedToolbarComponent} from './listings-feed-toolbar/listings-feed-toolbar.component';
+
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -82,9 +86,12 @@ export function jwtOptionsFactory() {
     LoginToolbarComponent,
     NotFoundPageComponent,
     ModalAlertContentComponent,
+    ModalEditListingContentComponent,
     ModalFlagListingContentComponent,
     CreateAccountPageComponent,
     ListingsFeedPageComponent,
+    ListingsFeedToolbarComponent,
+    ListingPageComponent,
     CreateListingComponent,
     ContactPageComponent,
     AccountRecoveryPageComponent,
@@ -94,8 +101,7 @@ export function jwtOptionsFactory() {
     AdminPageComponent,
     ListingPageComponent,
     AdminPageComponent,
-    ModalEditListingContentComponent,
-    FlagFormComponent
+    FlagFormComponent,
   ],
   entryComponents: [
     ModalAlertContentComponent,
@@ -125,7 +131,8 @@ export function jwtOptionsFactory() {
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
-    MatCardModule
+    MatCardModule,
+    MatSelectModule
   ],
   providers: [
     HttpClient,

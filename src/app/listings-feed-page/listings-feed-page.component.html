@@ -1,18 +1,15 @@
-<mat-card class="listing-card" *ngFor="let listing of listings" routerLink="/listings/{{listing._id}}">
+<app-listings-feed-toolbar (listEvent)="list()"></app-listings-feed-toolbar>
+<mat-card class="listing-card" *ngFor="let listing of listings">
   <div class="listing-image">
-    <img src="{{listing.imageUrl}}" />
+    <img src="{{listing.imageUrl}}" routerLink="/listings/{{listing._id}}" />
   </div>
     <div class="listing-text">
       <div class="listing-name">
         <a routerLink="/listings/{{listing._id}}">{{listing.name}}</a>
       </div>
     <div class="listing-seller">
-      <a routerLink="/users/{{listing?.user?._id}}">{{listing.user.firstName}} {{listing.user.lastName}}</a> -
-      {{
-        (listing.user.positiveRatings && listing.user.totalRatings)
-        ? (listing.user.positiveRatings / listing.user.totalRatings * 100).toFixed(0) + "% positive ratings"
-        : "Not Rated"
-      }}
+      <a routerLink="/users/{{listing?.user?._id}}">{{listing.user.firstName}} {{listing.user.lastName}}</a>
+      - {{(listing.userRating) ? (listing.userRating).toFixed(0) + "% positive ratings" : "Not Rated"}}
     </div>
     <div class="listing-description">
       {{listing.description}}
@@ -22,6 +19,6 @@
     {{(listing.price) ? '$'+(listing.price) : ''}}
   </div>
   <a>
-    <mat-icon class="listing-flag-button" (click)="openFlagModal(listing)">flag</mat-icon>
+    <mat-icon class="flag-button" (click)="openFlagModal(listing)">flag</mat-icon>
   </a>
 </mat-card>

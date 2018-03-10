@@ -7,4 +7,5 @@ export class Listing {
   price: number;
   imageUrl: string;
   user: User;
+  userRating: number;
 }

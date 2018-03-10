@@ -1,11 +1,12 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {Listing} from '../../model/listing';
-import {ListingService} from '../../services/listing.service';
-import {ActivatedRoute, Params} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
 import {User} from '../../model/user';
-import {AccountService} from '../../services/account.service';
+import {Listing} from '../../model/listing';
+import {ActivatedRoute, Params} from '@angular/router';
 import {ModalService} from '../../services/modal.service';
+import {ListingService} from '../../services/listing.service';
+import {AccountService} from '../../services/account.service';
 import {ModalEditListingContentComponent} from '../modal-edit-listing-content/modal-edit-listing-content.component';
+import {ModalFlagListingContentComponent} from '../modal-flag-listing-content/modal-flag-listing-content.component';
 
 @Component({
   selector: 'app-listing-page',
@@ -14,8 +15,8 @@ import {ModalEditListingContentComponent} from '../modal-edit-listing-content/mo
 })
 export class ListingPageComponent implements OnInit {
 
-  private currentUser: User;
-  private listing: Listing;
+  currentUser: User;
+  listing: Listing;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -49,5 +50,10 @@ export class ListingPageComponent implements OnInit {
     this.modalService.openModal(ModalEditListingContentComponent, {listing: listing}, () => {
       this.loadListing();
     });
+  }
+
+  private openFlagModal(listing): void {
+    this.modalService.openModal<ModalFlagListingContentComponent>(ModalFlagListingContentComponent,
+      {listing: listing});
   }
 }

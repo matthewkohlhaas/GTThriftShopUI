@@ -12,8 +12,8 @@ export class ListingService {
 
   constructor(private http: HttpClient) { }
 
-  public getListings(): Observable<Listing[]> {
-    return this.http.get<Listing[]>(environment.serverUrl + '/listings');
+  public getListings(params?: any): Observable<Listing[]> {
+    return this.http.get<Listing[]>(environment.serverUrl + '/listings', {params: params});
   }
 
   public getListing(id: string): Observable<Listing> {
@@ -22,7 +22,7 @@ export class ListingService {
 
   createListing(name: string, price: number, description: string, imageUrl: string,
                 next?: (msg: ServerMessage) => void): void {
-    this.http.post <ServerMessage>(environment.serverUrl + '/listings',
+    this.http.post<ServerMessage>(environment.serverUrl + '/listings',
       {name: name, description: description, price: price, imageUrl: imageUrl})
       .subscribe(
         res => {
@@ -38,9 +38,8 @@ export class ListingService {
   }
 
   editListing(listing: Listing, next?: (msg: ServerMessage) => void): void {
-    this.http.post <ServerMessage>(environment.serverUrl + '/edit-listing',
+    this.http.put<ServerMessage>(`${environment.serverUrl}/listings/${listing._id}`,
       {
-        listing: listing._id,
         name: listing.name,
         price: listing.price,
         description: listing.description,

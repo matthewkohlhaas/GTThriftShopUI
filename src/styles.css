@@ -86,6 +86,17 @@ body {
   display: inline-block;
 }
 
+.flag-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.flag-button:hover {
+  color: red;
+  cursor: pointer;
+}
+
 a {
   color: #0d47a1;
   text-decoration: none;

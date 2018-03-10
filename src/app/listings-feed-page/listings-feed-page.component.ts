@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Listing} from '../../model/listing';
 import {ListingService} from '../../services/listing.service';
 import {ModalFlagListingContentComponent} from '../modal-flag-listing-content/modal-flag-listing-content.component';
-import {FlagService} from '../../services/flag.service';
 import {ModalService} from '../../services/modal.service';
+import {ListingsFeedToolbarComponent} from '../listings-feed-toolbar/listings-feed-toolbar.component';
 
 @Component({
   selector: 'app-listings-feed-page',
@@ -11,18 +11,34 @@ import {ModalService} from '../../services/modal.service';
   styleUrls: ['./listings-feed-page.component.css']
 })
 export class ListingsFeedPageComponent implements OnInit {
+
+  @ViewChild(ListingsFeedToolbarComponent) toolbar;
   listings: Listing[];
 
   constructor(
     private modalService: ModalService,
-    private listingService: ListingService,
-    private flagService: FlagService
+    private listingService: ListingService
   ) {}
 
   ngOnInit(): void {
-    this.listingService.getListings().subscribe(res => {
+    const params: object = { sort: 'createdAt', direction: 'descending' };
+    this.listingService.getListings(params).subscribe(res => {
       this.listings = res;
     });
+  }
+
+  list(): void {
+    const params: object = this.buildParams();
+    this.listingService.getListings(params).subscribe(res => {
+      this.listings = res;
+    });
+  }
+
+  private buildParams(): object {
+    const params: object = {};
+    this.toolbar.addSortParams(params);
+    this.toolbar.addCategoryParams(params);
+    return params;
   }
 
   private openFlagModal(listing): void {

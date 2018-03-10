@@ -8,12 +8,8 @@
         <a routerLink="/listings/{{listing?._id}}">{{listing?.name}}</a>
       </div>
       <div class="listing-view-seller">
-        <a routerLink="/users/{{listing?.user?._id}}">{{listing?.user?.firstName}} {{listing?.user?.lastName}}</a> -
-        {{
-          (listing?.user?.positiveRatings && listing?.user?.totalRatings)
-          ? (listing?.user?.positiveRatings / listing?.user?.totalRatings * 100).toFixed(0) + "% positive ratings"
-          : "Not Rated"
-        }}
+        <a routerLink="/users/{{listing?.user?._id}}">{{listing?.user?.firstName}} {{listing?.user?.lastName}}</a>
+        - {{(listing?.userRating) ? (listing?.userRating).toFixed(0) + "% positive ratings" : "Not Rated"}}
       </div>
       <div class="listing-view-price">
         {{(listing?.price) ? '$'+(listing?.price) : ''}}
@@ -27,4 +23,7 @@
       </button>
     </div>
   </div>
+  <a>
+    <mat-icon class="flag-button" (click)="openFlagModal(listing)">flag</mat-icon>
+  </a>
 </mat-card>

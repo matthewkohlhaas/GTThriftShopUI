@@ -37,7 +37,6 @@ import {AccountRecoveryPageComponent} from './account-recovery-page/account-reco
 import {VerificationPageComponent} from './verification-page/verification-page.component';
 import {PasswordResetPageComponent} from './password-reset-page/password-reset-page.component';
 import {ListingPageComponent} from './listing-page/listing-page.component';
-import {UserProfileComponent} from './user-profile/user-profile.component';
 import {AdminPageComponent} from './admin-page/admin-page.component';
 import {LocalStorageService} from '../services/local-storage.service';
 import {AuthenticateGuard} from '../guards/authenticate.guard';
@@ -48,6 +47,8 @@ import {MainSidenavComponent} from './main-sidenav/main-sidenav.component';
 import {LoginToolbarComponent} from './login-toolbar/login-toolbar.component';
 import {ValidationUtils} from '../utils/validation.utils';
 import {ModalAlertContentComponent} from './modal-alert-content/modal-alert-content.component';
+import {UserService} from '../services/user.service';
+import {UserProfilePageComponent} from './user-profile-page/user-profile-page.component';
 import {FlagFormComponent} from './flag-form/flag-form.component';
 import {ModalEditListingContentComponent} from './modal-edit-listing-content/modal-edit-listing-content.component';
 import {ListingsFeedToolbarComponent} from './listings-feed-toolbar/listings-feed-toolbar.component';
@@ -62,7 +63,7 @@ const appRoutes: Routes = [
   {path: 'listings/:id', component: ListingPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'create-listing', component: CreateListingComponent, canActivate: [AuthenticateGuard]},
   {path: 'support', component: ContactPageComponent, canActivate: [AuthenticateGuard]},
-  {path: 'profile', component: UserProfileComponent, canActivate: [AuthenticateGuard]},
+  {path: 'users/:id', component: UserProfilePageComponent, canActivate: [AuthenticateGuard]},
   {path: 'admin', component: AdminPageComponent, canActivate: [AuthenticateGuard, AdminGuard]},
   {path: '**', component: NotFoundPageComponent}
 ];
@@ -96,7 +97,9 @@ export function jwtOptionsFactory() {
     AccountRecoveryPageComponent,
     VerificationPageComponent,
     PasswordResetPageComponent,
-    UserProfileComponent,
+    UserProfilePageComponent,
+    AdminPageComponent,
+    ListingPageComponent,
     AdminPageComponent,
     FlagFormComponent,
   ],
@@ -135,6 +138,7 @@ export function jwtOptionsFactory() {
     HttpClient,
     ValidationUtils,
     AccountService,
+    UserService,
     ListingService,
     TicketService,
     AdminService,

@@ -1,4 +1,7 @@
 import {Injectable} from '@angular/core';
+import {JwtHelperService} from '@auth0/angular-jwt';
+import {Observable} from 'rxjs/Observable';
+import {User} from '../model/user';
 
 const DEFAULT_TIME = 7 * 24 * 60 * 60 * 1000; // 7 days * 24 hours/day * 60 min/hour * 60 s/min * 1,000 ms/s
 const ACCESS_TOKEN = 'accessToken';
@@ -60,5 +63,4 @@ export class LocalStorageService {
     }
     return null;
   }
-
 }

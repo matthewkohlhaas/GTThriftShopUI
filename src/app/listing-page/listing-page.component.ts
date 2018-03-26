@@ -15,8 +15,8 @@ import {ModalFlagListingContentComponent} from '../modal-flag-listing-content/mo
 })
 export class ListingPageComponent implements OnInit {
 
-  private currentUser: User;
-  private listing: Listing;
+  currentUser: User;
+  listing: Listing;
 
   constructor(
     private activatedRoute: ActivatedRoute,

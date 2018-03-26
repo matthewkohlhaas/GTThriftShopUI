@@ -1,37 +1,56 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {AccountService} from '../../services/account.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {User} from '../../model/user';
 import {ModalService} from '../../services/modal.service';
 import {ValidationUtils} from '../../utils/validation.utils';
+import {UserService} from '../../services/user.service';
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css'],
+  selector: 'app-user-profile-page',
+  templateUrl: './user-profile-page.component.html',
+  styleUrls: ['./user-profile-page.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfilePageComponent implements OnInit {
 
   private editProfileEnabled = false;
 
   private user: User;
+  private currentUserId = '';
+
   private firstName: string;
   private lastName: string;
   private profilePictureUrl: string;
   private profileBio: string;
 
-  constructor(private accountService: AccountService, private router: Router, private modalService: ModalService) { }
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private userService: UserService,
+    private accountService: AccountService,
+    private modalService: ModalService
+  ) { }
 
   ngOnInit(): void {
-    this.accountService.getCurrentUser().subscribe(value => {
-      this.user = value;
-    }, err => {
-      this.router.navigate(['']);
+    this.currentUserId = this.accountService.getCurrentUserFromToken()._id;
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.userService.getUserById(params['id']).subscribe(value => {
+        this.user = value;
+      }, error => {
+        this.router.navigate(['']);
+      });
     });
   }
 
+  private isCurrentUsersProfile(): boolean {
+    return this.user && this.user._id === this.currentUserId;
+  }
+
   private editProfile(): void {
+    if (!this.isCurrentUsersProfile()) {
+      return;
+    }
     this.firstName = this.user.firstName;
     this.lastName = this.user.lastName;
     this.profilePictureUrl = this.user.profilePictureUrl;
@@ -40,6 +59,10 @@ export class UserProfileComponent implements OnInit {
   }
 
   private done(): void {
+    if (!this.isCurrentUsersProfile()) {
+      this.editProfileEnabled = false;
+      return;
+    }
     this.updateFirstName()
       .then(() => this.updateLastName())
       .then(() => this.updatePictureUrl())

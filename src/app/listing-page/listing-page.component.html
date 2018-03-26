@@ -8,7 +8,7 @@
         <a routerLink="/listings/{{listing?._id}}">{{listing?.name}}</a>
       </div>
       <div class="listing-view-seller">
-        <a href="#">{{listing?.user?.firstName}} {{listing?.user?.lastName}}</a>
+        <a routerLink="/users/{{listing?.user?._id}}">{{listing?.user?.firstName}} {{listing?.user?.lastName}}</a>
         - {{(listing?.userRating) ? (listing?.userRating).toFixed(0) + "% positive ratings" : "Not Rated"}}
       </div>
       <div class="listing-view-price">

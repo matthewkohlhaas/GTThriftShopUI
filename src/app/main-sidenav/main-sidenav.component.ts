@@ -1,3 +1,4 @@
+import {AccountService} from '../../services/account.service';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {AdminService} from '../../services/admin.service';
 import {LocalStorageService} from '../../services/local-storage.service';
@@ -14,7 +15,7 @@ export class MainSidenavComponent implements OnInit {
 
   private isAdmin: boolean;
 
-  constructor(private adminService: AdminService) { }
+  constructor(private accountService: AccountService, private adminService: AdminService) { }
 
   ngOnInit(): void {
     const localIsAdmin = LocalStorageService.getIsAdmin();
@@ -32,6 +33,10 @@ export class MainSidenavComponent implements OnInit {
     }, err => {
       this.isAdmin = false;
     });
+  }
+
+  private getCurrentUserId(): string {
+    return this.accountService.getCurrentUserFromToken()._id;
   }
 
   public open(): Promise<void> {

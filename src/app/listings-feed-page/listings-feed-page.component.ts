@@ -36,6 +36,7 @@ export class ListingsFeedPageComponent implements OnInit {
 
   private buildParams(): object {
     const params: object = {};
+    this.toolbar.addSearchParams(params);
     this.toolbar.addSortParams(params);
     this.toolbar.addCategoryParams(params);
     return params;

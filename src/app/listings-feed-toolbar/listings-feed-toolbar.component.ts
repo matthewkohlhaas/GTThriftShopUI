@@ -22,12 +22,19 @@ export class ListingsFeedToolbarComponent {
 
   @Output() listEvent = new EventEmitter<string>();
 
+  private searchString;
   private categoryObjects: object[] = CATEGORY_OBJECTS;
   private selectedCategory: string;
   private sortObjects: object[] = SORT_OBJECTS;
   private selectedSort: object;
 
   constructor() { }
+
+  public addSearchParams(params: object) {
+    if (this.searchString && this.searchString !== '') {
+      params['search'] = this.searchString;
+    }
+  }
 
   public addSortParams(params: object) {
     if (this.selectedSort) {

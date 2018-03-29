@@ -48,5 +48,8 @@
                 (click)="done()">Done</button>
       </div>
     </div>
+  <a *ngIf="!blockProfileDisabled">
+    <mat-icon class="flag-button" (click)="openFlagModal()">flag</mat-icon>
+  </a>
 </mat-card>
 

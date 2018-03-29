@@ -22,7 +22,6 @@ export class FlagFormComponent{
 
   public getDescription(): string {
     let description;
-
     if (this.reason && this.description) {
       description = `${this.reason}: ${this.description}`;
     } else if (this.reason) {

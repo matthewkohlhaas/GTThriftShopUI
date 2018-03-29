@@ -227,4 +227,21 @@ export class AccountService {
         }
       );
   }
+
+  public updateblockProfiles(blockedUser: User, description: string, next?: (msg: ServerMessage) => void): void {
+    this.http.put<ServerMessage>(environment.serverUrl + '/users/from-token/block-profile',
+      {description: description, blockedUser: blockedUser})
+      .subscribe(
+        res => {
+          next(res);
+        }, err => {
+          if (err.status === 0) {
+            next(new ServerMessage(false, COULD_NOT_CONNECT));
+          } else {
+            console.log(err);
+            next(err.error);
+          }
+        }
+      );
+  }
 }

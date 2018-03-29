@@ -1,4 +1,7 @@
 import { Component, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
+import Timer = NodeJS.Timer;
+
+const SEARCH_FIELD_DELAY = 500;
 
 const SORT_OBJECTS: object[] = [
   { text: 'Price: Low to High', params: { sort: 'price', direction: 'ascending' } },
@@ -28,11 +31,13 @@ export class ListingsFeedToolbarComponent {
   private sortObjects: object[] = SORT_OBJECTS;
   private selectedSort: object;
 
+  private searchTimeout: any;
+
   constructor() { }
 
   public addSearchParams(params: object) {
-    if (this.searchString && this.searchString !== '') {
-      params['search'] = this.searchString;
+    if (this.searchString && this.searchString.trim() !== '') {
+      params['search'] = this.searchString.trim();
     }
   }
 
@@ -52,8 +57,14 @@ export class ListingsFeedToolbarComponent {
     }
   }
 
-  list() {
-    this.listEvent.next('');
+  private onSearchFieldKeyUp() {
+    if (this.searchTimeout) {
+      clearTimeout(this.searchTimeout);
+    }
+    this.searchTimeout = setTimeout(() => this.list(), SEARCH_FIELD_DELAY);
   }
 
+  private list() {
+    this.listEvent.next('');
+  }
 }

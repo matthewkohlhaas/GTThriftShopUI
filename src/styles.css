@@ -54,6 +54,10 @@ body {
   margin: 12px auto 0 auto;
 }
 
+.mat-select-panel {
+  max-height: none !important;
+}
+
 .mat-card {
   padding: 20px !important;
 }

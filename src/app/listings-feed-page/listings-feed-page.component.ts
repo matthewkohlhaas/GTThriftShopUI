@@ -21,10 +21,7 @@ export class ListingsFeedPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const params: object = { sort: 'createdAt', direction: 'descending' };
-    this.listingService.getListings(params).subscribe(res => {
-      this.listings = res;
-    });
+    this.list();
   }
 
   list(): void {

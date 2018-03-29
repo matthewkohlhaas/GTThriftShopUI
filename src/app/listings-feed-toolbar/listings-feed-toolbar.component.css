@@ -1,39 +1,50 @@
 #listing-toolbar {
-  margin-bottom: 10px;
-  background-color: #edd3b0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #f5dbb5;
+  box-shadow: none;
+}
+
+#listing-toolbar .mat-toolbar-row {
+  padding: 0 12px !important;
+}
+
+#listing-toolbar-container {
+  position: relative;
+  top: -6px;
+  width: auto;
+}
+
+.listing-toolbar-label {
+  font-size: 14pt;
+}
+
+.listing-toolbar-label,
+#listing-toolbar-search-icon {
+  margin-right: 10px;
+}
+
+#listing-toolbar-search-icon {
+  position: relative;
+  top: 6px;
+}
+
+#listing-toolbar .mat-toolbar-row .mat-form-field {
+  height: 64px;
+  font-size: 14pt;
 }
 
 #category-select-form-field {
   width: 22%;
-  margin-right: 30px;
-  font-size: 14pt;
+  margin-right: 20px;
 }
 
 #search-input-form-field {
-  width: 30%;
-  margin-right: 30px;
-  font-size: 14pt;
+  width: 32%;
+  margin-right: 20px;
 }
 
 #sort-select-form-field {
   width: 22%;
-  font-size: 14pt;
-}
-
-#category-label {
-  margin-right: 10px;
-  font-weight: normal;
-  font-size: 14pt;
-}
-
-#search-icon {
-  margin-right: 10px;
-  font-weight: normal;
-  font-size: 14pt;
-}
-
-#sort-label {
-  margin-right: 10px;
-  font-weight: normal;
-  font-size: 14pt;
 }

@@ -9,8 +9,9 @@
       </mat-select>
     </mat-form-field>
     <mat-icon id="search-icon">search</mat-icon>
-    <mat-form-field id="search-input-form-field">
-      <input matInput type="search" [(ngModel)]="searchString" (keyup)="onSearchFieldKeyUp()" (change)="list()">
+    <mat-form-field id="search-input-form-field" [floatLabel]="'never'">
+      <input matInput type="search" placeholder="Search" [(ngModel)]="searchString" (keyup)="onSearchFieldKeyUp()"
+             (change)="list()">
     </mat-form-field>
     <mat-label id="sort-label">Sort by:</mat-label>
     <mat-form-field id="sort-select-form-field">

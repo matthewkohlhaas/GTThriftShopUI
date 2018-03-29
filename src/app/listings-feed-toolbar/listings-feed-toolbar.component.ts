@@ -1,5 +1,6 @@
-import { Component, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
+import {Component, ViewEncapsulation, EventEmitter, Output, OnInit} from '@angular/core';
 import Timer = NodeJS.Timer;
+import {FloatLabelType} from '@angular/material';
 
 const SEARCH_FIELD_DELAY = 500;
 
@@ -21,19 +22,28 @@ const CATEGORY_OBJECTS: object[] = [
   styleUrls: ['./listings-feed-toolbar.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class ListingsFeedToolbarComponent {
+export class ListingsFeedToolbarComponent implements OnInit {
 
   @Output() listEvent = new EventEmitter<string>();
 
   private searchString;
-  private categoryObjects: object[] = CATEGORY_OBJECTS;
-  private selectedCategory: string;
-  private sortObjects: object[] = SORT_OBJECTS;
-  private selectedSort: object;
+  private categoryObjects: any[] = CATEGORY_OBJECTS;
+  private selectedCategory: any;
+  private sortObjects: any[] = SORT_OBJECTS;
+  private selectedSort: any;
 
   private searchTimeout: any;
 
   constructor() { }
+
+  ngOnInit() {
+    if (this.categoryObjects && this.categoryObjects[0]) {
+      this.selectedCategory = this.categoryObjects[0].value;
+    }
+    if (this.sortObjects && this.sortObjects[0]) {
+      this.selectedSort = this.sortObjects[0].params;
+    }
+  }
 
   public addSearchParams(params: object) {
     if (this.searchString && this.searchString.trim() !== '') {

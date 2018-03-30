@@ -1,5 +1,11 @@
 <app-listings-feed-toolbar (listEvent)="list()"></app-listings-feed-toolbar>
 <div class="listings-feed">
+  <span class="listings-not-found-message" *ngIf="listings && listings.length < 1">
+    No item listings found
+    <span *ngIf="hasSearchString()"> for <b>'{{searchString}}'</b></span>
+    <span *ngIf="selectedCategoryIsNotAll()"> under category <b>'{{selectedCategory}}'</b></span>
+    .
+  </span>
   <mat-card class="listing-card" *ngFor="let listing of listings">
     <div class="listing-image">
       <img src="{{listing.imageUrl}}" routerLink="/listings/{{listing._id}}" />

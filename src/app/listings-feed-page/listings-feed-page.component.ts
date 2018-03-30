@@ -15,6 +15,9 @@ export class ListingsFeedPageComponent implements OnInit {
   @ViewChild(ListingsFeedToolbarComponent) toolbar;
   listings: Listing[];
 
+  searchString: string;
+  selectedCategory: string;
+
   constructor(
     private modalService: ModalService,
     private listingService: ListingService
@@ -28,7 +31,17 @@ export class ListingsFeedPageComponent implements OnInit {
     const params: object = this.buildParams();
     this.listingService.getListings(params).subscribe(res => {
       this.listings = res;
+      this.searchString = this.toolbar.getSearchString();
+      this.selectedCategory = this.toolbar.getSelectedCategory();
     });
+  }
+
+  private hasSearchString(): boolean {
+    return this.searchString && this.searchString.length > 0;
+  }
+
+  private selectedCategoryIsNotAll(): boolean {
+    return this.selectedCategory && this.selectedCategory !== 'all';
   }
 
   private buildParams(): object {

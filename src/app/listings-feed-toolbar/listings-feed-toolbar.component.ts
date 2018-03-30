@@ -45,9 +45,17 @@ export class ListingsFeedToolbarComponent implements OnInit {
     }
   }
 
+  public getSearchString(): string {
+    return this.searchString ? this.searchString.trim() : this.searchString;
+  }
+
+  public getSelectedCategory(): string {
+    return this.selectedCategory;
+  }
+
   public addSearchParams(params: object) {
-    if (this.searchString && this.searchString.trim() !== '') {
-      params['search'] = this.searchString.trim();
+    if (this.searchString && this.getSearchString() !== '') {
+      params['search'] = this.getSearchString();
     }
   }
 

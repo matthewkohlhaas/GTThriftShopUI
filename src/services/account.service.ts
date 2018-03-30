@@ -29,7 +29,7 @@ export class AccountService {
   }
 
   public login(email: string, password: string, route: string, next?: (msg: ServerMessage) => void): void {
-    this.http.post<ServerTokenMessage>(environment.serverUrl + '/users/login', {email: email, password: password})
+    this.http.post<ServerTokenMessage>(`${environment.serverUrl}/users/login`, {email: email, password: password})
       .subscribe(res => {
         if (res) {
           if (res.successful) {
@@ -52,7 +52,7 @@ export class AccountService {
   public createAccount(email: string, password: string, firstName: string, lastName: string,
                        next?: (msg: ServerMessage) => void): void {
 
-    this.http.post<ServerMessage>(environment.serverUrl + '/users',
+    this.http.post<ServerMessage>(`${environment.serverUrl}/users`,
       {email: email, password: password, firstName: firstName, lastName: lastName})
       .subscribe(
         res => {
@@ -69,7 +69,7 @@ export class AccountService {
   }
 
   public resendVerificationEmail(email: string, next?: (msg: ServerMessage) => void): void {
-    this.http.post<ServerMessage>(environment.serverUrl + '/users/send-verification', {email: email})
+    this.http.post<ServerMessage>(`${environment.serverUrl}/users/send-verification`, {email: email})
       .subscribe(
         res => {
           next(res);
@@ -84,7 +84,7 @@ export class AccountService {
   }
 
   public verify(token: string, next?: (msg: ServerMessage) => void): void {
-    this.http.get<ServerMessage>(environment.serverUrl + '/users/verify/' + token)
+    this.http.get<ServerMessage>(`${environment.serverUrl}/users/verify/` + token)
       .subscribe(
         res => {
           next(res);
@@ -99,7 +99,7 @@ export class AccountService {
   }
 
   public sendPasswordResetEmail(email: string, next?: (msg: ServerMessage) => void): void {
-    this.http.post<ServerMessage>(environment.serverUrl + '/users/send-password-reset', {email: email})
+    this.http.post<ServerMessage>(`${environment.serverUrl}/users/send-password-reset`, {email: email})
       .subscribe(
         res => {
           next(res);
@@ -114,7 +114,7 @@ export class AccountService {
   }
 
   public resetPassword(token: string, password: string, next?: (msg: ServerMessage) => void): void {
-    this.http.post<ServerMessage>(environment.serverUrl + '/users/reset-password',
+    this.http.post<ServerMessage>(`${environment.serverUrl}/users/reset-password`,
       {token: token, password: password}).subscribe(res => {
           next(res);
         }, err => {
@@ -131,7 +131,7 @@ export class AccountService {
     if (!this.isAccessTokenAlive()) {
       next(false);
     } else {
-      this.http.get<boolean>(environment.serverUrl + '/users/authenticate')
+      this.http.get<boolean>(`${environment.serverUrl}/users/authenticate`)
         .subscribe(res => {
           this.adminService.setIsAdminStatus();
           next(res);
@@ -152,7 +152,7 @@ export class AccountService {
   }
 
   public getCurrentUser(): Observable<User> {
-    return this.http.get<User>(environment.serverUrl + '/users/from-token');
+    return this.http.get<User>(`${environment.serverUrl}/users/from-token`);
   }
 
   // WARNING: do NOT use this method when up to date user info is needed; use getCurrentUser() instead
@@ -161,7 +161,7 @@ export class AccountService {
   }
 
   public updateFirstName(firstName: string, next?: (msg: ServerMessage) => void): void {
-    this.http.put<ServerMessage>(environment.serverUrl + '/users/from-token/first-name',
+    this.http.put<ServerMessage>(`${environment.serverUrl}/users/from-token/first-name`,
       {firstName: firstName})
       .subscribe(
         res => {
@@ -178,7 +178,7 @@ export class AccountService {
   }
 
   public updateLastName(lastName: string, next?: (msg: ServerMessage) => void): void {
-    this.http.put<ServerMessage>(environment.serverUrl + '/users/from-token/last-name',
+    this.http.put<ServerMessage>(`${environment.serverUrl}/users/from-token/last-name`,
       {lastName: lastName})
       .subscribe(
         res => {
@@ -195,7 +195,7 @@ export class AccountService {
   }
 
   public updateProfilePictureUrl(profilePictureUrl: string, next?: (msg: ServerMessage) => void): void {
-    this.http.put<ServerMessage>(environment.serverUrl + '/users/from-token/profile-picture-url',
+    this.http.put<ServerMessage>(`${environment.serverUrl}/users/from-token/profile-picture-url`,
       {profilePictureUrl: profilePictureUrl})
       .subscribe(
         res => {
@@ -212,7 +212,7 @@ export class AccountService {
   }
 
   public updateProfileBio(profileBio: string, next?: (msg: ServerMessage) => void): void {
-    this.http.put<ServerMessage>(environment.serverUrl + '/users/from-token/profile-bio',
+    this.http.put<ServerMessage>(`${environment.serverUrl}/users/from-token/profile-bio`,
       {profileBio: profileBio})
       .subscribe(
         res => {

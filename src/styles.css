@@ -106,3 +106,14 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.message-button {
+  position: absolute;
+  right: 20px;
+  top: 50px;
+}
+
+.message-button:hover {
+  color: red;
+  cursor: pointer;
+}

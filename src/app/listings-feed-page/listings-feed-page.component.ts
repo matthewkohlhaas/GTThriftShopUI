@@ -4,6 +4,7 @@ import {ListingService} from '../../services/listing.service';
 import {ModalFlagListingContentComponent} from '../modal-flag-listing-content/modal-flag-listing-content.component';
 import {ModalService} from '../../services/modal.service';
 import {ListingsFeedToolbarComponent} from '../listings-feed-toolbar/listings-feed-toolbar.component';
+import {ModalMessageUserContentComponent} from '../modal-message-user-content/modal-message-user-content.component';
 
 @Component({
   selector: 'app-listings-feed-page',
@@ -43,6 +44,11 @@ export class ListingsFeedPageComponent implements OnInit {
 
   private openFlagModal(listing): void {
     this.modalService.openModal<ModalFlagListingContentComponent>(ModalFlagListingContentComponent,
+      {listing: listing});
+  }
+
+  private openMessageModal(listing): void {
+    this.modalService.openModal<ModalMessageUserContentComponent>(ModalMessageUserContentComponent,
       {listing: listing});
   }
 }

@@ -4,6 +4,7 @@ import {ListingService} from '../../services/listing.service';
 import {ModalFlagListingContentComponent} from '../modal-flag-listing-content/modal-flag-listing-content.component';
 import {ModalService} from '../../services/modal.service';
 import {ListingsFeedToolbarComponent} from '../listings-feed-toolbar/listings-feed-toolbar.component';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-listings-feed-page',
@@ -20,19 +21,29 @@ export class ListingsFeedPageComponent implements OnInit {
 
   constructor(
     private modalService: ModalService,
-    private listingService: ListingService
+    private listingService: ListingService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.list();
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.getListings(params);
+    });
   }
 
   list(): void {
     const params: object = this.buildParams();
+    console.log(params);
+    this.router.navigate(['/listings'], {queryParams: params});
+    this.getListings(params);
+  }
+
+  private getListings(params: object): void {
     this.listingService.getListings(params).subscribe(res => {
       this.listings = res;
-      this.searchString = this.toolbar.getSearchString();
-      this.selectedCategory = this.toolbar.getSelectedCategory();
+      this.searchString = params['search'];
+      this.selectedCategory = params['category'];
     });
   }
 

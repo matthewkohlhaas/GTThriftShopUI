@@ -1,3 +1,14 @@
 .message-title {
   margin-bottom: 10px;
 }
+.message-card {
+  display: flex;
+  height: 200px;
+  margin-bottom: 12px;
+  transition: all 0.4s;
+}
+.message-text  {
+  font-size: 10px;
+}
+
+

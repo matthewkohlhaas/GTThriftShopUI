@@ -16,35 +16,19 @@ import {ModalService} from '../../services/modal.service';
 })
 export class MessagingPageComponent implements OnInit {
 
-  currentUser: User;
-  listing: Listing;
-
-
-  private submitDisabled = false;
+  private currentUser: User;
+  private messages: Message[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private accountService: AccountService,
     private messageService: MessageService,
     private listingService: ListingService,
-    private modalService: ModalService
   ) { }
 
   ngOnInit(): void {
     this.accountService.getCurrentUser().subscribe(res => this.currentUser = res);
   }
 
-  private loadListing(): void {
-    this.activatedRoute.params.subscribe((params: Params) =>  {
-      this.listingService.getListing(params['id']).subscribe(res => this.listing = res);
-    });
-  }
-
-  // private loadMessages(): void {
-  //   this.activatedRoute.params.subscribe((params: Params) => {
-  //     this.messageService.getMessages(params[this.listing._id], params[this.listing.user._id], params[this.currentUser._id]).
-  //     subscribe(res => this.messages = res);
-  //   });
-  // }
 }
 

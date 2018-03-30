@@ -40,8 +40,8 @@ export class ListingsFeedToolbarComponent implements OnInit {
     if (this.categoryObjects && this.categoryObjects[0]) {
       this.selectedCategory = this.categoryObjects[0].value;
     }
-    if (this.sortObjects && this.sortObjects[0]) {
-      this.selectedSort = this.sortObjects[0].params;
+    if (this.sortObjects && this.sortObjects[3]) {
+      this.selectedSort = this.sortObjects[3].params;
     }
   }
 

@@ -14,6 +14,10 @@ export class FlagService {
     this.flag(id, reason, 'listing-flags', next);
   }
 
+  public flagUser(id: string, reason: string, next?: (msg: ServerMessage) => void): void {
+    this.flag(id, reason, 'user-flags', next);
+  }
+
   private flag(id: string, reason: string, route: string, next?: (msg: ServerMessage) => void): void {
     this.http.post<ServerMessage>(`${environment.serverUrl}/flags/${route}`,
       {reason: reason, id: id})

@@ -1,7 +1,6 @@
 <b>Block this user: </b> <b class="block-user-username">{{data?.user?.firstName}} {{data?.user?.lastName}}</b>
-<p> Reason(s) for blocking:
-</p>
-<app-flag-form #form></app-flag-form>
+<p>Reason for blocking:</p>
+<app-flag-form #form [reasons]="REASONS"></app-flag-form>
 
 <div class="modal-buttons">
   <button mat-raised-button class="button-cancel-flag" (click)="close()" [disabled]="submitDisabled">

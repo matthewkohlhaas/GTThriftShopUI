@@ -13,6 +13,12 @@ import {FlagService} from '../../services/flag.service';
 })
 export class ModalBlockUserContentComponent {
 
+  private readonly REASONS: string[] = [
+    'User posted inappropriate content',
+    'User posted spam or misleading content',
+    'User has been abusive',
+    'Other'
+  ];
   private submitDisabled = false;
 
   constructor(

@@ -1,24 +1,27 @@
 <mat-toolbar id="listing-toolbar" class="toolbar">
   <mat-toolbar-row>
-    <mat-label id="category-label">Category:</mat-label>
-    <mat-form-field id="category-select-form-field">
-      <mat-select [(value)]="selectedCategory">
-        <mat-option *ngFor="let category of categoryObjects" [value]="category.value">
-          {{ category.text }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-icon id="search-icon">search</mat-icon>
-    <mat-form-field id="search-input-form-field">
-      <input matInput type="search">
-    </mat-form-field>
-    <mat-label id="sort-label">Sort by:</mat-label>
-    <mat-form-field id="sort-select-form-field">
-      <mat-select [(value)]="selectedSort">
-        <mat-option *ngFor="let sort of sortObjects" [value]="sort.params" (click)="list()">
-          {{ sort.text }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div id="listing-toolbar-container">
+      <mat-label class="listing-toolbar-label">Category:</mat-label>
+      <mat-form-field id="category-select-form-field">
+        <mat-select [(value)]="selectedCategory">
+          <mat-option *ngFor="let category of categoryObjects" [value]="category.value">
+            {{ category.text }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-icon id="listing-toolbar-search-icon">search</mat-icon>
+      <mat-form-field id="search-input-form-field" [floatLabel]="'never'">
+        <input matInput type="search" placeholder="Search" [(ngModel)]="searchString" (keyup)="onSearchFieldKeyUp()"
+               (change)="list()">
+      </mat-form-field>
+      <mat-label class="listing-toolbar-label">Sort by:</mat-label>
+      <mat-form-field id="sort-select-form-field">
+        <mat-select [(value)]="selectedSort">
+          <mat-option *ngFor="let sort of sortObjects" [value]="sort.params" (click)="list()">
+            {{ sort.text }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>

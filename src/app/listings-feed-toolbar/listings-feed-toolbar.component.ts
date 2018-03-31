@@ -1,4 +1,8 @@
-import { Component, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
+import {Component, ViewEncapsulation, EventEmitter, Output, OnInit} from '@angular/core';
+import Timer = NodeJS.Timer;
+import {FloatLabelType} from '@angular/material';
+
+const SEARCH_FIELD_DELAY = 500;
 
 const SORT_OBJECTS: object[] = [
   { text: 'Price: Low to High', params: { sort: 'price', direction: 'ascending' } },
@@ -18,16 +22,37 @@ const CATEGORY_OBJECTS: object[] = [
   styleUrls: ['./listings-feed-toolbar.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class ListingsFeedToolbarComponent {
+export class ListingsFeedToolbarComponent implements OnInit {
 
   @Output() listEvent = new EventEmitter<string>();
 
-  private categoryObjects: object[] = CATEGORY_OBJECTS;
-  private selectedCategory: string;
-  private sortObjects: object[] = SORT_OBJECTS;
-  private selectedSort: object;
+  private searchString;
+  private categoryObjects: any[] = CATEGORY_OBJECTS;
+  private selectedCategory: any;
+  private sortObjects: any[] = SORT_OBJECTS;
+  private selectedSort: any;
+
+  private searchTimeout: any;
 
   constructor() { }
+
+  ngOnInit() {
+    if (this.categoryObjects && this.categoryObjects[0]) {
+      this.selectedCategory = this.categoryObjects[0].value;
+    }
+    if (this.sortObjects && this.sortObjects[3]) {
+      this.selectedSort = this.sortObjects[3].params;
+    }
+  }
+
+  public addSearchParams(params: object) {
+    if (this.searchString) {
+      const trimmedString: string = this.searchString.trim();
+      if (trimmedString !== '') {
+        params['search'] = trimmedString;
+      }
+    }
+  }
 
   public addSortParams(params: object) {
     if (this.selectedSort) {
@@ -45,8 +70,14 @@ export class ListingsFeedToolbarComponent {
     }
   }
 
-  list() {
-    this.listEvent.next('');
+  private onSearchFieldKeyUp() {
+    if (this.searchTimeout) {
+      clearTimeout(this.searchTimeout);
+    }
+    this.searchTimeout = setTimeout(() => this.list(), SEARCH_FIELD_DELAY);
   }
 
+  private list() {
+    this.listEvent.next('');
+  }
 }

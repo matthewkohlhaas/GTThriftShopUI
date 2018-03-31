@@ -1,24 +1,32 @@
 <app-listings-feed-toolbar (listEvent)="list()"></app-listings-feed-toolbar>
-<mat-card class="listing-card" *ngFor="let listing of listings">
-  <div class="listing-image">
-    <img src="{{listing.imageUrl}}" routerLink="/listings/{{listing._id}}" />
-  </div>
+<div class="listings-feed">
+  <span class="listings-not-found-message" *ngIf="listings && listings.length < 1">
+    No item listings found
+    <span *ngIf="hasSearchString()"> for <b>'{{searchString}}'</b></span>
+    <span *ngIf="selectedCategoryIsNotAll()"> under category <b>'{{selectedCategory}}'</b></span>
+    .
+  </span>
+  <mat-card class="listing-card" *ngFor="let listing of listings">
+    <div class="listing-image">
+      <img src="{{listing.imageUrl}}" routerLink="/listings/{{listing._id}}" />
+    </div>
     <div class="listing-text">
       <div class="listing-name">
         <a routerLink="/listings/{{listing._id}}">{{listing.name}}</a>
       </div>
-    <div class="listing-seller">
-      <a routerLink="/users/{{listing?.user?._id}}">{{listing.user.firstName}} {{listing.user.lastName}}</a>
-      - {{(listing.userRating) ? (listing.userRating).toFixed(0) + "% positive ratings" : "Not Rated"}}
+      <div class="listing-seller">
+        <a routerLink="/users/{{listing?.user?._id}}">{{listing.user.firstName}} {{listing.user.lastName}}</a>
+        - {{(listing.userRating) ? (listing.userRating).toFixed(0) + "% positive ratings" : "Not Rated"}}
+      </div>
+      <div class="listing-description">
+        {{listing.description}}
+      </div>
     </div>
-    <div class="listing-description">
-      {{listing.description}}
+    <div class="listing-price">
+      {{(listing.price) ? '$'+(listing.price) : ''}}
     </div>
-  </div>
-  <div class="listing-price">
-    {{(listing.price) ? '$'+(listing.price) : ''}}
-  </div>
-  <a>
-    <mat-icon class="flag-button" (click)="openFlagModal(listing)">flag</mat-icon>
-  </a>
-</mat-card>
+    <a>
+      <mat-icon class="flag-button" (click)="openFlagModal(listing)">flag</mat-icon>
+    </a>
+  </mat-card>
+</div>

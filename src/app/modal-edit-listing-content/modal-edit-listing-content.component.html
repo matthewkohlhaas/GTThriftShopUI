@@ -20,7 +20,15 @@
     <input matInput placeholder="Image URL" type="text" title="image-url" name="image-url"
            [(ngModel)]="listing.imageUrl" (keyup.enter)="onSubmit()">
   </mat-form-field>
-
+  <input
+    style="display: none" fileread="upload"
+    type="file" (change)="onFileChanged($event)"
+    #fileInput>
+  <button mat-raised-button id = "image-upload" color="accent"
+          (click)="fileInput.click()">Select Image</button>
+  <span *ngIf="this.imageUp">
+        <a>Success!</a>
+      </span>
   <div class="modal-buttons">
     <button mat-raised-button class="button-cancel-edit-listing" (click)="close()" [disabled]="submitDisabled">
       Cancel

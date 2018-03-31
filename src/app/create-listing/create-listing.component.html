@@ -30,7 +30,9 @@
         #fileInput>
       <button mat-raised-button id = "image-upload" color="accent"
               (click)="fileInput.click()">Select Image</button>
-      <a>Success!</a>
+      <span *ngIf="this.imageUp">
+        <a>Success!</a>
+      </span>
       <button mat-raised-button id="button-create-listing" color="primary" (click)="onSubmit()"
               [disabled]="submitDisabled">
         Submit

@@ -15,7 +15,7 @@ export class CreateListingComponent {
   private description: string;
   private imageUrl: string;
   private submitDisabled: boolean;
-
+  private imageUp = false;
   private selectedFile: File;
 
 
@@ -43,7 +43,7 @@ export class CreateListingComponent {
 
   onFileChanged(event) {
     this.selectedFile = event.target.files[0];
-    console.log(this.selectedFile);
+    this.imageUp = true;
   }
 
   private resetForm() {

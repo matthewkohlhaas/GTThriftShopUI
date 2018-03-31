@@ -1,10 +1,8 @@
 import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {ListingService} from '../../services/listing.service';
-import {ActivatedRoute} from '@angular/router';
 import {Listing} from '../../model/listing';
 import {ValidationUtils} from '../../utils/validation.utils';
 import {ModalService} from '../../services/modal.service';
-import {Router} from '@angular/router';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {ModalAlertContentComponent} from '../modal-alert-content/modal-alert-content.component';
 
@@ -17,7 +15,8 @@ import {ModalAlertContentComponent} from '../modal-alert-content/modal-alert-con
 export class ModalEditListingContentComponent implements OnInit {
 
   private submitDisabled: boolean;
-
+  private imageUp = false;
+  private selectedFile: File;
   private listing: Listing;
 
   constructor(
@@ -34,12 +33,19 @@ export class ModalEditListingContentComponent implements OnInit {
   private close(): void {
     this.dialogRef.close();
   }
+  onFileChanged(event) {
+    this.selectedFile = event.target.files[0];
+    this.imageUp = true;
+  }
 
   private onSubmit(): void {
     if (!this.listing || !ValidationUtils.validateNotEmpty(this.listing.name)) {
       return;
     }
     this.submitDisabled = true;
+    this.listingService.uploadImage(this.selectedFile, msg => {
+      console.log('done');
+    });
     this.listingService.editListing(this.listing, msg => {
       let title = 'Failed to Edit Listing';
 

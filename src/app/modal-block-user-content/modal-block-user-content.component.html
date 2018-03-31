@@ -1,5 +1,4 @@
-<b>Block this user: </b> <b class="block-user-username">{{data?.user?.firstName}} {{data?.user?.lastName}}</b>
-<p>Reason for blocking:</p>
+<h1 mat-dialog-title class="block-profile-title">Block User: {{data?.user?.firstName}} {{data?.user?.lastName}}</h1>
 <app-flag-form #form [reasons]="REASONS"></app-flag-form>
 
 <div class="modal-buttons">

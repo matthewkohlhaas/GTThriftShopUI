@@ -1,14 +1,3 @@
-#main-toolbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 64px;
-}
-
-#main-toolbar-spacer {
-  height: 64px;
-}
-
 #main-toolbar-menu-button:active,
 #main-toolbar-menu-button:focus {
   outline: none;

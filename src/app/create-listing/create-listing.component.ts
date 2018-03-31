@@ -14,8 +14,10 @@ export class CreateListingComponent {
   private price: number;
   private description: string;
   private imageUrl: string;
-
   private submitDisabled: boolean;
+
+  private selectedFile: File;
+
 
   constructor(private listingService: ListingService,
               private modalService: ModalService) {}
@@ -25,7 +27,11 @@ export class CreateListingComponent {
       return;
     }
     this.submitDisabled = true;
-    this.listingService.createListing(this.name, this.price, this.description, this.imageUrl, msg => {
+    this.listingService.uploadImage(this.selectedFile, msg => {
+      console.log('done');
+    });
+    this.listingService.createListing(this.name, this.price, this.description, this.imageUrl,
+        msg => {
       let title = 'Failed to Create Listing';
 
       if (msg.successful) {
@@ -33,6 +39,11 @@ export class CreateListingComponent {
       }
       this.modalService.openAlertModal(title, msg.text, () => this.resetForm());
     });
+  }
+
+  onFileChanged(event) {
+    this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile);
   }
 
   private resetForm() {

@@ -6,6 +6,7 @@ import {environment} from '../environments/environment';
 import {ServerMessage} from '../model/server-message';
 
 const COULD_NOT_CONNECT = 'Could not connect to server.';
+const FIREBASE_API = 'https://us-central1-gtthrift-b32dd.cloudfunctions.net/uploadFile'
 
 @Injectable()
 export class ListingService {
@@ -20,8 +21,26 @@ export class ListingService {
     return this.http.get<Listing>(environment.serverUrl + '/listings/' + id);
   }
 
+  uploadImage(selectedFile: File, next?: (msg: ServerMessage) => void): void {
+
+    const uploadData = new FormData();
+    uploadData.append('myFile', selectedFile, selectedFile.name);
+    this.http.post<ServerMessage>(FIREBASE_API, uploadData).subscribe(
+      res => {
+        next(res);
+      }, err => {
+        if (err.status === 0) {
+          next(new ServerMessage(false, COULD_NOT_CONNECT));
+        } else {
+          next(new ServerMessage(err.error.successful, err.error.text));
+        }
+      }
+    );
+  }
+
   createListing(name: string, price: number, description: string, imageUrl: string,
                 next?: (msg: ServerMessage) => void): void {
+
     this.http.post<ServerMessage>(environment.serverUrl + '/listings',
       {name: name, description: description, price: price, imageUrl: imageUrl})
       .subscribe(

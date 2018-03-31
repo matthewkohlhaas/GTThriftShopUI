@@ -20,14 +20,16 @@ export class SecondaryToolbarDirective {
 
   @HostListener('window:scroll', []) onScroll(): void {
     this.currTop += this.prevScroll - window.scrollY;
+
     if (this.currTop <= MIN_TOP) {
-      this.currTop = MIN_TOP;
       this.visibility = 'hidden';
+      this.currTop = MIN_TOP;
+
     } else {
       this.visibility = 'visible';
-    }
-    if (this.currTop > MAX_TOP) {
-      this.currTop = MAX_TOP;
+      if (this.currTop > MAX_TOP) {
+        this.currTop = MAX_TOP;
+      }
     }
     this.top = `${this.currTop}px`;
     this.prevScroll = window.scrollY;

@@ -31,7 +31,7 @@ export class ModalFlagListingContentComponent {
     }
     this.submitDisabled = true;
 
-    this.flagService.flagListing(this.data.listing, description, msg => {
+    this.flagService.flagListing(this.data.listing._id, description, msg => {
       let title = 'Failed to flag listing';
       if (msg.successful) {
         title = 'Successfully flagged listing';

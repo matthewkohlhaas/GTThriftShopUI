@@ -6,10 +6,6 @@
   box-shadow: none;
 }
 
-#listing-toolbar .mat-toolbar-row {
-  padding: 0 12px !important;
-}
-
 #listing-toolbar-container {
   position: relative;
   top: -4px;
@@ -41,7 +37,7 @@
 }
 
 #search-input-form-field {
-  width: 36%;
+  width: 39%;
   margin-right: 16px;
 }
 

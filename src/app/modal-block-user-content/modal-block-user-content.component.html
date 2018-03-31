@@ -1,0 +1,12 @@
+<h1 mat-dialog-title class="block-profile-title">Block User: {{data?.user?.firstName}} {{data?.user?.lastName}}</h1>
+<app-flag-form #form [reasons]="REASONS"></app-flag-form>
+
+<div class="modal-buttons">
+  <button mat-raised-button class="button-cancel-flag" (click)="close()" [disabled]="submitDisabled">
+    Cancel
+  </button>
+  <button mat-raised-button class="button-submit-flag" color="primary"
+          (click)="onSubmit(data?.user, form.getDescription())" [disabled]="submitDisabled">
+    Block user
+  </button>
+</div>

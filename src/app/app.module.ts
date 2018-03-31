@@ -52,6 +52,7 @@ import {UserProfilePageComponent} from './user-profile-page/user-profile-page.co
 import {FlagFormComponent} from './flag-form/flag-form.component';
 import {ModalEditListingContentComponent} from './modal-edit-listing-content/modal-edit-listing-content.component';
 import {ListingsFeedToolbarComponent} from './listings-feed-toolbar/listings-feed-toolbar.component';
+import { ModalBlockUserContentComponent } from './modal-block-user-content/modal-block-user-content.component';
 
 
 const appRoutes: Routes = [
@@ -102,11 +103,13 @@ export function jwtOptionsFactory() {
     ListingPageComponent,
     AdminPageComponent,
     FlagFormComponent,
+    ModalBlockUserContentComponent,
   ],
   entryComponents: [
     ModalAlertContentComponent,
     ModalEditListingContentComponent,
-    ModalFlagListingContentComponent
+    ModalFlagListingContentComponent,
+    ModalBlockUserContentComponent
   ],
   imports: [
     BrowserModule,

@@ -170,7 +170,6 @@ export class AccountService {
           if (err.status === 0) {
             next(new ServerMessage(false, COULD_NOT_CONNECT));
           } else {
-            console.log(err);
             next(err.error);
           }
         }
@@ -187,7 +186,6 @@ export class AccountService {
           if (err.status === 0) {
             next(new ServerMessage(false, COULD_NOT_CONNECT));
           } else {
-            console.log(err);
             next(err.error);
           }
         }
@@ -204,7 +202,6 @@ export class AccountService {
           if (err.status === 0) {
             next(new ServerMessage(false, COULD_NOT_CONNECT));
           } else {
-            console.log(err);
             next(err.error);
           }
         }
@@ -221,7 +218,22 @@ export class AccountService {
           if (err.status === 0) {
             next(new ServerMessage(false, COULD_NOT_CONNECT));
           } else {
-            console.log(err);
+            next(err.error);
+          }
+        }
+      );
+  }
+
+  public addBlockedUser(id: string, next?: (msg: ServerMessage) => void): void {
+    this.http.post<ServerMessage>(environment.serverUrl + '/users/from-token/blocked-users',
+      {id: id})
+      .subscribe(
+        res => {
+          next(res);
+        }, err => {
+          if (err.status === 0) {
+            next(new ServerMessage(false, COULD_NOT_CONNECT));
+          } else {
             next(err.error);
           }
         }

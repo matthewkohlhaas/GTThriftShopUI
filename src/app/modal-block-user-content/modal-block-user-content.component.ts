@@ -4,6 +4,7 @@ import {ModalService} from '../../services/modal.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {ModalAlertContentComponent} from '../modal-alert-content/modal-alert-content.component';
 import {User} from '../../model/user';
+import {FlagService} from '../../services/flag.service';
 
 @Component({
   selector: 'app-modal-block-user-content',
@@ -17,6 +18,7 @@ export class ModalBlockUserContentComponent {
   constructor(
     private modalService: ModalService,
     private accountService: AccountService,
+    private flagService: FlagService,
     public dialogRef: MatDialogRef<ModalAlertContentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
@@ -28,6 +30,9 @@ export class ModalBlockUserContentComponent {
   private onSubmit(user: User, reason: string): void {
 
     this.submitDisabled = true;
+
+    // Flag user asynchronously (don't care too much about success outcome at this point)
+    this.flagService.flagUser(user._id, reason);
 
     this.accountService.addBlockedUser(user._id, msg => {
       let title = 'Failed to block user';

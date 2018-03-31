@@ -170,7 +170,6 @@ export class AccountService {
           if (err.status === 0) {
             next(new ServerMessage(false, COULD_NOT_CONNECT));
           } else {
-            console.log(err);
             next(err.error);
           }
         }
@@ -187,7 +186,6 @@ export class AccountService {
           if (err.status === 0) {
             next(new ServerMessage(false, COULD_NOT_CONNECT));
           } else {
-            console.log(err);
             next(err.error);
           }
         }
@@ -204,7 +202,6 @@ export class AccountService {
           if (err.status === 0) {
             next(new ServerMessage(false, COULD_NOT_CONNECT));
           } else {
-            console.log(err);
             next(err.error);
           }
         }
@@ -221,16 +218,15 @@ export class AccountService {
           if (err.status === 0) {
             next(new ServerMessage(false, COULD_NOT_CONNECT));
           } else {
-            console.log(err);
             next(err.error);
           }
         }
       );
   }
 
-  public updateblockProfiles(blockedUser: User, description: string, next?: (msg: ServerMessage) => void): void {
-    this.http.put<ServerMessage>(environment.serverUrl + '/users/from-token/block-profile',
-      {description: description, blockedUser: blockedUser})
+  public addBlockedUser(id: string, next?: (msg: ServerMessage) => void): void {
+    this.http.post<ServerMessage>(environment.serverUrl + '/users/from-token/blocked-users',
+      {id: id})
       .subscribe(
         res => {
           next(res);
@@ -238,7 +234,6 @@ export class AccountService {
           if (err.status === 0) {
             next(new ServerMessage(false, COULD_NOT_CONNECT));
           } else {
-            console.log(err);
             next(err.error);
           }
         }

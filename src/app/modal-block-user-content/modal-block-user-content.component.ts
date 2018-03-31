@@ -3,7 +3,7 @@ import {AccountService} from '../../services/account.service';
 import {ModalService} from '../../services/modal.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {ModalAlertContentComponent} from '../modal-alert-content/modal-alert-content.component';
-import {User} from "../../model/user";
+import {User} from '../../model/user';
 
 @Component({
   selector: 'app-modal-block-user-content',
@@ -25,11 +25,11 @@ export class ModalBlockUserContentComponent {
     this.dialogRef.close();
   }
 
-  private onSubmit(blockedUser: User, description: string): void {
+  private onSubmit(user: User, reason: string): void {
 
     this.submitDisabled = true;
 
-    this.accountService.updateblockProfiles(blockedUser, description, msg => {
+    this.accountService.addBlockedUser(user._id, msg => {
       let title = 'Failed to block user';
       if (msg.successful) {
         title = 'Successfully blocked user';

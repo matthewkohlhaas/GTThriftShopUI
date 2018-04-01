@@ -16,6 +16,7 @@
 }
 
 app-main-sidenav {
-  display: flex;
-  flex: 1;
+  display: inline-block;
+  width: 100%;
+  height: calc(100% - 69px);
 }

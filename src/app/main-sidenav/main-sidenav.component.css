@@ -1,5 +1,20 @@
 #main-sidenav-container {
-  flex: 1;
+  display: inline-block;
+  width: 100%;
+  min-height: 100%;
+  background-color: #e9e9e9;
+  overflow: hidden;
+}
+
+#main-sidenav-container .mat-sidenav {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  overflow: hidden;
+}
+
+#main-sidenav-container .mat-sidenav-content {
+  overflow: visible;
 }
 
 #main-sidenav .mat-nav-list {

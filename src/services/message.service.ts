@@ -18,10 +18,10 @@ export class MessageService {
     return this.http.get<Message[]>(`${environment.serverUrl}/messages/${listing._id}/${listing.user._id}/${currentUserId}`);
   }
 
-  sendMessage(listing: Listing, sendingUser: User, receivingUser: User, message: string,
+  sendMessage(listing: Listing, sendingUserId: string, message: string,
                 next?: (msg: ServerMessage) => void): void {
     this.http.post<ServerMessage>(environment.serverUrl + '/messages',
-      {listing: listing, sendingUser: sendingUser, receivingUser: receivingUser, message: message})
+      {listing: listing._id, sendingUser: sendingUserId, receivingUser: listing.user._id, message: message})
       .subscribe(
         res => {
           next(res);

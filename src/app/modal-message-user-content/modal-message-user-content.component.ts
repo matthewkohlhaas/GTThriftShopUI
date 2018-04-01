@@ -19,7 +19,6 @@ export class ModalMessageUserContentComponent implements OnInit {
 
   messages: Message[];
   submitDisabled = false;
-  currentUser: User;
   currentUserId: string;
   listing: Listing;
   message: string;
@@ -48,7 +47,6 @@ export class ModalMessageUserContentComponent implements OnInit {
     }
     this.messageService.getMessages(this.listing, this.currentUserId).subscribe(res => {
       this.messages = res;
-      console.log(this.messages);
     });
   }
 
@@ -57,7 +55,7 @@ export class ModalMessageUserContentComponent implements OnInit {
       return;
     }
     this.submitDisabled = true;
-    this.messageService.sendMessage(this.listing, this.currentUser, this.listing.user, this.message, msg => {
+    this.messageService.sendMessage(this.listing, this.currentUserId, this.message, msg => {
       let title = 'Failed to send message';
       if (msg.successful) {
         this.close();

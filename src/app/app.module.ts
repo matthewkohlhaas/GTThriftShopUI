@@ -53,6 +53,7 @@ import {FlagFormComponent} from './flag-form/flag-form.component';
 import {ModalEditListingContentComponent} from './modal-edit-listing-content/modal-edit-listing-content.component';
 import {ListingsFeedToolbarComponent} from './listings-feed-toolbar/listings-feed-toolbar.component';
 import { ModalBlockUserContentComponent } from './modal-block-user-content/modal-block-user-content.component';
+import { SecondaryToolbarDirective } from '../directives/secondary-toolbar.directive';
 
 
 const appRoutes: Routes = [
@@ -104,6 +105,7 @@ export function jwtOptionsFactory() {
     AdminPageComponent,
     FlagFormComponent,
     ModalBlockUserContentComponent,
+    SecondaryToolbarDirective,
   ],
   entryComponents: [
     ModalAlertContentComponent,

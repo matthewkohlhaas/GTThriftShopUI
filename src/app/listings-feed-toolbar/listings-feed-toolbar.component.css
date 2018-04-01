@@ -1,13 +1,5 @@
 #listing-toolbar {
-  position: absolute;
-  top: 0;
-  left: 0;
   background-color: #f5dbb5;
-  box-shadow: none;
-}
-
-#listing-toolbar .mat-toolbar-row {
-  padding: 0 12px !important;
 }
 
 #listing-toolbar-container {
@@ -41,7 +33,7 @@
 }
 
 #search-input-form-field {
-  width: 36%;
+  width: 39%;
   margin-right: 16px;
 }
 

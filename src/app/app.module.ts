@@ -52,9 +52,8 @@ import {UserProfilePageComponent} from './user-profile-page/user-profile-page.co
 import {FlagFormComponent} from './flag-form/flag-form.component';
 import {ModalEditListingContentComponent} from './modal-edit-listing-content/modal-edit-listing-content.component';
 import {ListingsFeedToolbarComponent} from './listings-feed-toolbar/listings-feed-toolbar.component';
-import {MessagingPageComponent} from './messaging-page/messaging-page.component';
 import {MessageService} from '../services/message.service';
-import { ModalMessageUserContentComponent } from './modal-message-user-content/modal-message-user-content.component';
+import {ModalMessageUserContentComponent} from './modal-message-user-content/modal-message-user-content.component';
 
 
 const appRoutes: Routes = [
@@ -65,7 +64,6 @@ const appRoutes: Routes = [
   {path: 'listings', component: ListingsFeedPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'listings/:id', component: ListingPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'create-listing', component: CreateListingComponent, canActivate: [AuthenticateGuard]},
-  {path: 'messages', component: MessagingPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'support', component: ContactPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'users/:id', component: UserProfilePageComponent, canActivate: [AuthenticateGuard]},
   {path: 'admin', component: AdminPageComponent, canActivate: [AuthenticateGuard, AdminGuard]},
@@ -106,7 +104,6 @@ export function jwtOptionsFactory() {
     ListingPageComponent,
     AdminPageComponent,
     FlagFormComponent,
-    MessagingPageComponent,
     ModalMessageUserContentComponent,
   ],
   entryComponents: [

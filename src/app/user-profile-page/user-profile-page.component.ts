@@ -5,6 +5,7 @@ import {User} from '../../model/user';
 import {ModalService} from '../../services/modal.service';
 import {ValidationUtils} from '../../utils/validation.utils';
 import {UserService} from '../../services/user.service';
+import {ModalMessageUserContentComponent} from '../modal-message-user-content/modal-message-user-content.component';
 
 @Component({
   selector: 'app-user-profile-page',
@@ -145,5 +146,10 @@ export class UserProfilePageComponent implements OnInit {
         });
       }
     });
+  }
+
+  private openMessageModal(user): void {
+    this.modalService.openModal<ModalMessageUserContentComponent>(ModalMessageUserContentComponent,
+      {user: user});
   }
 }

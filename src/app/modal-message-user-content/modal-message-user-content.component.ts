@@ -8,8 +8,6 @@ import {ValidationUtils} from '../../utils/validation.utils';
 import {User} from '../../model/user';
 import {Message} from '../../model/message';
 import {Listing} from '../../model/listing';
-import {ActivatedRoute, Params} from '@angular/router';
-
 
 @Component({
   selector: 'app-modal-message-user-content',
@@ -25,12 +23,12 @@ export class ModalMessageUserContentComponent implements OnInit {
   currentUserId: string;
   listing: Listing;
   message: string;
+  user: User;
 
   constructor(
     private modalService: ModalService,
     private messageService: MessageService,
     private accountService: AccountService,
-    private activatedRoute: ActivatedRoute,
     public dialogRef: MatDialogRef<ModalAlertContentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
@@ -40,7 +38,6 @@ export class ModalMessageUserContentComponent implements OnInit {
     this.listing = this.data.listing;
     this.loadMessages();
   }
-
   private close(): void {
     this.dialogRef.close();
   }
@@ -51,6 +48,7 @@ export class ModalMessageUserContentComponent implements OnInit {
     }
     this.messageService.getMessages(this.listing, this.currentUserId).subscribe(res => {
       this.messages = res;
+      console.log(this.messages);
     });
   }
 
@@ -59,15 +57,13 @@ export class ModalMessageUserContentComponent implements OnInit {
       return;
     }
     this.submitDisabled = true;
-    this.messageService.sendMessage(this.data.listing, this.data.listing.user, this.currentUser, this.message, msg => {
+    this.messageService.sendMessage(this.listing, this.currentUser, this.listing.user, this.message, msg => {
       let title = 'Failed to send message';
       if (msg.successful) {
-        console.log(msg);
-        title = 'Successfully sent message';
         this.close();
+        title = 'Successfully sent message';
       }
       this.modalService.openAlertModal(title, msg.text, () => this.submitDisabled = false);
     });
   }
-
 }

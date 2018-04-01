@@ -1,22 +1,25 @@
-<h1 mat-dialog-title class="message-title">Message user: {{data?.listing?.user?.firstName}}
-  {{data?.listing?.user?.lastName}}
+<h1 mat-dialog-title class="message-title"> Messages about listing: {{data.listing.name}}
 </h1>
-<mat-card class="message-card" *ngFor="let message of messages">
-  {{message.message}}
-</mat-card>
-
-<div class="message-card">
-<form class="classic-form">
-  <mat-form-field>
-  <textarea matInput matTextareaAutosize matAutosizeMinRows="2"
-            matAutosizeMaxRows="5" [(ngModel)]="message" name="message" (keyup.enter)="onSubmit()"></textarea>
-  </mat-form-field>
-  <mat-error>Please enter your message.</mat-error>
-  <div class="modal-buttons">
-    <button mat-raised-button class="button-cancel-message" (click)="close()" [disabled]="submitDisabled">Cancel</button>
-    <button mat-raised-button class="button-submit-message" color="primary" (click)="onSubmit()"
-          [disabled]="submitDisabled">Submit</button>
-  </div>
-</form>
+<div class="modal-body">
+  <mat-card class="message-text-card" *ngFor="let message of messages">
+    <div class="message-text">
+        <div *ngIf="message.sendingUser._id !== currentUserId">{{message.sendingUser.firstName}}:
+          {{message.message}}</div>
+      <div *ngIf="message.sendingUser._id === currentUserId">{{message.sendingUser.firstName}}:
+        {{message.message}}</div>
+    </div>
+  </mat-card>
 </div>
+<form class="classic-form">
+<mat-form-field class="example-full-width">
+  <textarea matInput matTextareaAutosize matAutosizeMinRows="3" [(ngModel)]="message" name="message"
+            placeholder="Type your message" (keyup.enter)="onSubmit()" ></textarea>
+  <mat-error>Fill in the message field</mat-error>
+</mat-form-field>
+<div class="modal-buttons">
+  <button mat-raised-button class="button-cancel-message" (click)="close()" [disabled]="submitDisabled">Cancel</button>
+  <button mat-raised-button class="button-submit-message" color="primary" (click)="onSubmit()"
+          [disabled]="submitDisabled">Submit</button>
+</div>
+</form>
 

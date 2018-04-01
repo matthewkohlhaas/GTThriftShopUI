@@ -1,14 +1,37 @@
 .message-title {
   margin-bottom: 10px;
+  text-align: center;
 }
 .message-card {
   display: flex;
-  height: 200px;
+  height: 250px;
+  width: 50px;
   margin-bottom: 12px;
   transition: all 0.4s;
+
+}
+.message-text-card{
+  display: flex;
+  height: 20px;
+  width: 400px;
+  margin-bottom: 12px;
+  transition: all 0.4s;
+
 }
 .message-text  {
-  font-size: 10px;
+  font-size: 12px;
 }
+.modal-body{
+  height: 300px;
+  overflow-y: auto;
+}
+.message-content-message-field {
+  display: block;
+  margin-bottom: 0px;
+}
+.background-user-one {
+  background-color:rebeccapurple ;
+}
+
 
 

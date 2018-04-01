@@ -14,14 +14,14 @@ export class MessageService {
 
   constructor(private http: HttpClient) {}
 
-  // public getMessages(listingId: string, firstUserId: string, secondUserId: string): Observable<Message[]> {
-  //   return this.http.get<Message[]>(environment.serverUrl + '/messages/' + listingId + '/' + firstUserId + '/' + secondUserId);
-  // }
+  public getMessages(listing: Listing, currentUserId: string): Observable<Message[]> {
+    return this.http.get<Message[]>(`${environment.serverUrl}/messages/${listing._id}/${listing.user._id}/${currentUserId}`);
+  }
 
-  sendMessage(listing: Listing, receivingUser: User, sendingUser: User, message: string,
+  sendMessage(listing: Listing, sendingUser: User, receivingUser: User, message: string,
                 next?: (msg: ServerMessage) => void): void {
     this.http.post<ServerMessage>(environment.serverUrl + '/messages',
-      {listing: listing, receivingUser: receivingUser, sendingUser: sendingUser, message: message})
+      {listing: listing, sendingUser: sendingUser, receivingUser: receivingUser, message: message})
       .subscribe(
         res => {
           next(res);
@@ -33,10 +33,6 @@ export class MessageService {
           }
         }
       );
-  }
-
-  public getMessages(listing: Listing, sendingUserId: string): Observable<Message[]> {
-    return this.http.get<Message[]>(`${environment.serverUrl}/messages/${listing._id}/${listing.user._id}/${sendingUserId}`);
   }
 }
 

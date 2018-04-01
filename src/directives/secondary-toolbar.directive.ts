@@ -16,7 +16,7 @@ export class SecondaryToolbarDirective {
   @HostBinding('style.visibility') visibility = 'visible';
 
   private prevScroll = 0;
-  private currTop = 0;
+  private currTop = MAX_TOP;
 
   @HostListener('window:scroll', []) onScroll(): void {
     this.currTop += this.prevScroll - window.scrollY;

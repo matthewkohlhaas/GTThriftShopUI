@@ -7,4 +7,5 @@ export class User {
   totalRatings: number;
   profilePictureUrl: string;
   profileBio: string;
+  blockedUsers: User[];
 }

@@ -25,13 +25,13 @@ export class ModalFlagListingContentComponent {
     this.dialogRef.close();
   }
 
-  private onSubmit(description: string): void {
+  private onSubmit(reason: string): void {
     if (!this.data || !this.data.listing) {
       return;
     }
     this.submitDisabled = true;
 
-    this.flagService.flagListing(this.data.listing, description, msg => {
+    this.flagService.flagListing(this.data.listing._id, reason, msg => {
       let title = 'Failed to flag listing';
       if (msg.successful) {
         title = 'Successfully flagged listing';

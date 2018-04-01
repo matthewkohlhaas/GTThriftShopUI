@@ -6,6 +6,7 @@ import {ModalService} from '../../services/modal.service';
 import {ValidationUtils} from '../../utils/validation.utils';
 import {UserService} from '../../services/user.service';
 import {ModalMessageUserContentComponent} from '../modal-message-user-content/modal-message-user-content.component';
+import {ModalBlockUserContentComponent} from '../modal-block-user-content/modal-block-user-content.component';
 
 @Component({
   selector: 'app-user-profile-page',
@@ -16,6 +17,7 @@ import {ModalMessageUserContentComponent} from '../modal-message-user-content/mo
 export class UserProfilePageComponent implements OnInit {
 
   private editProfileEnabled = false;
+  private blockProfileDisabled = false;
 
   private user: User;
   private currentUserId = '';
@@ -38,6 +40,7 @@ export class UserProfilePageComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.userService.getUserById(params['id']).subscribe(value => {
         this.user = value;
+        this.blockProfileDisabled = this.isCurrentUsersProfile();
       }, error => {
         this.router.navigate(['']);
       });
@@ -58,6 +61,7 @@ export class UserProfilePageComponent implements OnInit {
     this.profileBio = this.user.profileBio;
     this.editProfileEnabled = true;
   }
+
 
   private done(): void {
     if (!this.isCurrentUsersProfile()) {
@@ -151,5 +155,10 @@ export class UserProfilePageComponent implements OnInit {
   private openMessageModal(user): void {
     this.modalService.openModal<ModalMessageUserContentComponent>(ModalMessageUserContentComponent,
       {user: user});
+  }
+
+  private openFlagModal(listing): void {
+    this.modalService.openModal<ModalBlockUserContentComponent>(ModalBlockUserContentComponent,
+      {user: this.user});
   }
 }

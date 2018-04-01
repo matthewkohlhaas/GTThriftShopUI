@@ -6,15 +6,16 @@ import {ModalService} from '../../services/modal.service';
   templateUrl: './flag-form.component.html',
   styleUrls: ['./flag-form.component.css']
 })
-export class FlagFormComponent{
+export class FlagFormComponent {
 
-  private readonly REASONS: string[] = [
+  private readonly DEFAULT_REASONS: string[] = [
     'Content is inappropriate',
     'Content is spam or misleading',
     'Content is abusive',
     'Other'
   ];
 
+  @Input() reasons: string[] = this.DEFAULT_REASONS;
   private reason: string;
   private description: string;
 
@@ -22,7 +23,6 @@ export class FlagFormComponent{
 
   public getDescription(): string {
     let description;
-
     if (this.reason && this.description) {
       description = `${this.reason}: ${this.description}`;
     } else if (this.reason) {

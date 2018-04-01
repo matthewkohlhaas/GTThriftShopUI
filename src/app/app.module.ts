@@ -54,7 +54,7 @@ import {ModalEditListingContentComponent} from './modal-edit-listing-content/mod
 import {ListingsFeedToolbarComponent} from './listings-feed-toolbar/listings-feed-toolbar.component';
 import {MessageService} from '../services/message.service';
 import {ModalMessageUserContentComponent} from './modal-message-user-content/modal-message-user-content.component';
-
+import {ModalBlockUserContentComponent} from './modal-block-user-content/modal-block-user-content.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -105,12 +105,14 @@ export function jwtOptionsFactory() {
     AdminPageComponent,
     FlagFormComponent,
     ModalMessageUserContentComponent,
+    ModalBlockUserContentComponent
   ],
   entryComponents: [
     ModalAlertContentComponent,
     ModalEditListingContentComponent,
     ModalFlagListingContentComponent,
-    ModalMessageUserContentComponent
+    ModalMessageUserContentComponent,
+    ModalBlockUserContentComponent
   ],
   imports: [
     BrowserModule,

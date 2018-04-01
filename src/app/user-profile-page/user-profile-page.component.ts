@@ -17,7 +17,6 @@ import {ModalBlockUserContentComponent} from '../modal-block-user-content/modal-
 export class UserProfilePageComponent implements OnInit {
 
   private editProfileEnabled = false;
-  private blockProfileDisabled = false;
 
   private user: User;
   private currentUserId = '';
@@ -40,7 +39,6 @@ export class UserProfilePageComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.userService.getUserById(params['id']).subscribe(value => {
         this.user = value;
-        this.blockProfileDisabled = this.isCurrentUsersProfile();
       }, error => {
         this.router.navigate(['']);
       });

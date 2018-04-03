@@ -13,7 +13,7 @@ export class TicketService {
 
   createTicket(subject: string, message: string, next?: (msg: ServerMessage) => void): void {
 
-    this.http.post<ServerMessage>(environment.serverUrl + '/tickets',
+    this.http.post<ServerMessage>(`${environment.serverUrl}tickets`,
       {subject: subject, message: message})
       .subscribe(
         res => {

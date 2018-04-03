@@ -56,7 +56,7 @@ import {MessageService} from '../services/message.service';
 import {UserMessagingComponent} from './user-messaging/user-messaging.component';
 import {ModalMessagingContentComponent } from './modal-messaging-content/modal-messaging-content.component';
 import {ModalGetMessagesComponent } from './modal-get-messages/modal-get-messages.component';
-
+import {ModalBlockUserContentComponent} from './modal-block-user-content/modal-block-user-content.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -110,13 +110,15 @@ export function jwtOptionsFactory() {
     UserMessagingComponent,
     ModalMessagingContentComponent,
     ModalGetMessagesComponent,
+    ModalBlockUserContentComponent
   ],
   entryComponents: [
     ModalAlertContentComponent,
     ModalEditListingContentComponent,
     ModalFlagListingContentComponent,
     ModalMessagingContentComponent,
-    ModalGetMessagesComponent
+    ModalGetMessagesComponent,
+    ModalBlockUserContentComponent
   ],
   imports: [
     BrowserModule,

@@ -41,6 +41,12 @@
           <mat-error>Please enter a bio.</mat-error>
         </mat-form-field>
       </div>
+
+      <div *ngIf="!isCurrentUsersProfile()">
+        <a>
+          <mat-icon class="flag-button" (click)="openFlagModal()">flag</mat-icon>
+        </a>
+      </div>
       <div class="profile-buttons" *ngIf="isCurrentUsersProfile()">
         <button mat-raised-button id="edit-profile-button" *ngIf="!editProfileEnabled" color="primary"
                 (click)="editProfile()">Edit Profile</button>

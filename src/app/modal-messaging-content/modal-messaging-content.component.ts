@@ -6,7 +6,6 @@ import {UserService} from '../../services/user.service';
 import {ListingService} from '../../services/listing.service';
 import {AccountService} from '../../services/account.service';
 import {MessageService} from '../../services/message.service';
-import {ActivatedRoute} from '@angular/router';
 import {User} from '../../model/user';
 import {Listing} from '../../model/listing';
 import {Message} from '../../model/message';
@@ -90,7 +89,7 @@ export class ModalMessagingContentComponent implements OnInit {
       return;
     }
     this.submitDisabled = true;
-    this.messageService.sendMessage(this.listing, this.currentUser, this.recipient, this.message, msg => {
+    this.messageService.sendMessage(this.listing, this.currentUserId, this.recipient._id, this.message, msg => {
       let title = 'Failed to send message';
       if (msg.successful) {
         this.close();

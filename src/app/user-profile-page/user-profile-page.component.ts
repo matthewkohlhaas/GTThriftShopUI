@@ -5,6 +5,7 @@ import {User} from '../../model/user';
 import {ModalService} from '../../services/modal.service';
 import {ValidationUtils} from '../../utils/validation.utils';
 import {UserService} from '../../services/user.service';
+import {ModalBlockUserContentComponent} from '../modal-block-user-content/modal-block-user-content.component';
 
 @Component({
   selector: 'app-user-profile-page',
@@ -57,6 +58,7 @@ export class UserProfilePageComponent implements OnInit {
     this.profileBio = this.user.profileBio;
     this.editProfileEnabled = true;
   }
+
 
   private done(): void {
     if (!this.isCurrentUsersProfile()) {
@@ -145,5 +147,10 @@ export class UserProfilePageComponent implements OnInit {
         });
       }
     });
+  }
+
+  private openFlagModal(listing): void {
+    this.modalService.openModal<ModalBlockUserContentComponent>(ModalBlockUserContentComponent,
+      {user: this.user});
   }
 }

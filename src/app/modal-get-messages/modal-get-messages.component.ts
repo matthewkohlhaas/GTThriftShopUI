@@ -9,7 +9,6 @@ import {User} from '../../model/user';
 import {Message} from '../../model/message';
 import {Listing} from '../../model/listing';
 import {UserService} from '../../services/user.service';
-import {ListingService} from '../../services/listing.service';
 
 
 @Component({
@@ -20,13 +19,12 @@ import {ListingService} from '../../services/listing.service';
 })
 export class ModalGetMessagesComponent implements OnInit {
 
-  private submitDisabled = false;
-
-  private message: string;
-  private messages: Message[];
-  private currentUserId: string;
-  private currentUser: User;
-  private listing: Listing;
+  messages: Message[];
+  submitDisabled = false;
+  currentUserId: string;
+  listing: Listing;
+  message: string;
+  user: User;
 
   constructor(
     private modalService: ModalService,

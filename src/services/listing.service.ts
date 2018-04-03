@@ -13,11 +13,11 @@ export class ListingService {
   constructor(private http: HttpClient) { }
 
   public getListings(params?: any): Observable<Listing[]> {
-    return this.http.get<Listing[]>(environment.serverUrl + '/listings', {params: params});
+    return this.http.get<Listing[]>(`${environment.serverUrl}/listings`, {params: params});
   }
 
   public getListing(id: string): Observable<Listing> {
-    return this.http.get<Listing>(environment.serverUrl + '/listings/' + id);
+    return this.http.get<Listing>(`${environment.serverUrl}/listings/` + id);
   }
 
   public getAllListingsBetweenUsers(firstUserId: string, secondUserId: string): Observable<Listing[]> {
@@ -30,7 +30,7 @@ export class ListingService {
 
   createListing(name: string, price: number, description: string, imageUrl: string,
                 next?: (msg: ServerMessage) => void): void {
-    this.http.post<ServerMessage>(environment.serverUrl + '/listings',
+    this.http.post<ServerMessage>(`${environment.serverUrl}/listings`,
       {name: name, description: description, price: price, imageUrl: imageUrl})
       .subscribe(
         res => {

@@ -1,3 +1,11 @@
+.listings-feed {
+  margin-top: 76px;
+}
+
+.listings-not-found-message {
+  font-size: 16pt;
+}
+
 .listing-card {
   display: flex;
   height: 200px;

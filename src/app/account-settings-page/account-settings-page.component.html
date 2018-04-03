@@ -4,10 +4,10 @@
     <h3>Blocked users</h3>
 
     <table class="block-user-table">
-      <tr *ngFor="let item of nameList; let i = index">
+      <tr *ngFor="let item of blockedList; let i = index">
         <td>{{i + 1}}</td>
-        <td>{{item}}</td>
-        <td><a>unblock</a></td>
+        <td>{{item.firstName}} {{item.lastName}}</td>
+        <td><a (click)="onSubmit(item)">unblock</a></td>
       </tr>
     </table>
   </div>

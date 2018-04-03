@@ -14,8 +14,16 @@ export class MessageService {
 
   constructor(private http: HttpClient) {}
 
+  public getMessagesAboutListing(listing: Listing, currentUserId: string): Observable<Message[]> {
+    return this.http.get<Message[]>(`${environment.serverUrl}/messages/${listing._id}/users/${currentUserId}`);
+  }
+
   public getMessages(listing: Listing, currentUserId: string): Observable<Message[]> {
     return this.http.get<Message[]>(`${environment.serverUrl}/messages/${listing._id}/${listing.user._id}/${currentUserId}`);
+  }
+
+  public getAllMessagesForUser(id: string): Observable<Message[]> {
+    return this.http.get<Message[]>(`${environment.serverUrl}/messages/users/${id}`);
   }
 
   sendMessage(listing: Listing, sendingUser: User, receivingUser: User, message: string,

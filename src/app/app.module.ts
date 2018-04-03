@@ -14,7 +14,7 @@ import {
   MatRadioModule,
   MatSelectModule,
   MatSidenavModule,
-  MatToolbarModule
+  MatToolbarModule,
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';
@@ -53,7 +53,9 @@ import {FlagFormComponent} from './flag-form/flag-form.component';
 import {ModalEditListingContentComponent} from './modal-edit-listing-content/modal-edit-listing-content.component';
 import {ListingsFeedToolbarComponent} from './listings-feed-toolbar/listings-feed-toolbar.component';
 import {MessageService} from '../services/message.service';
-import {ModalMessageUserContentComponent} from './modal-message-user-content/modal-message-user-content.component';
+import {UserMessagingComponent} from './user-messaging/user-messaging.component';
+import {ModalMessagingContentComponent } from './modal-messaging-content/modal-messaging-content.component';
+import {ModalGetMessagesComponent } from './modal-get-messages/modal-get-messages.component';
 
 
 const appRoutes: Routes = [
@@ -65,6 +67,7 @@ const appRoutes: Routes = [
   {path: 'listings/:id', component: ListingPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'create-listing', component: CreateListingComponent, canActivate: [AuthenticateGuard]},
   {path: 'support', component: ContactPageComponent, canActivate: [AuthenticateGuard]},
+  {path: 'messages', component: UserMessagingComponent, canActivate: [AuthenticateGuard]},
   {path: 'users/:id', component: UserProfilePageComponent, canActivate: [AuthenticateGuard]},
   {path: 'admin', component: AdminPageComponent, canActivate: [AuthenticateGuard, AdminGuard]},
   {path: '**', component: NotFoundPageComponent}
@@ -104,13 +107,16 @@ export function jwtOptionsFactory() {
     ListingPageComponent,
     AdminPageComponent,
     FlagFormComponent,
-    ModalMessageUserContentComponent,
+    UserMessagingComponent,
+    ModalMessagingContentComponent,
+    ModalGetMessagesComponent,
   ],
   entryComponents: [
     ModalAlertContentComponent,
     ModalEditListingContentComponent,
     ModalFlagListingContentComponent,
-    ModalMessageUserContentComponent
+    ModalMessagingContentComponent,
+    ModalGetMessagesComponent
   ],
   imports: [
     BrowserModule,

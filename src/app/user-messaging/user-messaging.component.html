@@ -1,0 +1,28 @@
+<mat-card class="message-center-card">
+  <button mat-raised-button id="new-message-button" color="primary" (click)="openSendMessageModal()">New Message</button>
+  <form class="classic-form">
+  </form>
+  <h2>Your Messages:</h2>
+  <div *ngIf="messages.length === 0">You have no messages.</div>
+  <div class="mat-card-content">
+  <div class *ngFor="let message of messages; let i=index">
+    <div *ngIf="i < 5">
+      <mat-card class="message-text" >
+        <div class="message-text">
+          <a class="individual-message">
+            <div (click)="viewAllMessagesModal(message.listing)">
+            {{message.listing.name}}
+            </div>
+          </a>
+          {{message.sendingUser.firstName}} {{message.sendingUser.lastName}}:
+          {{message.message}}
+          <div class="createdAt-message-text">{{message.createdAt}}</div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+  </div>
+</mat-card>
+
+
+

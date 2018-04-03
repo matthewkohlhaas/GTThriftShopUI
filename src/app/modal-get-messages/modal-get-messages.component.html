@@ -1,0 +1,14 @@
+<h1 mat-dialog-title class="new-message-title">
+  View All Messages
+</h1>
+<form class="classic-form">
+  <mat-card class="listing-card" *ngFor="let message of messages">
+    <div class="message-text">
+      {{message.sendingUser.firstName}} {{message.sendingUser.lastName}}:
+      {{message.message}}
+    </div>
+  </mat-card>
+  <div class="modal-buttons">
+    <button mat-raised-button class="button-cancel-message" (click)="close()" [disabled]="submitDisabled">Close</button>
+  </div>
+</form>

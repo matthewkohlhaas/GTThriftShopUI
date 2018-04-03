@@ -21,7 +21,7 @@ export class AccountSettingsPageComponent implements OnInit{
   private nameList : string[]
 
   private blockTableData : tableData[] = [];
-  private displayedColumns = ['position', 'name'];
+  private displayedColumns = ['position', 'name', 'status'];
 //  private dataSource;
   private dataSource = new MatTableDataSource()
   constructor(
@@ -35,18 +35,16 @@ export class AccountSettingsPageComponent implements OnInit{
     this.accountService.getCurrentUser().subscribe((value => {
       this.currentUser = value;
       this.blockedList = this.currentUser.blockedUsers;
+      this.testUser = this.blockedList[0];
+      this.test = this.blockedList[0].toString();
+
 
       for (let i = 0; i < this.blockedList.length; i++) {
-
-        this.userService.getUserById(this.blockedList[0].toString()).subscribe(value => {
-          //this.nameList.push(value.firstName);
-          this.testUser = value;
-          this.test = value.email;
-        });
-
+        let user = this.blockedList[i];
         const bang: tableData = {
           position: i,
-          name: this.blockedList[i].toString()
+          name: user.firstName.concat(' ', user.lastName),
+          unblock: ''
         };
         this.blockTableData.push(bang);
 
@@ -67,6 +65,7 @@ export class AccountSettingsPageComponent implements OnInit{
 export interface tableData {
   position: number;
   name: string;
+  unblock: string;
 }
 
 

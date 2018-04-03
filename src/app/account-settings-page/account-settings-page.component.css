@@ -3,19 +3,31 @@
   display: flex;
   flex-direction: column;
   min-width: 300px;
+
 }
 
 .block-user-table-header {
   min-height: 64px;
-  padding: 8px 24px 0;
+  padding: 24px 24px;
 }
 
-.mat-form-field {
-  font-size: 14px;
+.block-user-table {
+  border-collapse: collapse;
   width: 100%;
 }
 
-.mat-table {
-  overflow: auto;
-  max-height: 500px;
+.block-user-table td, .block-user-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+
+.block-user-table tr:hover {background-color: #ddd;}
+
+.block-user-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
 }

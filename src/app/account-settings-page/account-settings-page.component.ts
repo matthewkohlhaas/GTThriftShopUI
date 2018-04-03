@@ -4,6 +4,7 @@ import {AccountService} from "../../services/account.service";
 import {User} from "../../model/user";
 import {ModalService} from "../../services/modal.service";
 import {ModalAlertContentComponent} from "../modal-alert-content/modal-alert-content.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-account-settings-page',
@@ -22,7 +23,9 @@ export class AccountSettingsPageComponent implements OnInit{
   constructor(
     private userService: UserService,
     private accountService: AccountService,
+    private router: Router,
     private modalService: ModalService
+
 
   ) { }
 
@@ -42,15 +45,22 @@ export class AccountSettingsPageComponent implements OnInit{
 
   private onSubmit(user: User): void {
 
-    // this.submitDisabled = true;
-    //
-    // this.accountService.unblockedUser(user._id, msg => {
-    //   let title = 'Failed to unblock user';
-    //   if (msg.successful) {
-    //     title = 'Successfully unblocked user';
-    //   }
-    //   //this.modalService.openAlertModal(title, msg.text, () => this.submitDisabled = false);
-    // });
+    this.submitDisabled = true;
+
+    this.accountService.removeBlockedUser(user._id, msg => {
+      let title = 'Failed to unblock user';
+      if (msg.successful) {
+        title = 'Successfully unblocked user';
+      }
+      this.modalService.openAlertModal(title, msg.text, () => this.onModalClose(msg.successful));
+    });
+  }
+
+  private onModalClose(successful: boolean): void {
+    if (successful) {
+      this.ngOnInit();
+    }
+    this.submitDisabled = false;
   }
 }
 

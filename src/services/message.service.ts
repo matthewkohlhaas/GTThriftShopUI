@@ -32,6 +32,7 @@ export class MessageService {
       {listing: listing._id, sendingUser: sendingUserId, receivingUser: listing.user._id, message: message})
       .subscribe(
         res => {
+          next(res);
         }, err => {
           if (err.status === 0) {
             next(new ServerMessage(false, COULD_NOT_CONNECT));

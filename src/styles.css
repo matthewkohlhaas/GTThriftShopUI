@@ -5,6 +5,12 @@ body {
   font-family: Roboto, sans-serif;
 }
 
+.mat-card {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+}
+
 .toolbar-container {
   display: flex;
   flex-direction: column;
@@ -23,8 +29,8 @@ body {
 }
 
 .toolbar mat-toolbar-row {
-  max-width: 860px;
-  min-width: 860px;
+  max-width: 850px;
+  min-width: 850px;
   margin: auto;
   padding: 0;
 }
@@ -116,3 +122,4 @@ a {
 a:hover {
   text-decoration: underline;
 }
+

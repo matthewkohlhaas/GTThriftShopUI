@@ -10,7 +10,6 @@
   margin: 0 auto;
   display: flex;
   height: 180px;
-  width: 90%;
   margin-bottom: 12px;
   transition: all 0.4s;
 }
@@ -26,6 +25,10 @@
   vertical-align: middle;
   width: 30%;
   height: 100%;
+}
+
+.listing-image img {
+  float: left
 }
 
 .listing-image img {
@@ -62,6 +65,7 @@
   width: 15%;
   margin: auto !important;
   font-size: 18pt;
-  font-weight: bold;
+  font-weight: 400;
   text-align: center;
+  color: green;
 }

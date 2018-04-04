@@ -6,15 +6,42 @@
 #main-toolbar-menu-button {
   height: auto;
   width: auto;
-  margin-right: 15px;
+  margin-right: 20px;
   font-size: 24pt;
   cursor: pointer;
 }
 
 #main-toolbar-logout-button {
+  vertical-align: top;
   font-size: 12pt;
-  font-family: Lato, sans-serif;
   display: block;
+  font-family: Lato, sans-serif;
+  height: 45px;
+}
+
+#main-toolbar-logout-button:hover {
+  background-color: #c19051;
+}
+
+#main-toolbar-sell-button {
+  vertical-align:bottom;
+  margin-left:20px;
+  font-size: 12pt;
+  display: block;
+  font-family: Lato, sans-serif;
+  height: 45px;
+}
+#main-toolbar-sell-button:hover {
+  background-color: #c19051;
+}
+
+#main-toolbar-sell-button .mat-icon {
+  margin-right: 3px;
+  vertical-align: sub;
+}
+
+#main-toolbar-sell-button:focus {
+  outline:none;
 }
 
 app-main-sidenav {

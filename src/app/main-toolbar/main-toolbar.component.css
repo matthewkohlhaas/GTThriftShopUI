@@ -3,11 +3,18 @@
   outline: none;
 }
 
+#main-toolbar-logo {
+  height: 100%;
+  width: 80px;
+  margin-right: 20px;
+}
+
 #main-toolbar-menu-button {
   height: auto;
   width: auto;
-  margin-right: 20px;
-  font-size: 24pt;
+  margin-right: 25px;
+  margin-left: 15px;
+  font-size: 28pt;
   cursor: pointer;
 }
 

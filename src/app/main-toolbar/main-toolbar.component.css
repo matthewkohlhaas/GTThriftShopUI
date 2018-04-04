@@ -3,6 +3,15 @@
   outline: none;
 }
 
+/*
+  UI bug that causes toolbar to shrink in height in mobile view.
+ */
+@media (max-width: 600px) {
+  .mat-toolbar-row, #main-toolbar {
+    height: 64px;
+  }
+}
+
 #main-toolbar-logo {
   height: 100%;
   width: 80px;

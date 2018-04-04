@@ -1,23 +1,33 @@
 #listing-toolbar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #f5dbb5;
+  background-color: whitesmoke;
   box-shadow: none;
+  max-height: 50px;
+  border-radius: 5px;
+}
+
+.toolbar-spacer {
+  min-width: 20px;
+  max-width: 20px;
+}
+
+.mat-toolbar-multiple-rows {
+  max-height: 45px !important;
+  min-height:45px;
+  display: block;
 }
 
 #listing-toolbar .mat-toolbar-row {
   padding: 0 12px !important;
+  max-height: 50px !important;
+  margin: 0px;
 }
 
 #listing-toolbar-container {
-  position: relative;
-  top: -4px;
   width: auto;
 }
 
 .listing-toolbar-label {
-  font-size: 14pt;
+  font-size: 11pt;
 }
 
 .listing-toolbar-label,
@@ -31,18 +41,17 @@
 }
 
 #listing-toolbar .mat-toolbar-row .mat-form-field {
-  height: 64px;
-  font-size: 14pt;
+  font-size: 11pt;
 }
 
 #category-select-form-field {
-  width: 20%;
-  margin-right: 16px;
+  width: 12%;
+  margin-right: 12px;
 }
 
 #search-input-form-field {
-  width: 36%;
-  margin-right: 16px;
+  width: 45%;
+  margin-right: 12px;
 }
 
 #sort-select-form-field {

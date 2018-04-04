@@ -1,5 +1,5 @@
 .listings-feed {
-  margin-top: 76px;
+  margin-top: 40px;
 }
 
 .listings-not-found-message {
@@ -7,8 +7,10 @@
 }
 
 .listing-card {
+  margin: 0 auto;
   display: flex;
-  height: 200px;
+  height: 180px;
+  width: 90%;
   margin-bottom: 12px;
   transition: all 0.4s;
 }
@@ -48,12 +50,12 @@
 }
 
 .listing-seller {
-  font-size: 12pt;
+  font-size: 11pt;
   margin-bottom: 20px;
 }
 
 .listing-description {
-  font-size: 12pt;
+  font-size: 11pt;
 }
 
 .listing-price {

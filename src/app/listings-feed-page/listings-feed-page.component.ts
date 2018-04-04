@@ -32,7 +32,7 @@ export class ListingsFeedPageComponent implements OnInit {
     });
   }
 
-  list(): void {
+  public list(): void {
     const params: object = this.buildParams();
     console.log(params);
     this.router.navigate(['/listings'], {queryParams: params});

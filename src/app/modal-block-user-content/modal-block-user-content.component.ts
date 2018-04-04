@@ -5,6 +5,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {ModalAlertContentComponent} from '../modal-alert-content/modal-alert-content.component';
 import {User} from '../../model/user';
 import {FlagService} from '../../services/flag.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-modal-block-user-content',
@@ -23,6 +24,7 @@ export class ModalBlockUserContentComponent {
 
   constructor(
     private modalService: ModalService,
+    private router: Router,
     private accountService: AccountService,
     private flagService: FlagService,
     public dialogRef: MatDialogRef<ModalAlertContentComponent>,
@@ -46,8 +48,17 @@ export class ModalBlockUserContentComponent {
         title = 'Successfully blocked user';
         this.close();
       }
-      this.modalService.openAlertModal(title, msg.text, () => this.submitDisabled = false);
+      this.modalService.openAlertModal(title, msg.text, () => this.onModalClose(msg.successful));
     });
   }
+
+  private onModalClose(successful: boolean): void {
+    if (successful) {
+      this.submitDisabled = false;
+      this.router.navigate(['']);
+    }
+    this.submitDisabled = false;
+  }
 }
+
 

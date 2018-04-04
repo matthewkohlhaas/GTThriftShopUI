@@ -3,16 +3,61 @@
   outline: none;
 }
 
+/*
+  UI bug that causes toolbar to shrink in height in mobile view.
+ */
+@media (max-width: 600px) {
+  .mat-toolbar-row, #main-toolbar {
+    height: 64px;
+  }
+}
+
+#main-toolbar-logo {
+  height: 100%;
+  width: 80px;
+  margin-right: 20px;
+}
+
 #main-toolbar-menu-button {
   height: auto;
   width: auto;
-  margin-right: 20px;
-  font-size: 24pt;
+  margin-right: 25px;
+  margin-left: 15px;
+  font-size: 28pt;
   cursor: pointer;
 }
 
 #main-toolbar-logout-button {
+  vertical-align: top;
   font-size: 12pt;
+  display: block;
+  font-family: Lato, sans-serif;
+  height: 45px;
+}
+
+#main-toolbar-logout-button:hover {
+  background-color: #c19051;
+}
+
+#main-toolbar-sell-button {
+  vertical-align:bottom;
+  margin-left:20px;
+  font-size: 12pt;
+  display: block;
+  font-family: Lato, sans-serif;
+  height: 45px;
+}
+#main-toolbar-sell-button:hover {
+  background-color: #c19051;
+}
+
+#main-toolbar-sell-button .mat-icon {
+  margin-right: 3px;
+  vertical-align: sub;
+}
+
+#main-toolbar-sell-button:focus {
+  outline:none;
 }
 
 app-main-sidenav {

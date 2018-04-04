@@ -1,13 +1,17 @@
 <div id="main-toolbar-container" class="toolbar-container">
   <mat-toolbar id="main-toolbar" class="toolbar" color="accent">
-    <mat-toolbar-row>
       <mat-icon id="main-toolbar-menu-button" (click)="sidenav.toggle()">menu</mat-icon>
-      <a id="main-toolbar-title" class="toolbar-title" href="/listings" (click)="sidenav.close()">
-        GT ThriftShop
-      </a>
-      <span class="toolbar-spacer"></span>
-      <button mat-button id="main-toolbar-logout-button" (click)="logout()">Log Out</button>
-    </mat-toolbar-row>
+      <div id="main-toolbar-logo">
+        <a>
+          <img src="../../assets/logo.png" height="70" width="85"/>
+        </a>
+      </div>
+    <span class="toolbar-spacer"></span>
+    <app-listings-feed-toolbar (listEvent)="list()"></app-listings-feed-toolbar>
+    <button mat-button id="main-toolbar-sell-button" routerLink="/create-listing">
+      <mat-icon>note_add</mat-icon>Sell
+    </button>
+    <button mat-button id="main-toolbar-logout-button" (click)="logout()">Log out</button>
   </mat-toolbar>
   <app-main-sidenav #sidenav></app-main-sidenav>
 </div>

@@ -5,6 +5,12 @@ body {
   font-family: Roboto, sans-serif;
 }
 
+.mat-card {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+}
+
 .toolbar-container {
   display: flex;
   flex-direction: column;
@@ -23,15 +29,16 @@ body {
 }
 
 .toolbar mat-toolbar-row {
-  max-width: 900px;
+  max-width: 850px;
+  min-width: 850px;
   margin: auto;
   padding: 0;
 }
 
 .toolbar-title {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 20px;
   color: white;
+  font-family: Lato, sans-serif;
 }
 
 .toolbar-title:hover, .toolbar-title:active, .toolbar-title:focus {
@@ -72,7 +79,7 @@ body {
 }
 
 .mat-card-subtitle {
-  font-size: 12pt !important;
+  font-size: 11pt !important;
 }
 
 .classic-form .mat-form-field {
@@ -109,9 +116,10 @@ body {
 a {
   color: #0d47a1;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: light;
 }
 
 a:hover {
   text-decoration: underline;
 }
+

@@ -14,7 +14,8 @@ import {
   MatRadioModule,
   MatSelectModule,
   MatSidenavModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatTableModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';
@@ -53,11 +54,13 @@ import {FlagFormComponent} from './flag-form/flag-form.component';
 import {ModalEditListingContentComponent} from './modal-edit-listing-content/modal-edit-listing-content.component';
 import {ListingsFeedToolbarComponent} from './listings-feed-toolbar/listings-feed-toolbar.component';
 import { ModalBlockUserContentComponent } from './modal-block-user-content/modal-block-user-content.component';
+import { AccountSettingsPageComponent } from './account-settings-page/account-settings-page.component';
 
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
   {path: 'account-recovery', component: AccountRecoveryPageComponent},
+  {path: 'account-settings', component: AccountSettingsPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'verify/:token', component: VerificationPageComponent},
   {path: 'reset-password/:token', component: PasswordResetPageComponent},
   {path: 'listings', component: ListingsFeedPageComponent, canActivate: [AuthenticateGuard]},
@@ -96,6 +99,7 @@ export function jwtOptionsFactory() {
     CreateListingComponent,
     ContactPageComponent,
     AccountRecoveryPageComponent,
+    AccountSettingsPageComponent,
     VerificationPageComponent,
     PasswordResetPageComponent,
     UserProfilePageComponent,
@@ -104,6 +108,7 @@ export function jwtOptionsFactory() {
     AdminPageComponent,
     FlagFormComponent,
     ModalBlockUserContentComponent,
+    AccountSettingsPageComponent,
   ],
   entryComponents: [
     ModalAlertContentComponent,
@@ -135,7 +140,8 @@ export function jwtOptionsFactory() {
     MatInputModule,
     MatRadioModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule
   ],
   providers: [
     HttpClient,

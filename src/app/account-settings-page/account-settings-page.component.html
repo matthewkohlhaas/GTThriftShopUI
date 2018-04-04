@@ -1,0 +1,12 @@
+<div class="block-user-table-container mat-elevation-z8">
+  <div class="block-user-table-header">
+    <h3>Blocked users</h3>
+    <table class="block-user-table">
+      <tr *ngFor="let item of blockedList; let i = index">
+        <td>{{i + 1}}</td>
+        <td>{{item.firstName}} {{item.lastName}}</td>
+        <td><a (click)="onSubmit(item)">unblock</a></td>
+      </tr>
+    </table>
+  </div>
+</div>

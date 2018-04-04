@@ -19,3 +19,8 @@
   overflow: auto;
   max-height: 500px;
 }
+
+.block-user-table-unblock-icon:hover {
+  cursor:pointer;
+  color: red;
+}

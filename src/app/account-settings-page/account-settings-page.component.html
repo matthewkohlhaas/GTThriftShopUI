@@ -1,4 +1,4 @@
-<mat-card class="block-user-view-card">
+<mat-card class="block-table-view-card">
 
     <div>Blocked users</div>
 
@@ -13,19 +13,20 @@
       <!-- Position Column -->
       <ng-container matColumnDef="position">
         <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+        <mat-cell *matCellDef="let row; let i = index;"> {{i + 1}} </mat-cell>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.name}}
+        <mat-cell *matCellDef="let element"> {{element.firstName}} {{element.lastName}}
         </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="status">
         <mat-header-cell *matHeaderCellDef> unblock </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.unblock}}  <mat-icon>cancel</mat-icon>
+        <mat-cell *matCellDef="let element">
+          <mat-icon class="block-user-table-unblock-icon" (click)="onSubmit(element)">cancel</mat-icon>
         </mat-cell>
 
       </ng-container>

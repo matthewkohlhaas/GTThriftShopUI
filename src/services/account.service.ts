@@ -239,4 +239,20 @@ export class AccountService {
         }
       );
   }
+  public removeBlockedUser(id: string, next?: (msg: ServerMessage) => void): void {
+    this.http.put<ServerMessage>(environment.serverUrl + '/users/from-token/blocked-users',
+      {id: id})
+      .subscribe(
+        res => {
+          next(res);
+        }, err => {
+          if (err.status === 0) {
+            next(new ServerMessage(false, COULD_NOT_CONNECT));
+          } else {
+            next(err.error);
+          }
+        }
+      );
+  }
 }
+

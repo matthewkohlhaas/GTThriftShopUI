@@ -22,7 +22,9 @@
 }
 
 
-.block-user-table tr:hover {background-color: #ddd;}
+.block-user-table tr:hover {
+  background-color: #ddd;
+}
 
 .block-user-table th {
   padding-top: 12px;

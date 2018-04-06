@@ -33,19 +33,19 @@
   margin-bottom: 20px;
 }
 
-.user-email {
-  font-size: 14pt;
-  margin-bottom: 20px;
-}
-
 .user-bio-text {
   font-size: 12pt;
 }
 
-.user-bio-label {
+.user-bio-label, .user-email-label{
   font-weight: bold;
   font-size: 14pt;
   margin-bottom: 12px;
+}
+
+.user-email {
+  font-weight: normal;
+  font-size: 12pt;
 }
 
 .edit-name {

@@ -25,8 +25,8 @@
           <mat-error>Please enter a last name.</mat-error>
         </mat-form-field>
       </div>
-      <div class="user-email">
-        <span><b>email:</b> {{user?.email}}</span>
+      <div class="user-email-label">
+        Email : <span class="user-email">{{user?.email}}</span>
       </div>
       <div class="user-bio-label" *ngIf="!editProfileEnabled">
           About me:
@@ -42,8 +42,6 @@
         </mat-form-field>
       </div>
       <div class="profile-buttons" *ngIf="isCurrentUsersProfile()">
-        <button mat-raised-button id="edit-profile-button" *ngIf="!editProfileEnabled" color="primary"
-                (click)="editProfile()">Edit Profile</button>
         <button mat-raised-button id="done-editing-profile-button" *ngIf="editProfileEnabled" color="primary"
                 (click)="done()">Done</button>
       </div>
@@ -51,5 +49,10 @@
   <a *ngIf="!blockProfileDisabled">
     <mat-icon class="flag-button" (click)="openFlagModal()">flag</mat-icon>
   </a>
+
+  <a *ngIf="isCurrentUsersProfile()">
+    <mat-icon class="flag-button" (click)="editProfile()" >edit</mat-icon>
+  </a>
+
 </mat-card>
 

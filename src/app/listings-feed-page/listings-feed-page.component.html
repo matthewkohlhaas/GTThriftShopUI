@@ -7,9 +7,7 @@
     .
   </span>
   <mat-card class="listing-card" *ngFor="let listing of listings">
-    <div class="listing-image">
-      <img src="{{listing.imageUrl}}" routerLink="/listings/{{listing._id}}" />
-    </div>
+    <a routerLink="/listings/{{listing._id}}" class="listing-image" [ngStyle]="{ 'background-image': 'url(' + listing.imageUrl + ')'}"></a>
     <div class="listing-text">
       <div class="listing-name">
         <a routerLink="/listings/{{listing._id}}">{{listing.name}}</a>
@@ -22,11 +20,17 @@
         {{listing.description}}
       </div>
     </div>
-    <div class="listing-price">
-      {{(listing.price) ? '$'+(listing.price) : ''}}
+    <div class="listing-card-right-content">
+      <div class="listing-price">
+        {{(listing.price) ? '$'+(listing.price) : ''}}
+      </div>
+      <a *ngIf="!(listing.user._id === currentUser._id)">
+        <mat-icon class="flag-button" (click)="openFlagModal(listing)">flag</mat-icon>
+      </a>
+
+      <a *ngIf="listing.user._id === currentUser._id">
+        <mat-icon class="flag-button" (click)="openEditListingModal(listing)" >edit</mat-icon>
+      </a>
     </div>
-    <a>
-      <mat-icon class="flag-button" (click)="openFlagModal(listing)">flag</mat-icon>
-    </a>
   </mat-card>
 </div>

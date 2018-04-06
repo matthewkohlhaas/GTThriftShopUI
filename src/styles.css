@@ -9,7 +9,10 @@ body {
   -webkit-text-size-adjust:100%;
   -moz-text-size-adjust:100%;
   -ms-text-size-adjust:100%;
+}
 
+div {
+  font-size: 12pt;
 }
 
 .mat-card {
@@ -127,4 +130,14 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+@media screen and (max-width:659px) {
+
+  .mat-card {
+    width: 47%;
+    margin-left: 20px;
+  }
+
+}
+
 

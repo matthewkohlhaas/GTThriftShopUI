@@ -4,7 +4,11 @@ import {ListingService} from '../../services/listing.service';
 import {ModalFlagListingContentComponent} from '../modal-flag-listing-content/modal-flag-listing-content.component';
 import {ModalService} from '../../services/modal.service';
 import {ListingsFeedToolbarComponent} from '../listings-feed-toolbar/listings-feed-toolbar.component';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Router, Params} from '@angular/router';
+import {User} from "../../model/user";
+import {UserService} from "../../services/user.service";
+import {AccountService} from "../../services/account.service";
+import {ModalEditListingContentComponent} from "../modal-edit-listing-content/modal-edit-listing-content.component";
 
 @Component({
   selector: 'app-listings-feed-page',
@@ -19,15 +23,21 @@ export class ListingsFeedPageComponent implements OnInit {
   searchString: string;
   selectedCategory: string;
 
+  private currentUser : User;
+
   constructor(
     private modalService: ModalService,
     private listingService: ListingService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private accountService: AccountService
   ) {}
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params) => {
+      this.accountService.getCurrentUser().subscribe((value => {
+        this.currentUser = value;
+      }
       this.getListings(params);
     });
   }
@@ -61,6 +71,10 @@ export class ListingsFeedPageComponent implements OnInit {
     this.toolbar.addSortParams(params);
     this.toolbar.addCategoryParams(params);
     return params;
+  }
+
+  private openEditListingModal(currentListing): void {
+    this.modalService.openModal(ModalEditListingContentComponent, {listing: currentListing});
   }
 
   private openFlagModal(listing): void {

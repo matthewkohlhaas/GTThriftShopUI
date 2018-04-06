@@ -3,11 +3,10 @@
   box-shadow: none;
   max-height: 50px;
   border-radius: 5px;
+  width: 100%;
 }
 
 .toolbar-spacer {
-  min-width: 20px;
-  max-width: 20px;
 }
 
 .mat-toolbar-multiple-rows {
@@ -57,3 +56,88 @@
 #sort-select-form-field {
   width: 22%;
 }
+
+@media screen and (max-width:320px) {}
+@media screen and (min-width:321px) and (max-width:558px) {
+  #search-input-form-field {
+       width: 75%!important;
+     }
+  .listing-toolbar-label, #sort-select-form-field, #category-select-form-field {
+    display:none;
+  }
+  .toolbar mat-toolbar-row, #listing-toolbar-container {
+    min-width: 17rem !important;
+    max-width: 17rem !important;
+  }
+}
+
+@media screen and (min-width:559px) and (max-width:659px) {
+  #search-input-form-field {
+    width: 85%!important;
+  }
+  .listing-toolbar-label, #sort-select-form-field, #category-select-form-field {
+    display:none;
+  }
+  .toolbar mat-toolbar-row, #listing-toolbar-container {
+    min-width: 25rem !important;
+    max-width: 25rem !important;
+  }
+}
+
+@media screen and (min-width:660px) and (max-width:759px) {
+  #search-input-form-field {
+    width: 85% !important;
+  }
+  .listing-toolbar-label, #sort-select-form-field, #category-select-form-field {
+    display:none;
+  }
+  .toolbar mat-toolbar-row, #listing-toolbar-container {
+    min-width: 27rem !important;
+    max-width: 27rem !important;
+  }
+}
+@media screen and (min-width:760px) and (max-width:959px) {
+  #search-input-form-field {
+    width: 45% !important;
+  }
+  .listing-toolbar-label {
+    display:none;
+  }
+  .toolbar mat-toolbar-row, #listing-toolbar-container {
+    min-width: 32.5rem !important;
+    max-width: 33rem !important;
+  }
+}
+@media screen and (min-width:960px) and (max-width:1069px) {
+  #search-input-form-field {
+    width: 40% !important;
+  }
+  .toolbar mat-toolbar-row, #listing-toolbar-container {
+    min-width: 31.5rem !important;
+    max-width: 32rem !important;
+  }
+  #category-select-form-field {
+    display: none
+  }
+}
+
+@media screen and (min-width:1069px) and (max-width:1279px) {
+  #search-input-form-field {
+    width: 35% !important;
+  }
+  .toolbar mat-toolbar-row, #listing-toolbar-container {
+    min-width: 35rem !important;
+    /*max-width: 35rem !important;*/
+  }
+}
+@media screen and (min-width:1280px) and (max-width:1599px) {
+  #search-input-form-field {
+    width: 35% !important;
+  }
+  .toolbar mat-toolbar-row, #listing-toolbar-container {
+    min-width: 47.2rem !important;
+    max-width: 47.2rem !important;
+  }
+}
+@media screen and (min-width:1600px) {}
+@media screen and (min-width:1920px) {}

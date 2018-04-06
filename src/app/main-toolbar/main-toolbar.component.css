@@ -2,7 +2,6 @@
 #main-toolbar-menu-button:focus {
   outline: none;
 }
-
 /*
   UI bug that causes toolbar to shrink in height in mobile view.
  */
@@ -15,15 +14,14 @@
 #main-toolbar-logo {
   height: 100%;
   width: 80px;
-  margin-right: 20px;
+  margin: 20px;
 }
 
 #main-toolbar-menu-button {
   height: auto;
   width: auto;
-  margin-right: 25px;
-  margin-left: 15px;
-  font-size: 28pt;
+  margin-right: 20px;
+  font-size: 25pt;
   cursor: pointer;
 }
 
@@ -33,6 +31,8 @@
   display: block;
   font-family: Lato, sans-serif;
   height: 45px;
+  padding: 0px;
+  width: 45px;
 }
 
 #main-toolbar-logout-button:hover {
@@ -41,11 +41,12 @@
 
 #main-toolbar-sell-button {
   vertical-align:bottom;
-  margin-left:20px;
   font-size: 12pt;
   display: block;
   font-family: Lato, sans-serif;
   height: 45px;
+  padding: 0px;
+  width: 45px;
 }
 #main-toolbar-sell-button:hover {
   background-color: #c19051;
@@ -64,3 +65,34 @@ app-main-sidenav {
   display: flex;
   flex: 1;
 }
+
+@media screen and (max-width:320px) {}
+@media screen and (min-width:321px) and (max-width:639px) {
+  #main-toolbar-logo, .toolbar-spacer, #main-toolbar-sell-button, #main-toolbar-logout-button {
+    display:none;
+  }
+  #main-toolbar-menu-button {
+    margin-right:5px;
+  }
+}
+
+@media screen and (min-width:640px) and (max-width:959px) {
+  #main-toolbar-logo, .toolbar-spacer {
+    display:none;
+  }
+  #search-input-form-field {
+    width: 35%;
+  }
+  #main-toolbar-menu-button {
+    margin-right:5px;
+  }
+
+}
+@media screen and (min-width:960px) and (max-width:1270px) {
+  #search-input-form-field {
+    width: 35%;
+  }
+}
+@media screen and (min-width:1271px) and (max-width:1599px) {}
+@media screen and (min-width:1600px) {}
+@media screen and (min-width:1920px) {}

@@ -5,7 +5,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {ModalAlertContentComponent} from '../modal-alert-content/modal-alert-content.component';
 import {User} from '../../model/user';
 import {FlagService} from '../../services/flag.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-modal-block-user-content',

@@ -3,7 +3,6 @@ import {UserService} from "../../services/user.service";
 import {AccountService} from "../../services/account.service";
 import {User} from "../../model/user";
 import {ModalService} from "../../services/modal.service";
-import {ModalAlertContentComponent} from "../modal-alert-content/modal-alert-content.component";
 import {Router} from "@angular/router";
 
 @Component({

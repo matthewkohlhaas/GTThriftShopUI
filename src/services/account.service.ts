@@ -241,8 +241,7 @@ export class AccountService {
   }
 
   public removeBlockedUser(id: string, next?: (msg: ServerMessage) => void): void {
-    this.http.put<ServerMessage>(environment.serverUrl + '/users/from-token/blocked-users',
-      {id: id})
+    this.http.delete<ServerMessage>(`${environment.serverUrl}/users/from-token/blocked-users/${id}`)
       .subscribe(
         res => {
           next(res);

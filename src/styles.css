@@ -101,10 +101,21 @@ body {
   top: 20px;
 }
 
+.message-button {
+  position: absolute;
+  right: 20px;
+  top: 60px;
+}
+
 .flag-button:hover {
   color: red;
   cursor: pointer;
-}
+
+
+}.message-button:hover {
+   color: red;
+   cursor: pointer;
+ }
 
 a {
   color: #0d47a1;
@@ -116,6 +127,6 @@ a:hover {
   text-decoration: underline;
 }
 .message-text  {
-  font-size: 16px;
+  font-size: 12px;
 }
 

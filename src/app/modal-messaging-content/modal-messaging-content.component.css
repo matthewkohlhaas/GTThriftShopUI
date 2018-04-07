@@ -12,3 +12,12 @@
   text-align: center;
 }
 
+.createdAt-message-text {
+  font-size: 9px;
+  margin: 0 0 0 300px;
+}
+
+.mat-card-content {
+  height: 250px;
+  overflow-y: auto;
+}

@@ -6,6 +6,8 @@ import {ModalService} from '../../services/modal.service';
 import {ValidationUtils} from '../../utils/validation.utils';
 import {UserService} from '../../services/user.service';
 import {ModalBlockUserContentComponent} from '../modal-block-user-content/modal-block-user-content.component';
+import {ModalGetMessagesComponent} from '../modal-get-messages/modal-get-messages.component';
+import {ModalMessagingContentComponent} from '../modal-messaging-content/modal-messaging-content.component';
 
 @Component({
   selector: 'app-user-profile-page',
@@ -152,5 +154,9 @@ export class UserProfilePageComponent implements OnInit {
   private openFlagModal(listing): void {
     this.modalService.openModal<ModalBlockUserContentComponent>(ModalBlockUserContentComponent,
       {user: this.user});
+  }
+
+  private openMessageModal(user): void {
+    this.modalService.openModal<ModalMessagingContentComponent>(ModalMessagingContentComponent, {user: this.user});
   }
 }

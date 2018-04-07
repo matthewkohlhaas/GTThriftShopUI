@@ -14,22 +14,14 @@ export class MessageService {
 
   constructor(private http: HttpClient) {}
 
-  public getMessagesAboutListing(listing: Listing, currentUserId: string): Observable<Message[]> {
-    return this.http.get<Message[]>(`${environment.serverUrl}/messages/${listing._id}/users/${currentUserId}`);
+  public findMessages(listing: Listing, recipientId: string, currentUserId: string): Observable<Message[]> {
+    return this.http.get<Message[]>(`${environment.serverUrl}/messages/${listing._id}/users/${currentUserId}/${recipientId}`);
   }
 
-  public getMessages(listing: Listing, currentUserId: string): Observable<Message[]> {
-    return this.http.get<Message[]>(`${environment.serverUrl}/messages/${listing._id}/${listing.user._id}/${currentUserId}`);
-  }
-
-  public getAllMessagesForUser(id: string): Observable<Message[]> {
-    return this.http.get<Message[]>(`${environment.serverUrl}/messages/users/${id}`);
-  }
-
-  sendMessage(listing: Listing, sendingUserId: string, receivingUser: string, message: string,
+  sendMessage(listing: Listing, sendingUser: string, receivingUser: string, message: string,
                 next?: (msg: ServerMessage) => void): void {
     this.http.post<ServerMessage>(environment.serverUrl + '/messages',
-      {listing: listing._id, sendingUser: sendingUserId, receivingUser: listing.user._id, message: message})
+      {listing: listing._id, sendingUser: sendingUser, receivingUser: receivingUser, message: message})
       .subscribe(
         res => {
           next(res);

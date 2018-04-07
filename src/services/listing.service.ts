@@ -20,11 +20,7 @@ export class ListingService {
     return this.http.get<Listing>(`${environment.serverUrl}/listings/` + id);
   }
 
-  public getAllListingsBetweenUsers(firstUserId: string, secondUserId: string): Observable<Listing[]> {
-    return this.http.get<Listing[]>(`${environment.serverUrl}/listings/users/${firstUserId}/${secondUserId}`);
-  }
-
-  public getAllListingsFromUser(userId: string): Observable<Listing[]> {
+  public getAllListingsForUser(userId: string): Observable<Listing[]> {
     return this.http.get<Listing[]>(`${environment.serverUrl}/listings/users/${userId}`);
   }
 

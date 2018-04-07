@@ -44,6 +44,9 @@
 
       <div *ngIf="!isCurrentUsersProfile()">
         <a>
+          <mat-icon class="message-button" (click)="openMessageModal(listing)">message</mat-icon>
+        </a>
+        <a>
           <mat-icon class="flag-button" (click)="openFlagModal()">flag</mat-icon>
         </a>
       </div>

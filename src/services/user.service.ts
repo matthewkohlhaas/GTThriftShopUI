@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../model/user';
 import {environment} from '../environments/environment';
+import {ServerMessage} from '../model/server-message';
 
 const COULD_NOT_CONNECT = 'Could not connect to server.';
 
@@ -16,6 +17,6 @@ export class UserService {
   }
 
   public getUsers(id: string): Observable<User[]> {
-    return this.http.get<User[]>(`${environment.serverUrl}/users/all/${id}`);
+    return this.http.get<User[]>(`${environment.serverUrl}/users/all-users/${id}`);
   }
 }

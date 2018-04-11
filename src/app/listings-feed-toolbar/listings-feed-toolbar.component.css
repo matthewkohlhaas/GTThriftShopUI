@@ -151,7 +151,7 @@
   }
 }
 
-@media screen and (min-width:1170px) and (max-width:1279px) {
+@media screen and (min-width:1170px) and (max-width:1239px) {
   #search-input-form-field {
     width: 35% !important;
   }
@@ -161,7 +161,7 @@
   }
 }
 
-@media screen and (min-width:1280px) and (max-width:1599px) {
+@media screen and (min-width:1240px) and (max-width:1599px) {
   #search-input-form-field {
     width: 38% !important;
   }

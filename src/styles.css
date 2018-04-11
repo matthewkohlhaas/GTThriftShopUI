@@ -131,6 +131,13 @@ a:hover {
   text-decoration: underline;
 }
 
+
+.toolbar .mat-toolbar-multiple-rows {
+  max-height: 45px !important;
+  min-height:45px;
+  display: block;
+}
+
 @media screen and (max-width:659px) {
 
   .mat-card {

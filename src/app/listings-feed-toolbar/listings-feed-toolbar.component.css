@@ -9,12 +9,6 @@
 .toolbar-spacer {
 }
 
-.mat-toolbar-multiple-rows {
-  max-height: 45px !important;
-  min-height:45px;
-  display: block;
-}
-
 #listing-toolbar .mat-toolbar-row {
   padding: 0 12px !important;
   max-height: 50px !important;

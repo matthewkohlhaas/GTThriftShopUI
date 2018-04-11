@@ -1,8 +1,11 @@
 <div id="login-toolbar-container" class="toolbar-container">
   <mat-toolbar id="login-toolbar" class="toolbar" color="accent">
     <mat-toolbar-row>
-      <a id="login-toolbar-title" class="toolbar-title" routerLink="">GT ThriftShop</a>
-      <span class="toolbar-spacer"></span>
+      <div id="login-toolbar-logo">
+        <a>
+          <img src="../../assets/logo.png" height="64" width="85"/>
+        </a>
+      </div>      <span class="toolbar-spacer"></span>
       <mat-form-field color="primary" [floatLabel]="'never'">
         <input matInput [(ngModel)]="email" placeholder="Email" type="email" title="email" name="username"
                (keyup.enter)="login()">

@@ -14,7 +14,7 @@
 #main-toolbar-logo {
   height: 100%;
   width: 80px;
-  margin: 20px;
+  margin: 0px 20px;
 }
 
 #main-toolbar-menu-button {
@@ -75,6 +75,10 @@ app-main-sidenav {
   #main-toolbar-menu-button {
     margin-right:7px;
     margin-left: 0px;
+  }
+
+  #main-toolbar {
+    padding: 0px 5px;
   }
 }
 

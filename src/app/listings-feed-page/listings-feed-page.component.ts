@@ -35,9 +35,9 @@ export class ListingsFeedPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params) => {
-      this.accountService.getCurrentUser().subscribe((value => {
+      this.accountService.getCurrentUser().subscribe(value => {
         this.currentUser = value;
-      }
+      });
       this.getListings(params);
     });
   }

@@ -25,7 +25,7 @@
 
 .profile-text {
   display: inline-block;
-  width: 50%;
+  width: 55%;
   padding: 0 20px 0 20px;
 }
 
@@ -64,10 +64,9 @@
   margin: 0 20px 20px 0;
 }
 
-.profile-buttons {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
+.profile-edit-done-button {
+  /*position: absolute;*/
+  float: right;
 }
 
 #profile-picture-input {

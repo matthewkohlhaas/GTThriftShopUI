@@ -8,7 +8,6 @@
              type="text" title="profile-picture" name="profile-picture"
              [(ngModel)]="profilePictureUrl" (keyup.enter)="done()">
     </mat-form-field>
-
       <div class="user-name" *ngIf="!editProfileEnabled">
         {{user?.firstName}} {{user?.lastName}}
       </div>
@@ -41,7 +40,7 @@
           <mat-error>Please enter a bio.</mat-error>
         </mat-form-field>
       </div>
-      <div class="profile-buttons" *ngIf="isCurrentUsersProfile()">
+      <div class="profile-edit-done-button" *ngIf="isCurrentUsersProfile()">
         <button mat-raised-button id="done-editing-profile-button" *ngIf="editProfileEnabled" color="primary"
                 (click)="done()">Done</button>
       </div>

@@ -11,8 +11,8 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Description" type="text" title="description" name="description"
-               [(ngModel)]="description" (keyup.enter)="onSubmit()">
+        <textarea matInput matTextareaAutosize placeholder="Description" type="text" title="description" name="description"
+                  [(ngModel)]="description" (keyup.enter)="onSubmit()"></textarea>
       </mat-form-field>
 
       <mat-form-field>

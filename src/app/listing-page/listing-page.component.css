@@ -26,10 +26,7 @@
 }
 
 .listing-view-image img {
-  float: left
-}
-
-.listing-view-image img {
+  float: left;
   display: block;
   margin: auto;
   max-width: 100%;
@@ -74,12 +71,6 @@
 
 .listing-view-card-right-content {
   display: flex;
-}
-
-.button-edit-listing {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
 }
 
 /**

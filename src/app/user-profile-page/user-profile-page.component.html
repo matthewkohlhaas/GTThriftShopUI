@@ -8,23 +8,26 @@
              type="text" title="profile-picture" name="profile-picture"
              [(ngModel)]="profilePictureUrl" (keyup.enter)="done()">
     </mat-form-field>
-      <div class="user-name" *ngIf="!editProfileEnabled">
-        {{user?.firstName}} {{user?.lastName}}
-      </div>
-      <div *ngIf="editProfileEnabled">
-        <mat-form-field id="first-name-input">
-          <input matInput placeholder="First Name" type="text"
-               title="first-name" name="first-name" [(ngModel)]="firstName" (keyup.enter)="done()">
-          <mat-error>Please enter a first name.</mat-error>
-        </mat-form-field>
+    <div class="user-name" *ngIf="!editProfileEnabled">
+      {{user?.firstName}} {{user?.lastName}}
+    </div>
+    <div class="user-rating">{{(user.totalRatings) ? (user.totalRatings).toFixed(0) + "% positive ratings" : "Not Rated"}}</div>
 
-        <mat-form-field id="last-name-input">
-          <input matInput placeholder="Last Name" type="text"
-               title="last-name" name="last-name" [(ngModel)]="lastName" (keyup.enter)="done()">
-          <mat-error>Please enter a last name.</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="user-email-label">
+    <div *ngIf="editProfileEnabled">
+      <mat-form-field id="first-name-input">
+        <input matInput placeholder="First Name" type="text"
+             title="first-name" name="first-name" [(ngModel)]="firstName" (keyup.enter)="done()">
+        <mat-error>Please enter a first name.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field id="last-name-input">
+        <input matInput placeholder="Last Name" type="text"
+             title="last-name" name="last-name" [(ngModel)]="lastName" (keyup.enter)="done()">
+        <mat-error>Please enter a last name.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="user-email-label">
         Email : <span class="user-email">{{user?.email}}</span>
       </div>
       <div class="user-bio-label" *ngIf="!editProfileEnabled">

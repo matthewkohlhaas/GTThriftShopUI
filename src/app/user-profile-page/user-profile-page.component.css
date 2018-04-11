@@ -36,7 +36,7 @@
 
 .user-name {
   font-size: 22pt;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .user-bio-text {
@@ -52,6 +52,13 @@
 .user-email {
   font-weight: normal;
   font-size: 12pt;
+}
+
+.user-rating {
+  color: lightgray;
+  font-weight: normal;
+  font-size: 12pt;
+  margin-bottom: 12px;
 }
 
 .edit-name {

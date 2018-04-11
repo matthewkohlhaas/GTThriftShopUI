@@ -69,6 +69,12 @@
   color: green;
 }
 
+.listing-posted-date {
+  font-weight: normal;
+  font-size: 11pt;
+  color: lightgray;
+}
+
 .listing-view-card-right-content {
   display: flex;
 }

@@ -8,4 +8,5 @@ export class Listing {
   imageUrl: string;
   user: User;
   userRating: number;
+  createAt: Date;
 }

@@ -3,6 +3,7 @@
   <div class="listing-view-text">
     <div class="listing-view-name">
       <a routerLink="/listings/{{listing._id}}">{{listing.name}}</a>
+      <mat-label class="listing-posted-date" >{{listing.createdAt | date: 'dd/MM/yyyy'}}</mat-label>
     </div>
     <div class="listing-view-seller">
       <a routerLink="/users/{{listing?.user?._id}}">{{listing.user.firstName}} {{listing.user.lastName}}</a>

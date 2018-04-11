@@ -82,6 +82,9 @@
   bottom: 20px;
 }
 
+/**
+  Mobile View
+ */
 @media screen and (max-width:659px) {
   .listing-view-image {
     margin: 20px 0px 20px 0px;
@@ -92,10 +95,6 @@
   .listing-view-card {
     display: inline-block;
     height: auto;
-
-  }
-
-  .listing-view-card {
     width: 47%;
     margin-left: 20px;
   }

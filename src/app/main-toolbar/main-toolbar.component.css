@@ -2,6 +2,17 @@
 #main-toolbar-menu-button:focus {
   outline: none;
 }
+
+.main-toolbar-logo {
+  cursor: pointer;
+}
+
+.main-toolbar-logo,
+.main-toolbar-logo:focus,
+.main-toolbar-logo:active,
+.main-toolbar-logo:hover {
+  outline: none;
+}
 /*
   UI bug that causes toolbar to shrink in height in mobile view.
  */
@@ -11,8 +22,9 @@
   }
 }
 
-#main-toolbar-logo {
-  height: 100%;
+.main-toolbar-logo {
+  /*align-self: baseline;*/
+  height: 64px;
   width: 80px;
   margin: 0px 20px;
 }

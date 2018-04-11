@@ -84,7 +84,15 @@
 
 @media screen and (max-width:659px) {
   .listing-view-image {
-    display: none;
+    margin: 20px 0px 20px 0px;
+    width: 85%;
+    height:300px;
+  }
+
+  .listing-view-card {
+    display: inline-block;
+    height: auto;
+
   }
 
   .listing-view-card {
@@ -93,8 +101,8 @@
   }
 
   .listing-view-price {
-    margin: auto;
-    font-size: 16pt;
+    margin: 0px;
+    font-size: 24pt;
     font-weight: bold;
   }
 
@@ -104,8 +112,13 @@
 
   .listing-view-text {
     padding: 0px;
-    width: 85%;
+    margin-bottom: 20px;
+    width: 100%;
+    height: auto
+  }
+
+  .listing-view-description {
+    height: 100%;
+    max-height: 150px;
   }
 }
-
-

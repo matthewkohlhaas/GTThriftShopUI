@@ -170,5 +170,13 @@
     max-width: 47.2rem !important;
   }
 }
-@media screen and (min-width:1600px) {}
+@media screen and (min-width:1600px) {
+  #search-input-form-field {
+    width: 30% !important;
+  }
+  .toolbar mat-toolbar-row, #listing-toolbar-container {
+    min-width: 47.2rem !important;
+    max-width: 47.2rem !important;
+  }
+}
 @media screen and (min-width:1920px) {}

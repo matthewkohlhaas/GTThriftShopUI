@@ -1,4 +1,9 @@
+#register-card {
+  height: 100%;
+}
+
 #register-card .mat-form-field {
+  height: 40%;
   width: calc(50% - 30px);
   margin: 0 20px 10px 0;
 }

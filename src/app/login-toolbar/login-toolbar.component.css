@@ -10,6 +10,10 @@
   flex: 1;
 }
 
+.login-toolbar-main-content {
+  min-height: 900px;
+}
+
 #login-toolbar .mat-form-field {
   margin: 10px 20px 0 0;
   font-size: 16px;

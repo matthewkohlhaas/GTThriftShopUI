@@ -9,6 +9,7 @@ import {ModalEditListingContentComponent} from '../modal-edit-listing-content/mo
 import {ModalFlagListingContentComponent} from '../modal-flag-listing-content/modal-flag-listing-content.component';
 import {ModalMakeOfferContentComponent} from '../modal-make-offer-content/modal-make-offer-content.component';
 import {Offer} from '../../model/offer';
+import {OfferService} from '../../services/offer.service';
 
 @Component({
   selector: 'app-listing-page',
@@ -25,6 +26,7 @@ export class ListingPageComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private modalService: ModalService,
     private listingService: ListingService,
+    private offerService: OfferService,
     private accountService: AccountService
   ) {}
 
@@ -46,6 +48,11 @@ export class ListingPageComponent implements OnInit {
 
   private loadOffers(): void {
     this.listingService.getOffers(this.listing._id).subscribe(offers => this.offers = offers);
+  }
+
+  private loadMessages(index: string): void {
+    this.offerService.getMessages(this.offers[index]._id)
+      .subscribe(messages => this.offers[index].messages = messages);
   }
 
   private userOwnsListing(): boolean {

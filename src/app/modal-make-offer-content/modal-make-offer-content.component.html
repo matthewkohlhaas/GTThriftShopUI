@@ -5,7 +5,11 @@
            (keyup.enter)="onSubmit()">
     <mat-error>Please enter an offer amount.</mat-error>
     <span matPrefix>$&nbsp;</span>
+  </mat-form-field>
 
+  <mat-form-field>
+    <textarea matInput matTextareaAutosize placeholder="Message" type="text" title="Message"
+              name="message" [(ngModel)]="message"></textarea>
   </mat-form-field>
 
   <div class="modal-buttons">

@@ -61,10 +61,11 @@ export class ListingService {
       );
   }
 
-  createOffer(listingId: string, price: number, next?: (msg: ServerMessage) => void): void {
+  createOffer(listingId: string, price: number, message: string, next?: (msg: ServerMessage) => void): void {
     this.http.post<ServerMessage>(`${environment.serverUrl}/listings/${listingId}/offers`,
       {
-        price: price
+        price: price,
+        message: message
       }).subscribe(
       res => {
         next(res);

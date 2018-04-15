@@ -62,7 +62,7 @@ export class ListingService {
       );
   }
 
-  public createOffer(listingId: string, price: number, message: string, next?: (msg: ServerMessage) => void): void {
+  public postOffer(listingId: string, price: number, message: string, next?: (msg: ServerMessage) => void): void {
     this.http.post<ServerMessage>(`${environment.serverUrl}/listings/${listingId}/offers`,
       {
         price: price,

@@ -45,6 +45,8 @@
   <mat-card-content>
     <span *ngIf="offers.length === 0 && userOwnsListing()">You have not yet received any offers for this listing.</span>
     <span *ngIf="offers.length === 0 && !userOwnsListing()">You have not yet made any offers for this listing.</span>
-    <app-listing-offer *ngFor="let offer of offers" [offer]="offer" [listingOwner]="listing.user"></app-listing-offer>
+    <app-listing-offer *ngFor="let offer of offers" [offer]="offer" [listingOwner]="listing.user"
+                       (postMessage)="loadOffers()">
+    </app-listing-offer>
   </mat-card-content>
 </mat-card>

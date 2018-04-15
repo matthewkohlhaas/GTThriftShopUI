@@ -1,7 +1,7 @@
 <mat-expansion-panel class="offer-panel">
   <mat-expansion-panel-header>
     <mat-panel-title>
-      <a>{{offer.user.firstName}} {{offer.user.lastName}}</a>
+      <a routerLink="/users/{{offer.user._id}}">{{offer.user.firstName}} {{offer.user.lastName}}</a>
     </mat-panel-title>
     <mat-panel-description>$ {{offer.price}}</mat-panel-description>
   </mat-expansion-panel-header>
@@ -18,4 +18,15 @@
     <span>{{message.text}}</span>
   </div>
   <span *ngIf="offer.messages.length === 0">No messages yet</span>
+  <form class="offer-panel-message-form">
+    <mat-form-field class="offer-panel-message-field">
+      <input matInput required placeholder="Message" type="text" title="Message" name="message" [(ngModel)]="message"
+             (keyup.enter)="onSubmit()">
+      <mat-error>Please enter a message.</mat-error>
+    </mat-form-field>
+    <button mat-raised-button id="button-post-message" color="primary" (click)="onSubmit()"
+            [disabled]="submitDisabled">
+      Post
+    </button>
+  </form>
 </mat-expansion-panel>

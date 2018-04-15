@@ -40,7 +40,7 @@ export class ModalMakeOfferContentComponent implements OnInit {
       return;
     }
     this.submitDisabled = true;
-    this.listingService.createOffer(this.listing._id, this.price, this.message, msg => {
+    this.listingService.postOffer(this.listing._id, this.price, this.message, msg => {
       let title = 'Failed to Make an Offer';
 
       if (msg.successful) {

@@ -5,3 +5,18 @@
 .offer-message-name {
   font-weight: bold;
 }
+
+.offer-panel-message-form {
+  display: flex;
+  margin-top: 12px;
+}
+
+.offer-panel-message-form .mat-raised-button {
+  height: 36px;
+  margin: auto 0;
+}
+
+.offer-panel-message-field {
+  width: 100%;
+  margin-right: 12px;
+}

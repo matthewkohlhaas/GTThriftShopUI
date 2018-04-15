@@ -61,6 +61,7 @@ import {ModalBlockUserContentComponent} from './modal-block-user-content/modal-b
 import {AccountSettingsPageComponent} from './account-settings-page/account-settings-page.component';
 import { ModalMakeOfferContentComponent } from './modal-make-offer-content/modal-make-offer-content.component';
 import { ListingOfferComponent } from './listing-offer/listing-offer.component';
+import {OfferService} from '../services/offer.service';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -164,6 +165,7 @@ export function jwtOptionsFactory() {
     AccountService,
     UserService,
     ListingService,
+    OfferService,
     TicketService,
     AdminService,
     FlagService,

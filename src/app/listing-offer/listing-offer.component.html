@@ -5,13 +5,16 @@
     </mat-panel-title>
     <mat-panel-description>$ {{offer.price}}</mat-panel-description>
   </mat-expansion-panel-header>
-  <div class="offer-message" *ngFor="let message of offer.messages">
-    <span class="offer-message-name" *ngIf="offer.user._id === message.author; else authorIsListingOwner">
-      {{offer.user.firstName}} {{offer.user.lastName}}:
+  <div class="offer-message" *ngFor="let message of offer.messages; let i = index"
+       [ngStyle]="{'margin-top': i === 0 ? '0' : '12px'}">
+    <span class="offer-message-name">
+      <span *ngIf="offer.user._id === message.author; else authorIsListingOwner">
+        {{offer.user.firstName}} {{offer.user.lastName}}:
+      </span>
+      <ng-template #authorIsListingOwner>
+        {{listingOwner.firstName}} {{listingOwner.lastName}}:
+      </ng-template>
     </span>
-    <ng-template #authorIsListingOwner>
-      {{listingOwner.firstName}} {{listingOwner.lastName}}:
-    </ng-template>
     <span>{{message.text}}</span>
   </div>
   <span *ngIf="offer.messages.length === 0">No messages yet</span>

@@ -125,7 +125,8 @@ export function jwtOptionsFactory() {
     ModalFlagListingContentComponent,
     ModalMessagingContentComponent,
     ModalGetMessagesComponent,
-    ModalBlockUserContentComponent
+    ModalBlockUserContentComponent,
+    ModalMakeOfferContentComponent
   ],
   imports: [
     BrowserModule,

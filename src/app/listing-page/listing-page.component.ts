@@ -7,6 +7,7 @@ import {ListingService} from '../../services/listing.service';
 import {AccountService} from '../../services/account.service';
 import {ModalEditListingContentComponent} from '../modal-edit-listing-content/modal-edit-listing-content.component';
 import {ModalFlagListingContentComponent} from '../modal-flag-listing-content/modal-flag-listing-content.component';
+import {ModalMakeOfferContentComponent} from '../modal-make-offer-content/modal-make-offer-content.component';
 
 @Component({
   selector: 'app-listing-page',
@@ -46,22 +47,25 @@ export class ListingPageComponent implements OnInit {
   }
 
   private openEditListingModal(): void {
-    const listing = Object.assign({}, this.listing);
-    this.modalService.openModal(ModalEditListingContentComponent, {listing: listing}, () => {
-      this.loadListing();
-    });
+    this.openModal(ModalEditListingContentComponent);
   }
 
-  private openFlagModal(listing): void {
-    this.modalService.openModal<ModalFlagListingContentComponent>(ModalFlagListingContentComponent,
-      {listing: listing});
+  private openFlagModal(): void {
+    this.openModal(ModalFlagListingContentComponent);
   }
 
   private makeOffer(): void {
-
+    this.openModal(ModalMakeOfferContentComponent);
   }
 
   private askQuestion(): void {
 
+  }
+
+  private openModal(modalContentRef: any): void {
+    const listing = Object.assign({}, this.listing);
+    this.modalService.openModal(modalContentRef, {listing: listing}, () => {
+      this.loadListing();
+    });
   }
 }

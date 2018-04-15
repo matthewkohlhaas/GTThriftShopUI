@@ -60,4 +60,21 @@ export class ListingService {
         }
       );
   }
+
+  createOffer(listingId: string, price: number, next?: (msg: ServerMessage) => void): void {
+    this.http.post<ServerMessage>(`${environment.serverUrl}/listings/${listingId}/offers`,
+      {
+        price: price
+      }).subscribe(
+      res => {
+        next(res);
+      }, err => {
+        if (err.status === 0) {
+          next(new ServerMessage(false, COULD_NOT_CONNECT));
+        } else {
+          next(new ServerMessage(err.error.successful, err.error.text));
+        }
+      }
+    );
+  }
 }

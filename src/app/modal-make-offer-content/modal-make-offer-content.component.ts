@@ -35,18 +35,18 @@ export class ModalMakeOfferContentComponent implements OnInit {
   }
 
   private onSubmit(): void {
-    if (!this.listing) {
+    if (!this.listing || !this.price) {
       return;
     }
     this.submitDisabled = true;
-    // this.listingService.editListing(this.listing, msg => {
-    //   let title = 'Failed to Make an Offer';
-    //
-    //   if (msg.successful) {
-    //     title = 'Successfully Made Offer';
-    //     this.close();
-    //   }
-    //   this.modalService.openAlertModal(title, msg.text, () => this.submitDisabled = false);
-    // });
+    this.listingService.createOffer(this.listing._id, this.price, msg => {
+      let title = 'Failed to Make an Offer';
+
+      if (msg.successful) {
+        title = 'Successfully Made Offer';
+        this.close();
+      }
+      this.modalService.openAlertModal(title, msg.text, () => this.submitDisabled = false);
+    });
   }
 }

@@ -1,4 +1,5 @@
 import {User} from './user';
+import {Offer} from './offer';
 
 export class Listing {
   _id: string;
@@ -8,4 +9,5 @@ export class Listing {
   imageUrl: string;
   user: User;
   userRating: number;
+  offers: Offer[];
 }

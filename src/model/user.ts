@@ -1,3 +1,5 @@
+import {Offer} from './offer';
+
 export class User {
   _id: string;
   firstName: string;
@@ -7,5 +9,6 @@ export class User {
   totalRatings: number;
   profilePictureUrl: string;
   profileBio: string;
+  offers: Offer[];
   blockedUsers: User[];
 }

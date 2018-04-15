@@ -15,7 +15,7 @@ import {
   MatSelectModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatTableModule
+  MatTableModule, MatExpansionModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';
@@ -60,6 +60,7 @@ import {ModalGetMessagesComponent} from './modal-get-messages/modal-get-messages
 import {ModalBlockUserContentComponent} from './modal-block-user-content/modal-block-user-content.component';
 import {AccountSettingsPageComponent} from './account-settings-page/account-settings-page.component';
 import { ModalMakeOfferContentComponent } from './modal-make-offer-content/modal-make-offer-content.component';
+import { ListingOfferComponent } from './listing-offer/listing-offer.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -117,7 +118,8 @@ export function jwtOptionsFactory() {
     ModalGetMessagesComponent,
     ModalBlockUserContentComponent,
     AccountSettingsPageComponent,
-    ModalMakeOfferContentComponent
+    ModalMakeOfferContentComponent,
+    ListingOfferComponent
   ],
   entryComponents: [
     ModalAlertContentComponent,
@@ -153,7 +155,8 @@ export function jwtOptionsFactory() {
     MatRadioModule,
     MatCardModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    MatExpansionModule
   ],
   providers: [
     HttpClient,

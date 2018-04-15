@@ -37,3 +37,10 @@
     </button>
   </div>
 </mat-card>
+
+<mat-card class="listing-offers-card">
+  <mat-card-header>
+    <mat-card-title>Offers</mat-card-title>
+  </mat-card-header>
+  <app-listing-offer *ngFor="let offer of offers" [offer]="offer" [listingOwner]="listing.user"></app-listing-offer>
+</mat-card>

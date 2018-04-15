@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Make Offer for {{listing.name}}</h1>
+<form class="classic-form">
+  <mat-form-field>
+    <input matInput placeholder="Price" type="number" title="price" name="price" [(ngModel)]="price"
+           (keyup.enter)="onSubmit()">
+  </mat-form-field>
+
+  <div class="modal-buttons">
+    <button mat-raised-button class="button-cancel-edit-listing" (click)="close()" [disabled]="submitDisabled">
+      Cancel
+    </button>
+    <button mat-raised-button class="button-update-listing" color="primary" (click)="onSubmit()"
+            [disabled]="submitDisabled">
+      Update
+    </button>
+  </div>
+</form>

@@ -56,4 +56,12 @@ export class ListingPageComponent implements OnInit {
     this.modalService.openModal<ModalFlagListingContentComponent>(ModalFlagListingContentComponent,
       {listing: listing});
   }
+
+  private makeOffer(): void {
+
+  }
+
+  private askQuestion(): void {
+
+  }
 }

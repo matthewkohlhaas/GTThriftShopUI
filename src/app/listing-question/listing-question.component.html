@@ -4,7 +4,7 @@
     {{question.question}}
   </div>
   <div class="listing-question-answer">
-    <span *ngIf="question?.answer; else questionIsUnanswered"></span>
+    <span *ngIf="question?.answer; else questionIsUnanswered"><b>Answer:</b> {{question.answer}}</span>
     <ng-template #questionIsUnanswered>
       <span class="listing-question-not-answered">This question has not yet been answered.</span>
     </ng-template>

@@ -5,6 +5,7 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
+    <span *ngIf="userQuestions.length === 0">You have not asked any questions yet.</span>
     <app-listing-question *ngFor="let question of userQuestions" [question]="question" [listing]="question?.listing"
                           [showListing]="true">
 
@@ -19,6 +20,7 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
+    <span *ngIf="userListingQuestions.length === 0">No one has asked any questions about your listings yet.</span>
     <app-listing-question *ngFor="let question of userListingQuestions" [question]="question"
                           [listing]="question?.listing" [showUser]="true" [showListing]="true">
     </app-listing-question>

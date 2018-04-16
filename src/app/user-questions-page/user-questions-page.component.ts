@@ -15,8 +15,8 @@ import {Question} from '../../model/question';
 export class UserQuestionsPageComponent implements OnInit {
 
   user: User;
-  userQuestions: Question[];
-  userListingQuestions: Question[];
+  userQuestions: Question[] = [];
+  userListingQuestions: Question[] = [];
 
   constructor(
     private modalService: ModalService,

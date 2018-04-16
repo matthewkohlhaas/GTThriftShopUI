@@ -1,5 +1,6 @@
 import {Offer} from './offer';
 import {Listing} from './listing';
+import {Question} from './question';
 
 export class User {
   _id: string;
@@ -11,6 +12,7 @@ export class User {
   profilePictureUrl: string;
   profileBio: string;
   listings: Listing[];
+  questions: Question[];
   offers: Offer[];
   blockedUsers: User[];
 }

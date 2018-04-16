@@ -52,7 +52,6 @@ export class UserOffersPageComponent implements OnInit {
   }
 
   private loadMessages(offer: Offer): void {
-    this.offerService.getMessages(offer._id)
-      .subscribe(messages => offer.messages = messages);
+    this.offerService.getMessages(offer._id).subscribe(messages => offer.messages = messages);
   }
 }

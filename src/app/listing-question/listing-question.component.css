@@ -1,0 +1,14 @@
+.listing-question {
+  margin-bottom: 12px;
+  border-top:  1px #dddddd solid;
+  font-size: 12pt;
+}
+
+.listing-question-question,
+.listing-question-answer {
+  margin-top: 12px;
+}
+
+.listing-question-not-answered {
+  color: gray;
+}

@@ -51,9 +51,8 @@ export class ListingPageComponent implements OnInit {
     this.listingService.getOffers(this.listing._id).subscribe(offers => this.offers = offers);
   }
 
-  private loadMessages(index: string): void {
-    this.offerService.getMessages(this.offers[index]._id)
-      .subscribe(messages => this.offers[index].messages = messages);
+  private loadMessages(offer: Offer): void {
+    this.offerService.getMessages(offer._id).subscribe(messages => offer.messages = messages);
   }
 
   private userOwnsListing(): boolean {
@@ -78,7 +77,7 @@ export class ListingPageComponent implements OnInit {
   }
 
   private postQuestion(): void {
-    this.openModal(ModalPostQuestionContentComponent, () => this.loadOffers());
+    this.openModal(ModalPostQuestionContentComponent, () => this.loadListing());
   }
 
   private openModal(modalContentRef: any, onClose?: () => void): void {

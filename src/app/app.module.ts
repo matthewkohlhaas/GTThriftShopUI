@@ -61,6 +61,7 @@ import { ModalMakeOfferContentComponent } from './modal-make-offer-content/modal
 import { ListingOfferComponent } from './listing-offer/listing-offer.component';
 import {OfferService} from '../services/offer.service';
 import { ModalPostQuestionContentComponent } from './modal-post-question-content/modal-post-question-content.component';
+import { ListingQuestionComponent } from './listing-question/listing-question.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -118,7 +119,8 @@ export function jwtOptionsFactory() {
     AccountSettingsPageComponent,
     ModalMakeOfferContentComponent,
     ListingOfferComponent,
-    ModalPostQuestionContentComponent
+    ModalPostQuestionContentComponent,
+    ListingQuestionComponent
   ],
   entryComponents: [
     ModalAlertContentComponent,

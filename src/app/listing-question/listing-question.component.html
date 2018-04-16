@@ -1,0 +1,12 @@
+<div class="listing-question">
+  <div class="listing-question-question">
+    <a routerLink="/users/{{question?.user?._id}}">{{question?.user?.firstName}} {{question?.user?.lastName}}</a>:
+    {{question.question}}
+  </div>
+  <div class="listing-question-answer">
+    <span *ngIf="question?.answer; else questionIsUnanswered"></span>
+    <ng-template #questionIsUnanswered>
+      <span class="listing-question-not-answered">This question has not yet been answered.</span>
+    </ng-template>
+  </div>
+</div>

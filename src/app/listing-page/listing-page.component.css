@@ -68,6 +68,10 @@
   margin-top: 12px;
 }
 
+.listing-questions-card {
+  margin: 12px 0;
+}
+
 #listing-page-toolbar {
   margin-bottom: 10px;
   height: 50px;

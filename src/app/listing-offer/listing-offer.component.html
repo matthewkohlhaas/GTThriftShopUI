@@ -7,7 +7,17 @@
         {{offer?.user?.firstName}} {{offer?.user?.lastName}}
       </a>
     </mat-panel-title>
-    <mat-panel-description class="offer-panel-price">$ {{offer.price}}</mat-panel-description>
+    <mat-panel-description class="offer-panel-price"
+                           [ngClass]="offer.accepted ? 'offer-panel-accepted' :
+                                      offer.rejected ? 'offer-panel-rejected' : ''">
+      $ {{offer.price}}
+    </mat-panel-description>
+    <mat-panel-description class="offer-panel-status offer-panel-accepted" *ngIf="offer.accepted">
+      accepted
+    </mat-panel-description>
+    <mat-panel-description class="offer-panel-status offer-panel-rejected" *ngIf="offer.rejected">
+      rejected
+    </mat-panel-description>
   </mat-expansion-panel-header>
   <div class="offer-message" *ngFor="let message of offer.messages; let i = index"
        [ngStyle]="{'margin-top': i === 0 ? '0' : '12px'}">
@@ -25,12 +35,22 @@
   <form class="offer-panel-message-form">
     <mat-form-field class="offer-panel-message-field">
       <input matInput placeholder="Message" type="text" title="Message" name="message" [(ngModel)]="message"
-             (keyup.enter)="onSubmit()">
+             (keyup.enter)="onSubmitMessage()">
       <mat-error>Please enter a message.</mat-error>
     </mat-form-field>
-    <button mat-raised-button id="button-post-message" color="primary" (click)="onSubmit()"
+    <button mat-raised-button id="button-post-message" color="primary" (click)="onSubmitMessage()"
             [disabled]="submitDisabled">
       Post
     </button>
   </form>
+  <div class="offer-panel-status-buttons" *ngIf="currUserId === listing?.user?._id">
+    <button mat-raised-button id="button-accept-offer" color="primary" (click)="toggleAccepted()"
+            [disabled]="submitDisabled">
+      {{offer.accepted ? 'Un-accept Offer' : 'Accept Offer'}}
+    </button>
+    <button mat-raised-button id="button-reject-offer" color="primary" (click)="toggleRejected()"
+            [disabled]="submitDisabled">
+      {{offer.rejected ? 'Un-reject Offer' : 'Reject Offer'}}
+    </button>
+  </div>
 </mat-expansion-panel>

@@ -3,7 +3,15 @@
 }
 
 .offer-panel-price {
+  font-weight: bold;
+}
+
+.offer-panel-accepted {
   color: green;
+}
+
+.offer-panel-rejected {
+  color: red;
 }
 
 .offer-message-name {

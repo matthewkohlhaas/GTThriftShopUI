@@ -7,6 +7,8 @@ export class Offer {
   user: User;
   listing: Listing | string;
   price: number;
+  accepted: boolean;
+  rejected: boolean;
   messages: Message[];
   createdAt: Date;
 }

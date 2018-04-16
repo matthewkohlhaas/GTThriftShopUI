@@ -5,31 +5,48 @@ import {environment} from '../environments/environment';
 import {Observable} from 'rxjs/Observable';
 import {Message} from '../model/message';
 
-const COULD_NOT_CONNECT = 'Could not connect to server.';
-
 @Injectable()
 export class OfferService {
 
   constructor(private http: HttpClient) { }
 
-  public getMessages(offerId: string): Observable<Message[]> {
-    return this.http.get<Message[]>(`${environment.serverUrl}/offers/${offerId}/messages`);
+  public getMessages(id: string): Observable<Message[]> {
+    return this.http.get<Message[]>(`${environment.serverUrl}/offers/${id}/messages`);
   }
 
-  public postMessage(offerId: string, message: string, next?: (msg: ServerMessage) => void): void {
-    this.http.post<ServerMessage>(`${environment.serverUrl}/offers/${offerId}/messages`,
-      {
-        text: message
-      }).subscribe(
-      res => {
-        next(res);
-      }, err => {
-        if (err.status === 0) {
-          next(new ServerMessage(false, COULD_NOT_CONNECT));
-        } else {
-          next(new ServerMessage(err.error.successful, err.error.text));
-        }
-      }
+  public postMessage(id: string, message: string): Promise<string> {
+    return this.processServerMessageResponse(
+      this.http.post<ServerMessage>(`${environment.serverUrl}/offers/${id}/messages`, {text: message})
     );
+  }
+
+  public putAccepted(id, accepted: boolean): Promise<string> {
+    return this.processServerMessageResponse(
+      this.http.put<ServerMessage>(`${environment.serverUrl}/offers/${id}/accepted`, {accepted: accepted})
+    );
+  }
+
+  public putRejected(id, rejected: boolean): Promise<string> {
+    return this.processServerMessageResponse(
+      this.http.put<ServerMessage>(`${environment.serverUrl}/offers/${id}/rejected`, {rejected: rejected}),
+    );
+  }
+
+  private processServerMessageResponse(response: Observable<ServerMessage>): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      response.subscribe(res => {
+          if (res.successful) {
+            resolve(res.text);
+          } else {
+            reject(res.text);
+          }
+        }, err => {
+          if (err.status === 0) {
+            reject('Could not connect to server.');
+          } else {
+            reject(err.error.text);
+          }
+        });
+    });
   }
 }

@@ -1,6 +1,6 @@
 <mat-expansion-panel class="offer-panel">
   <mat-expansion-panel-header>
-    <mat-panel-title *ngIf="showUser || showListing">
+    <mat-panel-title class="offer-panel-title" *ngIf="showUser || showListing">
       <a *ngIf="showListing" routerLink="/listings/{{listing._id}}">{{listing.name}}</a>
       <b *ngIf="showUser && showListing">&nbsp;-&nbsp;</b>
       <a *ngIf="showUser" routerLink="/users/{{offer.user._id}}">

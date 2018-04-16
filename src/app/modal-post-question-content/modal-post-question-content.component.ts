@@ -1,23 +1,22 @@
 import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
-import {Listing} from '../../model/listing';
-import {ListingService} from '../../services/listing.service';
-import {ModalService} from '../../services/modal.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {ModalService} from '../../services/modal.service';
+import {ListingService} from '../../services/listing.service';
+import {Listing} from '../../model/listing';
 import {ModalAlertContentComponent} from '../modal-alert-content/modal-alert-content.component';
 
 @Component({
-  selector: 'app-modal-make-offer-content',
-  templateUrl: './modal-make-offer-content.component.html',
-  styleUrls: ['./modal-make-offer-content.component.css'],
+  selector: 'app-modal-post-question-content',
+  templateUrl: './modal-post-question-content.component.html',
+  styleUrls: ['./modal-post-question-content.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class ModalMakeOfferContentComponent implements OnInit {
+export class ModalPostQuestionContentComponent implements OnInit {
 
   private submitDisabled = false;
 
   private listing: Listing;
-  private price: number;
-  private message: string;
+  private question: string;
 
   constructor(
     private listingService: ListingService,
@@ -28,7 +27,6 @@ export class ModalMakeOfferContentComponent implements OnInit {
 
   ngOnInit(): void {
     this.listing = this.data.listing;
-    this.price = this.data.listing.price;
   }
 
   private close(): void {
@@ -36,15 +34,15 @@ export class ModalMakeOfferContentComponent implements OnInit {
   }
 
   private onSubmit(): void {
-    if (!this.listing || !this.price) {
+    if (!this.listing || !this.question) {
       return;
     }
     this.submitDisabled = true;
-    this.listingService.postOffer(this.listing._id, this.price, this.message, msg => {
-      let title = 'Failed to Make Offer';
+    this.listingService.postQuestion(this.listing._id, this.question, msg => {
+      let title = 'Failed to Ask Question';
 
       if (msg.successful) {
-        title = 'Successfully Made Offer';
+        title = 'Successfully Asked Question';
         this.close();
       }
       this.modalService.openAlertModal(title, msg.text, () => this.submitDisabled = false);

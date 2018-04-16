@@ -62,6 +62,27 @@ export class ListingService {
       );
   }
 
+  public postQuestion(listingId: string, question: string, next?: (msg: ServerMessage) => void): void {
+    this.http.post<ServerMessage>(`${environment.serverUrl}/listings/${listingId}/questions`,
+      {
+        question: question
+      }).subscribe(
+      res => {
+        next(res);
+      }, err => {
+        if (err.status === 0) {
+          next(new ServerMessage(false, COULD_NOT_CONNECT));
+        } else {
+          next(new ServerMessage(err.error.successful, err.error.text));
+        }
+      }
+    );
+  }
+
+  public getOffers(listingId: string): Observable<Offer[]> {
+    return this.http.get<Offer[]>(`${environment.serverUrl}/listings/${listingId}/offers`);
+  }
+
   public postOffer(listingId: string, price: number, message: string, next?: (msg: ServerMessage) => void): void {
     this.http.post<ServerMessage>(`${environment.serverUrl}/listings/${listingId}/offers`,
       {
@@ -78,9 +99,5 @@ export class ListingService {
         }
       }
     );
-  }
-
-  public getOffers(listingId: string): Observable<Offer[]> {
-      return this.http.get<Offer[]>(`${environment.serverUrl}/listings/${listingId}/offers`);
   }
 }

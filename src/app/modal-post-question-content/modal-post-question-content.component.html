@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Ask Question about {{listing.name}}</h1>
+<form class="classic-form">
+  <mat-form-field>
+    <textarea matInput matTextareaAutosize required placeholder="Question" type="text" title="Question" name="question"
+              [(ngModel)]="question"></textarea>
+  </mat-form-field>
+
+  <div class="modal-buttons">
+    <button mat-raised-button class="button-update-listing" color="primary" (click)="onSubmit()"
+            [disabled]="submitDisabled">
+      Ask Question
+    </button>
+    <button mat-raised-button class="button-cancel-edit-listing" (click)="close()" [disabled]="submitDisabled">
+      Cancel
+    </button>
+  </div>
+</form>

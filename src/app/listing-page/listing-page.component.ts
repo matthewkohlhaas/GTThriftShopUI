@@ -10,6 +10,7 @@ import {ModalFlagListingContentComponent} from '../modal-flag-listing-content/mo
 import {ModalMakeOfferContentComponent} from '../modal-make-offer-content/modal-make-offer-content.component';
 import {Offer} from '../../model/offer';
 import {OfferService} from '../../services/offer.service';
+import {ModalPostQuestionContentComponent} from '../modal-post-question-content/modal-post-question-content.component';
 
 @Component({
   selector: 'app-listing-page',
@@ -76,8 +77,8 @@ export class ListingPageComponent implements OnInit {
     this.openModal(ModalMakeOfferContentComponent, () => this.loadOffers());
   }
 
-  private askQuestion(): void {
-
+  private postQuestion(): void {
+    this.openModal(ModalPostQuestionContentComponent, () => this.loadOffers());
   }
 
   private openModal(modalContentRef: any, onClose?: () => void): void {

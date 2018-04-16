@@ -60,6 +60,7 @@ import {AccountSettingsPageComponent} from './account-settings-page/account-sett
 import { ModalMakeOfferContentComponent } from './modal-make-offer-content/modal-make-offer-content.component';
 import { ListingOfferComponent } from './listing-offer/listing-offer.component';
 import {OfferService} from '../services/offer.service';
+import { ModalPostQuestionContentComponent } from './modal-post-question-content/modal-post-question-content.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -116,14 +117,16 @@ export function jwtOptionsFactory() {
     ModalBlockUserContentComponent,
     AccountSettingsPageComponent,
     ModalMakeOfferContentComponent,
-    ListingOfferComponent
+    ListingOfferComponent,
+    ModalPostQuestionContentComponent
   ],
   entryComponents: [
     ModalAlertContentComponent,
     ModalEditListingContentComponent,
     ModalFlagListingContentComponent,
     ModalBlockUserContentComponent,
-    ModalMakeOfferContentComponent
+    ModalMakeOfferContentComponent,
+    ModalPostQuestionContentComponent
   ],
   imports: [
     BrowserModule,

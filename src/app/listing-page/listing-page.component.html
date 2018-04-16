@@ -52,8 +52,8 @@
     <span *ngIf="(!offers || offers?.length === 0) && !userOwnsListing()">
       You have not yet made any offers for this listing.
     </span>
-    <app-listing-offer *ngFor="let offer of offers" [offer]="offer" [listing]="listing"
-                       [showUser]="userOwnsListing()" (postMessage)="loadMessages(offer)">
+    <app-listing-offer *ngFor="let offer of offers" [offer]="offer" [listing]="listing" [showUser]="userOwnsListing()"
+                       (postMessage)="loadMessages(offer)">
     </app-listing-offer>
   </mat-card-content>
 </mat-card>
@@ -63,10 +63,10 @@
     <mat-card-title>Questions</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <span *ngIf="!listing.questions || listing?.questions?.length === 0">
+    <span *ngIf="!listing?.questions || listing?.questions?.length === 0">
       No questions have been asked about this listing.
     </span>
-    <app-listing-question *ngFor="let question of listing?.questions" [question]="question">
+    <app-listing-question *ngFor="let question of listing?.questions" [question]="question" [listing]="listing">
     </app-listing-question>
   </mat-card-content>
 </mat-card>

@@ -9,7 +9,7 @@
       <span class="listing-question-not-answered">This question has not yet been answered.</span>
     </ng-template>
   </div>
-  <form class="listing-question-form">
+  <form class="listing-question-form" *ngIf="currUserId === listing?.user?._id">
     <mat-form-field class="listing-question-form-field">
       <input matInput placeholder="Answer" type="text" title="Answer" name="answer" [(ngModel)]="answer"
              (keyup.enter)="onSubmitAnswer()">

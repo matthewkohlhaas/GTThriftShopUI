@@ -31,7 +31,7 @@ export class ListingOfferComponent implements OnInit {
     private modalService: ModalService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.currUserId = this.accountService.getCurrentUserFromToken()._id;
   }
 

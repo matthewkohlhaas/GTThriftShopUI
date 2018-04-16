@@ -46,7 +46,7 @@ export class ListingOfferComponent implements OnInit {
         this.resetForm();
       })
       .catch(msg => {
-        this.modalService.openAlertModal('Failed to post message', msg, () => this.resetForm());
+        this.modalService.openAlertModal('Failed to Post Message', msg, () => this.resetForm());
       });
   }
 

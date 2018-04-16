@@ -9,4 +9,14 @@
       <span class="listing-question-not-answered">This question has not yet been answered.</span>
     </ng-template>
   </div>
+  <form class="listing-question-form">
+    <mat-form-field class="listing-question-form-field">
+      <input matInput placeholder="Answer" type="text" title="Answer" name="answer" [(ngModel)]="answer"
+             (keyup.enter)="onSubmitAnswer()">
+    </mat-form-field>
+    <button mat-raised-button id="button-post-message" color="primary" (click)="onSubmitAnswer()"
+            [disabled]="submitDisabled">
+      {{question?.answer ? 'Change Answer' : 'Answer Question'}}
+    </button>
+  </form>
 </div>

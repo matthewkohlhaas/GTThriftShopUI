@@ -36,7 +36,6 @@
     <mat-form-field class="offer-panel-message-field">
       <input matInput placeholder="Message" type="text" title="Message" name="message" [(ngModel)]="message"
              (keyup.enter)="onSubmitMessage()">
-      <mat-error>Please enter a message.</mat-error>
     </mat-form-field>
     <button mat-raised-button id="button-post-message" color="primary" (click)="onSubmitMessage()"
             [disabled]="submitDisabled">

@@ -57,11 +57,12 @@ import {MessageService} from '../services/message.service';
 import {UserOffersPageComponent} from './user-offers-page/user-offers-page.component';
 import {ModalBlockUserContentComponent} from './modal-block-user-content/modal-block-user-content.component';
 import {AccountSettingsPageComponent} from './account-settings-page/account-settings-page.component';
-import { ModalMakeOfferContentComponent } from './modal-make-offer-content/modal-make-offer-content.component';
-import { ListingOfferComponent } from './listing-offer/listing-offer.component';
+import {ModalMakeOfferContentComponent} from './modal-make-offer-content/modal-make-offer-content.component';
+import {ListingOfferComponent} from './listing-offer/listing-offer.component';
 import {OfferService} from '../services/offer.service';
-import { ModalPostQuestionContentComponent } from './modal-post-question-content/modal-post-question-content.component';
-import { ListingQuestionComponent } from './listing-question/listing-question.component';
+import {ModalPostQuestionContentComponent} from './modal-post-question-content/modal-post-question-content.component';
+import {ListingQuestionComponent} from './listing-question/listing-question.component';
+import {QuestionService} from '../services/question.service';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -164,6 +165,7 @@ export function jwtOptionsFactory() {
     AccountService,
     UserService,
     ListingService,
+    QuestionService,
     OfferService,
     TicketService,
     AdminService,

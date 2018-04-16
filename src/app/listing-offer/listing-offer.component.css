@@ -27,14 +27,14 @@
   margin-top: 12px;
 }
 
-.offer-panel-message-form .mat-raised-button {
-  height: 36px;
-  margin: auto 0;
-}
-
 .offer-panel-message-field {
   width: 100%;
   margin-right: 20px;
+}
+
+.offer-panel-message-form .mat-raised-button {
+  height: 36px;
+  margin: auto 0;
 }
 
 .offer-panel-status-buttons {

@@ -8,12 +8,12 @@ import {OfferService} from '../../services/offer.service';
 import {Offer} from '../../model/offer';
 
 @Component({
-  selector: 'app-user-messaging-page',
-  templateUrl: './user-messaging.page.component.html',
-  styleUrls: ['./user-messaging.page.component.css'],
+  selector: 'app-user-offers-page',
+  templateUrl: './user-offers-page.component.html',
+  styleUrls: ['./user-offers-page.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class UserMessagingPageComponent implements OnInit {
+export class UserOffersPageComponent implements OnInit {
 
   user: User;
   listingOffers: Offer[] = [];

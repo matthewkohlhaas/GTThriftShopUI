@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from 
 import {Offer} from '../../model/offer';
 import {OfferService} from '../../services/offer.service';
 import {ModalService} from '../../services/modal.service';
+import {ValidationUtils} from '../../utils/validation.utils';
 
 @Component({
   selector: 'app-listing-offer',
@@ -24,15 +25,22 @@ export class ListingOfferComponent {
   constructor(private offerService: OfferService, private modalService: ModalService) { }
 
   onSubmit(): void {
+    if (this.submitDisabled || !ValidationUtils.validateNotEmpty(this.message)) {
+      return;
+    }
     this.submitDisabled = true;
     this.offerService.postMessage(this.offer._id, this.message, msg => {
       if (!msg.successful) {
-        this.modalService.openAlertModal('Failed to post message', '',
-          () => this.submitDisabled = false);
+        this.modalService.openAlertModal('Failed to post message', '', () => this.resetForm());
       } else {
         this.postMessage.emit();
-        this.submitDisabled = false;
+        this.resetForm();
       }
     });
+  }
+
+  private resetForm(): void {
+    this.message = '';
+    this.submitDisabled = false;
   }
 }

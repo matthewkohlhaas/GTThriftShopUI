@@ -24,7 +24,7 @@
   <span *ngIf="offer.messages.length === 0">No messages yet</span>
   <form class="offer-panel-message-form">
     <mat-form-field class="offer-panel-message-field">
-      <input matInput required placeholder="Message" type="text" title="Message" name="message" [(ngModel)]="message"
+      <input matInput placeholder="Message" type="text" title="Message" name="message" [(ngModel)]="message"
              (keyup.enter)="onSubmit()">
       <mat-error>Please enter a message.</mat-error>
     </mat-form-field>

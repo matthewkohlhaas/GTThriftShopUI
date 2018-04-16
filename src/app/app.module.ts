@@ -15,6 +15,7 @@ import {
   MatSelectModule,
   MatSidenavModule,
   MatToolbarModule,
+  MatTableModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';
@@ -57,10 +58,12 @@ import {UserMessagingPageComponent} from './user-messaging-page/user-messaging.p
 import {ModalMessagingContentComponent } from './modal-messaging-content/modal-messaging-content.component';
 import {ModalGetMessagesComponent } from './modal-get-messages/modal-get-messages.component';
 import {ModalBlockUserContentComponent} from './modal-block-user-content/modal-block-user-content.component';
+import {AccountSettingsPageComponent} from './account-settings-page/account-settings-page.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
   {path: 'account-recovery', component: AccountRecoveryPageComponent},
+  {path: 'account-settings', component: AccountSettingsPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'verify/:token', component: VerificationPageComponent},
   {path: 'reset-password/:token', component: PasswordResetPageComponent},
   {path: 'listings', component: ListingsFeedPageComponent, canActivate: [AuthenticateGuard]},
@@ -100,6 +103,7 @@ export function jwtOptionsFactory() {
     CreateListingComponent,
     ContactPageComponent,
     AccountRecoveryPageComponent,
+    AccountSettingsPageComponent,
     VerificationPageComponent,
     PasswordResetPageComponent,
     UserProfilePageComponent,
@@ -110,7 +114,8 @@ export function jwtOptionsFactory() {
     UserMessagingPageComponent,
     ModalMessagingContentComponent,
     ModalGetMessagesComponent,
-    ModalBlockUserContentComponent
+    ModalBlockUserContentComponent,
+    AccountSettingsPageComponent
   ],
   entryComponents: [
     ModalAlertContentComponent,
@@ -144,7 +149,8 @@ export function jwtOptionsFactory() {
     MatInputModule,
     MatRadioModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule
   ],
   providers: [
     HttpClient,

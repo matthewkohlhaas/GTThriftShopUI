@@ -1,4 +1,5 @@
 import {Offer} from './offer';
+import {Listing} from './listing';
 
 export class User {
   _id: string;
@@ -9,6 +10,7 @@ export class User {
   totalRatings: number;
   profilePictureUrl: string;
   profileBio: string;
+  listings: Listing[];
   offers: Offer[];
   blockedUsers: User[];
 }

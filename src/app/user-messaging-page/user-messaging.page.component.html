@@ -6,8 +6,22 @@
   </mat-card-header>
   <mat-card-content>
     <span *ngIf="user?.offers?.length === 0">You have made any offers yet.</span>
-    <app-listing-offer *ngFor="let offer of user?.offers; let i = index" [offer]="offer" [listing]="offer?.listing"
-                       [showListing]="true" (postMessage)="loadMessages(i)">
+    <app-listing-offer *ngFor="let offer of user?.offers" [offer]="offer" [listing]="offer?.listing"
+                       [showListing]="true" (postMessage)="loadMessages(offer)">
+    </app-listing-offer>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="user-listing-offers-card">
+  <mat-card-header>
+    <mat-card-title>
+      Offers for Your Listings
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <span *ngIf="listingOffers.length === 0">You have received any offers yet.</span>
+    <app-listing-offer *ngFor="let offer of listingOffers" [offer]="offer" [listing]="offer?.listing"
+                       [showListing]="true" [showUser]="true" (postMessage)="loadMessages(offer)">
     </app-listing-offer>
   </mat-card-content>
 </mat-card>

@@ -31,7 +31,7 @@ export class ListingOfferComponent {
     this.submitDisabled = true;
     this.offerService.postMessage(this.offer._id, this.message, msg => {
       if (!msg.successful) {
-        this.modalService.openAlertModal('Failed to post message', '', () => this.resetForm());
+        this.modalService.openAlertModal('Failed to post message', msg.text, () => this.resetForm());
       } else {
         this.postMessage.emit();
         this.resetForm();

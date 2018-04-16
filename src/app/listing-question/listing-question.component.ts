@@ -16,6 +16,9 @@ export class ListingQuestionComponent implements OnInit {
 
   @Input() question: Question;
   @Input() listing: Listing;
+  @Input() showUser = false;
+  @Input() showListing = false;
+  @Input() showUnansweredMessage = false;
 
   currUserId: string;
   submitDisabled = false;

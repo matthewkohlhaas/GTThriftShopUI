@@ -5,7 +5,10 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
+    <app-listing-question *ngFor="let question of userQuestions" [question]="question" [listing]="question?.listing"
+                          [showListing]="true">
 
+    </app-listing-question>
   </mat-card-content>
 </mat-card>
 
@@ -16,6 +19,8 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-
+    <app-listing-question *ngFor="let question of userListingQuestions" [question]="question"
+                          [listing]="question?.listing" [showUser]="true" [showListing]="true">
+    </app-listing-question>
   </mat-card-content>
 </mat-card>

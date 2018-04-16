@@ -21,13 +21,13 @@ export class OfferService {
     );
   }
 
-  public putAccepted(id, accepted: boolean): Promise<string> {
+  public putAccepted(id: string, accepted: boolean): Promise<string> {
     return ServerMessageUtils.processServerMessageResponse(
       this.http.put<ServerMessage>(`${environment.serverUrl}/offers/${id}/accepted`, {accepted: accepted})
     );
   }
 
-  public putRejected(id, rejected: boolean): Promise<string> {
+  public putRejected(id: string, rejected: boolean): Promise<string> {
     return ServerMessageUtils.processServerMessageResponse(
       this.http.put<ServerMessage>(`${environment.serverUrl}/offers/${id}/rejected`, {rejected: rejected}),
     );

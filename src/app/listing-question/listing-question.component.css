@@ -4,6 +4,11 @@
   font-size: 12pt;
 }
 
+.listing-question-listing {
+  margin-top: 12px;
+  font-size: 14pt;
+}
+
 .listing-question-question,
 .listing-question-answer {
   margin-top: 12px;

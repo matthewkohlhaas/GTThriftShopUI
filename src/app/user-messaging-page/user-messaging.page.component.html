@@ -1,20 +1,13 @@
-<mat-card class="message-center-card">
-  <form class="classic-form">
-  </form>
-  <h2>Your Listing Messages:</h2>
-  <div *ngIf="listings && listings.length < 1">You have no listing messages.</div>
-    <div class *ngFor="let listing of listings; let i=index">
-      <div *ngIf="i < 5">
-          <div class="listing-text">
-            <a class="individual-message">
-              <div (click)="viewAllMessagesModal(listing)">
-                {{listing.name}}
-              </div>
-            </a>
-          </div>
-      </div>
-    </div>
+<mat-card class="user-offers-card">
+  <mat-card-header>
+    <mat-card-title>
+      Your Offers
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <span *ngIf="user?.offers?.length === 0">You have made any offers yet.</span>
+    <app-listing-offer *ngFor="let offer of user?.offers; let i = index" [offer]="offer" [listing]="offer?.listing"
+                       [showListing]="true" (postMessage)="loadMessages(i)">
+    </app-listing-offer>
+  </mat-card-content>
 </mat-card>
-
-
-

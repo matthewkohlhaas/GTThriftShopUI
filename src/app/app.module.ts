@@ -55,8 +55,6 @@ import {ModalEditListingContentComponent} from './modal-edit-listing-content/mod
 import {ListingsFeedToolbarComponent} from './listings-feed-toolbar/listings-feed-toolbar.component';
 import {MessageService} from '../services/message.service';
 import {UserMessagingPageComponent} from './user-messaging-page/user-messaging.page.component';
-import {ModalMessagingContentComponent } from './modal-messaging-content/modal-messaging-content.component';
-import {ModalGetMessagesComponent} from './modal-get-messages/modal-get-messages.component';
 import {ModalBlockUserContentComponent} from './modal-block-user-content/modal-block-user-content.component';
 import {AccountSettingsPageComponent} from './account-settings-page/account-settings-page.component';
 import { ModalMakeOfferContentComponent } from './modal-make-offer-content/modal-make-offer-content.component';
@@ -115,8 +113,6 @@ export function jwtOptionsFactory() {
     AdminPageComponent,
     FlagFormComponent,
     UserMessagingPageComponent,
-    ModalMessagingContentComponent,
-    ModalGetMessagesComponent,
     ModalBlockUserContentComponent,
     AccountSettingsPageComponent,
     ModalMakeOfferContentComponent,
@@ -126,8 +122,6 @@ export function jwtOptionsFactory() {
     ModalAlertContentComponent,
     ModalEditListingContentComponent,
     ModalFlagListingContentComponent,
-    ModalMessagingContentComponent,
-    ModalGetMessagesComponent,
     ModalBlockUserContentComponent,
     ModalMakeOfferContentComponent
   ],

@@ -12,7 +12,9 @@ import {ModalService} from '../../services/modal.service';
 export class ListingOfferComponent {
 
   @Input() offer: Offer;
-  @Input() listingOwner;
+  @Input() listing;
+  @Input() showUser = false;
+  @Input() showListing = false;
 
   @Output() postMessage: EventEmitter<any> = new EventEmitter();
 

@@ -40,13 +40,16 @@
 
 <mat-card class="listing-offers-card">
   <mat-card-header>
-    <mat-card-title>Offers</mat-card-title>
+    <mat-card-title>
+      <span *ngIf="userOwnsListing(); else userDoesNotOwnListing">Offers</span>
+      <ng-template #userDoesNotOwnListing>Your Offers</ng-template>
+    </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <span *ngIf="offers.length === 0 && userOwnsListing()">You have not yet received any offers for this listing.</span>
-    <span *ngIf="offers.length === 0 && !userOwnsListing()">You have not yet made any offers for this listing.</span>
-    <app-listing-offer *ngFor="let offer of offers; let i = index" [offer]="offer" [listingOwner]="listing.user"
-                       (postMessage)="loadMessages(i)">
+    <span *ngIf="offers?.length === 0 && userOwnsListing()">You have not yet received any offers for this listing.</span>
+    <span *ngIf="offers?.length === 0 && !userOwnsListing()">You have not yet made any offers for this listing.</span>
+    <app-listing-offer *ngFor="let offer of listing.offers; let i = index" [offer]="offer" [listing]="listing"
+                       [showUser]="userOwnsListing()" (postMessage)="loadMessages(i)">
     </app-listing-offer>
   </mat-card-content>
 </mat-card>

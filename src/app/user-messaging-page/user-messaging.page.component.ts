@@ -1,12 +1,10 @@
 import {Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {ModalMessagingContentComponent} from '../modal-messaging-content/modal-messaging-content.component';
-import {ModalGetMessagesComponent} from '../modal-get-messages/modal-get-messages.component';
-import {ModalService} from '../../services/modal.service';
-import {MessageService} from '../../services/message.service';
-import {AccountService} from '../../services/account.service';
 import {User} from '../../model/user';
+import {ModalService} from '../../services/modal.service';
 import {ListingService} from '../../services/listing.service';
+import {AccountService} from '../../services/account.service';
 import {Listing} from '../../model/listing';
+import {OfferService} from '../../services/offer.service';
 
 @Component({
   selector: 'app-user-messaging-page',
@@ -16,31 +14,29 @@ import {Listing} from '../../model/listing';
 })
 export class UserMessagingPageComponent implements OnInit {
 
+  private user: User;
 
-  private currentUserId: string;
-  private currentUser: User;
-  private listings: Listing[];
-
-
-  constructor(private modalService: ModalService,
-              private listingService: ListingService,
-              private messageService: MessageService,
-              private accountService: AccountService, ) {
-  }
+  constructor(
+    private modalService: ModalService,
+    private listingService: ListingService,
+    private offerService: OfferService,
+    private accountService: AccountService
+  ) {}
 
   ngOnInit() {
-    this.currentUserId = this.accountService.getCurrentUserFromToken()._id;
-    this.accountService.getCurrentUser().subscribe(value => this.currentUser = value);
-    this.getListings();
-  }
-
-  private getListings(): void {
-    this.listingService.getAllListingsForUser(this.currentUserId).subscribe( res => {
-      this.listings = res;
+    this.accountService.getCurrentUser().subscribe(user => {
+      this.user = user;
+      if (user && user.offers) {
+        for (const offer of user.offers) {
+          offer.user = user;
+          this.listingService.getListing(offer.listing.toString()).subscribe(listing => offer.listing = listing);
+        }
+      }
     });
   }
 
-  private viewAllMessagesModal(listing): void {
-    this.modalService.openModal<ModalGetMessagesComponent>(ModalGetMessagesComponent, {listing: listing});
+  private loadMessages(index: string): void {
+    this.offerService.getMessages(this.user.offers[index]._id)
+      .subscribe(messages => this.user.offers[index].messages = messages);
   }
 }

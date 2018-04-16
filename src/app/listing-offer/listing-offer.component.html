@@ -1,18 +1,22 @@
 <mat-expansion-panel class="offer-panel">
   <mat-expansion-panel-header>
-    <mat-panel-title>
-      <a routerLink="/users/{{offer.user._id}}">{{offer.user.firstName}} {{offer.user.lastName}}</a>
+    <mat-panel-title *ngIf="showUser || showListing">
+      <a *ngIf="showListing" routerLink="/listings/{{listing._id}}">{{listing.name}}</a>
+      <b *ngIf="showUser && showListing">&nbsp;-&nbsp;</b>
+      <a *ngIf="showUser" routerLink="/users/{{offer.user._id}}">
+        {{offer?.user?.firstName}} {{offer?.user?.lastName}}
+      </a>
     </mat-panel-title>
-    <mat-panel-description>$ {{offer.price}}</mat-panel-description>
+    <mat-panel-description class="offer-panel-price">$ {{offer.price}}</mat-panel-description>
   </mat-expansion-panel-header>
   <div class="offer-message" *ngFor="let message of offer.messages; let i = index"
        [ngStyle]="{'margin-top': i === 0 ? '0' : '12px'}">
-    <span class="offer-message-name">
+    <span class="offer-message-name" *ngIf="offer.user">
       <span *ngIf="offer.user._id === message.author; else authorIsListingOwner">
-        {{offer.user.firstName}} {{offer.user.lastName}}:
+        {{offer?.user?.firstName}} {{offer?.user?.lastName}}:
       </span>
       <ng-template #authorIsListingOwner>
-        {{listingOwner.firstName}} {{listingOwner.lastName}}:
+        {{listing?.user?.firstName}} {{listing?.user?.lastName}}:
       </ng-template>
     </span>
     <span>{{message.text}}</span>

@@ -63,6 +63,7 @@ import {OfferService} from '../services/offer.service';
 import {ModalPostQuestionContentComponent} from './modal-post-question-content/modal-post-question-content.component';
 import {ListingQuestionComponent} from './listing-question/listing-question.component';
 import {QuestionService} from '../services/question.service';
+import {UserQuestionsPageComponent} from './user-questions-page/user-questions-page.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -74,6 +75,7 @@ const appRoutes: Routes = [
   {path: 'listings/:id', component: ListingPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'create-listing', component: CreateListingComponent, canActivate: [AuthenticateGuard]},
   {path: 'support', component: ContactPageComponent, canActivate: [AuthenticateGuard]},
+  {path: 'questions', component: UserQuestionsPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'offers', component: UserOffersPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'users/:id', component: UserProfilePageComponent, canActivate: [AuthenticateGuard]},
   {path: 'admin', component: AdminPageComponent, canActivate: [AuthenticateGuard, AdminGuard]},
@@ -121,7 +123,8 @@ export function jwtOptionsFactory() {
     ModalMakeOfferContentComponent,
     ListingOfferComponent,
     ModalPostQuestionContentComponent,
-    ListingQuestionComponent
+    ListingQuestionComponent,
+    UserQuestionsPageComponent
   ],
   entryComponents: [
     ModalAlertContentComponent,

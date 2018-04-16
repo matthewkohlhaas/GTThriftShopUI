@@ -1,6 +1,5 @@
 import {Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {User} from '../../model/user';
-import {ModalService} from '../../services/modal.service';
 import {ListingService} from '../../services/listing.service';
 import {AccountService} from '../../services/account.service';
 import {Listing} from '../../model/listing';
@@ -19,13 +18,12 @@ export class UserOffersPageComponent implements OnInit {
   listingOffers: Offer[] = [];
 
   constructor(
-    private modalService: ModalService,
-    private listingService: ListingService,
+    private accountService: AccountService,
     private offerService: OfferService,
-    private accountService: AccountService
+    private listingService: ListingService,
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.accountService.getCurrentUser().subscribe(user => {
       this.user = user;
       if (user) {

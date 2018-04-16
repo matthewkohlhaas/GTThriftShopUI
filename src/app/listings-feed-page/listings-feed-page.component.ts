@@ -6,6 +6,7 @@ import {ModalService} from '../../services/modal.service';
 import {ListingsFeedToolbarComponent} from '../listings-feed-toolbar/listings-feed-toolbar.component';
 import {ActivatedRoute, Router} from '@angular/router';
 
+
 @Component({
   selector: 'app-listings-feed-page',
   templateUrl: './listings-feed-page.component.html',

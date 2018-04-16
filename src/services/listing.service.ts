@@ -20,6 +20,10 @@ export class ListingService {
     return this.http.get<Listing>(`${environment.serverUrl}/listings/` + id);
   }
 
+  public getAllListingsForUser(userId: string): Observable<Listing[]> {
+    return this.http.get<Listing[]>(`${environment.serverUrl}/listings/users/${userId}`);
+  }
+
   createListing(name: string, price: number, description: string, imageUrl: string,
                 next?: (msg: ServerMessage) => void): void {
     this.http.post<ServerMessage>(`${environment.serverUrl}/listings`,

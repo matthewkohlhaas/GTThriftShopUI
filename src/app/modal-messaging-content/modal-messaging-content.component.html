@@ -1,0 +1,38 @@
+<h1 mat-dialog-title class="new-message-title">
+  {{this.recipient.firstName}}
+</h1>
+<form class="classic-form">
+    <div *ngIf="!this.messagesShowing">
+      <mat-form-field>
+      <mat-select placeholder="Listing" [(ngModel)]="listing" name="listing">
+        <mat-option *ngFor="let listing of listings" [value]="listing">
+          {{listing.name}}
+        </mat-option>
+      </mat-select>
+  </mat-form-field>
+      <button mat-raised-button color="primary" (click)="getMessages()"
+      [disabled]="submitDisabled">View Message History</button>
+    </div>
+  <div *ngIf="this.messagesShowing">
+  <div class="mat-card-content">
+    <div class *ngFor="let message of messages; let i=index">
+        <mat-card class="message-text" >
+          <div class="message-text">
+            {{message.sendingUser.firstName}} {{message.sendingUser.lastName}}:
+            {{message.message}}
+            <div class="createdAt-message-text">{{message.createdAt}}</div>
+          </div>
+        </mat-card>
+    </div>
+  </div>
+  </div>
+  <mat-form-field class="example-full-width">
+  <textarea matInput matTextareaAutosize matAutosizeMinRows="3" [(ngModel)]="message" name="message"
+            placeholder="Message" (keyup.enter)="onSubmit()" ></textarea>
+  </mat-form-field>
+  <div class="modal-buttons">
+    <button mat-raised-button class="button-cancel-message" (click)="close()" [disabled]="submitDisabled">Cancel</button>
+    <button mat-raised-button class="button-submit-message" color="primary" (click)="onSubmit()"
+            [disabled]="submitDisabled">Submit</button>
+  </div>
+</form>

@@ -53,9 +53,12 @@ import {UserProfilePageComponent} from './user-profile-page/user-profile-page.co
 import {FlagFormComponent} from './flag-form/flag-form.component';
 import {ModalEditListingContentComponent} from './modal-edit-listing-content/modal-edit-listing-content.component';
 import {ListingsFeedToolbarComponent} from './listings-feed-toolbar/listings-feed-toolbar.component';
-import { ModalBlockUserContentComponent } from './modal-block-user-content/modal-block-user-content.component';
-import { AccountSettingsPageComponent } from './account-settings-page/account-settings-page.component';
-
+import {MessageService} from '../services/message.service';
+import {UserMessagingPageComponent} from './user-messaging-page/user-messaging.page.component';
+import {ModalMessagingContentComponent } from './modal-messaging-content/modal-messaging-content.component';
+import {ModalGetMessagesComponent } from './modal-get-messages/modal-get-messages.component';
+import {ModalBlockUserContentComponent} from './modal-block-user-content/modal-block-user-content.component';
+import {AccountSettingsPageComponent} from './account-settings-page/account-settings-page.component';
 
 const appRoutes: Routes = [
   {path: '', component: CreateAccountPageComponent},
@@ -67,6 +70,7 @@ const appRoutes: Routes = [
   {path: 'listings/:id', component: ListingPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'create-listing', component: CreateListingComponent, canActivate: [AuthenticateGuard]},
   {path: 'support', component: ContactPageComponent, canActivate: [AuthenticateGuard]},
+  {path: 'messages', component: UserMessagingPageComponent, canActivate: [AuthenticateGuard]},
   {path: 'users/:id', component: UserProfilePageComponent, canActivate: [AuthenticateGuard]},
   {path: 'admin', component: AdminPageComponent, canActivate: [AuthenticateGuard, AdminGuard]},
   {path: '**', component: NotFoundPageComponent}
@@ -107,13 +111,18 @@ export function jwtOptionsFactory() {
     ListingPageComponent,
     AdminPageComponent,
     FlagFormComponent,
+    UserMessagingPageComponent,
+    ModalMessagingContentComponent,
+    ModalGetMessagesComponent,
     ModalBlockUserContentComponent,
-    AccountSettingsPageComponent,
+    AccountSettingsPageComponent
   ],
   entryComponents: [
     ModalAlertContentComponent,
     ModalEditListingContentComponent,
     ModalFlagListingContentComponent,
+    ModalMessagingContentComponent,
+    ModalGetMessagesComponent,
     ModalBlockUserContentComponent
   ],
   imports: [
@@ -154,6 +163,7 @@ export function jwtOptionsFactory() {
     FlagService,
     LocalStorageService,
     ModalService,
+    MessageService,
     AuthenticateGuard,
     AdminGuard
   ],

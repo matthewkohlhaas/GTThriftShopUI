@@ -1,6 +1,7 @@
 .profile-card {
   display: flex !important;
   flex-wrap: nowrap;
+  padding-bottom: 56px !important;
 }
 
 .profile-card .mat-form-field {

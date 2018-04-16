@@ -41,6 +41,15 @@
           <mat-error>Please enter a bio.</mat-error>
         </mat-form-field>
       </div>
+
+      <div *ngIf="!isCurrentUsersProfile()">
+        <a>
+          <mat-icon class="message-button" (click)="openMessageModal(listing)">message</mat-icon>
+        </a>
+        <a>
+          <mat-icon class="flag-button" (click)="openFlagModal()">flag</mat-icon>
+        </a>
+      </div>
       <div class="profile-buttons" *ngIf="isCurrentUsersProfile()">
         <button mat-raised-button id="edit-profile-button" *ngIf="!editProfileEnabled" color="primary"
                 (click)="editProfile()">Edit Profile</button>
@@ -48,8 +57,5 @@
                 (click)="done()">Done</button>
       </div>
     </div>
-  <a *ngIf="!blockProfileDisabled">
-    <mat-icon class="flag-button" (click)="openFlagModal()">flag</mat-icon>
-  </a>
 </mat-card>
 

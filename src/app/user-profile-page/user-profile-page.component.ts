@@ -5,7 +5,8 @@ import {User} from '../../model/user';
 import {ModalService} from '../../services/modal.service';
 import {ValidationUtils} from '../../utils/validation.utils';
 import {UserService} from '../../services/user.service';
-import {ModalBlockUserContentComponent} from "../modal-block-user-content/modal-block-user-content.component";
+import {ModalBlockUserContentComponent} from '../modal-block-user-content/modal-block-user-content.component';
+import {ModalMessagingContentComponent} from '../modal-messaging-content/modal-messaging-content.component';
 
 @Component({
   selector: 'app-user-profile-page',
@@ -16,7 +17,6 @@ import {ModalBlockUserContentComponent} from "../modal-block-user-content/modal-
 export class UserProfilePageComponent implements OnInit {
 
   private editProfileEnabled = false;
-  private blockProfileDisabled = false;
 
   private user: User;
   private currentUserId = '';
@@ -39,7 +39,6 @@ export class UserProfilePageComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.userService.getUserById(params['id']).subscribe(value => {
         this.user = value;
-        this.blockProfileDisabled = this.isCurrentUsersProfile();
       }, error => {
         this.router.navigate(['']);
       });
@@ -151,8 +150,16 @@ export class UserProfilePageComponent implements OnInit {
     });
   }
 
+  private listingsForCurrentUser(): void {
+
+  }
+
   private openFlagModal(listing): void {
     this.modalService.openModal<ModalBlockUserContentComponent>(ModalBlockUserContentComponent,
       {user: this.user});
+  }
+
+  private openMessageModal(user): void {
+    this.modalService.openModal<ModalMessagingContentComponent>(ModalMessagingContentComponent, {user: this.user});
   }
 }

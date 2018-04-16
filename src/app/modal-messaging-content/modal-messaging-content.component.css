@@ -1,0 +1,23 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+.new-message-title {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.createdAt-message-text {
+  font-size: 9px;
+  margin: 0 0 0 300px;
+}
+
+.mat-card-content {
+  height: 250px;
+  overflow-y: auto;
+}

@@ -15,7 +15,8 @@ import {
   MatSelectModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatTableModule, MatExpansionModule
+  MatTableModule,
+  MatExpansionModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';

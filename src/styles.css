@@ -119,15 +119,27 @@ div {
   top: 20px;
 }
 
+.message-button {
+  position: absolute;
+  right: 20px;
+  top: 60px;
+}
+
 .flag-button:hover {
   color: red;
   cursor: pointer;
-}
+
+
+}.message-button:hover {
+   color: red;
+   cursor: pointer;
+ }
 
 a {
   color: #0d47a1;
   text-decoration: none;
   font-weight: 400;
+  cursor: pointer;
 }
 
 a:hover {
@@ -151,3 +163,10 @@ a:hover {
 }
 
 
+.message-text  {
+  font-size: 12px;
+}
+
+img {
+  cursor: pointer;
+}

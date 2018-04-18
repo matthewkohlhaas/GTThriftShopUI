@@ -58,7 +58,10 @@
     <a *ngIf="isCurrentUsersProfile()">
       <mat-icon class="flag-button" (click)="editProfile()" >edit</mat-icon>
     </a>
-  </div>
 
+    <a *ngIf="isCurrentUsersProfile()">
+      <mat-icon class="message-button" (click)="openMessageModal(listing)">message</mat-icon>
+    </a>
+  </div>
 </mat-card>
 

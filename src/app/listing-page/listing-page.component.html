@@ -24,4 +24,52 @@
       <mat-icon class="flag-button" (click)="openEditListingModal()" >edit</mat-icon>
     </a>
   </div>
+
+
+  <div class="listing-view-buttons">
+    <button mat-raised-button class="listing-view-offer-button" *ngIf="!userOwnsListing()" color="primary"
+            (click)="makeOffer()">
+      Make an Offer
+    </button>
+    <button mat-raised-button class="listing-view-question-button" *ngIf="!userOwnsListing()" color="primary"
+            (click)="postQuestion()">
+      Ask a Question
+    </button>
+  </div>
+
+
+</mat-card>
+
+<mat-card class="listing-offers-card">
+  <mat-card-header>
+    <mat-card-title>
+      <span *ngIf="userOwnsListing(); else userDoesNotOwnListing">Offers</span>
+      <ng-template #userDoesNotOwnListing>Your Offers</ng-template>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <span *ngIf="(!offers || offers?.length === 0) && userOwnsListing()">
+      You have not yet received any offers for this listing.
+    </span>
+    <span *ngIf="(!offers || offers?.length === 0) && !userOwnsListing()">
+      You have not yet made any offers for this listing.
+    </span>
+    <app-listing-offer *ngFor="let offer of offers" [offer]="offer" [listing]="listing" [showUser]="userOwnsListing()"
+                       (postMessage)="loadMessages(offer)">
+    </app-listing-offer>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="listing-questions-card">
+  <mat-card-header>
+    <mat-card-title>Questions</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <span *ngIf="!listing?.questions || listing?.questions?.length === 0">
+      No questions have been asked about this listing.
+    </span>
+    <app-listing-question *ngFor="let question of listing?.questions" [question]="question" [listing]="listing"
+                          [showUser]="true">
+    </app-listing-question>
+  </mat-card-content>
 </mat-card>

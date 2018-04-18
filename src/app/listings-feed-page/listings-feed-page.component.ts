@@ -10,6 +10,7 @@ import {UserService} from "../../services/user.service";
 import {AccountService} from "../../services/account.service";
 import {ModalEditListingContentComponent} from "../modal-edit-listing-content/modal-edit-listing-content.component";
 
+
 @Component({
   selector: 'app-listings-feed-page',
   templateUrl: './listings-feed-page.component.html',

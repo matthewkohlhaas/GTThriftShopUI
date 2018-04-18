@@ -1,5 +1,13 @@
 .listing-view-card {
+  /*<<<<<<< HEAD*/
   margin: 0 auto;
+}
+/*!*=======*!*/
+  /*display: flex;*/
+  /*flex-direction: column;*/
+/*}*/
+
+.listing-view-content {
   display: flex;
   height: 300px;
   margin-bottom: 12px;
@@ -60,6 +68,7 @@
   overflow: auto;
 }
 
+/*<<<<<<< HEAD*/
 .listing-view-price {
   width: 15%;
   margin: auto !important;
@@ -68,6 +77,32 @@
   text-align: center;
   color: green;
 }
+/*=======*/
+.listing-view-buttons {
+  margin-left: auto;
+}
+
+.listing-view-offer-button {
+  margin: 12px 20px 0 0;
+}
+
+.listing-view-question-button {
+  margin-top: 12px;
+}
+
+.listing-offers-card {
+  margin-top: 12px;
+}
+
+.listing-questions-card {
+  margin: 12px 0;
+}
+
+/*#listing-page-toolbar {*/
+  /*margin-bottom: 10px;*/
+  /*height: 50px;*/
+  /*background-color: #EEB211;*/
+/*>>>>>>> master*/
 
 .listing-posted-date {
   font-weight: normal;

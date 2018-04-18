@@ -5,6 +5,11 @@
   min-height: 300px;
   margin-bottom: 12px;
   transition: all 0.4s;
+/*=======*/
+  /*display: flex !important;*/
+  /*flex-wrap: nowrap;*/
+  /*padding-bottom: 56px !important;*/
+/*>>>>>>> master*/
 }
 
 .profile-card .mat-form-field {

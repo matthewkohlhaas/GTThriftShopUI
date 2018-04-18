@@ -23,7 +23,7 @@ export class ListingsFeedPageComponent implements OnInit {
 
   searchString: string;
   selectedCategory: string;
-  selectedSort: string;
+  selectedSort: object;
 
   private currentUser: User;
 

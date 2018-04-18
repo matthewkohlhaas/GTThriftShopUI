@@ -50,7 +50,7 @@
 
 
   <div class="listing-view-card-right-content">
-    <a *ngIf="!blockProfileDisabled">
+    <a *ngIf="!isCurrentUsersProfile()">
       <mat-icon class="flag-button" (click)="openFlagModal()">flag</mat-icon>
     </a>
 

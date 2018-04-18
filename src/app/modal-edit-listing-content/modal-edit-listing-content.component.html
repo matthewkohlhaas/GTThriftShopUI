@@ -20,7 +20,12 @@
     <input matInput placeholder="Image URL" type="text" title="image-url" name="image-url"
            [(ngModel)]="listing.imageUrl" (keyup.enter)="onSubmit()">
   </mat-form-field>
-
+  <div class="listing-buttons">
+    <button mat-raised-button id="close-listing-button" *ngIf="listing.isOpen === true" color="primary"
+            (click)="listing.isOpen = false">Close</button>
+    <button mat-raised-button id="open-listing-button" *ngIf="listing.isOpen === false" color="primary"
+            (click)="listing.isOpen = true">Open</button>
+  </div>
   <div class="modal-buttons">
     <button mat-raised-button class="button-cancel-edit-listing" (click)="close()" [disabled]="submitDisabled">
       Cancel

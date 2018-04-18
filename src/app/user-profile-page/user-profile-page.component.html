@@ -51,10 +51,6 @@
         </a>
       </div>
       <div class="profile-buttons" *ngIf="isCurrentUsersProfile()">
-        <button mat-raised-button id="manage-listings-button" *ngIf="!editProfileEnabled" color="primary"
-                (click)="editProfile()">Manage Listings</button>
-        <button mat-raised-button id="done-mana" *ngIf="editProfileEnabled" color="primary"
-                (click)="done()">Done</button>
         <button mat-raised-button id="edit-profile-button" *ngIf="!editProfileEnabled" color="primary"
                 (click)="editProfile()">Edit Profile</button>
         <button mat-raised-button id="done-editing-profile-button" *ngIf="editProfileEnabled" color="primary"
@@ -71,9 +67,11 @@
       <img src="{{listing?.imageUrl}}" />
     </div>
     <div class="listing-view-text">
-      <div class="listing-view-name">
-        <a routerLink="/listings/{{listing?._id}}">{{listing?.name}}</a>
-      </div>
+      <a class="listing-view-name">
+        <div (click)="openEditListingModal(listing)">
+          {{listing.name}}
+        </div>
+      </a>
       <div class="listing-view-seller">
         <a routerLink="/users/{{listing?.user?._id}}">{{listing?.user?.firstName}} {{listing?.user?.lastName}}</a>
       </div>
@@ -83,12 +81,6 @@
       <div class="listing-view-description">
         {{listing?.description}}
       </div>
-    </div>
-    <div class="listing-buttons">
-      <button mat-raised-button id="close-listing-button" *ngIf="listing.isOpen" color="primary"
-            (click)="closeListing(listing)">Close</button>
-      <button mat-raised-button id="open-listing-button" *ngIf="!listing.isOpen" color="primary"
-              (click)="openListing()">Open</button>
     </div>
   </div>
 </mat-card>

@@ -113,13 +113,11 @@
 }
 
 .listings-feed {
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
-.listing-buttons {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
+.listing-view-card {
+  margin-bottom: 12px;
 }
 
 

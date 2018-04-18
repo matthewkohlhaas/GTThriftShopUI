@@ -162,22 +162,25 @@ export class UserProfilePageComponent implements OnInit {
     });
   }
 
-  private closeListing(listing: Listing): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
+  private closeListing(listing: Listing): void {
         this.listingService.editListing(listing, msg => {
           if (!msg.successful) {
             this.modalService.openAlertModal('Failed to close listing.', msg.text);
-            reject();
           } else {
             listing.isOpen = false;
-            resolve();
+            console.log(listing);
           }
         });
-    });
   }
 
-  private openListing(): void {
-
+  private openListing(listing: Listing): void {
+      this.listingService.editListing(listing, msg => {
+        if (!msg.successful) {
+          this.modalService.openAlertModal('Failed to open listing.', msg.text);
+        } else {
+          listing.isOpen = true;
+        }
+      });
   }
 
   private openEditListingModal(listing: Listing): void {

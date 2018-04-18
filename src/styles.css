@@ -3,6 +3,22 @@ body {
   margin: 0;
   background-color: #e9e9e9;
   font-family: Roboto, sans-serif;
+  -webkit-text-size-adjust:none;
+  -moz-text-size-adjust:none;
+  -ms-text-size-adjust:none;
+  -webkit-text-size-adjust:100%;
+  -moz-text-size-adjust:100%;
+  -ms-text-size-adjust:100%;
+}
+
+div {
+  font-size: 12pt;
+}
+
+.mat-card {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .toolbar-container {
@@ -23,15 +39,14 @@ body {
 }
 
 .toolbar mat-toolbar-row {
-  max-width: 900px;
   margin: auto;
   padding: 0;
 }
 
 .toolbar-title {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 20px;
   color: white;
+  font-family: Lato, sans-serif;
 }
 
 .toolbar-title:hover, .toolbar-title:active, .toolbar-title:focus {
@@ -45,6 +60,9 @@ body {
 
 .main-content {
   background-color: #e9e9e9;
+  background-image: url("assets/background.png");
+  background-repeat: repeat;
+  background-size: 300px 300px;
 }
 
 .main-content-container {
@@ -72,7 +90,7 @@ body {
 }
 
 .mat-card-subtitle {
-  font-size: 12pt !important;
+  font-size: 11pt !important;
 }
 
 .classic-form .mat-form-field {
@@ -120,13 +138,30 @@ body {
 a {
   color: #0d47a1;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 400;
   cursor: pointer;
 }
 
 a:hover {
   text-decoration: underline;
 }
+
+
+.toolbar .mat-toolbar-multiple-rows {
+  max-height: 45px !important;
+  min-height:45px;
+  display: block;
+}
+
+@media screen and (max-width:659px) {
+
+  .mat-card {
+    width: 47%;
+    margin-left: 20px;
+  }
+
+}
+
 
 .message-text  {
   font-size: 12px;

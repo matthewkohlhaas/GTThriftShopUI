@@ -1,57 +1,83 @@
 .listing-view-card {
-  display: flex;
-  flex-direction: column;
+  /*<<<<<<< HEAD*/
+  margin: 0 auto;
 }
+/*!*=======*!*/
+  /*display: flex;*/
+  /*flex-direction: column;*/
+/*}*/
 
 .listing-view-content {
   display: flex;
+  height: 300px;
+  margin-bottom: 12px;
+  transition: all 0.4s;
 }
 
+.listing-view-card:hover {
+  box-shadow: 0 6px 2px -4px rgba(0,0,0,.2),
+  0 4px 4px 0 rgba(0,0,0,.14),
+  0 2px 10px 0 rgba(0,0,0,.12)
+}
+
+/**
+ * Same size thumbnails
+ */
 .listing-view-image {
   display: inline-block;
   vertical-align: middle;
   width: 30%;
   height: 100%;
+  background-size: cover; /* or contain */
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .listing-view-image img {
+  float: left;
   display: block;
   margin: auto;
   max-width: 100%;
   max-height: 100%;
   border-radius: 2px;
+  cursor: pointer;
 }
 
 .listing-view-text {
   display: block;
-  width: 70%;
+  width: 50%;
   padding: 0 20px 0 20px;
 }
 
 .listing-view-name {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-size: 18pt;
   font-weight: bold;
 }
 
-.listing-view-seller,
+.listing-view-seller {
+  margin-bottom: 15px;
+}
+
+.listing-view-seller a {
+  font-weight: bold;
+}
+
 .listing-view-description {
-  font-size: 12pt;
-  margin-bottom: 12px;
+  height: 230px;
+  overflow: auto;
 }
 
+/*<<<<<<< HEAD*/
 .listing-view-price {
-  margin-bottom: 12px;
+  width: 15%;
+  margin: auto !important;
   font-size: 18pt;
-  font-weight: bold;
+  font-weight: 400;
+  text-align: center;
+  color: green;
 }
-
-.button-edit-listing {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-}
-
+/*=======*/
 .listing-view-buttons {
   margin-left: auto;
 }
@@ -64,51 +90,66 @@
   margin-top: 12px;
 }
 
-.listing-offers-card {
+.listing-offers-card, .listing-questions-card {
   margin-top: 12px;
 }
 
 .listing-questions-card {
-  margin: 12px 0;
+  margin-bottom: 12px;
 }
 
-#listing-page-toolbar {
-  margin-bottom: 10px;
-  height: 50px;
-  background-color: #EEB211;
-}
+/*#listing-page-toolbar {*/
+  /*margin-bottom: 10px;*/
+  /*height: 50px;*/
+  /*background-color: #EEB211;*/
+/*>>>>>>> master*/
 
-#category-select-form-field {
-  width: 22%;
-  margin-right: 30px;
-  font-size: 14pt;
-}
-
-#search-input-form-field {
-  width: 30%;
-  margin-right: 30px;
-  font-size: 14pt;
-}
-
-#sort-select-form-field {
-  width: 22%;
-  font-size: 14pt;
-}
-
-#category-label {
-  margin-right: 10px;
+.listing-posted-date {
   font-weight: normal;
-  font-size: 14pt;
+  font-size: 11pt;
+  color: gray;
 }
 
-#search-icon {
-  margin-right: 10px;
-  font-weight: normal;
-  font-size: 14pt;
+.listing-view-card-right-content {
+  display: flex;
 }
 
-#sort-label {
-  margin-right: 10px;
-  font-weight: normal;
-  font-size: 14pt;
+/**
+  Mobile View
+ */
+@media screen and (max-width:659px) {
+  .listing-view-image {
+    margin: 20px 0px 20px 0px;
+    width: 85%;
+    height:300px;
+  }
+
+  .listing-view-card {
+    display: inline-block;
+    height: auto;
+    width: 47%;
+    margin-left: 20px;
+  }
+
+  .listing-view-price {
+    margin: 0px;
+    font-size: 24pt;
+    font-weight: bold;
+  }
+
+  .listing-view-name {
+    font-size: 16pt;
+  }
+
+  .listing-view-text {
+    padding: 0px;
+    margin-bottom: 20px;
+    width: 100%;
+    height: auto
+  }
+
+  .listing-view-description {
+    height: 100%;
+    max-height: 150px;
+  }
 }

@@ -1,32 +1,33 @@
 <mat-card class="profile-card">
-    <div class="profile-image">
-      <img src="{{user?.profilePictureUrl}}"/>
-        <mat-form-field *ngIf="editProfileEnabled">
-          <input matInput id="profile-picture-input" placeholder="Profile Picture URL"
-                 type="text" title="profile-picture" name="profile-picture"
-                 [(ngModel)]="profilePictureUrl" (keyup.enter)="done()">
-        </mat-form-field>
+
+  <div class="profile-image" [ngStyle]="{ 'background-image': 'url(' + user?.profilePictureUrl + ')'}"></div>
+
+  <div class="profile-text">
+    <mat-form-field id="profile-picture-input" *ngIf="editProfileEnabled">
+      <input matInput  placeholder="Profile Picture URL"
+             type="text" title="profile-picture" name="profile-picture"
+             [(ngModel)]="profilePictureUrl" (keyup.enter)="done()">
+    </mat-form-field>
+    <div class="user-name" *ngIf="!editProfileEnabled">
+      {{user?.firstName}} {{user?.lastName}}
     </div>
 
-    <div class="profile-text">
-      <div class="user-name" *ngIf="!editProfileEnabled">
-        {{user?.firstName}} {{user?.lastName}}
-      </div>
-      <div *ngIf="editProfileEnabled">
-        <mat-form-field>
-          <input matInput id="first-name-input" placeholder="First Name" type="text"
-               title="first-name" name="first-name" [(ngModel)]="firstName" (keyup.enter)="done()">
-          <mat-error>Please enter a first name.</mat-error>
-        </mat-form-field>
+    <div *ngIf="editProfileEnabled">
+      <mat-form-field id="first-name-input">
+        <input matInput placeholder="First Name" type="text"
+             title="first-name" name="first-name" [(ngModel)]="firstName" (keyup.enter)="done()">
+        <mat-error>Please enter a first name.</mat-error>
+      </mat-form-field>
 
-        <mat-form-field>
-          <input matInput id="last-name-input" placeholder="Last Name" type="text"
-               title="last-name" name="last-name" [(ngModel)]="lastName" (keyup.enter)="done()">
-          <mat-error>Please enter a last name.</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="user-email">
-        <span><b>email:</b> {{user?.email}}</span>
+      <mat-form-field id="last-name-input">
+        <input matInput placeholder="Last Name" type="text"
+             title="last-name" name="last-name" [(ngModel)]="lastName" (keyup.enter)="done()">
+        <mat-error>Please enter a last name.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="user-email-label">
+        Email : <span class="user-email">{{user?.email}}</span>
       </div>
       <div class="user-bio-label" *ngIf="!editProfileEnabled">
           About me:
@@ -35,27 +36,27 @@
         <div *ngIf="!editProfileEnabled">
           {{user?.profileBio}}
         </div>
-        <mat-form-field *ngIf="editProfileEnabled">
-          <input matInput id= "profile-bio-input" placeholder="About Me" type="text" title="profile-bio"
-                 name="profile" [(ngModel)]="profileBio" (keyup.enter)="done()">
+        <mat-form-field id= "profile-bio-input" *ngIf="editProfileEnabled">
+          <textarea matInput matTextareaAutosize placeholder="About Me" type="text" title="profile-bio"
+                    name="profile" [(ngModel)]="profileBio" (keyup.enter)="done()"></textarea>
           <mat-error>Please enter a bio.</mat-error>
         </mat-form-field>
       </div>
-
-      <div *ngIf="!isCurrentUsersProfile()">
-        <a>
-          <mat-icon class="message-button" (click)="openMessageModal(listing)">message</mat-icon>
-        </a>
-        <a>
-          <mat-icon class="flag-button" (click)="openFlagModal()">flag</mat-icon>
-        </a>
-      </div>
-      <div class="profile-buttons" *ngIf="isCurrentUsersProfile()">
-        <button mat-raised-button id="edit-profile-button" *ngIf="!editProfileEnabled" color="primary"
-                (click)="editProfile()">Edit Profile</button>
+      <div class="profile-edit-done-button" *ngIf="isCurrentUsersProfile()">
         <button mat-raised-button id="done-editing-profile-button" *ngIf="editProfileEnabled" color="primary"
                 (click)="done()">Done</button>
       </div>
-    </div>
+  </div>
+
+
+  <div class="listing-view-card-right-content">
+    <a *ngIf="!isCurrentUsersProfile()">
+      <mat-icon class="flag-button" (click)="openFlagModal()">flag</mat-icon>
+    </a>
+
+    <a *ngIf="isCurrentUsersProfile()">
+      <mat-icon class="flag-button" (click)="editProfile()" >edit</mat-icon>
+    </a>
+  </div>
 </mat-card>
 

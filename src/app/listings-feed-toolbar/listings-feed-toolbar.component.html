@@ -4,20 +4,20 @@
       <mat-label class="listing-toolbar-label">Category:</mat-label>
       <mat-form-field id="category-select-form-field">
         <mat-select [(value)]="selectedCategory">
-          <mat-option *ngFor="let category of categoryObjects" [value]="category.value">
+          <mat-option *ngFor="let category of categoryObjects" [value]="category.value" (click)="onChange()">
             {{ category.text }}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-icon id="listing-toolbar-search-icon">search</mat-icon>
       <mat-form-field id="search-input-form-field" [floatLabel]="'never'">
-        <input matInput type="search" placeholder="Search" [(ngModel)]="searchString" (keyup)="onSearchFieldKeyUp()"
-               (change)="list()">
+        <input matInput type="search" placeholder="Search..." [(ngModel)]="searchString" (keyup)="onSearchFieldKeyUp()"
+               (change)="onChange()">
       </mat-form-field>
       <mat-label class="listing-toolbar-label">Sort by:</mat-label>
       <mat-form-field id="sort-select-form-field">
         <mat-select [(value)]="selectedSort">
-          <mat-option *ngFor="let sort of sortObjects" [value]="sort.params" (click)="list()">
+          <mat-option *ngFor="let sort of sortObjects" [value]="sort.params" (click)="onChange()">
             {{ sort.text }}
           </mat-option>
         </mat-select>

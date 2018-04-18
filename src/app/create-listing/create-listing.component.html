@@ -1,34 +1,34 @@
-<mat-card id="create-listing-card">
-  <mat-card-header>
-    <mat-card-title>Create Listing</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <form class="classic-form">
-      <mat-form-field>
-        <input matInput required placeholder="Name" type="text" title="name" name="name" [(ngModel)]="name"
-               (keyup.enter)="onSubmit()">
-        <mat-error>Please enter a name.</mat-error>
-      </mat-form-field>
+  <mat-card id="create-listing-card">
+    <mat-card-header>
+      <mat-card-title>Create Listing</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="classic-form">
+        <mat-form-field>
+          <input matInput required placeholder="Name" type="text" title="name" name="name" [(ngModel)]="name"
+                 (keyup.enter)="onSubmit()">
+          <mat-error>Please enter a name.</mat-error>
+        </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Description" type="text" title="description" name="description"
-               [(ngModel)]="description" (keyup.enter)="onSubmit()">
-      </mat-form-field>
+        <mat-form-field>
+        <textarea matInput matTextareaAutosize placeholder="Description" type="text" title="description" name="description"
+                  [(ngModel)]="description" (keyup.enter)="onSubmit()"></textarea>
+        </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Price" type="number" title="price" name="price" [(ngModel)]="price"
-               (keyup.enter)="onSubmit()">
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Price" type="number" title="price" name="price" [(ngModel)]="price"
+                 (keyup.enter)="onSubmit()">
+        </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Image URL" type="text" title="image-url" name="image-url"
-               [(ngModel)]="imageUrl" (keyup.enter)="onSubmit()">
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Image URL" type="text" title="image-url" name="image-url"
+                 [(ngModel)]="imageUrl" (keyup.enter)="onSubmit()">
+        </mat-form-field>
 
-      <button mat-raised-button id="button-create-listing" color="primary" (click)="onSubmit()"
-              [disabled]="submitDisabled">
-        Submit
-      </button>
-    </form>
-  </mat-card-content>
-</mat-card>
+        <button mat-raised-button id="button-create-listing" color="primary" (click)="onSubmit()"
+                [disabled]="submitDisabled">
+          Submit
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>

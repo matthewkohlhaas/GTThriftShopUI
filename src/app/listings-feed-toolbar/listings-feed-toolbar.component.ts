@@ -1,6 +1,7 @@
 import {Component, ViewEncapsulation, EventEmitter, Output, OnInit} from '@angular/core';
 import Timer = NodeJS.Timer;
 import {FloatLabelType} from '@angular/material';
+import {ListingsToolbarService} from '../../services/listings-toolbar.service';
 
 const SEARCH_FIELD_DELAY = 500;
 
@@ -8,8 +9,8 @@ const SORT_OBJECTS: object[] = [
   { text: 'Price: Low to High', params: { sort: 'price', direction: 'ascending' } },
   { text: 'Price: High to Low', params: { sort: 'price', direction: 'descending' } },
   { text: 'Seller Rating', params: { sort: 'userRating', direction: 'descending' } },
-  { text: 'Date: Most Recent', params: { sort: 'createdAt', direction: 'descending' } },
-  { text: 'Date: Least Recent', params: { sort: 'createdAt', direction: 'ascending' } }
+  { text: 'Most Recent', params: { sort: 'createdAt', direction: 'descending' } },
+  { text: 'Least Recent', params: { sort: 'createdAt', direction: 'ascending' } }
 ];
 
 const CATEGORY_OBJECTS: object[] = [
@@ -24,17 +25,16 @@ const CATEGORY_OBJECTS: object[] = [
 })
 export class ListingsFeedToolbarComponent implements OnInit {
 
-  @Output() listEvent = new EventEmitter<string>();
-
-  private searchString;
   private categoryObjects: any[] = CATEGORY_OBJECTS;
-  private selectedCategory: any;
   private sortObjects: any[] = SORT_OBJECTS;
+
+  private searchString = '';
+  private selectedCategory: any;
   private selectedSort: any;
 
   private searchTimeout: any;
 
-  constructor() { }
+  constructor(private listingsToolbarService: ListingsToolbarService) { }
 
   ngOnInit() {
     if (this.categoryObjects && this.categoryObjects[0]) {
@@ -45,39 +45,18 @@ export class ListingsFeedToolbarComponent implements OnInit {
     }
   }
 
-  public addSearchParams(params: object) {
-    if (this.searchString) {
-      const trimmedString: string = this.searchString.trim();
-      if (trimmedString !== '') {
-        params['search'] = trimmedString;
-      }
-    }
-  }
-
-  public addSortParams(params: object) {
-    if (this.selectedSort) {
-      for (const key in this.selectedSort) {
-        if (this.selectedSort.hasOwnProperty(key)) {
-          params[key] = this.selectedSort[key];
-        }
-      }
-    }
-  }
-
-  public addCategoryParams(params: object) {
-    if (this.selectedCategory) {
-      params['category'] = this.selectedCategory;
-    }
-  }
-
   private onSearchFieldKeyUp() {
     if (this.searchTimeout) {
       clearTimeout(this.searchTimeout);
     }
-    this.searchTimeout = setTimeout(() => this.list(), SEARCH_FIELD_DELAY);
+    this.searchTimeout = setTimeout(() => this.onChange(), SEARCH_FIELD_DELAY);
   }
 
-  private list() {
-    this.listEvent.next('');
+  private onChange() {
+    const params = { category: this.selectedCategory,
+                     search: this.searchString,
+                     sort: this.selectedSort };
+    this.listingsToolbarService.changeMessage(params);
   }
+
 }

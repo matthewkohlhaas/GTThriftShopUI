@@ -3,7 +3,7 @@
     <div id="listing-toolbar-container">
       <mat-label class="listing-toolbar-label">Category:</mat-label>
       <mat-form-field id="category-select-form-field">
-        <mat-select [(value)]="selectedCategory">
+        <mat-select [(value)]="selectedCategory" (keyup.enter)="onChange()">
           <mat-option *ngFor="let category of categoryObjects" [value]="category.value" (click)="onChange()">
             {{ category.text }}
           </mat-option>
@@ -16,7 +16,7 @@
       </mat-form-field>
       <mat-label class="listing-toolbar-label">Sort by:</mat-label>
       <mat-form-field id="sort-select-form-field">
-        <mat-select [(value)]="selectedSort">
+        <mat-select [(value)]="selectedSort" (keyup.enter)="onChange()">
           <mat-option *ngFor="let sort of sortObjects" [value]="sort.params" (click)="onChange()">
             {{ sort.text }}
           </mat-option>

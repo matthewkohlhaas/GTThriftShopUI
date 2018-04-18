@@ -6,6 +6,7 @@ export class Listing {
   description: string;
   price: number;
   imageUrl: string;
+  isOpen: boolean;
   user: User;
   userRating: number;
 }

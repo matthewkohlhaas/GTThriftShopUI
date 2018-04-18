@@ -68,3 +68,58 @@
 #profile-picture-input {
   margin: 10px 0 0 0;
 }
+
+.listing-view-content {
+  display: flex;
+}
+
+.listing-view-image {
+  display: inline-block;
+  vertical-align: middle;
+  width: 30%;
+  height: 100%;
+}
+
+.listing-view-image img {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 2px;
+}
+
+.listing-view-text {
+  display: block;
+  width: 70%;
+  padding: 0 20px 0 20px;
+}
+
+.listing-view-name {
+  margin-bottom: 12px;
+  font-size: 18pt;
+  font-weight: bold;
+}
+
+.listing-view-seller,
+.listing-view-description {
+  font-size: 12pt;
+  margin-bottom: 12px;
+}
+
+.listing-view-price {
+  margin-bottom: 12px;
+  font-size: 18pt;
+  font-weight: bold;
+}
+
+.listings-feed {
+  margin-top: 50px;
+}
+
+.listing-buttons {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+

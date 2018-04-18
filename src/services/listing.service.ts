@@ -24,6 +24,9 @@ export class ListingService {
     return this.http.get<Listing[]>(`${environment.serverUrl}/listings/users/${userId}`);
   }
 
+  public getCurrentUsersListings(): Observable<Listing[]> {
+    return this.http.get<Listing[]>(`${environment.serverUrl}/listings/current-user`);
+  }
   createListing(name: string, price: number, description: string, imageUrl: string,
                 next?: (msg: ServerMessage) => void): void {
     this.http.post<ServerMessage>(`${environment.serverUrl}/listings`,
@@ -47,7 +50,8 @@ export class ListingService {
         name: listing.name,
         price: listing.price,
         description: listing.description,
-        imageUrl: listing.imageUrl
+        imageUrl: listing.imageUrl,
+        isOpen: listing.isOpen
       }).subscribe(
         res => {
           next(res);

@@ -90,12 +90,12 @@
   margin-top: 12px;
 }
 
-.listing-offers-card {
+.listing-offers-card, .listing-questions-card {
   margin-top: 12px;
 }
 
 .listing-questions-card {
-  margin: 12px 0;
+  margin-bottom: 12px;
 }
 
 /*#listing-page-toolbar {*/
@@ -107,7 +107,7 @@
 .listing-posted-date {
   font-weight: normal;
   font-size: 11pt;
-  color: lightgray;
+  color: gray;
 }
 
 .listing-view-card-right-content {

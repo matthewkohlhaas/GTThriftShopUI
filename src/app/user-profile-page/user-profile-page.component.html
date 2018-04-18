@@ -11,7 +11,6 @@
     <div class="user-name" *ngIf="!editProfileEnabled">
       {{user?.firstName}} {{user?.lastName}}
     </div>
-    <div class="user-rating">{{(user.totalRatings) ? (user.totalRatings).toFixed(0) + "% positive ratings" : "Not Rated"}}</div>
 
     <div *ngIf="editProfileEnabled">
       <mat-form-field id="first-name-input">
@@ -57,10 +56,6 @@
 
     <a *ngIf="isCurrentUsersProfile()">
       <mat-icon class="flag-button" (click)="editProfile()" >edit</mat-icon>
-    </a>
-
-    <a *ngIf="isCurrentUsersProfile()">
-      <mat-icon class="message-button" (click)="openMessageModal(listing)">message</mat-icon>
     </a>
   </div>
 </mat-card>

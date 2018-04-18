@@ -7,6 +7,7 @@ import {ModalService} from '../../services/modal.service';
 import {Router} from '@angular/router';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {ModalAlertContentComponent} from '../modal-alert-content/modal-alert-content.component';
+import {ConstantUtils} from '../../utils/constant.utils';
 
 @Component({
   selector: 'app-modal-edit-listing-content',
@@ -15,6 +16,9 @@ import {ModalAlertContentComponent} from '../modal-alert-content/modal-alert-con
   encapsulation: ViewEncapsulation.None
 })
 export class ModalEditListingContentComponent implements OnInit {
+
+  private categoryObjects = ConstantUtils.CATEGORY_OBJECTS.slice(1);
+  private category: object;
 
   private submitDisabled: boolean;
 
@@ -38,6 +42,9 @@ export class ModalEditListingContentComponent implements OnInit {
   private onSubmit(): void {
     if (!this.listing || !ValidationUtils.validateNotEmpty(this.listing.name)) {
       return;
+    }
+    if (this.category) {
+      this.listing.category = this.category['value'];
     }
     this.submitDisabled = true;
     this.listingService.editListing(this.listing, msg => {

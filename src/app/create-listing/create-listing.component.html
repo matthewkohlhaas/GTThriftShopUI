@@ -27,7 +27,7 @@
 
         <mat-form-field>
           <mat-select [(value)]="category" placeholder="Category">
-            <mat-option *ngFor="let cat of categoryObjects" [value]="cat.value" (click)="onChange()">
+            <mat-option *ngFor="let cat of categoryObjects" [value]="cat.value">
               {{ cat.text }}
             </mat-option>
           </mat-select>

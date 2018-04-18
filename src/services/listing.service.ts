@@ -48,7 +48,8 @@ export class ListingService {
         name: listing.name,
         price: listing.price,
         description: listing.description,
-        imageUrl: listing.imageUrl
+        imageUrl: listing.imageUrl,
+        category: listing.category
       }).subscribe(
         res => {
           next(res);

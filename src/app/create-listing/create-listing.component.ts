@@ -30,7 +30,7 @@ export class CreateListingComponent {
       return;
     }
     this.submitDisabled = true;
-    this.listingService.createListing(this.name, this.price, this.description, this.imageUrl, msg => {
+    this.listingService.createListing(this.name, this.price, this.description, this.imageUrl, this.category, msg => {
       let title = 'Failed to Create Listing';
 
       if (msg.successful) {

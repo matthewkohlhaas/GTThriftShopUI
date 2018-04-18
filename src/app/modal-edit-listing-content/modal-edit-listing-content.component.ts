@@ -18,7 +18,7 @@ import {ConstantUtils} from '../../utils/constant.utils';
 export class ModalEditListingContentComponent implements OnInit {
 
   private categoryObjects = ConstantUtils.CATEGORY_OBJECTS.slice(1);
-  private category: object;
+  private category: string;
 
   private submitDisabled: boolean;
 
@@ -33,6 +33,7 @@ export class ModalEditListingContentComponent implements OnInit {
 
   ngOnInit(): void {
     this.listing = this.data.listing;
+    this.category = this.listing.category;
   }
 
   private close(): void {
@@ -44,7 +45,7 @@ export class ModalEditListingContentComponent implements OnInit {
       return;
     }
     if (this.category) {
-      this.listing.category = this.category['value'];
+      this.listing.category = this.category;
     }
     this.submitDisabled = true;
     this.listingService.editListing(this.listing, msg => {

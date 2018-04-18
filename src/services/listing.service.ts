@@ -25,10 +25,10 @@ export class ListingService {
     return this.http.get<Listing[]>(`${environment.serverUrl}/listings/users/${userId}`);
   }
 
-  public createListing(name: string, price: number, description: string, imageUrl: string,
+  public createListing(name: string, price: number, description: string, imageUrl: string, category: string,
                 next?: (msg: ServerMessage) => void): void {
     this.http.post<ServerMessage>(`${environment.serverUrl}/listings`,
-      {name: name, description: description, price: price, imageUrl: imageUrl})
+      {name: name, description: description, price: price, imageUrl: imageUrl, category: category})
       .subscribe(
         res => {
           next(res);
@@ -48,7 +48,8 @@ export class ListingService {
         name: listing.name,
         price: listing.price,
         description: listing.description,
-        imageUrl: listing.imageUrl
+        imageUrl: listing.imageUrl,
+        category: listing.category
       }).subscribe(
         res => {
           next(res);

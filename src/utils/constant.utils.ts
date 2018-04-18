@@ -3,7 +3,6 @@ export class ConstantUtils {
   public static SORT_OBJECTS: object[] = [
     {text: 'Price: Low to High', params: {sort: 'price', direction: 'ascending'}},
     {text: 'Price: High to Low', params: {sort: 'price', direction: 'descending'}},
-    {text: 'Seller Rating', params: {sort: 'userRating', direction: 'descending'}},
     {text: 'Most Recent', params: {sort: 'createdAt', direction: 'descending'}},
     {text: 'Least Recent', params: {sort: 'createdAt', direction: 'ascending'}}
   ];

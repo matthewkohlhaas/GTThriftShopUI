@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import {ServerMessage} from '../model/server-message';
+import {Offer} from '../model/offer';
 
 const COULD_NOT_CONNECT = 'Could not connect to server.';
 
@@ -24,7 +25,7 @@ export class ListingService {
     return this.http.get<Listing[]>(`${environment.serverUrl}/listings/users/${userId}`);
   }
 
-  createListing(name: string, price: number, description: string, imageUrl: string,
+  public createListing(name: string, price: number, description: string, imageUrl: string,
                 next?: (msg: ServerMessage) => void): void {
     this.http.post<ServerMessage>(`${environment.serverUrl}/listings`,
       {name: name, description: description, price: price, imageUrl: imageUrl})
@@ -41,7 +42,7 @@ export class ListingService {
       );
   }
 
-  editListing(listing: Listing, next?: (msg: ServerMessage) => void): void {
+  public editListing(listing: Listing, next?: (msg: ServerMessage) => void): void {
     this.http.put<ServerMessage>(`${environment.serverUrl}/listings/${listing._id}`,
       {
         name: listing.name,
@@ -59,5 +60,44 @@ export class ListingService {
           }
         }
       );
+  }
+
+  public postQuestion(listingId: string, question: string, next?: (msg: ServerMessage) => void): void {
+    this.http.post<ServerMessage>(`${environment.serverUrl}/listings/${listingId}/questions`,
+      {
+        question: question
+      }).subscribe(
+      res => {
+        next(res);
+      }, err => {
+        if (err.status === 0) {
+          next(new ServerMessage(false, COULD_NOT_CONNECT));
+        } else {
+          next(new ServerMessage(err.error.successful, err.error.text));
+        }
+      }
+    );
+  }
+
+  public getOffers(listingId: string): Observable<Offer[]> {
+    return this.http.get<Offer[]>(`${environment.serverUrl}/listings/${listingId}/offers`);
+  }
+
+  public postOffer(listingId: string, price: number, message: string, next?: (msg: ServerMessage) => void): void {
+    this.http.post<ServerMessage>(`${environment.serverUrl}/listings/${listingId}/offers`,
+      {
+        price: price,
+        message: message
+      }).subscribe(
+      res => {
+        next(res);
+      }, err => {
+        if (err.status === 0) {
+          next(new ServerMessage(false, COULD_NOT_CONNECT));
+        } else {
+          next(new ServerMessage(err.error.successful, err.error.text));
+        }
+      }
+    );
   }
 }

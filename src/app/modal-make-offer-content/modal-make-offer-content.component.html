@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Make Offer for {{listing.name}}</h1>
+<form class="classic-form">
+  <mat-form-field>
+    <input matInput required placeholder="Amount" type="number" title="Amount" name="price" [(ngModel)]="price"
+           (keyup.enter)="onSubmit()">
+    <mat-error>Please enter an offer amount.</mat-error>
+    <span matPrefix>$&nbsp;</span>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput matTextareaAutosize placeholder="Message" type="text" title="Message" name="message"
+              [(ngModel)]="message"></textarea>
+  </mat-form-field>
+
+  <div class="modal-buttons">
+    <button mat-raised-button class="button-update-listing" color="primary" (click)="onSubmit()"
+            [disabled]="submitDisabled">
+      Make Offer
+    </button>
+    <button mat-raised-button class="button-cancel-edit-listing" (click)="close()" [disabled]="submitDisabled">
+      Cancel
+    </button>
+  </div>
+</form>

@@ -7,6 +7,10 @@ import {ListingService} from '../../services/listing.service';
 import {AccountService} from '../../services/account.service';
 import {ModalEditListingContentComponent} from '../modal-edit-listing-content/modal-edit-listing-content.component';
 import {ModalFlagListingContentComponent} from '../modal-flag-listing-content/modal-flag-listing-content.component';
+import {ModalMakeOfferContentComponent} from '../modal-make-offer-content/modal-make-offer-content.component';
+import {Offer} from '../../model/offer';
+import {OfferService} from '../../services/offer.service';
+import {ModalPostQuestionContentComponent} from '../modal-post-question-content/modal-post-question-content.component';
 
 @Component({
   selector: 'app-listing-page',
@@ -17,23 +21,38 @@ export class ListingPageComponent implements OnInit {
 
   currentUser: User;
   listing: Listing;
+  offers: Offer[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private modalService: ModalService,
     private listingService: ListingService,
+    private offerService: OfferService,
     private accountService: AccountService
   ) {}
 
   ngOnInit(): void {
-    this.loadListing();
+    this.loadListing(() => this.loadOffers());
     this.accountService.getCurrentUser().subscribe(value => this.currentUser = value);
   }
 
-  private loadListing(): void {
+  private loadListing(next?: () => void): void {
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.listingService.getListing(params['id']).subscribe(value => this.listing = value);
+      this.listingService.getListing(params['id']).subscribe(listing => {
+        this.listing = listing;
+        if (next) {
+          next();
+        }
+      });
     });
+  }
+
+  private loadOffers(): void {
+    this.listingService.getOffers(this.listing._id).subscribe(offers => this.offers = offers);
+  }
+
+  private loadMessages(offer: Offer): void {
+    this.offerService.getMessages(offer._id).subscribe(messages => offer.messages = messages);
   }
 
   private userOwnsListing(): boolean {
@@ -46,14 +65,23 @@ export class ListingPageComponent implements OnInit {
   }
 
   private openEditListingModal(): void {
-    const listing = Object.assign({}, this.listing);
-    this.modalService.openModal(ModalEditListingContentComponent, {listing: listing}, () => {
-      this.loadListing();
-    });
+    this.openModal(ModalEditListingContentComponent, () => this.loadListing());
   }
 
-  private openFlagModal(listing): void {
-    this.modalService.openModal<ModalFlagListingContentComponent>(ModalFlagListingContentComponent,
-      {listing: listing});
+  private openFlagModal(): void {
+    this.openModal(ModalFlagListingContentComponent, () => this.loadListing());
+  }
+
+  private makeOffer(): void {
+    this.openModal(ModalMakeOfferContentComponent, () => this.loadOffers());
+  }
+
+  private postQuestion(): void {
+    this.openModal(ModalPostQuestionContentComponent, () => this.loadListing());
+  }
+
+  private openModal(modalContentRef: any, onClose?: () => void): void {
+    const listing = Object.assign({}, this.listing);
+    this.modalService.openModal(modalContentRef, {listing: listing}, onClose);
   }
 }

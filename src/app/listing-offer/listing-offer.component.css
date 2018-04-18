@@ -1,0 +1,46 @@
+.offer-panel {
+  border-top:  1px #dddddd solid;
+}
+
+.offer-panel-title {
+  width: 30%
+}
+
+.offer-panel-price {
+  font-weight: bold;
+}
+
+.offer-panel-accepted {
+  color: green;
+}
+
+.offer-panel-rejected {
+  color: red;
+}
+
+.offer-message-name {
+  font-weight: bold;
+}
+
+.offer-panel-message-form {
+  display: flex;
+  margin-top: 12px;
+}
+
+.offer-panel-message-field {
+  width: 100%;
+  margin-right: 20px;
+}
+
+.offer-panel-message-form .mat-raised-button {
+  height: 36px;
+  margin: auto 0;
+}
+
+.offer-panel-status-buttons {
+  margin-top: 12px;
+}
+
+#button-accept-offer {
+  margin-right: 20px;
+}

@@ -2,20 +2,9 @@ import {Component, ViewEncapsulation, EventEmitter, Output, OnInit} from '@angul
 import Timer = NodeJS.Timer;
 import {FloatLabelType} from '@angular/material';
 import {ListingsToolbarService} from '../../services/listings-toolbar.service';
+import {ConstantUtils} from '../../utils/constant.utils';
 
 const SEARCH_FIELD_DELAY = 500;
-
-const SORT_OBJECTS: object[] = [
-  { text: 'Price: Low to High', params: { sort: 'price', direction: 'ascending' } },
-  { text: 'Price: High to Low', params: { sort: 'price', direction: 'descending' } },
-  { text: 'Seller Rating', params: { sort: 'userRating', direction: 'descending' } },
-  { text: 'Most Recent', params: { sort: 'createdAt', direction: 'descending' } },
-  { text: 'Least Recent', params: { sort: 'createdAt', direction: 'ascending' } }
-];
-
-const CATEGORY_OBJECTS: object[] = [
-  { text: 'All', value: 'all' }
-];
 
 @Component({
   selector: 'app-listings-feed-toolbar',
@@ -25,8 +14,8 @@ const CATEGORY_OBJECTS: object[] = [
 })
 export class ListingsFeedToolbarComponent implements OnInit {
 
-  private categoryObjects: any[] = CATEGORY_OBJECTS;
-  private sortObjects: any[] = SORT_OBJECTS;
+  private categoryObjects: any[] = ConstantUtils.CATEGORY_OBJECTS;
+  private sortObjects: any[] = ConstantUtils.SORT_OBJECTS;
 
   private searchString = '';
   private selectedCategory: any;

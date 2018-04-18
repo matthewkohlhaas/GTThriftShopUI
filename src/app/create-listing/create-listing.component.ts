@@ -46,7 +46,7 @@ export class CreateListingComponent {
     this.price = 0;
     this.description = '';
     this.imageUrl = '';
-    this.category = 'miscellaneous';
+    this.category = ConstantsUtils.DEFAULT_CATEGORY['value'];
   }
 
 }

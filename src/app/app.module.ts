@@ -27,6 +27,7 @@ import {ListingService} from '../services/listing.service';
 import {AdminService} from '../services/admin.service';
 import {FlagService} from '../services/flag.service';
 import {ModalService} from '../services/modal.service';
+import {ListingsToolbarService} from '../services/listings-toolbar.service';
 import {CreateAccountPageComponent} from './create-account-page/create-account-page.component';
 import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
 import {environment} from '../environments/environment';
@@ -177,6 +178,7 @@ export function jwtOptionsFactory() {
     LocalStorageService,
     ModalService,
     MessageService,
+    ListingsToolbarService,
     AuthenticateGuard,
     AdminGuard
   ],

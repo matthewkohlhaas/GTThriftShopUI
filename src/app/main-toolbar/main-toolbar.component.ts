@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {AccountService} from '../../services/account.service';
+import {ListingsFeedPageComponent} from '../listings-feed-page/listings-feed-page.component';
+
 
 @Component({
   selector: 'app-main-toolbar',

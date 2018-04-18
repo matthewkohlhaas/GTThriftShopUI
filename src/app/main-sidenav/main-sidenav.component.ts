@@ -50,4 +50,8 @@ export class MainSidenavComponent implements OnInit {
   public toggle(): Promise<void> {
     return this.sidenav.toggle();
   }
+
+  private logout(): void {
+    this.accountService.logout();
+  }
 }

@@ -8,8 +8,8 @@ const SORT_OBJECTS: object[] = [
   { text: 'Price: Low to High', params: { sort: 'price', direction: 'ascending' } },
   { text: 'Price: High to Low', params: { sort: 'price', direction: 'descending' } },
   { text: 'Seller Rating', params: { sort: 'userRating', direction: 'descending' } },
-  { text: 'Date: Most Recent', params: { sort: 'createdAt', direction: 'descending' } },
-  { text: 'Date: Least Recent', params: { sort: 'createdAt', direction: 'ascending' } }
+  { text: 'Most Recent', params: { sort: 'createdAt', direction: 'descending' } },
+  { text: 'Least Recent', params: { sort: 'createdAt', direction: 'ascending' } }
 ];
 
 const CATEGORY_OBJECTS: object[] = [

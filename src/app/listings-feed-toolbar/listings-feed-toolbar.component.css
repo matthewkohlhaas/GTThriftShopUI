@@ -1,23 +1,26 @@
 #listing-toolbar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #f5dbb5;
+  background-color: whitesmoke;
   box-shadow: none;
+  max-height: 50px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.toolbar-spacer {
 }
 
 #listing-toolbar .mat-toolbar-row {
   padding: 0 12px !important;
+  max-height: 50px !important;
+  margin: 0px;
 }
 
 #listing-toolbar-container {
-  position: relative;
-  top: -4px;
   width: auto;
 }
 
 .listing-toolbar-label {
-  font-size: 14pt;
+  font-size: 11pt;
 }
 
 .listing-toolbar-label,
@@ -31,20 +34,149 @@
 }
 
 #listing-toolbar .mat-toolbar-row .mat-form-field {
-  height: 64px;
-  font-size: 14pt;
+  font-size: 11pt;
 }
 
 #category-select-form-field {
-  width: 20%;
-  margin-right: 16px;
+  width: 12%;
+  margin-right: 12px;
 }
 
 #search-input-form-field {
-  width: 36%;
-  margin-right: 16px;
+  width: 45%;
+  margin-right: 12px;
 }
 
 #sort-select-form-field {
   width: 22%;
 }
+
+@media screen and (max-width:456px) {
+  #search-input-form-field {
+    width: 75%!important;
+  }
+  .listing-toolbar-label, #sort-select-form-field, #category-select-form-field {
+    display:none;
+  }
+  .toolbar mat-toolbar-row, #listing-toolbar-container {
+    min-width: 18.5rem !important;
+    max-width: 18.5rem !important;
+  }
+}
+@media screen and (min-width:457px) and (max-width:558px) {
+  #search-input-form-field {
+       width: 75%!important;
+     }
+  .listing-toolbar-label, #sort-select-form-field, #category-select-form-field {
+    display:none;
+  }
+  .toolbar mat-toolbar-row, #listing-toolbar-container {
+    min-width: 21rem !important;
+    max-width: 21rem !important;
+  }
+}
+
+@media screen and (min-width:559px) and (max-width:659px) {
+  #search-input-form-field {
+    width: 85%!important;
+  }
+  .listing-toolbar-label, #sort-select-form-field, #category-select-form-field {
+    display:none;
+  }
+  .toolbar mat-toolbar-row, #listing-toolbar-container {
+    /*background-color: #c59353;*/
+    /*color: white;*/
+    min-width: 23rem !important;
+    max-width: 23rem !important;
+  }
+}
+
+@media screen and (min-width:660px) and (max-width:759px) {
+  #search-input-form-field {
+    width: 85% !important;
+  }
+  .listing-toolbar-label, #sort-select-form-field, #category-select-form-field {
+    display:none;
+  }
+  .toolbar mat-toolbar-row, #listing-toolbar-container {
+    min-width: 24rem !important;
+    max-width: 24rem !important;
+  }
+}
+@media screen and (min-width:760px) and (max-width:859px) {
+  #search-input-form-field {
+    width: 45% !important;
+  }
+  .listing-toolbar-label {
+    display:none;
+  }
+  .toolbar mat-toolbar-row, #listing-toolbar-container {
+    min-width: 29rem !important;
+    max-width: 30rem !important;
+  }
+}
+
+@media screen and (min-width:860px) and (max-width:959px) {
+  #search-input-form-field {
+    width: 45% !important;
+  }
+  .listing-toolbar-label {
+    display:none;
+  }
+  .toolbar mat-toolbar-row, #listing-toolbar-container {
+    min-width: 35rem !important;
+    max-width: 35rem !important;
+  }
+}
+@media screen and (min-width:960px) and (max-width:1069px) {
+  #search-input-form-field {
+    width: 40% !important;
+  }
+  .toolbar mat-toolbar-row, #listing-toolbar-container {
+    min-width: 31.5rem !important;
+    max-width: 32rem !important;
+  }
+  #category-select-form-field {
+    display: none
+  }
+}
+
+@media screen and (min-width:1069px) and (max-width:1169px) {
+  #search-input-form-field {
+    width: 30% !important;
+  }
+  .toolbar mat-toolbar-row, #listing-toolbar-container {
+    min-width: 37rem !important;
+    max-width: 37rem !important;
+  }
+}
+
+@media screen and (min-width:1170px) and (max-width:1239px) {
+  #search-input-form-field {
+    width: 35% !important;
+  }
+  .toolbar mat-toolbar-row, #listing-toolbar-container {
+    min-width: 42rem !important;
+    max-width: 42rem !important;
+  }
+}
+
+@media screen and (min-width:1240px) and (max-width:1599px) {
+  #search-input-form-field {
+    width: 38% !important;
+  }
+  .toolbar mat-toolbar-row, #listing-toolbar-container {
+    min-width: 47.2rem !important;
+    max-width: 47.2rem !important;
+  }
+}
+@media screen and (min-width:1600px) {
+  #search-input-form-field {
+    width: 30% !important;
+  }
+  .toolbar mat-toolbar-row, #listing-toolbar-container {
+    min-width: 47.2rem !important;
+    max-width: 47.2rem !important;
+  }
+}
+@media screen and (min-width:1920px) {}

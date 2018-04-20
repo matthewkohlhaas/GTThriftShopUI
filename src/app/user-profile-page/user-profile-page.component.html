@@ -69,7 +69,12 @@
     <div class="listing-view-text">
       <a class="listing-view-name">
         <div (click)="openEditListingModal(listing)">
-          {{listing.name}}
+          <div *ngIf="listing.isOpen === true">
+            {{listing.name}}
+          </div>
+          <div *ngIf="listing.isOpen === false">
+            {{listing.name}} (Closed)
+          </div>
         </div>
       </a>
       <div class="listing-view-seller">

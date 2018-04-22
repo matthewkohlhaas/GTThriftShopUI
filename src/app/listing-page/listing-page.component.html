@@ -1,5 +1,5 @@
 <mat-card class="listing-view-card">
-  <div class="listing-view-image" [ngStyle]="{ 'background-image': 'url(' + listing.imageUrl + ')'}"></div>
+  <div class="listing-view-image" [ngStyle]="{ 'background-image': 'url(' + this.mainImage + ')'}"></div>
   <div class="listing-view-text">
     <div class="listing-view-name">
       <a *ngIf="listing.isOpen" routerLink="/listings/{{listing._id}}">
@@ -15,6 +15,7 @@
     <div class="listing-view-description">
       {{listing.description}}
     </div>
+
   </div>
   <div class="listing-view-card-right-content">
     <div class="listing-view-price">
@@ -29,6 +30,11 @@
   </div>
 
 
+</mat-card>
+
+<mat-card class="listing-images">
+  <div class="listing-view-image2" *ngFor="let imageURL of this.listing.imageUrl"
+       [ngStyle]="{ 'background-image': 'url(' + imageURL + ')'}" (click)="switchMainImage(imageURL)"></div>
 </mat-card>
 
 <mat-card class="listing-offers-card">

@@ -7,7 +7,7 @@
     .
   </span>
   <mat-card class="listing-card" *ngFor="let listing of listings">
-    <a routerLink="/listings/{{listing._id}}" class="listing-image" [ngStyle]="{ 'background-image': 'url(' + listing.imageUrl + ')'}"></a>
+    <a routerLink="/listings/{{listing._id}}" class="listing-image" [ngStyle]="{ 'background-image': 'url(' + listing.imageUrl[0] + ')'}"></a>
     <div class="listing-text">
       <div class="listing-name">
         <a *ngIf="listing.isOpen" routerLink="/listings/{{listing._id}}">

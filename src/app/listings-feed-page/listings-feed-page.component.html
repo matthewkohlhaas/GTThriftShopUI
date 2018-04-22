@@ -10,8 +10,12 @@
     <a routerLink="/listings/{{listing._id}}" class="listing-image" [ngStyle]="{ 'background-image': 'url(' + listing.imageUrl + ')'}"></a>
     <div class="listing-text">
       <div class="listing-name">
-        <a routerLink="/listings/{{listing._id}}">{{listing.name}}</a>
-        <mat-label class="listing-posted-date" >{{listing.createdAt | date: 'dd/MM/yyyy'}}</mat-label>
+        <a *ngIf="listing.isOpen" routerLink="/listings/{{listing._id}}">
+          {{listing.name}}
+        </a>
+        <mat-label class="listing-name-closed" *ngIf="!listing.isOpen">{{listing.name}} (CLOSED)</mat-label>
+
+        <mat-label class="listing-posted-date">{{listing.createdAt | date: 'dd/MM/yyyy'}}</mat-label>
       </div>
       <div class="listing-seller">
         <a routerLink="/users/{{listing?.user?._id}}">{{listing.user.firstName}} {{listing.user.lastName}}</a>

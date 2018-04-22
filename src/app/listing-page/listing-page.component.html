@@ -2,12 +2,15 @@
   <div class="listing-view-image" [ngStyle]="{ 'background-image': 'url(' + listing.imageUrl + ')'}"></div>
   <div class="listing-view-text">
     <div class="listing-view-name">
-      <a routerLink="/listings/{{listing._id}}">{{listing.name}}</a>
-      <mat-label class="listing-posted-date" >{{listing.createdAt | date: 'dd/MM/yyyy'}}</mat-label>
+      <a *ngIf="listing.isOpen" routerLink="/listings/{{listing._id}}">
+        {{listing.name}}
+      </a>
+      <mat-label class="listing-view-name-closed" *ngIf="!listing.isOpen">{{listing.name}} (CLOSED)</mat-label>
+
+      <mat-label class="listing-posted-date">{{listing.createdAt | date: 'dd/MM/yyyy'}}</mat-label>
     </div>
     <div class="listing-view-seller">
       <a routerLink="/users/{{listing?.user?._id}}">{{listing.user.firstName}} {{listing.user.lastName}}</a>
-      - {{(listing.userRating) ? (listing.userRating).toFixed(0) + "% positive ratings" : "Not Rated"}}
     </div>
     <div class="listing-view-description">
       {{listing.description}}
@@ -17,24 +20,12 @@
     <div class="listing-view-price">
       {{(listing.price) ? '$'+(listing.price) : ''}}
     </div>
-    <a *ngIf="!(listing.user._id === currentUser._id)">
+    <a *ngIf="!userOwnsListing()">
       <mat-icon class="flag-button" (click)="openFlagModal(listing)">flag</mat-icon>
     </a>
     <a *ngIf="userOwnsListing()">
       <mat-icon class="flag-button" (click)="openEditListingModal()" >edit</mat-icon>
     </a>
-  </div>
-
-
-  <div class="listing-view-buttons">
-    <button mat-raised-button class="listing-view-offer-button" *ngIf="!userOwnsListing()" color="primary"
-            (click)="makeOffer()">
-      Make an Offer
-    </button>
-    <button mat-raised-button class="listing-view-question-button" *ngIf="!userOwnsListing()" color="primary"
-            (click)="postQuestion()">
-      Ask a Question
-    </button>
   </div>
 
 
@@ -44,6 +35,9 @@
   <mat-card-header>
     <mat-card-title>
       <span *ngIf="userOwnsListing(); else userDoesNotOwnListing">Offers</span>
+      <a *ngIf="!userOwnsListing()">
+        <mat-icon class="flag-button" (click)="makeOffer()">feedback</mat-icon>
+      </a>
       <ng-template #userDoesNotOwnListing>Your Offers</ng-template>
     </mat-card-title>
   </mat-card-header>
@@ -63,6 +57,9 @@
 <mat-card class="listing-questions-card">
   <mat-card-header>
     <mat-card-title>Questions</mat-card-title>
+    <a *ngIf="!userOwnsListing()">
+      <mat-icon class="flag-button" (click)="postQuestion()">add_circle</mat-icon>
+    </a>
   </mat-card-header>
   <mat-card-content>
     <span *ngIf="!listing?.questions || listing?.questions?.length === 0">

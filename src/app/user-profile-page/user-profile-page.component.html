@@ -51,12 +51,54 @@
 
   <div class="listing-view-card-right-content">
     <a *ngIf="!isCurrentUsersProfile()">
-      <mat-icon class="flag-button" (click)="openFlagModal()">flag</mat-icon>
+      <mat-icon class="flag-button" (click)="openFlagModal()">block</mat-icon>
     </a>
-
     <a *ngIf="isCurrentUsersProfile()">
       <mat-icon class="flag-button" (click)="editProfile()" >edit</mat-icon>
     </a>
   </div>
 </mat-card>
+
+<!---------------------------------------------------------------------------------------->
+<!----------------------------------CURRENT USER'S LISTINGS------------------------------->
+<!---------------------------------------------------------------------------------------->
+
+
+<mat-expansion-panel *ngIf="isCurrentUsersProfile()" class="profile-listings">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      My Listings
+    </mat-panel-title>
+    <mat-panel-description></mat-panel-description>
+  </mat-expansion-panel-header>
+  <mat-card class="listing-view-card" *ngFor="let listing of listings">
+    <div class="listing-view-image" [ngStyle]="{ 'background-image': 'url(' + listing.imageUrl + ')'}"></div>
+    <div class="listing-view-text">
+      <div class="listing-view-name">
+        <a *ngIf="listing.isOpen" routerLink="/listings/{{listing._id}}">
+          {{listing.name}}
+        </a>
+        <mat-label class="listing-view-name-closed" *ngIf="!listing.isOpen">{{listing.name}} (CLOSED)</mat-label>
+
+        <mat-label class="listing-posted-date">{{listing.createdAt | date: 'dd/MM/yyyy'}}</mat-label>
+      </div>
+      <div class="listing-view-seller">
+        <a routerLink="/users/{{listing?.user?._id}}">{{listing?.user?.firstName}} {{listing?.user?.lastName}}</a>
+      </div>
+      <div class="listing-view-description">
+        {{listing?.description}}
+      </div>
+    </div>
+    <div class="listing-view-card-right-content">
+      <div class="listing-view-price">
+        {{(listing.price) ? '$'+(listing.price) : ''}}
+      </div>
+      <a>
+        <mat-icon class="flag-button" (click)="openEditListingModal(listing)" >edit</mat-icon>
+      </a>
+    </div>
+  </mat-card>
+</mat-expansion-panel>
+
+
 

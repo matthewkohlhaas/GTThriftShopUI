@@ -57,6 +57,12 @@
   font-size: 18pt;
   font-weight: bold;
 }
+.listing-name-closed {
+  text-decoration: line-through;
+  font-size: 14pt;
+  font-weight: normal;
+  color: gray;
+}
 
 .listing-posted-date {
   font-weight: normal;

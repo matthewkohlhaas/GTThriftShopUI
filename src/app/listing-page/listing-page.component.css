@@ -1,15 +1,16 @@
-.listing-view-card {
-  /*<<<<<<< HEAD*/
-  margin: 0 auto;
+.listing-page-icon-group {
+  display: block;
 }
-/*!*=======*!*/
-  /*display: flex;*/
-  /*flex-direction: column;*/
-/*}*/
+
+.listing-view-card {
+  display: flex;
+  margin: 0 auto;
+  margin-left: 20px;
+  height: 300px;
+}
 
 .listing-view-content {
   display: flex;
-  height: 300px;
   margin-bottom: 12px;
   transition: all 0.4s;
 }
@@ -26,7 +27,7 @@
 .listing-view-image {
   display: inline-block;
   vertical-align: middle;
-  width: 30%;
+  width: 280px;
   height: 100%;
   background-size: cover; /* or contain */
   background-position: center center;
@@ -145,7 +146,7 @@
     padding: 0px;
     margin-bottom: 20px;
     width: 100%;
-    height: auto
+    height: auto;
   }
 
   .listing-view-description {

@@ -8,6 +8,7 @@ export class Listing {
   description: string;
   price: number;
   imageUrl: string;
+  isOpen: boolean;
   category: string;
   user: User;
   userRating: number;

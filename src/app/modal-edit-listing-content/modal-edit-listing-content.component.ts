@@ -24,6 +24,8 @@ export class ModalEditListingContentComponent implements OnInit {
 
   private listing: Listing;
 
+  private isChecked = false;
+
   constructor(
     private listingService: ListingService,
     private modalService: ModalService,
@@ -34,6 +36,7 @@ export class ModalEditListingContentComponent implements OnInit {
   ngOnInit(): void {
     this.listing = this.data.listing;
     this.category = this.listing.category;
+    this.isChecked = !this.listing.isOpen;
   }
 
   private close(): void {
@@ -47,6 +50,8 @@ export class ModalEditListingContentComponent implements OnInit {
     if (this.category) {
       this.listing.category = this.category;
     }
+
+    this.listing.isOpen = this.isChecked;
     this.submitDisabled = true;
     this.listingService.editListing(this.listing, msg => {
       let title = 'Failed to Edit Listing';

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {AccountService} from '../../services/account.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {User} from '../../model/user';
@@ -6,6 +6,9 @@ import {ModalService} from '../../services/modal.service';
 import {ValidationUtils} from '../../utils/validation.utils';
 import {UserService} from '../../services/user.service';
 import {ModalBlockUserContentComponent} from '../modal-block-user-content/modal-block-user-content.component';
+import {ListingService} from '../../services/listing.service';
+import {Listing} from '../../model/listing';
+import {ModalEditListingContentComponent} from '../modal-edit-listing-content/modal-edit-listing-content.component';
 
 @Component({
   selector: 'app-user-profile-page',
@@ -16,7 +19,6 @@ import {ModalBlockUserContentComponent} from '../modal-block-user-content/modal-
 export class UserProfilePageComponent implements OnInit {
 
   private editProfileEnabled = false;
-
   private user: User;
   private currentUserId = '';
 
@@ -25,12 +27,15 @@ export class UserProfilePageComponent implements OnInit {
   private profilePictureUrl: string;
   private profileBio: string;
 
+  private listings: Listing[];
+
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private accountService: AccountService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private listingService: ListingService
   ) { }
 
   ngOnInit(): void {
@@ -42,6 +47,7 @@ export class UserProfilePageComponent implements OnInit {
         this.router.navigate(['']);
       });
     });
+    this.getListingsForCurrentUser();
   }
 
   private isCurrentUsersProfile(): boolean {
@@ -146,6 +152,38 @@ export class UserProfilePageComponent implements OnInit {
           }
         });
       }
+    });
+  }
+
+  private getListingsForCurrentUser(): void {
+    this.listingService.getCurrentUsersListings().subscribe( res => {
+      this.listings = res;
+    });
+  }
+
+  private closeListing(listing: Listing): void {
+        this.listingService.editListing(listing, msg => {
+          if (!msg.successful) {
+            this.modalService.openAlertModal('Failed to close listing.', msg.text);
+          } else {
+            listing.isOpen = false;
+            console.log(listing);
+          }
+        });
+  }
+
+  private openListing(listing: Listing): void {
+      this.listingService.editListing(listing, msg => {
+        if (!msg.successful) {
+          this.modalService.openAlertModal('Failed to open listing.', msg.text);
+        } else {
+          listing.isOpen = true;
+        }
+      });
+  }
+
+  private openEditListingModal(listing: Listing): void {
+    this.modalService.openModal(ModalEditListingContentComponent, {listing: listing}, () => {
     });
   }
 

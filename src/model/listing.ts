@@ -1,4 +1,6 @@
 import {User} from './user';
+import {Offer} from './offer';
+import {Question} from './question';
 
 export class Listing {
   _id: string;
@@ -7,6 +9,10 @@ export class Listing {
   price: number;
   imageUrl: string;
   isOpen: boolean;
+  category: string;
   user: User;
   userRating: number;
+  createAt: Date;
+  questions: Question[];
+  offers: Offer[];
 }

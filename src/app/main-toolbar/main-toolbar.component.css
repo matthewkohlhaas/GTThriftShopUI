@@ -3,19 +3,116 @@
   outline: none;
 }
 
+.main-toolbar-logo {
+  cursor: pointer;
+}
+
+
+.main-toolbar-logo {
+  height: 64px;
+  width: 80px;
+  margin: 0px 20px;
+}
+
+
+.main-toolbar-logo,
+.main-toolbar-logo:focus,
+.main-toolbar-logo:active,
+.main-toolbar-logo:hover {
+  outline: none;
+}
+/*
+  UI bug that causes toolbar to shrink in height in mobile view.
+ */
+@media (max-width: 600px) {
+  .mat-toolbar-row, #main-toolbar {
+    height: 64px;
+  }
+}
+
 #main-toolbar-menu-button {
   height: auto;
   width: auto;
   margin-right: 20px;
-  font-size: 24pt;
+  margin-left: 10px;
+  font-size: 25pt;
   cursor: pointer;
 }
 
 #main-toolbar-logout-button {
+  vertical-align: top;
   font-size: 12pt;
+  display: block;
+  font-family: Lato, sans-serif;
+  height: 45px;
+  padding: 0px;
+  width: 45px;
+}
+
+#main-toolbar-logout-button:hover {
+  background-color: #c19051;
+}
+
+#main-toolbar-sell-button {
+  vertical-align:bottom;
+  font-size: 12pt;
+  display: block;
+  font-family: Lato, sans-serif;
+  height: 45px;
+  padding: 0px;
+  width: 45px;
+}
+#main-toolbar-sell-button:hover {
+  background-color: #c19051;
+}
+
+#main-toolbar-sell-button .mat-icon {
+  margin-right: 3px;
+  vertical-align: sub;
+}
+
+#main-toolbar-sell-button:focus {
+  outline:none;
 }
 
 app-main-sidenav {
   display: flex;
   flex: 1;
 }
+
+@media screen and (max-width:320px) {}
+@media screen and (min-width:321px) and (max-width:639px) {
+  .main-toolbar-logo, .toolbar-spacer, #main-toolbar-sell-button, #main-toolbar-logout-button {
+    display:none;
+  }
+  #main-toolbar-menu-button {
+    margin-right:7px;
+    margin-left: 0px;
+  }
+
+  #main-toolbar {
+    padding: 0px 5px;
+  }
+}
+
+@media screen and (min-width:640px) and (max-width:959px) {
+  .main-toolbar-logo, .toolbar-spacer {
+    display:none;
+  }
+  #search-input-form-field {
+    width: 35%;
+  }
+  #main-toolbar-menu-button {
+    margin-right:7px;
+    margin-left: 0px;
+  }
+
+}
+@media screen and (min-width:960px) and (max-width:1270px) {
+  #search-input-form-field {
+    width: 35%;
+  }
+}
+@media screen and (min-width:1271px) and (max-width:1599px) {}
+@media screen and (min-width:1600px) {}
+@media screen and (min-width:1920px) {}

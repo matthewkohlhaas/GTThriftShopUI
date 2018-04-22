@@ -1,32 +1,33 @@
 <mat-card class="profile-card">
-    <div class="profile-image">
-      <img src="{{user?.profilePictureUrl}}"/>
-        <mat-form-field *ngIf="editProfileEnabled">
-          <input matInput id="profile-picture-input" placeholder="Profile Picture URL"
-                 type="text" title="profile-picture" name="profile-picture"
-                 [(ngModel)]="profilePictureUrl" (keyup.enter)="done()">
-        </mat-form-field>
+
+  <div class="profile-image" [ngStyle]="{ 'background-image': 'url(' + user?.profilePictureUrl + ')'}"></div>
+
+  <div class="profile-text">
+    <mat-form-field id="profile-picture-input" *ngIf="editProfileEnabled">
+      <input matInput  placeholder="Profile Picture URL"
+             type="text" title="profile-picture" name="profile-picture"
+             [(ngModel)]="profilePictureUrl" (keyup.enter)="done()">
+    </mat-form-field>
+    <div class="user-name" *ngIf="!editProfileEnabled">
+      {{user?.firstName}} {{user?.lastName}}
     </div>
 
-    <div class="profile-text">
-      <div class="user-name" *ngIf="!editProfileEnabled">
-        {{user?.firstName}} {{user?.lastName}}
-      </div>
-      <div *ngIf="editProfileEnabled">
-        <mat-form-field>
-          <input matInput id="first-name-input" placeholder="First Name" type="text"
-               title="first-name" name="first-name" [(ngModel)]="firstName" (keyup.enter)="done()">
-          <mat-error>Please enter a first name.</mat-error>
-        </mat-form-field>
+    <div *ngIf="editProfileEnabled">
+      <mat-form-field id="first-name-input">
+        <input matInput placeholder="First Name" type="text"
+             title="first-name" name="first-name" [(ngModel)]="firstName" (keyup.enter)="done()">
+        <mat-error>Please enter a first name.</mat-error>
+      </mat-form-field>
 
-        <mat-form-field>
-          <input matInput id="last-name-input" placeholder="Last Name" type="text"
-               title="last-name" name="last-name" [(ngModel)]="lastName" (keyup.enter)="done()">
-          <mat-error>Please enter a last name.</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="user-email">
-        <span><b>email:</b> {{user?.email}}</span>
+      <mat-form-field id="last-name-input">
+        <input matInput placeholder="Last Name" type="text"
+             title="last-name" name="last-name" [(ngModel)]="lastName" (keyup.enter)="done()">
+        <mat-error>Please enter a last name.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="user-email-label">
+        Email : <span class="user-email">{{user?.email}}</span>
       </div>
       <div class="user-bio-label" *ngIf="!editProfileEnabled">
           About me:
@@ -35,60 +36,69 @@
         <div *ngIf="!editProfileEnabled">
           {{user?.profileBio}}
         </div>
-        <mat-form-field *ngIf="editProfileEnabled">
-          <input matInput id= "profile-bio-input" placeholder="About Me" type="text" title="profile-bio"
-                 name="profile" [(ngModel)]="profileBio" (keyup.enter)="done()">
+        <mat-form-field id= "profile-bio-input" *ngIf="editProfileEnabled">
+          <textarea matInput matTextareaAutosize placeholder="About Me" type="text" title="profile-bio"
+                    name="profile" [(ngModel)]="profileBio" (keyup.enter)="done()"></textarea>
           <mat-error>Please enter a bio.</mat-error>
         </mat-form-field>
       </div>
-
-      <div *ngIf="!isCurrentUsersProfile()">
-        <a>
-          <mat-icon class="message-button" (click)="openMessageModal(listing)">message</mat-icon>
-        </a>
-        <a>
-          <mat-icon class="flag-button" (click)="openFlagModal()">flag</mat-icon>
-        </a>
-      </div>
-      <div class="profile-buttons" *ngIf="isCurrentUsersProfile()">
-        <button mat-raised-button id="edit-profile-button" *ngIf="!editProfileEnabled" color="primary"
-                (click)="editProfile()">Edit Profile</button>
+      <div class="profile-edit-done-button" *ngIf="isCurrentUsersProfile()">
         <button mat-raised-button id="done-editing-profile-button" *ngIf="editProfileEnabled" color="primary"
                 (click)="done()">Done</button>
       </div>
-    </div>
+  </div>
+
+
+  <div class="listing-view-card-right-content">
+    <a *ngIf="!isCurrentUsersProfile()">
+      <mat-icon class="flag-button" (click)="openFlagModal()">block</mat-icon>
+    </a>
+    <a *ngIf="isCurrentUsersProfile()">
+      <mat-icon class="flag-button" (click)="editProfile()" >edit</mat-icon>
+    </a>
+  </div>
 </mat-card>
 
-<div *ngIf="isCurrentUsersProfile()">
-<div class="listings-feed">
-<mat-card class="listing-view-card" *ngFor="let listing of listings">
-  <div class="listing-view-content">
-    <div class="listing-view-image">
-      <img src="{{listing?.imageUrl}}" />
-    </div>
+<!---------------------------------------------------------------------------------------->
+<!----------------------------------CURRENT USER'S LISTINGS------------------------------->
+<!---------------------------------------------------------------------------------------->
+
+
+<mat-expansion-panel *ngIf="isCurrentUsersProfile()" class="profile-listings">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      My Listings
+    </mat-panel-title>
+    <mat-panel-description></mat-panel-description>
+  </mat-expansion-panel-header>
+  <mat-card class="listing-view-card" *ngFor="let listing of listings">
+    <div class="listing-view-image" [ngStyle]="{ 'background-image': 'url(' + listing.imageUrl + ')'}"></div>
     <div class="listing-view-text">
-      <a class="listing-view-name">
-        <div (click)="openEditListingModal(listing)">
-          <div *ngIf="listing.isOpen === true">
-            {{listing.name}}
-          </div>
-          <div *ngIf="listing.isOpen === false">
-            {{listing.name}} (Closed)
-          </div>
-        </div>
-      </a>
+      <div class="listing-view-name">
+        <a *ngIf="listing.isOpen" routerLink="/listings/{{listing._id}}">
+          {{listing.name}}
+        </a>
+        <mat-label class="listing-view-name-closed" *ngIf="!listing.isOpen">{{listing.name}} (CLOSED)</mat-label>
+
+        <mat-label class="listing-posted-date">{{listing.createdAt | date: 'dd/MM/yyyy'}}</mat-label>
+      </div>
       <div class="listing-view-seller">
         <a routerLink="/users/{{listing?.user?._id}}">{{listing?.user?.firstName}} {{listing?.user?.lastName}}</a>
-      </div>
-      <div class="listing-view-price">
-        {{(listing?.price) ? '$'+(listing?.price) : ''}}
       </div>
       <div class="listing-view-description">
         {{listing?.description}}
       </div>
     </div>
-  </div>
-</mat-card>
-</div>
-</div>
+    <div class="listing-view-card-right-content">
+      <div class="listing-view-price">
+        {{(listing.price) ? '$'+(listing.price) : ''}}
+      </div>
+      <a>
+        <mat-icon class="flag-button" (click)="openEditListingModal(listing)" >edit</mat-icon>
+      </a>
+    </div>
+  </mat-card>
+</mat-expansion-panel>
+
+
 

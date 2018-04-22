@@ -2,12 +2,13 @@
   <mat-sidenav id="main-sidenav" mode="over">
     <mat-nav-list (click)="close()">
       <a mat-list-item routerLink="/listings"><mat-icon>home</mat-icon>Home</a>
-      <a mat-list-item routerLink="/messages"><mat-icon>message</mat-icon>Messages</a>
-      <a mat-list-item routerLink="/users/{{getCurrentUserId()}}"><mat-icon>person</mat-icon>View Profile</a>
-      <a mat-list-item routerLink="/create-listing"><mat-icon>create</mat-icon>Create Listing</a>
+      <a mat-list-item routerLink="/users/{{getCurrentUserId()}}"><mat-icon>person</mat-icon>My Profile</a>
+      <a mat-list-item routerLink="/offers"><mat-icon>local_offer</mat-icon>Offers</a>
+      <a mat-list-item routerLink="/questions"><mat-icon>question_answer</mat-icon>Questions</a>
       <a mat-list-item routerLink="/admin" *ngIf="isAdmin"><mat-icon>supervisor_account</mat-icon>Admin</a>
       <a mat-list-item routerLink="/account-settings" ><mat-icon>fingerprint</mat-icon>Account</a>
       <a mat-list-item routerLink="/support"><mat-icon>help</mat-icon>Support</a>
+      <a mat-list-item (click)="logout()"><mat-icon>exit_to_app</mat-icon>Log out</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="main-content">

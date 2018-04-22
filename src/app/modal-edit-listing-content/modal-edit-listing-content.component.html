@@ -7,7 +7,7 @@
   </mat-form-field>
 
   <mat-form-field>
-    <textarea matInput matTextareaAutosize placeholder="Description" type="text" title="description"
+    <textarea matInput matTextareaAutosize  maxlength="450" placeholder="Description" type="text" title="description"
               name="description" [(ngModel)]="listing.description" (keyup.enter)="onSubmit()"></textarea>
   </mat-form-field>
 
@@ -20,19 +20,26 @@
     <input matInput placeholder="Image URL" type="text" title="image-url" name="image-url"
            [(ngModel)]="listing.imageUrl" (keyup.enter)="onSubmit()">
   </mat-form-field>
+
+  <mat-form-field>
+    <mat-select [(value)]="category" placeholder="Category">
+      <mat-option *ngFor="let cat of categoryObjects" [value]="cat.value">
+        {{ cat.text }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <div class="listing-buttons">
-    <button mat-raised-button id="close-listing-button" *ngIf="listing.isOpen === true" color="primary"
-            (click)="listing.isOpen = false">Close</button>
-    <button mat-raised-button id="open-listing-button" *ngIf="listing.isOpen === false" color="primary"
-            (click)="listing.isOpen = true">Open</button>
+    <mat-checkbox color="primary" [checked]="isChecked">Close listing</mat-checkbox>
   </div>
+
   <div class="modal-buttons">
-    <button mat-raised-button class="button-cancel-edit-listing" (click)="close()" [disabled]="submitDisabled">
-      Cancel
-    </button>
     <button mat-raised-button class="button-update-listing" color="primary" (click)="onSubmit()"
             [disabled]="submitDisabled">
       Update
+    </button>
+    <button mat-raised-button class="button-cancel-edit-listing" (click)="close()" [disabled]="submitDisabled">
+      Cancel
     </button>
   </div>
 </form>

@@ -1,21 +1,30 @@
+#login-toolbar {
+  padding: 0px 20px;
+}
+
 #login-button {
-  margin-right: 20px;
+  margin-right: 5px;
 }
 
 #login-toolbar .main-content {
   flex: 1;
 }
 
+.login-toolbar-main-content {
+  min-height: 900px;
+}
+
 #login-toolbar .mat-form-field {
   margin: 10px 20px 0 0;
   font-size: 16px;
-  min-width: 200px;
+  width: 200px;
 }
 
 #account-recovery-button,
 #account-recovery-button:hover,
 #account-recovery-button:active,
 #account-recovery-button:focus {
+  padding: 0px 10px;
   color: white;
   text-decoration: none;
 }
@@ -34,4 +43,39 @@
 
 /deep/ #login-toolbar .mat-input-element {
   caret-color: #0d47a1;
+}
+
+#login-toolbar-logo {
+  height: 100%;
+  width: 80px;
+  margin-left: 10px;
+}
+
+
+@media screen and (min-width:321px) and (max-width:639px) {
+  #login-toolbar-logo, .toolbar-spacer, #main-toolbar-sell-button, #main-toolbar-logout-button {
+    display:none;
+  }
+  #login-toolbar .mat-form-field {
+    width: 25%;
+    margin: 10px 10px 0 0;
+  }
+  .mat-raised-button {
+    min-width: 15%;
+    text-align: center;
+  }
+  /*
+    UI bug that causes toolbar to shrink in height in mobile view.
+   */
+  .mat-toolbar-row, #-toolbar {
+    height: 64px;
+  }
+}
+
+@media screen and (min-width:640px) and (max-width:959px) {
+  #login-toolbar .mat-form-field {
+    width: 25%;
+    margin: 10px 10px 0 0;
+  }
+
 }

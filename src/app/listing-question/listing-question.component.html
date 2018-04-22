@@ -1,0 +1,28 @@
+<div class="listing-question">
+  <div class="listing-question-listing" *ngIf="showListing">
+    For <a routerLink="/listings/{{listing?._id}}">{{listing?.name}}</a>:
+  </div>
+  <div class="listing-question-question">
+    <span *ngIf="showUser">
+      <a routerLink="/users/{{question?.user?._id}}">{{question?.user?.firstName}} {{question?.user?.lastName}}</a>:
+    </span>
+    <span>{{question.question}}</span>
+  </div>
+  <div class="listing-question-answer">
+    <span *ngIf="question?.answer; else questionIsUnanswered"><b>Answer:</b> {{question.answer}}</span>
+    <ng-template #questionIsUnanswered *ngIf="showUnansweredMessage">
+      <span class="listing-question-not-answered">This question has not yet been answered.</span>
+    </ng-template>
+  </div>
+  <form class="listing-question-form"
+        *ngIf="currUserId === listing?.user?._id || currUserId === listing?.user.toString()">
+    <mat-form-field class="listing-question-form-field">
+      <input matInput placeholder="Answer" type="text" title="Answer" name="answer" [(ngModel)]="answer"
+             (keyup.enter)="onSubmitAnswer()">
+    </mat-form-field>
+    <button mat-raised-button id="button-post-message" color="primary" (click)="onSubmitAnswer()"
+            [disabled]="submitDisabled">
+      {{question?.answer ? 'Change Answer' : 'Answer Question'}}
+    </button>
+  </form>
+</div>

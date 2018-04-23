@@ -21,6 +21,7 @@ export class ListingPageComponent implements OnInit {
 
   currentUser: User;
   listing: Listing;
+  mainImage: String;
   offers: Offer[];
 
   constructor(
@@ -40,11 +41,17 @@ export class ListingPageComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.listingService.getListing(params['id']).subscribe(listing => {
         this.listing = listing;
+        this.mainImage = listing.imageUrl[0];
         if (next) {
           next();
         }
       });
     });
+  }
+
+  private switchMainImage(imageUrl: String): void {
+    console.log("hit")
+    this.mainImage = imageUrl;
   }
 
   private loadOffers(): void {

@@ -72,7 +72,7 @@
     <mat-panel-description></mat-panel-description>
   </mat-expansion-panel-header>
   <mat-card class="listing-view-card" *ngFor="let listing of listings">
-    <div class="listing-view-image" [ngStyle]="{ 'background-image': 'url(' + listing.imageUrl + ')'}"></div>
+    <div class="listing-view-image"  [ngStyle]="{ 'background-image': 'url(' + listing.imageUrl[0] + ')'}"></div>
     <div class="listing-view-text">
       <div class="listing-view-name">
         <a *ngIf="listing.isOpen" routerLink="/listings/{{listing._id}}">

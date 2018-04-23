@@ -3,6 +3,7 @@
 }
 
 .listing-view-card {
+  width: 90% !important;
   display: flex;
   margin: 0 auto;
   margin-left: 25px;
@@ -168,7 +169,7 @@
   .listing-view-card {
     display: inline-block;
     height: auto;
-    width: 48%;
+    width: 48% !important;
     margin-left: 20px;
   }
 

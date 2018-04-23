@@ -33,7 +33,7 @@
 </mat-card>
 
 <mat-card class="listing-images">
-  <div class="listing-view-image2" *ngFor="let imageURL of this.listing.imageUrl"
+  <div class="listing-view-image-preview" *ngFor="let imageURL of this.listing.imageUrl"
        [ngStyle]="{ 'background-image': 'url(' + imageURL + ')'}" (click)="switchMainImage(imageURL)"></div>
 </mat-card>
 

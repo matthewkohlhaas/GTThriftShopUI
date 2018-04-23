@@ -51,7 +51,7 @@
   cursor: pointer;
 }
 
-.listing-view-image2 {
+.listing-view-image-preview {
   display: inline-block;
   vertical-align: left;
   width: 80px;
@@ -61,7 +61,7 @@
   background-repeat: no-repeat;
 }
 
-.listing-view-image2 img {
+.listing-view-image-preview img {
   float: left;
   display: block;
   margin: auto;

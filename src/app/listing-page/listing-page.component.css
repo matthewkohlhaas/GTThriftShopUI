@@ -5,7 +5,7 @@
 .listing-view-card {
   display: flex;
   margin: 0 auto;
-  margin-left: 20px;
+  margin-left: 25px;
   height: 300px;
 }
 
@@ -81,6 +81,13 @@
   margin-bottom: 10px;
   font-size: 18pt;
   font-weight: bold;
+}
+
+.listing-view-name-closed {
+  text-decoration: line-through;
+  font-size: 14pt;
+  font-weight: normal;
+  color: gray;
 }
 
 .listing-view-seller {
